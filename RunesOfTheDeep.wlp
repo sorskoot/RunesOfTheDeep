@@ -3,9 +3,9 @@
         "14": {
             "name": "Player",
             "translation": [
-                -2.5,
                 0.0,
-                1.1575535
+                0.0,
+                0.0
             ],
             "rotation": [
                 0.0,
@@ -22,14 +22,6 @@
         "15": {
             "name": "FloorPlane",
             "components": [
-                {
-                    "type": "mesh",
-                    "mesh": {
-                        "mesh": "7",
-                        "material": "20"
-                    },
-                    "active": true
-                },
                 {
                     "type": "collision",
                     "collision": {
@@ -60,34 +52,6 @@
                 4.0,
                 4.0,
                 4.0
-            ]
-        },
-        "16": {
-            "name": "Cube",
-            "components": [
-                {
-                    "type": "mesh",
-                    "mesh": {
-                        "mesh": "8",
-                        "material": "22"
-                    }
-                }
-            ],
-            "translation": [
-                2.9802322387695313e-8,
-                0.4999999,
-                5.960464477539065e-8
-            ],
-            "rotation": [
-                0.0,
-                0.0,
-                0.0,
-                1.0
-            ],
-            "scaling": [
-                0.5,
-                0.5,
-                0.5
             ]
         },
         "17": {
@@ -146,6 +110,10 @@
                     "input": {
                         "type": "eye left"
                     }
+                },
+                {
+                    "type": "howler-audio-listener",
+                    "active": false
                 }
             ],
             "translation": [
@@ -209,7 +177,7 @@
             "translation": [
                 0.0,
                 3.0,
-                2.0
+                0.0
             ],
             "rotation": [
                 0.0,
@@ -221,568 +189,8 @@
                 1.0,
                 1.0,
                 1.0
-            ]
-        },
-        "23": {
-            "name": "Light.000",
-            "components": [
-                {
-                    "type": "light",
-                    "light": {
-                        "intensity": 3.3329999
-                    }
-                }
             ],
-            "translation": [
-                -1.0,
-                3.0,
-                -1.0
-            ],
-            "rotation": [
-                0.0,
-                0.0,
-                0.0,
-                1.0
-            ],
-            "scaling": [
-                1.0,
-                1.0,
-                1.0
-            ]
-        },
-        "24": {
-            "name": "Cone",
-            "components": [
-                {
-                    "type": "mesh",
-                    "mesh": {
-                        "mesh": "10",
-                        "material": "25"
-                    }
-                }
-            ],
-            "translation": [
-                1.5,
-                1.0,
-                -1.4901161193847656e-8
-            ],
-            "rotation": [
-                0.0,
-                0.0,
-                0.0,
-                1.0
-            ],
-            "scaling": [
-                1.0,
-                1.0,
-                1.0
-            ]
-        },
-        "27": {
-            "name": "Sphere",
-            "components": [
-                {
-                    "type": "mesh",
-                    "mesh": {
-                        "mesh": "9",
-                        "material": "26"
-                    }
-                }
-            ],
-            "translation": [
-                0.4999999,
-                0.75,
-                -1.25
-            ],
-            "rotation": [
-                0.0,
-                0.0,
-                0.0,
-                1.0
-            ],
-            "scaling": [
-                0.75,
-                0.75,
-                0.75
-            ]
-        },
-        "53": {
-            "link": {
-                "name": "root",
-                "file": "models\\oculus-touch-v2-left.glb"
-            },
-            "parent": "130",
-            "name": "ControllerModelLeft",
-            "translation": [
-                -0.0117514,
-                0.0008869,
-                0.0161192
-            ],
-            "rotation": [
-                -0.0,
-                0.7316615,
-                0.6816681,
-                3.196286257889369e-8
-            ],
-            "scaling": [
-                0.9999998,
-                0.9999999,
-                0.9999997
-            ]
-        },
-        "54": {
-            "link": {
-                "name": "controller<root",
-                "file": "models\\oculus-touch-v2-left.glb"
-            },
-            "parent": "53",
-            "components": [
-                {
-                    "active": false
-                }
-            ]
-        },
-        "55": {
-            "link": {
-                "name": "thumbrest_pressed_max<root",
-                "file": "models\\oculus-touch-v2-left.glb"
-            },
-            "parent": "53"
-        },
-        "56": {
-            "link": {
-                "name": "thumbrest_pressed_min<root",
-                "file": "models\\oculus-touch-v2-left.glb"
-            },
-            "parent": "53"
-        },
-        "57": {
-            "link": {
-                "name": "thumbrest_pressed_value<root",
-                "file": "models\\oculus-touch-v2-left.glb"
-            },
-            "parent": "53"
-        },
-        "58": {
-            "link": {
-                "name": "x_button_pressed_max<root",
-                "file": "models\\oculus-touch-v2-left.glb"
-            },
-            "parent": "53"
-        },
-        "59": {
-            "link": {
-                "name": "x_button_pressed_min<root",
-                "file": "models\\oculus-touch-v2-left.glb"
-            },
-            "parent": "53"
-        },
-        "60": {
-            "link": {
-                "name": "x_button_pressed_value<root",
-                "file": "models\\oculus-touch-v2-left.glb"
-            },
-            "parent": "53"
-        },
-        "61": {
-            "link": {
-                "name": "x_button<x_button_pressed_value<root",
-                "file": "models\\oculus-touch-v2-left.glb"
-            },
-            "parent": "60"
-        },
-        "62": {
-            "link": {
-                "name": "xr_standard_squeeze_pressed_max<root",
-                "file": "models\\oculus-touch-v2-left.glb"
-            },
-            "parent": "53"
-        },
-        "63": {
-            "link": {
-                "name": "xr_standard_squeeze_pressed_min<root",
-                "file": "models\\oculus-touch-v2-left.glb"
-            },
-            "parent": "53"
-        },
-        "64": {
-            "link": {
-                "name": "xr_standard_squeeze_pressed_value<root",
-                "file": "models\\oculus-touch-v2-left.glb"
-            },
-            "parent": "53"
-        },
-        "65": {
-            "link": {
-                "name": "squeeze<xr_standard_squeeze_pressed_value<root",
-                "file": "models\\oculus-touch-v2-left.glb"
-            },
-            "parent": "64"
-        },
-        "66": {
-            "link": {
-                "name": "xr_standard_thumbstick_pressed_max<root",
-                "file": "models\\oculus-touch-v2-left.glb"
-            },
-            "parent": "53"
-        },
-        "67": {
-            "link": {
-                "name": "xr_standard_thumbstick_pressed_min<root",
-                "file": "models\\oculus-touch-v2-left.glb"
-            },
-            "parent": "53"
-        },
-        "68": {
-            "link": {
-                "name": "xr_standard_thumbstick_pressed_value<root",
-                "file": "models\\oculus-touch-v2-left.glb"
-            },
-            "parent": "53"
-        },
-        "69": {
-            "link": {
-                "name": "xr_standard_thumbstick_xaxis_pressed_max<xr_standard_thumbstick_pressed_value<root",
-                "file": "models\\oculus-touch-v2-left.glb"
-            },
-            "parent": "68"
-        },
-        "70": {
-            "link": {
-                "name": "xr_standard_thumbstick_xaxis_pressed_min<xr_standard_thumbstick_pressed_value<root",
-                "file": "models\\oculus-touch-v2-left.glb"
-            },
-            "parent": "68"
-        },
-        "71": {
-            "link": {
-                "name": "xr_standard_thumbstick_xaxis_pressed_value<xr_standard_thumbstick_pressed_value<root",
-                "file": "models\\oculus-touch-v2-left.glb"
-            },
-            "parent": "68"
-        },
-        "72": {
-            "link": {
-                "name": "xr_standard_thumbstick_yaxis_pressed_max<xr_standard_thumbstick_xaxis_pressed_value<xr_standard_thumbstick_pressed_value<root",
-                "file": "models\\oculus-touch-v2-left.glb"
-            },
-            "parent": "71"
-        },
-        "73": {
-            "link": {
-                "name": "xr_standard_thumbstick_yaxis_pressed_min<xr_standard_thumbstick_xaxis_pressed_value<xr_standard_thumbstick_pressed_value<root",
-                "file": "models\\oculus-touch-v2-left.glb"
-            },
-            "parent": "71"
-        },
-        "74": {
-            "link": {
-                "name": "xr_standard_thumbstick_yaxis_pressed_value<xr_standard_thumbstick_xaxis_pressed_value<xr_standard_thumbstick_pressed_value<root",
-                "file": "models\\oculus-touch-v2-left.glb"
-            },
-            "parent": "71"
-        },
-        "75": {
-            "link": {
-                "name": "thumbstick<xr_standard_thumbstick_yaxis_pressed_value<xr_standard_thumbstick_xaxis_pressed_value<xr_standard_thumbstick_pressed_value<root",
-                "file": "models\\oculus-touch-v2-left.glb"
-            },
-            "parent": "74"
-        },
-        "76": {
-            "link": {
-                "name": "xr_standard_trigger_pressed_max<root",
-                "file": "models\\oculus-touch-v2-left.glb"
-            },
-            "parent": "53"
-        },
-        "77": {
-            "link": {
-                "name": "xr_standard_trigger_pressed_min<root",
-                "file": "models\\oculus-touch-v2-left.glb"
-            },
-            "parent": "53"
-        },
-        "78": {
-            "link": {
-                "name": "xr_standard_trigger_pressed_value<root",
-                "file": "models\\oculus-touch-v2-left.glb"
-            },
-            "parent": "53"
-        },
-        "79": {
-            "link": {
-                "name": "trigger<xr_standard_trigger_pressed_value<root",
-                "file": "models\\oculus-touch-v2-left.glb"
-            },
-            "parent": "78"
-        },
-        "80": {
-            "link": {
-                "name": "y_button_pressed_max<root",
-                "file": "models\\oculus-touch-v2-left.glb"
-            },
-            "parent": "53"
-        },
-        "81": {
-            "link": {
-                "name": "y_button_pressed_min<root",
-                "file": "models\\oculus-touch-v2-left.glb"
-            },
-            "parent": "53"
-        },
-        "82": {
-            "link": {
-                "name": "y_button_pressed_value<root",
-                "file": "models\\oculus-touch-v2-left.glb"
-            },
-            "parent": "53"
-        },
-        "83": {
-            "link": {
-                "name": "y_button<y_button_pressed_value<root",
-                "file": "models\\oculus-touch-v2-left.glb"
-            },
-            "parent": "82"
-        },
-        "95": {
-            "link": {
-                "name": "root",
-                "file": "models\\oculus-touch-v2-right.glb"
-            },
-            "parent": "129",
-            "name": "ControllerModelRight",
-            "translation": [
-                0.0097994,
-                -0.0006203,
-                0.0177838
-            ],
-            "rotation": [
-                -0.0,
-                0.999921,
-                -0.0125658,
-                -4.174509058429976e-7
-            ],
-            "scaling": [
-                0.9993978,
-                0.9993963,
-                1.0000015
-            ]
-        },
-        "96": {
-            "link": {
-                "name": "a_button_pressed_max<root",
-                "file": "models\\oculus-touch-v2-right.glb"
-            },
-            "parent": "95"
-        },
-        "97": {
-            "link": {
-                "name": "a_button_pressed_min<root",
-                "file": "models\\oculus-touch-v2-right.glb"
-            },
-            "parent": "95"
-        },
-        "98": {
-            "link": {
-                "name": "a_button_pressed_value<root",
-                "file": "models\\oculus-touch-v2-right.glb"
-            },
-            "parent": "95"
-        },
-        "99": {
-            "link": {
-                "name": "a_button<a_button_pressed_value<root",
-                "file": "models\\oculus-touch-v2-right.glb"
-            },
-            "parent": "98"
-        },
-        "100": {
-            "link": {
-                "name": "b_button_pressed_max<root",
-                "file": "models\\oculus-touch-v2-right.glb"
-            },
-            "parent": "95"
-        },
-        "101": {
-            "link": {
-                "name": "b_button_pressed_min<root",
-                "file": "models\\oculus-touch-v2-right.glb"
-            },
-            "parent": "95"
-        },
-        "102": {
-            "link": {
-                "name": "b_button_pressed_value<root",
-                "file": "models\\oculus-touch-v2-right.glb"
-            },
-            "parent": "95"
-        },
-        "103": {
-            "link": {
-                "name": "b_button<b_button_pressed_value<root",
-                "file": "models\\oculus-touch-v2-right.glb"
-            },
-            "parent": "102"
-        },
-        "104": {
-            "link": {
-                "name": "controller<root",
-                "file": "models\\oculus-touch-v2-right.glb"
-            },
-            "parent": "95",
-            "components": [
-                {
-                    "active": false
-                }
-            ]
-        },
-        "105": {
-            "link": {
-                "name": "thumbrest_pressed_max<root",
-                "file": "models\\oculus-touch-v2-right.glb"
-            },
-            "parent": "95"
-        },
-        "106": {
-            "link": {
-                "name": "thumbrest_pressed_min<root",
-                "file": "models\\oculus-touch-v2-right.glb"
-            },
-            "parent": "95"
-        },
-        "107": {
-            "link": {
-                "name": "thumbrest_pressed_value<root",
-                "file": "models\\oculus-touch-v2-right.glb"
-            },
-            "parent": "95"
-        },
-        "108": {
-            "link": {
-                "name": "xr_standard_squeeze_pressed_max<root",
-                "file": "models\\oculus-touch-v2-right.glb"
-            },
-            "parent": "95"
-        },
-        "109": {
-            "link": {
-                "name": "xr_standard_squeeze_pressed_min<root",
-                "file": "models\\oculus-touch-v2-right.glb"
-            },
-            "parent": "95"
-        },
-        "110": {
-            "link": {
-                "name": "xr_standard_squeeze_pressed_value<root",
-                "file": "models\\oculus-touch-v2-right.glb"
-            },
-            "parent": "95"
-        },
-        "111": {
-            "link": {
-                "name": "squeeze<xr_standard_squeeze_pressed_value<root",
-                "file": "models\\oculus-touch-v2-right.glb"
-            },
-            "parent": "110"
-        },
-        "112": {
-            "link": {
-                "name": "xr_standard_thumbstick_pressed_max<root",
-                "file": "models\\oculus-touch-v2-right.glb"
-            },
-            "parent": "95"
-        },
-        "113": {
-            "link": {
-                "name": "xr_standard_thumbstick_pressed_min<root",
-                "file": "models\\oculus-touch-v2-right.glb"
-            },
-            "parent": "95"
-        },
-        "114": {
-            "link": {
-                "name": "xr_standard_thumbstick_pressed_value<root",
-                "file": "models\\oculus-touch-v2-right.glb"
-            },
-            "parent": "95"
-        },
-        "115": {
-            "link": {
-                "name": "xr_standard_thumbstick_xaxis_pressed_max<xr_standard_thumbstick_pressed_value<root",
-                "file": "models\\oculus-touch-v2-right.glb"
-            },
-            "parent": "114"
-        },
-        "116": {
-            "link": {
-                "name": "xr_standard_thumbstick_xaxis_pressed_min<xr_standard_thumbstick_pressed_value<root",
-                "file": "models\\oculus-touch-v2-right.glb"
-            },
-            "parent": "114"
-        },
-        "117": {
-            "link": {
-                "name": "xr_standard_thumbstick_xaxis_pressed_value<xr_standard_thumbstick_pressed_value<root",
-                "file": "models\\oculus-touch-v2-right.glb"
-            },
-            "parent": "114"
-        },
-        "118": {
-            "link": {
-                "name": "xr_standard_thumbstick_yaxis_pressed_max<xr_standard_thumbstick_xaxis_pressed_value<xr_standard_thumbstick_pressed_value<root",
-                "file": "models\\oculus-touch-v2-right.glb"
-            },
-            "parent": "117"
-        },
-        "119": {
-            "link": {
-                "name": "xr_standard_thumbstick_yaxis_pressed_min<xr_standard_thumbstick_xaxis_pressed_value<xr_standard_thumbstick_pressed_value<root",
-                "file": "models\\oculus-touch-v2-right.glb"
-            },
-            "parent": "117"
-        },
-        "120": {
-            "link": {
-                "name": "xr_standard_thumbstick_yaxis_pressed_value<xr_standard_thumbstick_xaxis_pressed_value<xr_standard_thumbstick_pressed_value<root",
-                "file": "models\\oculus-touch-v2-right.glb"
-            },
-            "parent": "117"
-        },
-        "121": {
-            "link": {
-                "name": "thumbstick<xr_standard_thumbstick_yaxis_pressed_value<xr_standard_thumbstick_xaxis_pressed_value<xr_standard_thumbstick_pressed_value<root",
-                "file": "models\\oculus-touch-v2-right.glb"
-            },
-            "parent": "120"
-        },
-        "122": {
-            "link": {
-                "name": "xr_standard_trigger_pressed_max<root",
-                "file": "models\\oculus-touch-v2-right.glb"
-            },
-            "parent": "95"
-        },
-        "123": {
-            "link": {
-                "name": "xr_standard_trigger_pressed_min<root",
-                "file": "models\\oculus-touch-v2-right.glb"
-            },
-            "parent": "95"
-        },
-        "124": {
-            "link": {
-                "name": "xr_standard_trigger_pressed_value<root",
-                "file": "models\\oculus-touch-v2-right.glb"
-            },
-            "parent": "95"
-        },
-        "125": {
-            "link": {
-                "name": "trigger<xr_standard_trigger_pressed_value<root",
-                "file": "models\\oculus-touch-v2-right.glb"
-            },
-            "parent": "124"
+            "parent": "235"
         },
         "126": {
             "name": "CursorLeft",
@@ -831,35 +239,6 @@
                 1.0,
                 1.0,
                 1.0
-            ]
-        },
-        "127": {
-            "name": "3DCursorHitLeft",
-            "components": [
-                {
-                    "type": "mesh",
-                    "mesh": {
-                        "mesh": "9",
-                        "material": "128"
-                    }
-                }
-            ],
-            "parent": null,
-            "translation": [
-                0.0,
-                0.0388117,
-                1.5585094
-            ],
-            "rotation": [
-                0.0,
-                0.0,
-                0.0,
-                1.0
-            ],
-            "scaling": [
-                0.0099999,
-                0.0099999,
-                0.0099999
             ]
         },
         "129": {
@@ -926,724 +305,6 @@
                 1.0
             ]
         },
-        "134": {
-            "link": {
-                "name": "Armature",
-                "file": "models\\hand-left.glb"
-            },
-            "parent": "205",
-            "name": "HandLeft",
-            "components": [
-                {
-                    "type": "hand-tracking",
-                    "hand-tracking": {
-                        "handedness": "left",
-                        "handSkin": "133",
-                        "controllerToDeactivate": "130",
-                        "deactivateChildrenWithoutPose": true
-                    }
-                },
-                {
-                    "type": "vr-mode-active-switch",
-                    "active": true
-                }
-            ],
-            "translation": [
-                0.0,
-                0.0,
-                -2.384185791015625e-7
-            ],
-            "rotation": [
-                0.0,
-                0.0,
-                0.0,
-                1.0
-            ],
-            "scaling": [
-                1.0,
-                1.0,
-                1.0
-            ]
-        },
-        "135": {
-            "link": {
-                "name": "l_handMeshNode<Armature",
-                "file": "models\\hand-left.glb"
-            },
-            "parent": "134",
-            "components": [
-                {
-                    "active": true,
-                    "mesh": {
-                        "skin": "133"
-                    }
-                }
-            ]
-        },
-        "136": {
-            "link": {
-                "name": "xr_standard_trigger_pressed_max<Armature",
-                "file": "models\\hand-left.glb"
-            },
-            "parent": "134"
-        },
-        "137": {
-            "link": {
-                "name": "xr_standard_trigger_pressed_min<Armature",
-                "file": "models\\hand-left.glb"
-            },
-            "parent": "134"
-        },
-        "138": {
-            "link": {
-                "name": "xr_standard_trigger_pressed_value<Armature",
-                "file": "models\\hand-left.glb"
-            },
-            "parent": "134"
-        },
-        "139": {
-            "link": {
-                "name": "pinky-finger-tip<Armature",
-                "file": "models\\hand-left.glb"
-            },
-            "parent": "134",
-            "skin": "133"
-        },
-        "140": {
-            "link": {
-                "name": "pinky-finger-phalanx-distal<Armature",
-                "file": "models\\hand-left.glb"
-            },
-            "parent": "134",
-            "skin": "133"
-        },
-        "141": {
-            "link": {
-                "name": "pinky-finger-phalanx-intermediate<Armature",
-                "file": "models\\hand-left.glb"
-            },
-            "parent": "134",
-            "skin": "133"
-        },
-        "142": {
-            "link": {
-                "name": "pinky-finger-phalanx-proximal<Armature",
-                "file": "models\\hand-left.glb"
-            },
-            "parent": "134",
-            "skin": "133"
-        },
-        "143": {
-            "link": {
-                "name": "pinky-finger-metacarpal<Armature",
-                "file": "models\\hand-left.glb"
-            },
-            "parent": "134",
-            "skin": "133"
-        },
-        "144": {
-            "link": {
-                "name": "ring-finger-tip<Armature",
-                "file": "models\\hand-left.glb"
-            },
-            "parent": "134",
-            "skin": "133"
-        },
-        "145": {
-            "link": {
-                "name": "ring-finger-phalanx-distal<Armature",
-                "file": "models\\hand-left.glb"
-            },
-            "parent": "134",
-            "skin": "133"
-        },
-        "146": {
-            "link": {
-                "name": "ring-finger-phalanx-intermediate<Armature",
-                "file": "models\\hand-left.glb"
-            },
-            "parent": "134",
-            "skin": "133"
-        },
-        "147": {
-            "link": {
-                "name": "ring-finger-phalanx-proximal<Armature",
-                "file": "models\\hand-left.glb"
-            },
-            "parent": "134",
-            "skin": "133"
-        },
-        "148": {
-            "link": {
-                "name": "ring-finger-metacarpal<Armature",
-                "file": "models\\hand-left.glb"
-            },
-            "parent": "134",
-            "skin": "133"
-        },
-        "149": {
-            "link": {
-                "name": "middle-finger-tip<Armature",
-                "file": "models\\hand-left.glb"
-            },
-            "parent": "134",
-            "skin": "133"
-        },
-        "150": {
-            "link": {
-                "name": "middle-finger-phalanx-distal<Armature",
-                "file": "models\\hand-left.glb"
-            },
-            "parent": "134",
-            "skin": "133"
-        },
-        "151": {
-            "link": {
-                "name": "middle-finger-phalanx-intermediate<Armature",
-                "file": "models\\hand-left.glb"
-            },
-            "parent": "134",
-            "skin": "133"
-        },
-        "152": {
-            "link": {
-                "name": "middle-finger-phalanx-proximal<Armature",
-                "file": "models\\hand-left.glb"
-            },
-            "parent": "134",
-            "skin": "133"
-        },
-        "153": {
-            "link": {
-                "name": "middle-finger-metacarpal<Armature",
-                "file": "models\\hand-left.glb"
-            },
-            "parent": "134",
-            "skin": "133"
-        },
-        "154": {
-            "link": {
-                "name": "index-finger-tip<Armature",
-                "file": "models\\hand-left.glb"
-            },
-            "parent": "134",
-            "components": [
-                {
-                    "type": "finger-cursor"
-                },
-                {
-                    "type": "collision",
-                    "collision": {
-                        "sphere": {
-                            "radius": 0.0099999
-                        },
-                        "groups": 2
-                    }
-                }
-            ],
-            "skin": "133"
-        },
-        "155": {
-            "link": {
-                "name": "index-finger-phalanx-distal<Armature",
-                "file": "models\\hand-left.glb"
-            },
-            "parent": "134",
-            "skin": "133"
-        },
-        "156": {
-            "link": {
-                "name": "index-finger-phalanx-intermediate<Armature",
-                "file": "models\\hand-left.glb"
-            },
-            "parent": "134",
-            "skin": "133"
-        },
-        "157": {
-            "link": {
-                "name": "index-finger-phalanx-proximal<Armature",
-                "file": "models\\hand-left.glb"
-            },
-            "parent": "134",
-            "skin": "133"
-        },
-        "158": {
-            "link": {
-                "name": "index-finger-metacarpal<Armature",
-                "file": "models\\hand-left.glb"
-            },
-            "parent": "134",
-            "skin": "133"
-        },
-        "159": {
-            "link": {
-                "name": "thumb-tip<Armature",
-                "file": "models\\hand-left.glb"
-            },
-            "parent": "134",
-            "skin": "133"
-        },
-        "160": {
-            "link": {
-                "name": "thumb-phalanx-distal<Armature",
-                "file": "models\\hand-left.glb"
-            },
-            "parent": "134",
-            "skin": "133"
-        },
-        "161": {
-            "link": {
-                "name": "thumb-phalanx-proximal<Armature",
-                "file": "models\\hand-left.glb"
-            },
-            "parent": "134",
-            "skin": "133"
-        },
-        "162": {
-            "link": {
-                "name": "thumb-metacarpal<Armature",
-                "file": "models\\hand-left.glb"
-            },
-            "parent": "134",
-            "skin": "133"
-        },
-        "163": {
-            "link": {
-                "name": "wrist<Armature",
-                "file": "models\\hand-left.glb"
-            },
-            "parent": "134",
-            "skin": "133"
-        },
-        "167": {
-            "link": {
-                "name": "Armature",
-                "file": "models\\hand-right.glb"
-            },
-            "parent": "205",
-            "name": "HandRight",
-            "components": [
-                {
-                    "type": "hand-tracking",
-                    "hand-tracking": {
-                        "handedness": "right",
-                        "handSkin": "166",
-                        "controllerToDeactivate": "129"
-                    },
-                    "active": true
-                },
-                {
-                    "type": "vr-mode-active-switch",
-                    "active": true
-                }
-            ],
-            "translation": [
-                0.0,
-                0.0,
-                -2.384185791015625e-7
-            ],
-            "rotation": [
-                0.0,
-                0.0,
-                0.0,
-                1.0
-            ],
-            "scaling": [
-                1.0,
-                1.0,
-                1.0
-            ]
-        },
-        "168": {
-            "link": {
-                "name": "r_handMeshNode<Armature",
-                "file": "models\\hand-right.glb"
-            },
-            "parent": "167",
-            "components": [
-                {
-                    "mesh": {
-                        "skin": "166"
-                    }
-                }
-            ]
-        },
-        "169": {
-            "link": {
-                "name": "wrist<Armature",
-                "file": "models\\hand-right.glb"
-            },
-            "parent": "167",
-            "skin": "166"
-        },
-        "170": {
-            "link": {
-                "name": "thumb-metacarpal<Armature",
-                "file": "models\\hand-right.glb"
-            },
-            "parent": "167",
-            "skin": "166"
-        },
-        "171": {
-            "link": {
-                "name": "thumb-phalanx-proximal<Armature",
-                "file": "models\\hand-right.glb"
-            },
-            "parent": "167",
-            "skin": "166"
-        },
-        "172": {
-            "link": {
-                "name": "thumb-phalanx-distal<Armature",
-                "file": "models\\hand-right.glb"
-            },
-            "parent": "167",
-            "skin": "166"
-        },
-        "173": {
-            "link": {
-                "name": "thumb-tip<Armature",
-                "file": "models\\hand-right.glb"
-            },
-            "parent": "167",
-            "skin": "166"
-        },
-        "174": {
-            "link": {
-                "name": "index-finger-metacarpal<Armature",
-                "file": "models\\hand-right.glb"
-            },
-            "parent": "167",
-            "skin": "166"
-        },
-        "175": {
-            "link": {
-                "name": "index-finger-phalanx-proximal<Armature",
-                "file": "models\\hand-right.glb"
-            },
-            "parent": "167",
-            "skin": "166"
-        },
-        "176": {
-            "link": {
-                "name": "index-finger-phalanx-intermediate<Armature",
-                "file": "models\\hand-right.glb"
-            },
-            "parent": "167",
-            "skin": "166"
-        },
-        "177": {
-            "link": {
-                "name": "index-finger-phalanx-distal<Armature",
-                "file": "models\\hand-right.glb"
-            },
-            "parent": "167",
-            "skin": "166"
-        },
-        "178": {
-            "link": {
-                "name": "index-finger-tip<Armature",
-                "file": "models\\hand-right.glb"
-            },
-            "parent": "167",
-            "components": [
-                {
-                    "type": "collision",
-                    "collision": {
-                        "sphere": {
-                            "radius": 0.0099999
-                        },
-                        "groups": 2
-                    }
-                },
-                {
-                    "type": "finger-cursor"
-                }
-            ],
-            "skin": "166"
-        },
-        "179": {
-            "link": {
-                "name": "middle-finger-metacarpal<Armature",
-                "file": "models\\hand-right.glb"
-            },
-            "parent": "167",
-            "skin": "166"
-        },
-        "180": {
-            "link": {
-                "name": "middle-finger-phalanx-proximal<Armature",
-                "file": "models\\hand-right.glb"
-            },
-            "parent": "167",
-            "skin": "166"
-        },
-        "181": {
-            "link": {
-                "name": "middle-finger-phalanx-intermediate<Armature",
-                "file": "models\\hand-right.glb"
-            },
-            "parent": "167",
-            "skin": "166"
-        },
-        "182": {
-            "link": {
-                "name": "middle-finger-phalanx-distal<Armature",
-                "file": "models\\hand-right.glb"
-            },
-            "parent": "167",
-            "skin": "166"
-        },
-        "183": {
-            "link": {
-                "name": "middle-finger-tip<Armature",
-                "file": "models\\hand-right.glb"
-            },
-            "parent": "167",
-            "skin": "166"
-        },
-        "184": {
-            "link": {
-                "name": "ring-finger-metacarpal<Armature",
-                "file": "models\\hand-right.glb"
-            },
-            "parent": "167",
-            "skin": "166"
-        },
-        "185": {
-            "link": {
-                "name": "ring-finger-phalanx-proximal<Armature",
-                "file": "models\\hand-right.glb"
-            },
-            "parent": "167",
-            "skin": "166"
-        },
-        "186": {
-            "link": {
-                "name": "ring-finger-phalanx-intermediate<Armature",
-                "file": "models\\hand-right.glb"
-            },
-            "parent": "167",
-            "skin": "166"
-        },
-        "187": {
-            "link": {
-                "name": "ring-finger-phalanx-distal<Armature",
-                "file": "models\\hand-right.glb"
-            },
-            "parent": "167",
-            "skin": "166"
-        },
-        "188": {
-            "link": {
-                "name": "ring-finger-tip<Armature",
-                "file": "models\\hand-right.glb"
-            },
-            "parent": "167",
-            "skin": "166"
-        },
-        "189": {
-            "link": {
-                "name": "pinky-finger-metacarpal<Armature",
-                "file": "models\\hand-right.glb"
-            },
-            "parent": "167",
-            "skin": "166"
-        },
-        "190": {
-            "link": {
-                "name": "pinky-finger-phalanx-proximal<Armature",
-                "file": "models\\hand-right.glb"
-            },
-            "parent": "167",
-            "skin": "166"
-        },
-        "191": {
-            "link": {
-                "name": "pinky-finger-phalanx-intermediate<Armature",
-                "file": "models\\hand-right.glb"
-            },
-            "parent": "167",
-            "skin": "166"
-        },
-        "192": {
-            "link": {
-                "name": "pinky-finger-phalanx-distal<Armature",
-                "file": "models\\hand-right.glb"
-            },
-            "parent": "167",
-            "skin": "166"
-        },
-        "193": {
-            "link": {
-                "name": "pinky-finger-tip<Armature",
-                "file": "models\\hand-right.glb"
-            },
-            "parent": "167",
-            "skin": "166"
-        },
-        "194": {
-            "name": "Panel",
-            "components": [
-                {
-                    "type": "mesh",
-                    "mesh": {
-                        "mesh": "195",
-                        "material": "202"
-                    }
-                }
-            ],
-            "translation": [
-                -2.5,
-                1.2,
-                0.0
-            ],
-            "rotation": [
-                0.5002117,
-                0.0,
-                0.0,
-                0.8659031
-            ],
-            "scaling": [
-                0.25,
-                0.1249998,
-                0.2499998
-            ]
-        },
-        "196": {
-            "link": {
-                "name": "Cube",
-                "file": "models\\button.glb"
-            },
-            "parent": "197",
-            "components": [
-                {
-                    "mesh": {
-                        "material": "26"
-                    }
-                }
-            ],
-            "name": "ButtonMesh",
-            "translation": [
-                -0.0000094,
-                0.3244419,
-                -0.0000676
-            ],
-            "rotation": [
-                6.000006465001206e-7,
-                0.0,
-                0.0,
-                1.0
-            ],
-            "scaling": [
-                1.0,
-                0.9999989,
-                0.9999989
-            ]
-        },
-        "197": {
-            "name": "Button",
-            "parent": "194",
-            "components": [
-                {
-                    "type": "collision",
-                    "collision": {
-                        "collider": "box",
-                        "box": {
-                            "extents": [
-                                0.0974999,
-                                0.025,
-                                0.045
-                            ]
-                        },
-                        "groups": 251
-                    }
-                },
-                {
-                    "type": "cursor-target"
-                },
-                {
-                    "type": "button",
-                    "button": {
-                        "buttonMeshObject": "196",
-                        "hoverMaterial": "203"
-                    }
-                }
-            ],
-            "translation": [
-                0.0,
-                0.057682,
-                0.175434
-            ],
-            "rotation": [
-                -0.0,
-                0.0,
-                0.0,
-                1.0
-            ],
-            "scaling": [
-                0.4,
-                0.4999999,
-                0.3
-            ]
-        },
-        "198": {
-            "name": "ButtonLabel",
-            "parent": "196",
-            "components": [
-                {
-                    "type": "text",
-                    "text": {
-                        "text": "Thanks!"
-                    }
-                }
-            ],
-            "translation": [
-                -0.0001563,
-                0.1084579,
-                0.0000046
-            ],
-            "rotation": [
-                -0.7068095,
-                0.0,
-                0.0,
-                0.7074038
-            ],
-            "scaling": [
-                2.5,
-                3.7999999,
-                4.8000063
-            ]
-        },
-        "200": {
-            "name": "Title",
-            "parent": "194",
-            "components": [
-                {
-                    "type": "text",
-                    "text": {
-                        "text": "Welcome to\nWonderland",
-                        "material": "201"
-                    }
-                }
-            ],
-            "translation": [
-                -0.0000023,
-                0.1554993,
-                -0.303415
-            ],
-            "rotation": [
-                -0.7068591,
-                0.0,
-                0.0,
-                0.7073543
-            ],
-            "scaling": [
-                1.5,
-                3.0000002,
-                1.5000001
-            ]
-        },
         "205": {
             "name": "TrackedSpace",
             "parent": "14",
@@ -1656,28 +317,6 @@
                 0.0,
                 1.75,
                 0.0
-            ],
-            "rotation": [
-                0.0,
-                0.0,
-                0.0,
-                1.0
-            ],
-            "scaling": [
-                1.0,
-                1.0,
-                1.0
-            ]
-        },
-        "208": {
-            "link": {
-                "name": "TeleportIndicator",
-                "file": "models\\teleport-indicator.glb"
-            },
-            "translation": [
-                0.0,
-                0.0099999,
-                1.3311299
             ],
             "rotation": [
                 0.0,
@@ -1838,18 +477,72 @@
                 0.0049999
             ]
         },
-        "215": {
-            "name": "3DCursorHitRight",
+        "234": {
+            "name": "GameManager"
+        },
+        "235": {
+            "name": "Lights"
+        },
+        "236": {
+            "name": "TitleScreen"
+        },
+        "237": {
+            "name": "LevelRoot"
+        },
+        "238": {
+            "name": "LevelBlocks",
+            "translation": [
+                0.0,
+                -1000.0,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
             "components": [
+                {
+                    "type": "level-generator",
+                    "level-generator": {
+                        "levelRoot": "237"
+                    }
+                }
+            ]
+        },
+        "241": {
+            "parent": "238",
+            "components": [
+                null,
+                {
+                    "type": "collision",
+                    "collision": {
+                        "collider": "aabb",
+                        "aabb": {
+                            "extents": [
+                                0.5,
+                                0.0099999,
+                                0.5
+                            ]
+                        },
+                        "groups": 255
+                    }
+                },
+                {
+                    "type": "tags",
+                    "tags": {
+                        "tags": "floor"
+                    }
+                },
                 {
                     "type": "mesh",
                     "mesh": {
-                        "mesh": "9",
-                        "material": "128"
+                        "mesh": "252",
+                        "material": "251"
                     }
                 }
             ],
-            "parent": null,
             "translation": [
                 0.0,
                 0.0,
@@ -1862,24 +555,111 @@
                 1.0
             ],
             "scaling": [
-                0.0099999,
-                0.0099999,
-                0.0099999
-            ]
+                1.0,
+                1.0,
+                1.0
+            ],
+            "name": "Floor01"
         },
-        "233": {
-            "name": "Head",
-            "parent": "205",
+        "253": {
+            "parent": "238",
             "components": [
+                null,
                 {
-                    "type": "vr-mode-active-switch",
-                    "active": true
+                    "type": "collision",
+                    "collision": {
+                        "collider": "aabb",
+                        "aabb": {
+                            "extents": [
+                                0.5,
+                                0.0099999,
+                                0.5
+                            ]
+                        },
+                        "groups": 255
+                    }
                 },
                 {
-                    "type": "howler-audio-listener",
-                    "active": false
+                    "type": "tags",
+                    "tags": {
+                        "tags": "floor"
+                    }
+                },
+                {
+                    "type": "mesh",
+                    "mesh": {
+                        "mesh": "252",
+                        "material": "254"
+                    }
                 }
-            ]
+            ],
+            "translation": [
+                -2.0,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scaling": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "name": "Floor02"
+        },
+        "256": {
+            "parent": "238",
+            "components": [
+                null,
+                {
+                    "type": "collision",
+                    "collision": {
+                        "collider": "aabb",
+                        "aabb": {
+                            "extents": [
+                                0.5,
+                                0.0099999,
+                                0.5
+                            ]
+                        },
+                        "groups": 255
+                    }
+                },
+                {
+                    "type": "tags",
+                    "tags": {
+                        "tags": "floor"
+                    }
+                },
+                {
+                    "type": "mesh",
+                    "mesh": {
+                        "mesh": "252",
+                        "material": "255"
+                    }
+                }
+            ],
+            "translation": [
+                -4.0,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scaling": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "name": "Floor03"
         }
     },
     "meshes": {
@@ -2017,6 +797,18 @@
                 "name": "TeleportIndicator",
                 "file": "models\\teleport-indicator.glb"
             }
+        },
+        "243": {
+            "link": {
+                "name": "Plane",
+                "file": "models\\Tiles.fbx"
+            }
+        },
+        "252": {
+            "link": {
+                "name": "Floor",
+                "file": "models\\Tiles.fbx"
+            }
         }
     },
     "textures": {
@@ -2042,6 +834,24 @@
             "link": {
                 "name": "texture_1",
                 "file": "models\\oculus-touch-v2-right.glb"
+            }
+        },
+        "246": {
+            "link": {
+                "name": "tiles_2.png",
+                "file": "assets\\tiles\\tiles_2.png"
+            }
+        },
+        "248": {
+            "link": {
+                "name": "tiles_1.png",
+                "file": "assets\\tiles\\tiles_1.png"
+            }
+        },
+        "250": {
+            "link": {
+                "name": "tiles_0.png",
+                "file": "assets\\tiles\\tiles_0.png"
             }
         }
     },
@@ -2085,6 +895,24 @@
                 256,
                 256
             ]
+        },
+        "245": {
+            "link": {
+                "name": "tiles_2.png",
+                "file": "assets\\tiles\\tiles_2.png"
+            }
+        },
+        "247": {
+            "link": {
+                "name": "tiles_1.png",
+                "file": "assets\\tiles\\tiles_1.png"
+            }
+        },
+        "249": {
+            "link": {
+                "name": "tiles_0.png",
+                "file": "assets\\tiles\\tiles_0.png"
+            }
         }
     },
     "materials": {
@@ -2314,6 +1142,33 @@
                     1.0
                 ]
             }
+        },
+        "242": {
+            "link": {
+                "name": "DefaultMaterial",
+                "file": "models\\Tiles.fbx"
+            }
+        },
+        "251": {
+            "name": "Floor01",
+            "pipeline": "240",
+            "FlatSorskoot": {
+                "flatTexture": "250"
+            }
+        },
+        "254": {
+            "name": "Floor02",
+            "pipeline": "240",
+            "FlatSorskoot": {
+                "flatTexture": "248"
+            }
+        },
+        "255": {
+            "name": "Floor03",
+            "pipeline": "240",
+            "FlatSorskoot": {
+                "flatTexture": "246"
+            }
         }
     },
     "shaders": {
@@ -2436,6 +1291,12 @@
                 "name": "TileFeedback.frag",
                 "file": "default"
             }
+        },
+        "239": {
+            "link": {
+                "name": "FlatSorskoot.frag",
+                "file": "default"
+            }
         }
     },
     "settings": {
@@ -2453,12 +1314,14 @@
         },
         "scripting": {
             "sourcePaths": [
-                "js/"
+                "js/",
+                "node_modules/@sorskoot/wonderland-components/src/components"
             ],
             "bundlingType": "esbuild",
             "libraryPaths": [
                 "/js/lib/"
-            ]
+            ],
+            "esbuildFlags": "--target=ES2022 --format=esm"
         },
         "runtime": {
             "visualizeColliders": false,
@@ -2477,33 +1340,7 @@
                 "file": "models\\hand-left.glb"
             },
             "name": "HandLeftSkin",
-            "joints": [
-                "139",
-                "140",
-                "141",
-                "142",
-                "143",
-                "144",
-                "145",
-                "146",
-                "147",
-                "148",
-                "149",
-                "150",
-                "151",
-                "152",
-                "153",
-                "154",
-                "155",
-                "156",
-                "157",
-                "158",
-                "159",
-                "160",
-                "161",
-                "162",
-                "163"
-            ]
+            "joints": []
         },
         "166": {
             "link": {
@@ -2511,33 +1348,7 @@
                 "file": "models\\hand-right.glb"
             },
             "name": "HandRightSkin",
-            "joints": [
-                "169",
-                "170",
-                "171",
-                "172",
-                "173",
-                "174",
-                "175",
-                "176",
-                "177",
-                "178",
-                "179",
-                "180",
-                "181",
-                "182",
-                "183",
-                "184",
-                "185",
-                "186",
-                "187",
-                "188",
-                "189",
-                "190",
-                "191",
-                "192",
-                "193"
-            ]
+            "joints": []
         }
     },
     "pipelines": {
@@ -2645,6 +1456,12 @@
             "features": {
                 "DEPRECATED_LIGHT_ATTENUATION": true
             }
+        },
+        "240": {
+            "link": {
+                "name": "FlatSorskoot",
+                "file": "default"
+            }
         }
     },
     "files": [
@@ -2653,7 +1470,11 @@
         "models/hand-left.glb",
         "models/hand-right.glb",
         "models/button.glb",
-        "models/teleport-indicator.glb"
+        "models/teleport-indicator.glb",
+        "models/Tiles.fbx",
+        "assets/tiles/tiles_2.png",
+        "assets/tiles/tiles_1.png",
+        "assets/tiles/tiles_0.png"
     ],
     "fonts": {
         "230": {
