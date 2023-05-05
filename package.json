@@ -13,7 +13,10 @@
   ],
   "dependencies": {
     "@wonderlandengine/api": "^1.0.0",
-    "@wonderlandengine/components": "^1.0.1",
-    "gl-matrix": "^3.4.3"
+    "@wonderlandengine/components": "^1.0.3",
+    "@zestymarket/wonderland-sdk": "^2.0.4",
+    "gl-matrix": "^3.4.3",
+    "rxjs": "^7.8.1",
+    "@sorskoot/wonderland-components": "1.0.9"
   }
 }
