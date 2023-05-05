@@ -1,0 +1,19 @@
+{
+  "name": "RunesOfTheDeep",
+  "version": "1.0.0",
+  "description": "Runes of the Deep: Dwarven Cave Chronicles",
+  "main": "js/index.js",
+  "type": "module",
+  "module": "js/index.js",
+  "scripts": {
+    "build": "echo \"The 'build' script is run by the editor and should produce your application bundle\""
+  },
+  "keywords": [
+    "wonderland-engine"
+  ],
+  "dependencies": {
+    "@wonderlandengine/api": "^1.0.0",
+    "@wonderlandengine/components": "^1.0.1",
+    "gl-matrix": "^3.4.3"
+  }
+}
