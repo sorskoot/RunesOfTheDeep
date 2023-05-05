@@ -199,7 +199,7 @@
                 {
                     "type": "cursor",
                     "cursor": {
-                        "cursorObject": "127",
+                        "cursorObject": null,
                         "collisionGroup": 0,
                         "cursorRayObject": "209",
                         "cursorRayScalingAxis": "y"
@@ -209,18 +209,6 @@
                     "type": "input",
                     "input": {
                         "type": "ray left"
-                    }
-                },
-                {
-                    "type": "teleport",
-                    "teleport": {
-                        "floorGroup": 2,
-                        "camRoot": "14",
-                        "cam": "17",
-                        "teleportIndicatorMeshObject": "208",
-                        "indicatorYOffset": 0.0099999,
-                        "eyeLeft": "18",
-                        "eyeRight": "19"
                     }
                 }
             ],
@@ -386,7 +374,7 @@
                 {
                     "type": "cursor",
                     "cursor": {
-                        "cursorObject": "215",
+                        "cursorObject": null,
                         "collisionGroup": 0,
                         "cursorRayObject": "213",
                         "cursorRayScalingAxis": "y"
@@ -396,18 +384,6 @@
                     "type": "input",
                     "input": {
                         "type": "ray right"
-                    }
-                },
-                {
-                    "type": "teleport",
-                    "teleport": {
-                        "floorGroup": 2,
-                        "camRoot": "14",
-                        "cam": "17",
-                        "teleportIndicatorMeshObject": "208",
-                        "indicatorYOffset": 0.0099999,
-                        "eyeLeft": "18",
-                        "eyeRight": "19"
                     }
                 }
             ],
