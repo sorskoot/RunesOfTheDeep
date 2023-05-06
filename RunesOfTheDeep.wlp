@@ -72,9 +72,6 @@
                     }
                 },
                 {
-                    "type": "howler-audio-listener"
-                },
-                {
                     "type": "vr-mode-active-switch",
                     "vr-mode-active-switch": {
                         "activateComponents": "in non-VR"
@@ -532,9 +529,9 @@
                 }
             ],
             "translation": [
+                -1.1920928955078125e-7,
                 0.0,
-                0.0,
-                0.0
+                -1.4901161193847656e-8
             ],
             "rotation": [
                 0.0,
@@ -579,6 +576,9 @@
                         "mesh": "252",
                         "material": "254"
                     }
+                },
+                {
+                    "type": "tile-descriptor"
                 }
             ],
             "translation": [
@@ -629,6 +629,9 @@
                         "mesh": "252",
                         "material": "255"
                     }
+                },
+                {
+                    "type": "tile-descriptor"
                 }
             ],
             "translation": [
@@ -679,6 +682,9 @@
                         "mesh": "252",
                         "material": "261"
                     }
+                },
+                {
+                    "type": "tile-descriptor"
                 }
             ],
             "translation": [
@@ -729,6 +735,9 @@
                         "mesh": "252",
                         "material": "262"
                     }
+                },
+                {
+                    "type": "tile-descriptor"
                 }
             ],
             "translation": [
@@ -1456,6 +1465,9 @@
                     "local-floor": true
                 }
             }
+        },
+        "editor": {
+            "serverPort": 7551
         }
     },
     "animations": {},
