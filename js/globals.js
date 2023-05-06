@@ -5,7 +5,7 @@ import { MusicPlayer } from "./utils/music-player";
 
 const GameGlobals = {
   gameState: new GameState(),
-  levelState: new LevelState(),
+  //levelState: new LevelState(),
   soundFxPlayer: new SoundfxPlayer(),
   musicPlayer: new MusicPlayer(),
   particlePool: null,

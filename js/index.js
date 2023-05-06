@@ -17,7 +17,9 @@ import {HowlerAudioListener} from '@wonderlandengine/components';
 import {MouseLookComponent} from '@wonderlandengine/components';
 import {PlayerHeight} from '@wonderlandengine/components';
 import {VrModeActiveSwitch} from '@wonderlandengine/components';
+import {Game} from './components/game.js';
 import {LevelGenerator} from './components/level-generator.js';
+import {TileDescriptor} from './dungeongen/components/tileComponent.js';
 import {Tags} from './../node_modules/@sorskoot/wonderland-components/src/components/tags.js';
 /* wle:auto-imports:end */
 
@@ -82,7 +84,9 @@ engine.registerComponent(HowlerAudioListener);
 engine.registerComponent(MouseLookComponent);
 engine.registerComponent(PlayerHeight);
 engine.registerComponent(VrModeActiveSwitch);
+engine.registerComponent(Game);
 engine.registerComponent(LevelGenerator);
+engine.registerComponent(TileDescriptor);
 engine.registerComponent(Tags);
 /* wle:auto-register:end */
 

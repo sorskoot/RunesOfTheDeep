@@ -15,21 +15,11 @@ export class LevelGenerator extends Component {
    * @returns {cameraPosition, targetsToComplete, cameraRotation}
    */
   generate(level = 0, parent = null) {
+    console.log("generate level", level);
+    
     this.currentLd = LevelData[level];
-
-    if (parent) {
-      this.blockCache = new ObjectCache(
-        this.engine,
-        "blocks" + parent.name,
-        1100,
-        parent,
-        5000
-      );
-    } else {
-      if (!this.levelParent) {
-        this.levelParent = this.engine.scene.addObject(this.levelRoot);
-        this.levelParent.name = "levelParent";
-      }
+    this.levelParent = parent || this.levelRoot;
+      
       this.levelParent.children.length = 0;
       if (!GameGlobals.globalObjectCache) {
         GameGlobals.globalObjectCache = new ObjectCache(
@@ -43,7 +33,22 @@ export class LevelGenerator extends Component {
         GameGlobals.globalObjectCache.reset();
       }
       this.blockCache = GameGlobals.globalObjectCache;
-    }
+
+      let size = 8;
+     
+        for (let row = 0; row < size; row++) {
+          for (let col = 0; col < size; col++) {
+          this.createTile(
+            row - size / 2,
+            0,
+            col - size / 2,
+            "Floor01",
+          )
+        }
+      }
+     
+
+      return;
 
     let cameraPosition, cameraRotation;
     let targetsToComplete = 0;
@@ -144,12 +149,12 @@ export class LevelGenerator extends Component {
     box.resetPositionRotation();
     box.setPositionLocal([x, layer, z]);
     let boxController = box.getComponent("box-controller");
-    boxController.setState(StorageSpace13.levelState.getNewBoxState());
+    boxController.setState(GameGlobals.levelState.getNewBoxState());
   }
 
   createTile(x, y, z, tile) {
     let blockObj = this.object.children.find((x) => x.name === tile);
-    let obj = cloneObject(blockObj, this.blockCache);
+    let obj = cloneObject(this.engine, blockObj, this.blockCache);
     obj.resetPositionRotation();
     obj.setPositionLocal([x, y, z]);
   }

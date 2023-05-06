@@ -454,7 +454,16 @@
             ]
         },
         "234": {
-            "name": "GameManager"
+            "name": "GameManager",
+            "components": [
+                {
+                    "type": "game",
+                    "game": {
+                        "levelGenObject": "238",
+                        "playerObject": "14"
+                    }
+                }
+            ]
         },
         "235": {
             "name": "Lights"
@@ -517,6 +526,9 @@
                         "mesh": "252",
                         "material": "251"
                     }
+                },
+                {
+                    "type": "tile-descriptor"
                 }
             ],
             "translation": [
@@ -636,6 +648,106 @@
                 1.0
             ],
             "name": "Floor03"
+        },
+        "263": {
+            "parent": "238",
+            "components": [
+                null,
+                {
+                    "type": "collision",
+                    "collision": {
+                        "collider": "aabb",
+                        "aabb": {
+                            "extents": [
+                                0.5,
+                                0.0099999,
+                                0.5
+                            ]
+                        },
+                        "groups": 255
+                    }
+                },
+                {
+                    "type": "tags",
+                    "tags": {
+                        "tags": "floor"
+                    }
+                },
+                {
+                    "type": "mesh",
+                    "mesh": {
+                        "mesh": "252",
+                        "material": "261"
+                    }
+                }
+            ],
+            "translation": [
+                -6.0,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scaling": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "name": "Floor04"
+        },
+        "264": {
+            "parent": "238",
+            "components": [
+                null,
+                {
+                    "type": "collision",
+                    "collision": {
+                        "collider": "aabb",
+                        "aabb": {
+                            "extents": [
+                                0.5,
+                                0.0099999,
+                                0.5
+                            ]
+                        },
+                        "groups": 255
+                    }
+                },
+                {
+                    "type": "tags",
+                    "tags": {
+                        "tags": "floor"
+                    }
+                },
+                {
+                    "type": "mesh",
+                    "mesh": {
+                        "mesh": "252",
+                        "material": "262"
+                    }
+                }
+            ],
+            "translation": [
+                -8.0,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scaling": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "name": "Floor05"
         }
     },
     "meshes": {
@@ -829,6 +941,18 @@
                 "name": "tiles_0.png",
                 "file": "assets\\tiles\\tiles_0.png"
             }
+        },
+        "258": {
+            "link": {
+                "name": "tiles_3.png",
+                "file": "assets\\tiles\\tiles_3.png"
+            }
+        },
+        "260": {
+            "link": {
+                "name": "tiles_4.png",
+                "file": "assets\\tiles\\tiles_4.png"
+            }
         }
     },
     "images": {
@@ -888,6 +1012,18 @@
             "link": {
                 "name": "tiles_0.png",
                 "file": "assets\\tiles\\tiles_0.png"
+            }
+        },
+        "257": {
+            "link": {
+                "name": "tiles_3.png",
+                "file": "assets\\tiles\\tiles_3.png"
+            }
+        },
+        "259": {
+            "link": {
+                "name": "tiles_4.png",
+                "file": "assets\\tiles\\tiles_4.png"
             }
         }
     },
@@ -1144,6 +1280,20 @@
             "pipeline": "240",
             "FlatSorskoot": {
                 "flatTexture": "246"
+            }
+        },
+        "261": {
+            "name": "Floor04",
+            "pipeline": "240",
+            "FlatSorskoot": {
+                "flatTexture": "258"
+            }
+        },
+        "262": {
+            "name": "Floor05",
+            "pipeline": "240",
+            "FlatSorskoot": {
+                "flatTexture": "260"
             }
         }
     },
@@ -1450,7 +1600,9 @@
         "models/Tiles.fbx",
         "assets/tiles/tiles_2.png",
         "assets/tiles/tiles_1.png",
-        "assets/tiles/tiles_0.png"
+        "assets/tiles/tiles_0.png",
+        "assets/tiles/tiles_3.png",
+        "assets/tiles/tiles_4.png"
     ],
     "fonts": {
         "230": {
