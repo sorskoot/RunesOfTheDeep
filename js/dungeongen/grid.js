@@ -1,11 +1,14 @@
 import rng from "@sorskoot/wonderland-components/src/utils/rng";
 import { Cell } from "./cell";
 import { TileSet } from "./tileset";
+import { Tile } from "./tile";
+import { Queue } from "../forFramework/queue.js";
+import { getNeighbors } from "./utils/gridHelpers";
 
 export class Grid {
-  #sizeX;
-  #sizeY;
-  #sizeZ;
+  sizeX;
+  sizeY;
+  sizeZ;
 
   /**
    * The entire tileset to use for the level.
@@ -69,19 +72,43 @@ export class Grid {
 
   collapse() {
     let entropyCells = this.#getLowestEntropyCells();
-    if(!entropyCells.length){
-        return true; // all cells are collapsed
+    if (!entropyCells.length) {
+      return true; // all cells are collapsed
     }
-    console.log(entropyCells);
 
     let picked = rng.getItem(entropyCells);
-    console.log(picked);
 
     const cell = this.#grid[picked.x][picked.y][picked.z];
     cell.collapse();
     const chosenTile = cell.options[0];
+
     const tile = this.getTile(chosenTile);
-    
+
+    // const pickedNorth = tile.tileAdjacencyMatrix.north;
+    // const northOptions = this.#grid[picked.x][picked.y][picked.z + 1];
+    // if (northOptions) {
+    //   this.checkValid(northOptions.options, pickedNorth);
+    // }
+
+    // const pickedSouth = tile.tileAdjacencyMatrix.south;
+    // const southOptions = this.#grid[picked.x][picked.y][picked.z - 1];
+    // if (southOptions) {
+    //   this.checkValid(southOptions.options, pickedSouth);
+    // }
+
+    // const pickedEast = tile.tileAdjacencyMatrix.east;
+    // const eastX = this.#grid[picked.x + 1];
+    // if (eastX) {
+    //   const eastOptions = eastX[picked.y][picked.z];
+    //   this.checkValid(eastOptions.options, pickedEast);
+    // }
+
+    // const pickedWest = tile.tileAdjacencyMatrix.west;
+    // const westX = this.#grid[picked.x - 1];
+    // if (westX) {
+    //   const westOptions = westX[picked.y][picked.z];
+    //   this.checkValid(westOptions.options, pickedWest);
+    // }
 
     /* 
     a. Select the cell with the lowest entropy (least number of remaining possibilities). 
@@ -132,4 +159,48 @@ export class Grid {
 
     return lowestEntropyCells;
   }
+
+  checkValid(arr, valid) {
+    for (let i = arr.length - 1; i >= 0; i--) {
+      let element = arr[i];
+      if (!valid.includes(element)) {
+        arr.splice(i, 1);
+      }
+    }
+  }
+
+  propagate(grid, currentPosition) {
+    const queue = new Queue();
+    queue.enqueue(currentPosition);
+
+    while (!queue.isEmpty()) {
+      const position = queue.dequeue();
+      const neighbors = this.findUncollapsedNeighbors(position);
+
+      neighbors.forEach((neighbor) => {
+        const constrainedTiles = calculateConstrainedTiles(
+          grid,
+          position,
+          neighbor
+        );
+
+        if (hasChangesInPossibleTiles(neighbor, constrainedTiles)) {
+          updatePossibleTiles(neighbor, constrainedTiles);
+
+          if (noValidOptionsLeft(neighbor)) {
+            // Handle contradiction according to your approach (backtrack, restart)
+          } else {
+            queue.enqueue(neighbor);
+          }
+        }
+      });
+    }
+  }
+
+    findUncollapsedNeighbors(position) {
+        getNeighbors(this,position);
+        // loop through the cells and check if they are collapsed
+        // if they are collapsed, remove them from the list
+    }
+ 
 }

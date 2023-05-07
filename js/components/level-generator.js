@@ -4,7 +4,7 @@ import { LevelData } from "../data/level-data";
 import GameGlobals from "../globals";
 import { Generator } from "../dungeongen/generator";
 
-const size = 5;
+const size = 25;
 
 export class LevelGenerator extends Component {
   static TypeName = "level-generator";
@@ -12,13 +12,12 @@ export class LevelGenerator extends Component {
     levelRoot: { type: Type.Object },
   };
 
-  
   /**
    * overrides the init method of the component
    */
   init() {
     this.generator = new Generator(size, 1, size);
-    this.generator.createTileset(this.object.children)
+    this.generator.createTileset(this.object.children);
   }
 
   /**
@@ -53,8 +52,15 @@ export class LevelGenerator extends Component {
         //this.createTile(row - size / 2, 0, col - size / 2, "Floor01");
         const cell = grid.getCell(row, 0, col);
         if (cell && cell.isCollapsed) {
-          this.createTile(row - size / 2, 0, col - size / 2, 
-            grid.getTile(cell.options[0]).object);
+          const currentTile = grid.getTile(cell.options[0]);
+          if (currentTile) {
+            this.createTile(
+              row - size / 2,
+              0,
+              col - size / 2,
+              grid.getTile(cell.options[0]).object
+            );
+          }
         }
       }
     }
