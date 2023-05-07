@@ -2,6 +2,7 @@ import { Object3D } from "@wonderlandengine/api";
 import { Grid } from "./grid";
 import { Tile } from "./tile";
 import { TileSet } from "./tileset";
+import { TileAdjacencyMatrix } from "./TileAdjacencyMatrix";
 
 /**
  * Generates a level using the Wave Function Collapse algorithm
@@ -38,18 +39,42 @@ export class Generator {
     this.#tileSet = new TileSet();
 
     this.#tileSet.addTile(
-      new Tile("Floor01", this.#findObject(tileObjects, "Floor01")),
-      this.#tileSet.length
+      new Tile("Floor01", this.#findObject(tileObjects, "Floor01"),
+      this.#tileSet.length,
+        new TileAdjacencyMatrix(
+            [0,1],
+            [0,1],
+            [0,2],
+            [0,2],
+            [],
+            []
+            )),
     );
 
     this.#tileSet.addTile(
-      new Tile("Floor02", this.#findObject(tileObjects, "Floor02")),
-      this.#tileSet.length
+      new Tile("Floor02", this.#findObject(tileObjects, "Floor02"),
+      this.#tileSet.length,
+      new TileAdjacencyMatrix(
+          [1,0],
+          [1,0],
+          [1,2],
+          [1,2],
+          [],
+          []
+          )),
     );
 
     this.#tileSet.addTile(
-        new Tile("Floor04", this.#findObject(tileObjects, "Floor04")),
-        this.#tileSet.length
+        new Tile("Floor04", this.#findObject(tileObjects, "Floor04"),
+        this.#tileSet.length,
+        new TileAdjacencyMatrix(
+            [2],
+            [2],
+            [0,1],
+            [0,1],
+            [],
+            []
+            )),
       );
   }
 

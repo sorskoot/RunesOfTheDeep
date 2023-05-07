@@ -1,36 +1,43 @@
 import { Object3D } from "@wonderlandengine/api";
+import { TileAdjacencyMatrix } from "./TileAdjacencyMatrix";
 
-export class Tile{
-    
-    #up = [];   // positive Y
-    #down = []; // negative Y
-    #north = [];// positive Z 
-    #south = [];// negative Z
-    #east = []; // positive X
-    #west = []; // negative X
+export class Tile {
+  /**
+   * The adjacency matrix for this tile
+   * @type {TileAdjacencyMatrix}
+   * @private
+   */
+  #tileAdjacencyMatrix;
 
-    /**
-     * name of the 3d object
-     * @type {string}
-     */
-    name;
-    
-    /**
-     * reference to the 3D object
-     * @type {Object3D}
-     */
-    object;
+  /**
+   * name of the 3d object
+   * @type {string}
+   */
+  name;
 
-    /**
-     * Index in the tileset
-     * @type {number}
-     */
-    index;
+  /**
+   * reference to the 3D object
+   * @type {Object3D}
+   */
+  object;
 
-    constructor(name, object, index){
-        this.name = name;
-        this.object = object;
-        this.index = index;
-    }
+  /**
+   * Index in the tileset
+   * @type {number}
+   */
+  index;
 
+  /**
+   * 
+   * @param {string} name 
+   * @param {Object3D} object 
+   * @param {number} index 
+   * @param {TileAdjacencyMatrix} tileAdjacency 
+   */
+  constructor(name, object, index, tileAdjacency) {
+    this.name = name;
+    this.object = object;
+    this.index = index;
+    this.tileAdjacencyMatrix = tileAdjacency;
+  }
 }
