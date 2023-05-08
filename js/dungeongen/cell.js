@@ -12,29 +12,29 @@ export class Cell {
   #isCollapsed = false;
 
   /**
-   * The options. This array contains the index of the tile in the tileset that 
+   * The possible tiles. This array contains the index of the tile in the tileset that 
    * are still possible. The last remaining option will determain the tile that is rendered.
    * @type {numbers[]}
    */
-  options;
+  possibleTiles;
 
   constructor(value) {
     if (value instanceof Array) {
-      this.options = value;
+      this.possibleTiles = value;
     } else {
-      this.options = [];
+      this.possibleTiles = [];
       for (let i = 0; i < value; i++) {
-        this.options[i] = i;
+        this.possibleTiles[i] = i;
       }
     }
   }
   
   /**
-   * Collapse the cell to a single option
+   * Collapse the cell to a single tile
    */
   collapse(){
-    if(this.options.length === 0){
-        throw new Error("Cannot collapse a cell with no options.");
+    if(this.possibleTiles.length === 0){
+        throw new Error("Cannot collapse a cell with no possible tiles.");
     }
 
     if(this.#isCollapsed){
@@ -42,22 +42,22 @@ export class Cell {
     }
 
     // collapse to a random option, this works even if there is only one option
-    this.options = [this.options[rng.getUniformInt(0, this.options.length - 1)]];
+    this.possibleTiles = [this.possibleTiles[rng.getUniformInt(0, this.possibleTiles.length - 1)]];
     
     // mark as collapsed
     this.#isCollapsed = true;
   }
 
   /**
-   * Calculate the entropy of the cell. Currently this is the length of the options array.
-   * But it might change in the future when weigth is added to the options.
+   * Calculate the entropy of the cell. Currently this is the length of the possible tiles array.
+   * But it might change in the future when weigth is added to the possible tiles.
    * @returns {number} The entropy of the cell
    */
   calculateEntropy(){
     if(this.#isCollapsed){
         return 0;
     }else{
-        return this.options.length;
+        return this.possibleTiles.length;
     }
   }
 }

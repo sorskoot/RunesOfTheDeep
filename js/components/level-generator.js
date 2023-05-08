@@ -52,13 +52,13 @@ export class LevelGenerator extends Component {
         //this.createTile(row - size / 2, 0, col - size / 2, "Floor01");
         const cell = grid.getCell(row, 0, col);
         if (cell && cell.isCollapsed) {
-          const currentTile = grid.getTile(cell.options[0]);
+          const currentTile = grid.getTile(cell.possibleTiles[0]);
           if (currentTile) {
             this.createTile(
               row - size / 2,
               0,
               col - size / 2,
-              grid.getTile(cell.options[0]).object
+              grid.getTile(cell.possibleTiles[0]).object
             );
           }
         }

@@ -5,7 +5,6 @@ export class Tile {
   /**
    * The adjacency matrix for this tile
    * @type {TileAdjacencyMatrix}
-   * @private
    */
   #tileAdjacencyMatrix;
 
@@ -38,6 +37,10 @@ export class Tile {
     this.name = name;
     this.object = object;
     this.index = index;
-    this.tileAdjacencyMatrix = tileAdjacency;
+    this.#tileAdjacencyMatrix = tileAdjacency;
+  }
+
+  getAdjacentTiles(direction) {
+    return this.#tileAdjacencyMatrix[direction];
   }
 }

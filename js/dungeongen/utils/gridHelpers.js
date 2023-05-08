@@ -1,24 +1,24 @@
 import { Grid } from "../grid";
 
 const NEIGHBOR_OFFSETS = [
-    { x: -1, y: 0, z: 0 },
-    { x: 1, y: 0, z: 0 },
-    { x: 0, y: -1, z: 0 },
-    { x: 0, y: 1, z: 0 },
-    { x: 0, y: 0, z: -1 },
-    { x: 0, y: 0, z: 1 },
-  ];
+  { x: -1, y: 0, z: 0, name: "west" },
+  { x: 1, y: 0, z: 0, name: "east" },
+  { x: 0, y: -1, z: 0, name: "down" },
+  { x: 0, y: 1, z: 0, name: "up" },
+  { x: 0, y: 0, z: -1, name: "south" },
+  { x: 0, y: 0, z: 1, name: "north" },
+];
 
 /**
- * 
- * @param {Grid} grid 
- * @param {{x:number,y:number,z:number}} position 
- * @returns 
+ *
+ * @param {Grid} grid
+ * @param {{x:number,y:number,z:number}} position
+ * @returns {{x:number,y:number,z:number}[]}
  */
 export function getNeighbors(grid, position) {
   const width = grid.sizeX;
-  const height =  grid.sizeY;
-  const depth =  grid.sizeZ;
+  const height = grid.sizeY;
+  const depth = grid.sizeZ;
 
   const neighbors = [];
 
@@ -35,9 +35,20 @@ export function getNeighbors(grid, position) {
       newZ >= 0 &&
       newZ < depth
     ) {
-      neighbors.push({ x: newX, y: newY, z: newZ });
+      neighbors.push({ x: newX, y: newY, z: newZ, name: offset.name });
     }
   }
 
   return neighbors;
+}
+
+export function getInvertedDirection(direction){
+    switch(direction){
+        case "north": return "south";
+        case "south": return "north";
+        case "east": return "west";
+        case "west": return "east";
+        case "up": return "down";
+        case "down": return "up";
+    }
 }
