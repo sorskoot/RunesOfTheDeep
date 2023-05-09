@@ -3,8 +3,8 @@ import { Cell } from "./cell";
 import { TileSet } from "./tileset";
 import { Tile } from "./tile";
 import { Queue } from "../forFramework/queue.js";
-import { getNeighbors, getInvertedDirection } from "./utils/gridHelpers";
-import { checkConstraints } from "./utils/extractor";
+import { getNeighbors } from "./utils/gridHelpers";
+import { deepClone } from "./utils/deepClone";
 
 export class Grid {
   sizeX;
@@ -78,6 +78,8 @@ export class Grid {
   }
 
   collapse() {
+
+
     let entropyCells = this.#getLowestEntropyCells();
     if (!entropyCells.length) {
       return true; // all cells are collapsed
@@ -92,11 +94,21 @@ export class Grid {
       return true;
     }
 
-    cell.collapse();
-    const chosenPattern = cell.possiblePatterns[0];
+    // collapse the cell and propage the constraints with backtracking
+    let done = false;
+    do{
+      // create a backup of the grid
+      const backup = deepClone(this.#grid);
+      
+      cell.collapse();
+      
+      done = this.propagate(this.#grid, picked);
 
-    const pattern = this.getPattern(chosenPattern);
-    this.propagate(this.#grid, picked);
+      if(!done){ // revert
+        console.log("Failed to propagate, reverting...");
+        this.#grid = backup;
+      }
+    }while(!done);
 
     for (let x = 0; x < this.#grid.length; x++) {
       for (let y = 0; y < this.#grid[x].length; y++) {
@@ -135,28 +147,6 @@ export class Grid {
 
     return lowestEntropyCells;
   }
-  isValidAdjacent(currentPattern, neighborPattern, directionName) {
-    //  Access adjacency information using TileAdjacencyMatrix or equivalent
-    const allowedNeighbors = this.constraints[currentPattern][directionName];
-
-    // const allowedFromNeighbor = this.#tileSet
-    //   .getTile(neighborTile)
-    //   .getAdjacentTiles(getInvertedDirection(directionName));
-
-    // check if neighborTile is compatible based on adjacency rules
-    if (allowedNeighbors.includes(neighborPattern)) {
-      return true;
-    } else {
-      return false;
-    }
-    // console.log(allowedNeighbors, allowedFromNeighbor);
-    // debugger
-    //   # Check if neighborTile is compatible based on adjacency rules
-    //   if neighborTile in allowedNeighbors:
-    //       return true
-    //   else:
-    //       return false
-  }
 
   calculateConstrainedPatterns(current, neighbor) {
     const currentCell = this.getCell(current.x, current.y, current.z);
@@ -191,7 +181,6 @@ export class Grid {
 
   updatePossiblePatterns(neighbor, constrainedPatterns) {
     const neighborCell = this.getCell(neighbor.x, neighbor.y, neighbor.z);
-    console.log(neighborCell.possiblePatterns, constrainedPatterns);
     neighborCell.possiblePatterns = constrainedPatterns;
     if (constrainedPatterns.length === 1) {
       neighborCell.collapse();
@@ -204,6 +193,11 @@ export class Grid {
     return neighborOptions.length === 0;
   }
 
+  /**
+   * propagates the constraints to the neighbors of the current cell
+   * @param {*} grid 
+   * @param {*} currentPosition 
+   */
   propagate(grid, currentPosition) {
     const queue = new Queue();
     queue.enqueue(currentPosition);
@@ -250,7 +244,7 @@ export class Grid {
             if (!cellNeighbor.isCollapsed) {
               if (this.noValidOptionsLeft(neighborPosition)) {
                 // Handle contradiction according to your approach (backtrack, restart)
-                console.log("contradiction");
+                return false;
               } else {
                 queue.enqueue(neighborPosition);
               }
@@ -259,6 +253,7 @@ export class Grid {
         }
       }
     }
+    return true;
   }
 
   getDirectionNameFromOffsets(offsetX, offsetZ) {

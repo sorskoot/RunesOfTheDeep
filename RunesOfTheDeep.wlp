@@ -816,6 +816,59 @@
                 1.0
             ],
             "name": "Wall01"
+        },
+        "273": {
+            "parent": "238",
+            "components": [
+                null,
+                {
+                    "type": "collision",
+                    "collision": {
+                        "collider": "aabb",
+                        "aabb": {
+                            "extents": [
+                                0.5,
+                                1.0,
+                                0.5
+                            ]
+                        },
+                        "groups": 255
+                    }
+                },
+                {
+                    "type": "tags",
+                    "tags": {
+                        "tags": "wall"
+                    }
+                },
+                {
+                    "type": "mesh",
+                    "mesh": {
+                        "mesh": "265",
+                        "material": "274"
+                    }
+                },
+                {
+                    "type": "tile-descriptor"
+                }
+            ],
+            "translation": [
+                -5.5,
+                0.0,
+                -2.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scaling": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "name": "Wall02"
         }
     },
     "meshes": {
@@ -1033,6 +1086,12 @@
                 "name": "tiles_5.png",
                 "file": "assets\\tiles\\tiles_5.png"
             }
+        },
+        "276": {
+            "link": {
+                "name": "tiles_7.png",
+                "file": "assets\\tiles\\tiles_7.png"
+            }
         }
     },
     "images": {
@@ -1116,6 +1175,12 @@
             "link": {
                 "name": "tiles_5.png",
                 "file": "assets\\tiles\\tiles_5.png"
+            }
+        },
+        "275": {
+            "link": {
+                "name": "tiles_7.png",
+                "file": "assets\\tiles\\tiles_7.png"
             }
         }
     },
@@ -1399,6 +1464,13 @@
             "pipeline": "240",
             "FlatSorskoot": {
                 "flatTexture": "272"
+            }
+        },
+        "274": {
+            "name": "Wall02",
+            "pipeline": "240",
+            "FlatSorskoot": {
+                "flatTexture": "276"
             }
         }
     },
@@ -1721,7 +1793,8 @@
         "assets/tiles/tiles_0.png",
         "assets/tiles/tiles_3.png",
         "assets/tiles/tiles_4.png",
-        "assets/tiles/tiles_5.png"
+        "assets/tiles/tiles_5.png",
+        "assets/tiles/tiles_7.png"
     ],
     "fonts": {
         "230": {

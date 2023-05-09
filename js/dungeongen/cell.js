@@ -1,15 +1,8 @@
 import rng from "@sorskoot/wonderland-components/src/utils/rng";
 
 export class Cell {
-  /**
-   * Is the cell collapsed of not
-   * @param {boolean}
-   */
-  get isCollapsed(){
-    return this.#isCollapsed;
-  } 
-  
-  #isCollapsed = false;
+ 
+  isCollapsed = false;
 
   /**
    * The possible tiles. This array contains the index of the tile in the tileset that 
@@ -37,7 +30,7 @@ export class Cell {
         throw new Error("Cannot collapse a cell with no possible tiles.");
     }
 
-    if(this.#isCollapsed){
+    if(this.isCollapsed){
         return; // already collapsed
     }
 
@@ -45,7 +38,7 @@ export class Cell {
     this.possiblePatterns = [this.possiblePatterns[rng.getUniformInt(0, this.possiblePatterns.length - 1)]];
     
     // mark as collapsed
-    this.#isCollapsed = true;
+    this.isCollapsed = true;
   }
 
   /**
@@ -54,7 +47,7 @@ export class Cell {
    * @returns {number} The entropy of the cell
    */
   calculateEntropy(){
-    if(this.#isCollapsed){
+    if(this.isCollapsed){
         return 0;
     }else{
         return this.possiblePatterns.length;
