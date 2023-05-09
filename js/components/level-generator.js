@@ -3,9 +3,12 @@ import { cloneObject, ObjectCache } from "@sorskoot/wonderland-components";
 import { LevelData } from "../data/level-data";
 import GameGlobals from "../globals";
 import { Generator } from "../dungeongen/generator";
-import { buildConstraintsMap, extractPatterns as extractPatterns2D } from "../dungeongen/utils/extractor";
+import {
+  buildConstraintsMap,
+  extractPatterns as extractPatterns2D,
+} from "../dungeongen/utils/extractor";
 
-const size = 25;
+const size = 5;
 
 export class LevelGenerator extends Component {
   static TypeName = "level-generator";
@@ -18,7 +21,6 @@ export class LevelGenerator extends Component {
    */
   init() {
     this.generator = new Generator(size, 1, size);
-    
   }
 
   /**
@@ -39,25 +41,26 @@ export class LevelGenerator extends Component {
     // ]
     // // Usage example:
     const inputImage = [
-      ["4", "4", "4", "4","4"],
-      ["4", "0", "0", "0","4"],
-      ["4", "0", "0", "0","4"],
-      ["4", "0", "0", "0","4"],
-      ["4", "0", "0", "0","4"],
-      ["4", "4", "4", "4","4"]
+      ["4", "4", "4", "4", "4", "4", "4", "4"],
+      ["4", "0", "0", "0", "0", "0", "0", "4"],
+      ["4", "0", "0", "0", "0", "0", "0", "4"],
+      ["4", "0", "0", "2", "1", "0", "0", "4"],
+      ["4", "0", "0", "3", "0", "0", "0", "4"],
+      ["4", "0", "0", "0", "3", "0", "0", "4"],
+      ["4", "0", "0", "1", "0", "2", "0", "4"],
+      ["4", "0", "0", "0", "0", "0", "0", "4"],
+      ["4", "0", "0", "0", "0", "0", "0", "4"],
+      ["4", "4", "4", "4", "4", "4", "4", "4"],
     ];
 
     const patternSize = 3;
     const extractedPatterns = extractPatterns2D(inputImage, patternSize);
 
-    let constraintMappingForAllKeySets = 
-      buildConstraintsMap(extractedPatterns, patternSize);
+    let constraintMappingForAllKeySets = buildConstraintsMap(extractedPatterns, patternSize);
 
     this.generator.createTileset(this.object.children);
-  
-    const grid = this.generator.generate(
-      extractedPatterns,
-      constraintMappingForAllKeySets);
+
+    const grid = this.generator.generate(extractedPatterns, constraintMappingForAllKeySets);
 
     console.log(grid);
     this.levelParent.children.length = 0;
@@ -73,21 +76,43 @@ export class LevelGenerator extends Component {
       GameGlobals.globalObjectCache.reset();
     }
     this.blockCache = GameGlobals.globalObjectCache;
-
+    
     for (let row = 0; row < size; row++) {
       for (let col = 0; col < size; col++) {
         //this.createTile(row - size / 2, 0, col - size / 2, "Floor01");
         const cell = grid.getCell(row, 0, col);
         if (cell && cell.isCollapsed) {
-          const currentTile = grid.getTile(cell.possibleTiles[0]);
-          if (currentTile) {
-            this.createTile(
-              row - size / 2,
-              0,
-              col - size / 2,
-              grid.getTile(cell.possibleTiles[0]).object
-            );
+          const currentTile = grid.getPattern(cell.possiblePatterns[0]);
+          // Loop through the rows of the 3x3 grid
+       
+          for (let gridRow = 0; gridRow < 3; gridRow++) {
+            // Loop through the columns of the 3x3 grid
+            for (let gridColumn = 0; gridColumn < 3; gridColumn++) {
+              if (currentTile) {
+                // Calculate the row and col positions for each tile in the 3x3 grid,
+                // adjusting their positions based on their indices within the grid.
+                const newRowPos = (row * patternSize)+gridRow - ((size*patternSize)/2);
+                const newColPos = (col * patternSize)+gridColumn - ((size* patternSize)/2);
+                const tileIndex = grid.getPattern(cell.possiblePatterns[0]).pattern[gridRow][gridColumn];
+                const tile = this.generator.getTile(tileIndex);
+
+                this.createTile(
+                  newRowPos,
+                  0,
+                  newColPos,
+                  tile.object
+                );
+              }
+            }
           }
+          // if (currentTile) {
+          //   this.createTile(
+          //     row - size / 2,
+          //     0,
+          //     col - size / 2,
+          //     grid.getPattern(cell.possiblePatterns[0]).object
+          //   );
+          // }
         }
       }
     }

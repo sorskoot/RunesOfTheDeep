@@ -15,7 +15,7 @@ export class Grid {
    * The entire tileset to use for the level.
    * @type {TileSet}
    */
-  #tileSet;
+  #tileSet_TO_BE_REMOVED_AND_REPLACED;
 
   /**
    * The grid of cells that make up the level.
@@ -23,16 +23,18 @@ export class Grid {
    */
   #grid = [[[]]];
 
-  tilePatterns;
-  constraintMappingForAllKeySets;
+  patterns;
+
+  constraints;
 
   constructor(sizeX, sizeY, sizeZ, tileSet, extractedPatterns, constraintMappingForAllKeySets) {
     this.sizeX = sizeX;
     this.sizeY = sizeY;
     this.sizeZ = sizeZ;
-    this.#tileSet = tileSet;
-    this.tilePatterns = extractedPatterns;
-    this.constraintMappingForAllKeySets = constraintMappingForAllKeySets;
+    this.#tileSet_TO_BE_REMOVED_AND_REPLACED = tileSet;
+
+    this.patterns = extractedPatterns;
+    this.constraints = constraintMappingForAllKeySets;
     this.#createGrid();
   }
 
@@ -47,7 +49,7 @@ export class Grid {
 
         for (let z = 0; z < this.sizeZ; z++) {
           // Initialize the cell at [x][y][z] with default value, e.g., null or an object.
-          this.#grid[x][y][z] = new Cell(this.#tileSet.getSuperposition());
+          this.#grid[x][y][z] = new Cell(this.patterns.length);
         }
       }
     }
@@ -67,12 +69,12 @@ export class Grid {
   }
 
   /**
-   * Gets the tile at the given index from the tileset.
-   * @param {number} index The index of the tile to get.
-   * @returns {Tile} The tile at the given index.
+   * Gets the pattern at the given index from the list of patterns.
+   * @param {number} index The index of the pattern to get.
+   * @returns {Tile} The pattern at the given index.
    */
-  getTile(index) {
-    return this.#tileSet.getTile(index);
+  getPattern(index) {
+    return this.patterns[index];
   }
 
   collapse() {
@@ -85,15 +87,15 @@ export class Grid {
 
     const cell = this.#grid[picked.x][picked.y][picked.z];
 
-    if (!cell.isCollapsed && cell.possibleTiles.length === 0) {
+    if (!cell.isCollapsed && cell.possiblePatterns.length === 0) {
       // we have a contradiction
       return true;
     }
 
     cell.collapse();
-    const chosenTile = cell.possibleTiles[0];
+    const chosenPattern = cell.possiblePatterns[0];
 
-    const tile = this.getTile(chosenTile);
+    const pattern = this.getPattern(chosenPattern);
     this.propagate(this.#grid, picked);
 
     for (let x = 0; x < this.#grid.length; x++) {
@@ -133,16 +135,16 @@ export class Grid {
 
     return lowestEntropyCells;
   }
-  isValidAdjacent(currentTile, neighborTile, directionName) {
+  isValidAdjacent(currentPattern, neighborPattern, directionName) {
     //  Access adjacency information using TileAdjacencyMatrix or equivalent
-    const allowedNeighbors = this.#tileSet.getTile(currentTile).getAdjacentTiles(directionName);
+    const allowedNeighbors = this.constraints[currentPattern][directionName];
 
     // const allowedFromNeighbor = this.#tileSet
     //   .getTile(neighborTile)
     //   .getAdjacentTiles(getInvertedDirection(directionName));
 
     // check if neighborTile is compatible based on adjacency rules
-    if (allowedNeighbors.includes(neighborTile)) {
+    if (allowedNeighbors.includes(neighborPattern)) {
       return true;
     } else {
       return false;
@@ -156,100 +158,51 @@ export class Grid {
     //       return false
   }
 
-  calculateConstrainedTiles(current, neighbor) {
+  calculateConstrainedPatterns(current, neighbor) {
     const currentCell = this.getCell(current.x, current.y, current.z);
-    const currentOptions = currentCell.possibleTiles;
-    // 0
+    const currentOptions = currentCell.possiblePatterns;
+    
     const neighborCell = this.getCell(neighbor.x, neighbor.y, neighbor.z);
-    const neighborOptions = neighborCell.possibleTiles;
-    // 0,1,2
-    const constrainedTiles = [];
+    const neighborOptions = neighborCell.possiblePatterns;
+    
+    const constrainedPatternsSet = new Set();
 
     for (let i = 0; i < currentOptions.length; i++) {
       const currentTileIndex = currentOptions[i];
-      for (let j = 0; j < neighborOptions.length; j++) {
-        console.log(
-          this.tilePatterns[currentTileIndex],
-          this.tilePatterns[neighborOptions[j]],
-        );
-        if(
-          
-          checkConstraints(
-            this.tilePatterns[currentTileIndex],
-            this.tilePatterns[neighborOptions[j]],
-            3
-          )[neighbor.name]
-
-          // this.isValidAdjacent(
-          //   currentTileIndex,
-          //   neighborOptions[j],
-          //   neighbor.name
-          // )
-        ) {
-          constrainedTiles.push(neighborOptions[j]);
+      const currentTileConstraints = this.constraints.get(currentTileIndex);
+      if (currentTileConstraints.hasOwnProperty(neighbor.name)) {
+        for (let j = 0; j < neighborOptions.length; j++) {
+          if (currentTileConstraints[neighbor.name].includes(neighborOptions[j])) {
+            constrainedPatternsSet.add(neighborOptions[j]);
+          }
         }
       }
     }
 
-    return constrainedTiles;
+    return Array.from(constrainedPatternsSet);
   }
 
-  hasChangesInPossibleTiles(neighbor, constrainedTiles) {
+  hasChangesInPossiblePatterns(neighbor, constrainedPatterns) {
     const neighborCell = this.getCell(neighbor.x, neighbor.y, neighbor.z);
-    const neighborOptions = neighborCell.possibleTiles;
-    const hasChanges = neighborOptions.length !== constrainedTiles.length;
+    const neighborOptions = neighborCell.possiblePatterns;
+    const hasChanges = neighborOptions.length !== constrainedPatterns.length;
     return hasChanges;
   }
 
-  updatePossibleTiles(neighbor, constrainedTiles) {
+  updatePossiblePatterns(neighbor, constrainedPatterns) {
     const neighborCell = this.getCell(neighbor.x, neighbor.y, neighbor.z);
-    neighborCell.possibleTiles = constrainedTiles;
-    if (constrainedTiles.length === 1) {
+    console.log(neighborCell.possiblePatterns, constrainedPatterns);
+    neighborCell.possiblePatterns = constrainedPatterns;
+    if (constrainedPatterns.length === 1) {
       neighborCell.collapse();
     }
   }
 
   noValidOptionsLeft(neighbor) {
     const neighborCell = this.getCell(neighbor.x, neighbor.y, neighbor.z);
-    const neighborOptions = neighborCell.possibleTiles;
+    const neighborOptions = neighborCell.possiblePatterns;
     return neighborOptions.length === 0;
   }
-  /**
-   * propagate the choice to its neighbors, reducing their possibilities based on
-   * defined constraints
-   * @param {Grid} grid
-   * @param {{x:number, y:number, z:number}} currentPosition
-   */
-  // propagate(grid, currentPosition) {
-  //   const queue = new Queue();
-  //   queue.enqueue(currentPosition);
-
-  //   while (!queue.isEmpty()) {
-  //     const position = queue.dequeue();
-  //     const neighbors = this.findUncollapsedNeighbors(position);
-  //     const cell = this.getCell(position.x, position.y, position.z);
-  //     //const tile = this.getTile(cell.possibleTiles[0]);
-
-  //     neighbors.forEach((neighbor) => {
-  //       const constrainedTiles = this.calculateConstrainedTiles(
-  //         position,
-  //         neighbor
-  //       );
-
-  //       if (this.hasChangesInPossibleTiles(neighbor, constrainedTiles)) {
-  //         this.updatePossibleTiles(neighbor, constrainedTiles);
-  //         if (!cell.isCollapsed) {
-  //           if (this.noValidOptionsLeft(neighbor)) {
-  //             // Handle contradiction according to your approach (backtrack, restart)
-  //             console.log("contradiction");
-  //           } else {
-  //             queue.enqueue(neighbor);
-  //           }
-  //         }
-  //       }
-  //     });
-  //   }
-  // }
 
   propagate(grid, currentPosition) {
     const queue = new Queue();
@@ -287,10 +240,10 @@ export class Grid {
 
           let neighborPosition = { x: neighborX, y: 0, z: neighborZ, name: directionName };
 
-          const constrainedTiles = this.calculateConstrainedTiles(position, neighborPosition);
+          const constrainedPatterns = this.calculateConstrainedPatterns(position, neighborPosition);
 
-          if (this.hasChangesInPossibleTiles(neighborPosition, constrainedTiles)) {
-            this.updatePossibleTiles(neighborPosition, constrainedTiles);
+          if (this.hasChangesInPossiblePatterns(neighborPosition, constrainedPatterns)) {
+            this.updatePossiblePatterns(neighborPosition, constrainedPatterns);
 
             const cellNeighbor = this.getCell(neighborPosition.x, 0, neighborPosition.z);
 

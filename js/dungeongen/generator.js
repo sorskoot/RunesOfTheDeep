@@ -90,6 +90,10 @@ export class Generator {
     return objects.find((x) => x.name === name);
   }
 
+  getTile(index){
+    return this.#tileSet.getTile(index);
+  }
+
   generate(extractedPatterns,
     constraintMappingForAllKeySets) {
     if (!this.#tileSet) {

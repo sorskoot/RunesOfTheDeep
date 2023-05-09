@@ -16,15 +16,15 @@ export class Cell {
    * are still possible. The last remaining option will determain the tile that is rendered.
    * @type {numbers[]}
    */
-  possibleTiles;
+  possiblePatterns;
 
   constructor(value) {
     if (value instanceof Array) {
-      this.possibleTiles = value;
+      this.possiblePatterns = value;
     } else {
-      this.possibleTiles = [];
+      this.possiblePatterns = [];
       for (let i = 0; i < value; i++) {
-        this.possibleTiles[i] = i;
+        this.possiblePatterns[i] = i;
       }
     }
   }
@@ -33,7 +33,7 @@ export class Cell {
    * Collapse the cell to a single tile
    */
   collapse(){
-    if(this.possibleTiles.length === 0){
+    if(this.possiblePatterns.length === 0){
         throw new Error("Cannot collapse a cell with no possible tiles.");
     }
 
@@ -42,7 +42,7 @@ export class Cell {
     }
 
     // collapse to a random option, this works even if there is only one option
-    this.possibleTiles = [this.possibleTiles[rng.getUniformInt(0, this.possibleTiles.length - 1)]];
+    this.possiblePatterns = [this.possiblePatterns[rng.getUniformInt(0, this.possiblePatterns.length - 1)]];
     
     // mark as collapsed
     this.#isCollapsed = true;
@@ -57,7 +57,7 @@ export class Cell {
     if(this.#isCollapsed){
         return 0;
     }else{
-        return this.possibleTiles.length;
+        return this.possiblePatterns.length;
     }
   }
 }

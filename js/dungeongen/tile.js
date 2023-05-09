@@ -1,10 +1,15 @@
 import { Object3D } from "@wonderlandengine/api";
 import { TileAdjacencyMatrix } from "./TileAdjacencyMatrix";
 
+/**
+ * A tile is a visual representation of a number at a specific location in the grid.
+ * The cells in the main 3D Grid of the game are made from patters, each pattern is NxN tiles
+ */
 export class Tile {
+
   /**
    * The adjacency matrix for this tile
-   * @type {TileAdjacencyMatrix}
+   * @type {TileAdjacencyMatrix}   
    */
   #tileAdjacencyMatrix;
 
