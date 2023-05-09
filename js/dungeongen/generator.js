@@ -73,6 +73,14 @@ export class Generator {
     );
     this.#tileSet.addTile(
       new Tile(
+        "Floor05",
+        this.#findObject(tileObjects, "Floor05"),
+        this.#tileSet.length,
+        new TileAdjacencyMatrix([2,3,4], [2,3,4], [2,3,4], [2,3,4], [], [])
+      )
+    );
+    this.#tileSet.addTile(
+      new Tile(
         "Wall01",
         this.#findObject(tileObjects, "Wall01"),
         this.#tileSet.length,

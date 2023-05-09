@@ -1,3 +1,17 @@
+// Function to rotate a pattern 90 degrees clockwise
+function rotatePattern(pattern, patternSize) {
+  let rotatedPattern = [];
+
+  for (let i = 0; i < patternSize; i++) {
+    rotatedPattern.push([]);
+    for (let j = patternSize - 1; j >= 0; j--) {
+      rotatedPattern[i].push(pattern[j][i]);
+    }
+  }
+
+  return rotatedPattern;
+}
+
 export function extractPatterns(input, patternSize) {
   const width = input[0].length;
   const height = input.length;
@@ -6,24 +20,34 @@ export function extractPatterns(input, patternSize) {
 
   for (let y = 0; y <= height - patternSize; y++) {
     for (let x = 0; x <= width - patternSize; x++) {
-      let pattern = [];
+      let basePattern = [];
 
       for (let i = 0; i < patternSize; i++) {
         let row = [];
         for (let j = 0; j < patternSize; j++) {
           row.push(input[y + i][x + j]);
         }
-        pattern.push(row);
+        basePattern.push(row);
       }
 
-      let key = JSON.stringify(pattern);
+      let currentPattern= basePattern;
+      // Rotate and add the pattern to the map
+      for (let r = 0; r < 4; r++) {
+        // Four cardinal directions
 
-      if (!patterns.has(key)) {
-        patterns.set(key, { pattern: pattern, count: 1 });
-      } else {
-        let value = patterns.get(key);
-        value.count += 1;
-        patterns.set(key, value);
+        if (r !== 0) {
+          currentPattern = rotatePattern(currentPattern,patternSize);
+        }
+
+        let key = JSON.stringify(currentPattern);
+
+        if (!patterns.has(key)) {
+          patterns.set(key, { pattern: currentPattern, count: 1 });
+        } else {
+          let value = patterns.get(key);
+          value.count += 1;
+          patterns.set(key, value);
+        }
       }
     }
   }
@@ -70,74 +94,72 @@ export function extractPatterns3D(input, patternSize) {
 }
 
 export function checkConstraints(patternA, patternB) {
-    const size = patternA.length;
-  
-    // Check top
-    let topMatch = true;
-    for (let i = 0; i < size; i++) {
-      if (patternA[0][i] !== patternB[size - 1][i]) {
-        topMatch = false;
-        break;
-      }
+  const size = patternA.length;
+
+  // Check top
+  let topMatch = true;
+  for (let i = 0; i < size; i++) {
+    if (patternA[0][i] !== patternB[size - 1][i]) {
+      topMatch = false;
+      break;
     }
-  
-    // Check bottom
-    let bottomMatch = true;
-    for (let i = 0; i < size; i++) {
-      if (patternA[size - 1][i] !== patternB[0][i]) {
-        bottomMatch = false;
-        break;
-      }
-    }
-  
-    // Check left
-    let leftMatch = true;
-    for (let j = 0; j < size; j++) {
-      if (patternA[j][0] !== patternB[j][size - 1]) {
-        leftMatch = false;
-        break;
-      }
-    }
-  
-     // Check right
-     let rightMatch = true;
-     for (let j = 0; j < size; j++) {
-       if (patternA[j][size -1] !== patternB[j][0]) {
-         rightMatch = false;
-         break;
-       }
-     }
-  
-     return {north: topMatch, south: bottomMatch, west: leftMatch, east: rightMatch};
   }
-  
+
+  // Check bottom
+  let bottomMatch = true;
+  for (let i = 0; i < size; i++) {
+    if (patternA[size - 1][i] !== patternB[0][i]) {
+      bottomMatch = false;
+      break;
+    }
+  }
+
+  // Check left
+  let leftMatch = true;
+  for (let j = 0; j < size; j++) {
+    if (patternA[j][0] !== patternB[j][size - 1]) {
+      leftMatch = false;
+      break;
+    }
+  }
+
+  // Check right
+  let rightMatch = true;
+  for (let j = 0; j < size; j++) {
+    if (patternA[j][size - 1] !== patternB[j][0]) {
+      rightMatch = false;
+      break;
+    }
+  }
+
+  return { north: topMatch, south: bottomMatch, west: leftMatch, east: rightMatch };
+}
+
 export function buildConstraintsMap(patterns) {
-     const constraintsMap = new Map();
-  
-     patterns.forEach((patternDataA, keyA) => {
-  
-        let constraintsObjectPerPatternDirectionWise ={};
-  
-          patterns.forEach((patternDataB,keyB)=>{
-  
-          const constraintsBetweenPatterns=checkConstraints(patternDataA.pattern,patternDataB.pattern);
-  
-          //check all direction and store accordingly
-  
-          Object.keys(constraintsBetweenPatterns).forEach(direction=>{
-            if(constraintsBetweenPatterns[direction])
-            { 
-              if (!constraintsObjectPerPatternDirectionWise[direction]) constraintsObjectPerPatternDirectionWise[direction] =[keyB];
-                  else constraintsObjectPerPatternDirectionWise[direction].push(keyB);
-              };
-          })
-  
-         });
-  
-         constraintsMap.set(keyA,constraintsObjectPerPatternDirectionWise); 
-        
+  const constraintsMap = new Map();
+
+  patterns.forEach((patternDataA, keyA) => {
+    let constraintsObjectPerPatternDirectionWise = {};
+
+    patterns.forEach((patternDataB, keyB) => {
+      const constraintsBetweenPatterns = checkConstraints(
+        patternDataA.pattern,
+        patternDataB.pattern
+      );
+
+      //check all direction and store accordingly
+
+      Object.keys(constraintsBetweenPatterns).forEach((direction) => {
+        if (constraintsBetweenPatterns[direction]) {
+          if (!constraintsObjectPerPatternDirectionWise[direction])
+            constraintsObjectPerPatternDirectionWise[direction] = [keyB];
+          else constraintsObjectPerPatternDirectionWise[direction].push(keyB);
+        }
+      });
+    });
+
+    constraintsMap.set(keyA, constraintsObjectPerPatternDirectionWise);
   });
-     
-     return constraintsMap;
-  
-  }
+
+  return constraintsMap;
+}
