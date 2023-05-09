@@ -7,7 +7,7 @@
         },
         "sceneView": {
             "visualizeObjects": false,
-            "visualizeCollision": false,
+            "visualizeCollision": true,
             "visualizeOverdraw": false,
             "visualizePhysics": false
         }
@@ -20,7 +20,7 @@
         "Scene Outline": true,
         "Properties": true,
         "Project Settings": true,
-        "Resources": false,
+        "Resources": true,
         "Project Data": false,
         "Benchmark": false,
         "Profile": false,

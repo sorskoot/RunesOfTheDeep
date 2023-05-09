@@ -3,6 +3,7 @@ import { cloneObject, ObjectCache } from "@sorskoot/wonderland-components";
 import { LevelData } from "../data/level-data";
 import GameGlobals from "../globals";
 import { Generator } from "../dungeongen/generator";
+import { buildConstraintsMap, extractPatterns as extractPatterns2D } from "../dungeongen/utils/extractor";
 
 const size = 25;
 
@@ -17,7 +18,7 @@ export class LevelGenerator extends Component {
    */
   init() {
     this.generator = new Generator(size, 1, size);
-    this.generator.createTileset(this.object.children);
+    
   }
 
   /**
@@ -30,9 +31,35 @@ export class LevelGenerator extends Component {
 
     this.currentLd = LevelData[level];
     this.levelParent = parent || this.levelRoot;
+    // const inputImage=[
+    //   ["4","0","0","0"],
+    //   ["4","0","0","0"],
+    //   ["4","0","0","0"],
+    //   ["4","0","0","0"]
+    // ]
+    // // Usage example:
+    const inputImage = [
+      ["4", "4", "4", "4","4"],
+      ["4", "0", "0", "0","4"],
+      ["4", "0", "0", "0","4"],
+      ["4", "0", "0", "0","4"],
+      ["4", "0", "0", "0","4"],
+      ["4", "4", "4", "4","4"]
+    ];
 
-    const grid = this.generator.generate();
+    const patternSize = 3;
+    const extractedPatterns = extractPatterns2D(inputImage, patternSize);
 
+    let constraintMappingForAllKeySets = 
+      buildConstraintsMap(extractedPatterns, patternSize);
+
+    this.generator.createTileset(this.object.children);
+  
+    const grid = this.generator.generate(
+      extractedPatterns,
+      constraintMappingForAllKeySets);
+
+    console.log(grid);
     this.levelParent.children.length = 0;
     if (!GameGlobals.globalObjectCache) {
       GameGlobals.globalObjectCache = new ObjectCache(

@@ -4,6 +4,7 @@ import { TileSet } from "./tileset";
 import { Tile } from "./tile";
 import { Queue } from "../forFramework/queue.js";
 import { getNeighbors, getInvertedDirection } from "./utils/gridHelpers";
+import { checkConstraints } from "./utils/extractor";
 
 export class Grid {
   sizeX;
@@ -22,12 +23,16 @@ export class Grid {
    */
   #grid = [[[]]];
 
-  constructor(sizeX, sizeY, sizeZ, tileSet) {
+  tilePatterns;
+  constraintMappingForAllKeySets;
+
+  constructor(sizeX, sizeY, sizeZ, tileSet, extractedPatterns, constraintMappingForAllKeySets) {
     this.sizeX = sizeX;
     this.sizeY = sizeY;
     this.sizeZ = sizeZ;
     this.#tileSet = tileSet;
-
+    this.tilePatterns = extractedPatterns;
+    this.constraintMappingForAllKeySets = constraintMappingForAllKeySets;
     this.#createGrid();
   }
 
@@ -79,10 +84,10 @@ export class Grid {
     let picked = rng.getItem(entropyCells);
 
     const cell = this.#grid[picked.x][picked.y][picked.z];
-    
-    if(!cell.isCollapsed && cell.possibleTiles.length === 0) {
-        // we have a contradiction
-        return true;
+
+    if (!cell.isCollapsed && cell.possibleTiles.length === 0) {
+      // we have a contradiction
+      return true;
     }
 
     cell.collapse();
@@ -90,44 +95,7 @@ export class Grid {
 
     const tile = this.getTile(chosenTile);
     this.propagate(this.#grid, picked);
-    // const pickedNorth = tile.tileAdjacencyMatrix.north;
-    // const northOptions = this.#grid[picked.x][picked.y][picked.z + 1];
-    // if (northOptions) {
-    //   this.checkValid(northOptions.options, pickedNorth);
-    // }
 
-    // const pickedSouth = tile.tileAdjacencyMatrix.south;
-    // const southOptions = this.#grid[picked.x][picked.y][picked.z - 1];
-    // if (southOptions) {
-    //   this.checkValid(southOptions.options, pickedSouth);
-    // }
-
-    // const pickedEast = tile.tileAdjacencyMatrix.east;
-    // const eastX = this.#grid[picked.x + 1];
-    // if (eastX) {
-    //   const eastOptions = eastX[picked.y][picked.z];
-    //   this.checkValid(eastOptions.options, pickedEast);
-    // }
-
-    // const pickedWest = tile.tileAdjacencyMatrix.west;
-    // const westX = this.#grid[picked.x - 1];
-    // if (westX) {
-    //   const westOptions = westX[picked.y][picked.z];
-    //   this.checkValid(westOptions.options, pickedWest);
-    // }
-
-    /* 
-    a. Select the cell with the lowest entropy (least number of remaining possibilities). 
-        i. If there are no cells left to explore (all cells have only one possibility),
-           break out of the loop and finish. 
-        ii. If there's a tie, choose any of those cells randomly. 
-    b. Collapse the chosen cell by randomly selecting one possibility according to their weights 
-        (e.g., frequency in input). 
-    c. Propagate this choice to its neighbors, reducing their possibilities based on defined 
-        constraints. 
-        i. If any neighbor becomes contradictory (i.e., has no valid options left), 
-            backtrack to a previous state and retry.
-    */
     for (let x = 0; x < this.#grid.length; x++) {
       for (let y = 0; y < this.#grid[x].length; y++) {
         for (let z = 0; z < this.#grid[x][y].length; z++) {
@@ -167,9 +135,7 @@ export class Grid {
   }
   isValidAdjacent(currentTile, neighborTile, directionName) {
     //  Access adjacency information using TileAdjacencyMatrix or equivalent
-    const allowedNeighbors = this.#tileSet
-      .getTile(currentTile)
-      .getAdjacentTiles(directionName);
+    const allowedNeighbors = this.#tileSet.getTile(currentTile).getAdjacentTiles(directionName);
 
     // const allowedFromNeighbor = this.#tileSet
     //   .getTile(neighborTile)
@@ -202,12 +168,23 @@ export class Grid {
     for (let i = 0; i < currentOptions.length; i++) {
       const currentTileIndex = currentOptions[i];
       for (let j = 0; j < neighborOptions.length; j++) {
-        if (
-          this.isValidAdjacent(
-            currentTileIndex,
-            neighborOptions[j],
-            neighbor.name
-          )
+        console.log(
+          this.tilePatterns[currentTileIndex],
+          this.tilePatterns[neighborOptions[j]],
+        );
+        if(
+          
+          checkConstraints(
+            this.tilePatterns[currentTileIndex],
+            this.tilePatterns[neighborOptions[j]],
+            3
+          )[neighbor.name]
+
+          // this.isValidAdjacent(
+          //   currentTileIndex,
+          //   neighborOptions[j],
+          //   neighbor.name
+          // )
         ) {
           constrainedTiles.push(neighborOptions[j]);
         }
@@ -243,37 +220,114 @@ export class Grid {
    * @param {Grid} grid
    * @param {{x:number, y:number, z:number}} currentPosition
    */
+  // propagate(grid, currentPosition) {
+  //   const queue = new Queue();
+  //   queue.enqueue(currentPosition);
+
+  //   while (!queue.isEmpty()) {
+  //     const position = queue.dequeue();
+  //     const neighbors = this.findUncollapsedNeighbors(position);
+  //     const cell = this.getCell(position.x, position.y, position.z);
+  //     //const tile = this.getTile(cell.possibleTiles[0]);
+
+  //     neighbors.forEach((neighbor) => {
+  //       const constrainedTiles = this.calculateConstrainedTiles(
+  //         position,
+  //         neighbor
+  //       );
+
+  //       if (this.hasChangesInPossibleTiles(neighbor, constrainedTiles)) {
+  //         this.updatePossibleTiles(neighbor, constrainedTiles);
+  //         if (!cell.isCollapsed) {
+  //           if (this.noValidOptionsLeft(neighbor)) {
+  //             // Handle contradiction according to your approach (backtrack, restart)
+  //             console.log("contradiction");
+  //           } else {
+  //             queue.enqueue(neighbor);
+  //           }
+  //         }
+  //       }
+  //     });
+  //   }
+  // }
+
   propagate(grid, currentPosition) {
     const queue = new Queue();
     queue.enqueue(currentPosition);
 
+    const patternSize = 3; // Set this according to your requirements
+
     while (!queue.isEmpty()) {
       const position = queue.dequeue();
-      const neighbors = this.findUncollapsedNeighbors(position);
-      const cell = this.getCell(position.x, position.y, position.z);
-      //const tile = this.getTile(cell.possibleTiles[0]);
 
-      neighbors.forEach((neighbor) => {
-        const constrainedTiles = this.calculateConstrainedTiles(
-          position,
-          neighbor
-        );
+      for (let offsetZ = -(patternSize - 1); offsetZ <= patternSize - 1; offsetZ++) {
+        for (let offsetX = -(patternSize - 1); offsetX <= patternSize - 1; offsetX++) {
+          if (offsetX === 0 && offsetZ === 0) {
+            continue; // Skip processing the same cell.
+          }
 
-        if (this.hasChangesInPossibleTiles(neighbor, constrainedTiles)) {
-          this.updatePossibleTiles(neighbor, constrainedTiles);
-          if (!cell.isCollapsed) {
-            if (this.noValidOptionsLeft(neighbor)) {
-              // Handle contradiction according to your approach (backtrack, restart)
-              console.log("contradiction");
-            } else {
-              queue.enqueue(neighbor);
+          const neighborX = position.x + offsetX;
+          const neighborZ = position.z + offsetZ;
+
+          if (
+            neighborX < 0 ||
+            neighborZ < 0 ||
+            neighborZ >= grid.length ||
+            neighborX >= grid[0].length
+          ) {
+            continue;
+          }
+
+          const directionName = this.getDirectionNameFromOffsets(offsetX, offsetZ);
+
+          if (!directionName) {
+            console.error(`Unknown direction: (${offsetX}, ${offsetZ})`);
+            continue;
+          }
+
+          let neighborPosition = { x: neighborX, y: 0, z: neighborZ, name: directionName };
+
+          const constrainedTiles = this.calculateConstrainedTiles(position, neighborPosition);
+
+          if (this.hasChangesInPossibleTiles(neighborPosition, constrainedTiles)) {
+            this.updatePossibleTiles(neighborPosition, constrainedTiles);
+
+            const cellNeighbor = this.getCell(neighborPosition.x, 0, neighborPosition.z);
+
+            if (!cellNeighbor.isCollapsed) {
+              if (this.noValidOptionsLeft(neighborPosition)) {
+                // Handle contradiction according to your approach (backtrack, restart)
+                console.log("contradiction");
+              } else {
+                queue.enqueue(neighborPosition);
+              }
             }
           }
         }
-      });
+      }
     }
   }
 
+  getDirectionNameFromOffsets(offsetX, offsetZ) {
+    const absMaxOffset = Math.max(Math.abs(offsetX), Math.abs(offsetZ));
+
+    const normalizedOffsetX = offsetX / absMaxOffset;
+    const normalizedOffsetZ = offsetZ / absMaxOffset;
+
+    if (normalizedOffsetZ === -1) {
+      return "north";
+    } else if (normalizedOffsetZ === 1) {
+      return "south";
+    }
+
+    if (normalizedOffsetX === -1) {
+      return "west";
+    } else if (normalizedOffsetX === 1) {
+      return "east";
+    }
+
+    return directionName || null;
+  }
   /**
    *
    * @param {{x:number, y:number,z:number}} position
@@ -282,8 +336,7 @@ export class Grid {
   findUncollapsedNeighbors(position) {
     let neighbors = getNeighbors(this, position);
     return neighbors.filter(
-      (neighbor) =>
-        !this.getCell(neighbor.x, neighbor.y, neighbor.z).isCollapsed
+      (neighbor) => !this.getCell(neighbor.x, neighbor.y, neighbor.z).isCollapsed
     );
   }
 }

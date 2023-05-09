@@ -296,6 +296,12 @@
             "components": [
                 {
                     "type": "player-height"
+                },
+                {
+                    "type": "wasd-controls",
+                    "wasd-controls": {
+                        "headObject": "17"
+                    }
                 }
             ],
             "translation": [
@@ -757,6 +763,59 @@
                 1.0
             ],
             "name": "Floor05"
+        },
+        "266": {
+            "parent": "238",
+            "components": [
+                null,
+                {
+                    "type": "collision",
+                    "collision": {
+                        "collider": "aabb",
+                        "aabb": {
+                            "extents": [
+                                0.5,
+                                1.0,
+                                0.5
+                            ]
+                        },
+                        "groups": 255
+                    }
+                },
+                {
+                    "type": "tags",
+                    "tags": {
+                        "tags": "wall"
+                    }
+                },
+                {
+                    "type": "mesh",
+                    "mesh": {
+                        "mesh": "265",
+                        "material": "270"
+                    }
+                },
+                {
+                    "type": "tile-descriptor"
+                }
+            ],
+            "translation": [
+                -8.0,
+                0.0,
+                -2.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scaling": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "name": "Wall01"
         }
     },
     "meshes": {
@@ -895,15 +954,15 @@
                 "file": "models\\teleport-indicator.glb"
             }
         },
-        "243": {
-            "link": {
-                "name": "Plane",
-                "file": "models\\Tiles.fbx"
-            }
-        },
         "252": {
             "link": {
                 "name": "Floor",
+                "file": "models\\Tiles.fbx"
+            }
+        },
+        "265": {
+            "link": {
+                "name": "Cube",
                 "file": "models\\Tiles.fbx"
             }
         }
@@ -961,6 +1020,18 @@
             "link": {
                 "name": "tiles_4.png",
                 "file": "assets\\tiles\\tiles_4.png"
+            }
+        },
+        "268": {
+            "link": {
+                "name": "texture_0",
+                "file": "models\\Tiles.fbx"
+            }
+        },
+        "272": {
+            "link": {
+                "name": "tiles_5.png",
+                "file": "assets\\tiles\\tiles_5.png"
             }
         }
     },
@@ -1033,6 +1104,18 @@
             "link": {
                 "name": "tiles_4.png",
                 "file": "assets\\tiles\\tiles_4.png"
+            }
+        },
+        "267": {
+            "link": {
+                "name": "image_0",
+                "file": "models\\Tiles.fbx"
+            }
+        },
+        "271": {
+            "link": {
+                "name": "tiles_5.png",
+                "file": "assets\\tiles\\tiles_5.png"
             }
         }
     },
@@ -1304,6 +1387,19 @@
             "FlatSorskoot": {
                 "flatTexture": "260"
             }
+        },
+        "269": {
+            "link": {
+                "name": "Material",
+                "file": "models\\Tiles.fbx"
+            }
+        },
+        "270": {
+            "name": "Wall01",
+            "pipeline": "240",
+            "FlatSorskoot": {
+                "flatTexture": "272"
+            }
         }
     },
     "shaders": {
@@ -1440,7 +1536,7 @@
             "version": [
                 1,
                 0,
-                0
+                1
             ]
         },
         "vr": {
@@ -1450,7 +1546,9 @@
         "scripting": {
             "sourcePaths": [
                 "js/",
-                "node_modules/@sorskoot/wonderland-components/src/components"
+                "node_modules/@sorskoot/wonderland-components/src/components",
+                "js/dungeongen/components",
+                "js/components"
             ],
             "bundlingType": "esbuild",
             "libraryPaths": [
@@ -1468,6 +1566,14 @@
         },
         "editor": {
             "serverPort": 7551
+        },
+        "rendering": {
+            "clearColor": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ]
         }
     },
     "animations": {},
@@ -1614,7 +1720,8 @@
         "assets/tiles/tiles_1.png",
         "assets/tiles/tiles_0.png",
         "assets/tiles/tiles_3.png",
-        "assets/tiles/tiles_4.png"
+        "assets/tiles/tiles_4.png",
+        "assets/tiles/tiles_5.png"
     ],
     "fonts": {
         "230": {
