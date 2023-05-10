@@ -3,8 +3,17 @@ import { Cell } from "./cell";
 import { TileSet } from "./tileset";
 import { Tile } from "./tile";
 import { Queue } from "../forFramework/queue.js";
-import { getNeighbors } from "./utils/gridHelpers";
+import { getInvertedDirection, getNeighbors } from "./utils/gridHelpers";
 import { deepClone } from "./utils/deepClone";
+
+const DIRECTION_OFFSETS = {
+  north: { x: 0, y: 0, z: 1 },
+  east: { x: 1, y: 0, z: 0 },
+  south: { x: 0, y: 0, z: -10 },
+  west: { x: -1, y: 0, z: 0 },
+  // up: { x: 0, y: 1, z: 0 },
+  // down: { x: 0, y: -1, z: 0 },
+};
 
 export class Grid {
   sizeX;
@@ -36,6 +45,15 @@ export class Grid {
     this.patterns = extractedPatterns;
     this.constraints = constraintMappingForAllKeySets;
     this.#createGrid();
+  }
+
+  debug() {
+    // remove Y layer but keep X and Z
+    let grid2D = this.#grid.map((x) =>
+      x.map((y) => y.map((z) => z).map((t) => t.possiblePatterns))
+    );
+
+    console.table(grid2D);
   }
 
   #createGrid() {
@@ -78,8 +96,6 @@ export class Grid {
   }
 
   collapse() {
-
-
     let entropyCells = this.#getLowestEntropyCells();
     if (!entropyCells.length) {
       return true; // all cells are collapsed
@@ -96,26 +112,29 @@ export class Grid {
 
     // collapse the cell and propage the constraints with backtracking
     let done = false;
-    do{
+    let count = 0;
+    do {
+      count++;
       // create a backup of the grid
       const backup = deepClone(this.#grid);
-      
-      cell.collapse();
-      
+
+      cell.collapse(this.patterns);
+
       done = this.propagate(this.#grid, picked);
 
-      if(!done){ // revert
+      if (!done) {
+        // revert
         console.log("Failed to propagate, reverting...");
         this.#grid = backup;
       }
-    }while(!done);
+    } while (!done && count < 25);
 
     for (let x = 0; x < this.#grid.length; x++) {
       for (let y = 0; y < this.#grid[x].length; y++) {
         for (let z = 0; z < this.#grid[x][y].length; z++) {
           const cell = this.#grid[x][y][z];
-          if (cell.calculateEntropy() === 1) {
-            cell.collapse();
+          if (cell.calculateEntropy(this.patterns) === 1) {
+            cell.collapse(this.patterns);
           }
         }
       }
@@ -134,7 +153,7 @@ export class Grid {
           if (cell.isCollapsed) {
             continue; // skip collapsed cells
           }
-          const entropy = cell.calculateEntropy();
+          const entropy = cell.calculateEntropy(this.patterns);
           if (entropy < minEntropy) {
             minEntropy = entropy;
             lowestEntropyCells = [{ x, y, z, entropy }];
@@ -148,13 +167,22 @@ export class Grid {
     return lowestEntropyCells;
   }
 
+  /**
+    
+   currentOptions = [1]
+   neighborOptions = [1,2,3]
+
+   constraints for 1 are [1,2]
+
+
+   
+   */
+
   calculateConstrainedPatterns(current, neighbor) {
     const currentCell = this.getCell(current.x, current.y, current.z);
     const currentOptions = currentCell.possiblePatterns;
-    
     const neighborCell = this.getCell(neighbor.x, neighbor.y, neighbor.z);
     const neighborOptions = neighborCell.possiblePatterns;
-    
     const constrainedPatternsSet = new Set();
 
     for (let i = 0; i < currentOptions.length; i++) {
@@ -162,7 +190,8 @@ export class Grid {
       const currentTileConstraints = this.constraints.get(currentTileIndex);
       if (currentTileConstraints.hasOwnProperty(neighbor.name)) {
         for (let j = 0; j < neighborOptions.length; j++) {
-          if (currentTileConstraints[neighbor.name].includes(neighborOptions[j])) {
+          const neighborTileIndex = neighborOptions[j];
+          if (currentTileConstraints[neighbor.name].includes(neighborTileIndex)) {
             constrainedPatternsSet.add(neighborOptions[j]);
           }
         }
@@ -183,7 +212,7 @@ export class Grid {
     const neighborCell = this.getCell(neighbor.x, neighbor.y, neighbor.z);
     neighborCell.possiblePatterns = constrainedPatterns;
     if (constrainedPatterns.length === 1) {
-      neighborCell.collapse();
+      neighborCell.collapse(this.patterns);
     }
   }
 
@@ -195,59 +224,56 @@ export class Grid {
 
   /**
    * propagates the constraints to the neighbors of the current cell
-   * @param {*} grid 
-   * @param {*} currentPosition 
+   * @param {*} grid
+   * @param {*} currentPosition
    */
   propagate(grid, currentPosition) {
     const queue = new Queue();
     queue.enqueue(currentPosition);
 
     const patternSize = 3; // Set this according to your requirements
-
+    let counter = 0;
     while (!queue.isEmpty()) {
+      counter++;
+      if(counter > 50) {
+        return true;
+      }
       const position = queue.dequeue();
 
-      for (let offsetZ = -(patternSize - 1); offsetZ <= patternSize - 1; offsetZ++) {
-        for (let offsetX = -(patternSize - 1); offsetX <= patternSize - 1; offsetX++) {
-          if (offsetX === 0 && offsetZ === 0) {
-            continue; // Skip processing the same cell.
-          }
+      for (let directionOffset in DIRECTION_OFFSETS) {
+        const offsetX = DIRECTION_OFFSETS[directionOffset].x;
+        const offsetZ = DIRECTION_OFFSETS[directionOffset].z;
 
-          const neighborX = position.x + offsetX;
-          const neighborZ = position.z + offsetZ;
+        const neighborX = position.x + offsetX;
+        const neighborZ = position.z + offsetZ;
 
-          if (
-            neighborX < 0 ||
-            neighborZ < 0 ||
-            neighborZ >= grid.length ||
-            neighborX >= grid[0].length
-          ) {
-            continue;
-          }
+        if (
+          neighborX < 0 ||
+          neighborZ < 0 ||
+          neighborZ >= grid.length ||
+          neighborX >= grid.length
+        ) {
+          continue;
+        }
+        let neighborPosition = { x: neighborX, y: 0, z: neighborZ, name: directionOffset };
 
-          const directionName = this.getDirectionNameFromOffsets(offsetX, offsetZ);
+        const constrainedPatterns = this.calculateConstrainedPatterns(position, neighborPosition);
+        if (constrainedPatterns.length === 0) {
+          console.log("Contradiction found, impossible constraint");
+          return false;
+        }
+        if (this.hasChangesInPossiblePatterns(neighborPosition, constrainedPatterns)) {
+          this.updatePossiblePatterns(neighborPosition, constrainedPatterns);
 
-          if (!directionName) {
-            console.error(`Unknown direction: (${offsetX}, ${offsetZ})`);
-            continue;
-          }
+          const cellNeighbor = this.getCell(neighborPosition.x, 0, neighborPosition.z);
 
-          let neighborPosition = { x: neighborX, y: 0, z: neighborZ, name: directionName };
-
-          const constrainedPatterns = this.calculateConstrainedPatterns(position, neighborPosition);
-
-          if (this.hasChangesInPossiblePatterns(neighborPosition, constrainedPatterns)) {
-            this.updatePossiblePatterns(neighborPosition, constrainedPatterns);
-
-            const cellNeighbor = this.getCell(neighborPosition.x, 0, neighborPosition.z);
-
-            if (!cellNeighbor.isCollapsed) {
-              if (this.noValidOptionsLeft(neighborPosition)) {
-                // Handle contradiction according to your approach (backtrack, restart)
-                return false;
-              } else {
-                queue.enqueue(neighborPosition);
-              }
+          if (!cellNeighbor.isCollapsed) {
+            if (this.noValidOptionsLeft(neighborPosition)) {
+              // Handle contradiction according to your approach (backtrack, restart)
+              console.log("Contradiction found");
+              //  return false;
+            } else {
+              queue.enqueue(neighborPosition);
             }
           }
         }

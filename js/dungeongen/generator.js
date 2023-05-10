@@ -37,7 +37,14 @@ export class Generator {
    */
   createTileset(tileObjects) {
     this.#tileSet = new TileSet();
-
+    this.#tileSet.addTile(
+      new Tile(
+        "Air",
+        this.#findObject(tileObjects, "Air"),
+        this.#tileSet.length,
+        new TileAdjacencyMatrix([0, 1, 2], [0, 1, 2], [0, 1, 2], [0, 1, 2], [], [])
+      )
+    );
     this.#tileSet.addTile(
       new Tile(
         "Floor01",
@@ -60,7 +67,7 @@ export class Generator {
         "Floor03",
         this.#findObject(tileObjects, "Floor03"),
         this.#tileSet.length,
-        new TileAdjacencyMatrix([0,1,2,3], [0,1,2,3], [0,1,2,3], [0,1,2,3], [], [])
+        new TileAdjacencyMatrix([0, 1, 2, 3], [0, 1, 2, 3], [0, 1, 2, 3], [0, 1, 2, 3], [], [])
       )
     );
     this.#tileSet.addTile(
@@ -68,7 +75,7 @@ export class Generator {
         "Floor04",
         this.#findObject(tileObjects, "Floor04"),
         this.#tileSet.length,
-        new TileAdjacencyMatrix([2,3,4], [2,3,4], [2,3,4], [2,3,4], [], [])
+        new TileAdjacencyMatrix([2, 3, 4], [2, 3, 4], [2, 3, 4], [2, 3, 4], [], [])
       )
     );
     this.#tileSet.addTile(
@@ -76,7 +83,7 @@ export class Generator {
         "Floor05",
         this.#findObject(tileObjects, "Floor05"),
         this.#tileSet.length,
-        new TileAdjacencyMatrix([2,3,4], [2,3,4], [2,3,4], [2,3,4], [], [])
+        new TileAdjacencyMatrix([2, 3, 4], [2, 3, 4], [2, 3, 4], [2, 3, 4], [], [])
       )
     );
     this.#tileSet.addTile(
@@ -84,7 +91,7 @@ export class Generator {
         "Wall01",
         this.#findObject(tileObjects, "Wall01"),
         this.#tileSet.length,
-        new TileAdjacencyMatrix([3,4], [3,4], [3,4], [3,4], [], [])
+        new TileAdjacencyMatrix([3, 4], [3, 4], [3, 4], [3, 4], [], [])
       )
     );
     this.#tileSet.addTile(
@@ -92,7 +99,7 @@ export class Generator {
         "Wall02",
         this.#findObject(tileObjects, "Wall02"),
         this.#tileSet.length,
-        new TileAdjacencyMatrix([3,4], [3,4], [3,4], [3,4], [], [])
+        new TileAdjacencyMatrix([3, 4], [3, 4], [3, 4], [3, 4], [], [])
       )
     );
   }
@@ -106,24 +113,38 @@ export class Generator {
     return objects.find((x) => x.name === name);
   }
 
-  getTile(index){
+  getTile(index) {
     return this.#tileSet.getTile(index);
   }
 
-  generate(extractedPatterns,
-    constraintMappingForAllKeySets) {
+  generate(extractedPatterns, constraintMappingForAllKeySets) {
     if (!this.#tileSet) {
       throw new Error("Tileset must be created before generating a level.");
     }
 
-    this.#grid = new Grid(this.#sizeX, this.#sizeY, this.#sizeZ, this.#tileSet,
-      extractedPatterns,
-      constraintMappingForAllKeySets);
-
+    const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    let counter = 0;
     let complete = false;
     do {
-      complete = this.#grid.collapse();
-    } while (!complete); // TODO: add a limit to the number of iterations
+      console.log("starting");
+      this.#grid = new Grid(
+        this.#sizeX,
+        this.#sizeY,
+        this.#sizeZ,
+        this.#tileSet,
+        extractedPatterns,
+        constraintMappingForAllKeySets
+      );
+
+      do {
+        complete = this.#grid.collapse();
+        //this.#grid.debug();
+        counter++;
+      } while (!complete && counter % 50 < 49); // TODO: add a limit to the number of iterations
+    } while (!complete && counter < 5000);
+    if (!complete) {
+      throw new Error("Could not generate a level with the given constraints.");
+    }
 
     return this.#grid;
   }

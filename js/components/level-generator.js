@@ -5,10 +5,11 @@ import GameGlobals from "../globals";
 import { Generator } from "../dungeongen/generator";
 import {
   buildConstraintsMap,
-  extractPatterns as extractPatterns2D,
+  extractPatternsWrap ,
 } from "../dungeongen/utils/extractor";
 
 const size = 5;
+const patternSize = 3;
 
 export class LevelGenerator extends Component {
   static TypeName = "level-generator";
@@ -33,28 +34,47 @@ export class LevelGenerator extends Component {
 
     this.currentLd = LevelData[level];
     this.levelParent = parent || this.levelRoot;
-    const inputImage=[
-      ["6","5","5","5","5","5","4","5"],
-      ["5","0","0","0","0","0","4","0"],
-      ["5","0","1","2","1","0","4","0"],
-      ["5","0","2","3","2","0","4","0"],
-      ["5","0","1","2","1","0","4","0"],
-    ]
-    // // Usage example:
     // const inputImage = [
-    //   ["5", "4", "4", "4", "4", "4", "5"],
-    //   ["4", "0", "0", "0", "0", "0", "4"],
-    //   ["4", "0", "0", "2", "0", "0", "4"],
-    //   ["4", "0", "2", "3", "2", "0", "4"],
-    //   ["4", "0", "0", "2", "0", "0", "4"],
-    //   ["4", "0", "0", "0", "0", "0", "4"],
-    //   ["5", "4", "4", "4", "4", "4", "5"],
+    //   ["7", "6", "6", "6", "6", "6", "6", "6","6"],
+    //   ["6", "3", "3", "6", "6", "3", "3", "3","3"],
+    //   ["6", "3", "1", "3", "3", "2", "1", "1","3"],
+    //   ["6", "3", "1", "1", "1", "1", "1", "1","3"],
+    //   ["6", "3", "1", "1", "5", "1", "1", "1","3"],
+    //   ["6", "3", "1", "1", "1", "1", "1", "1","3"],
+    //   ["6", "3", "1", "1", "1", "1", "1", "1","3"],
+    //   ["6", "3", "1", "1", "1", "1", "1", "1","3"],
+    //   ["6", "3", "3", "3", "3", "3", "3", "3","3"]];
+//const inputImage = [
+//       ["1", "1", "1"],
+//       ["1", "5", "1"],
+//       ["1", "1", "1"],
+//     ];
+    // Usage example:
+    const inputImage = [
+      ["1", "1", "1","1"],
+      ["1", "6", "6","6"],
+      ["1", "6", "2","6"],
+      ["1", "6", "6","6"],
+    ];
+
+    // const inputImage = [
+    //   ["6", "6", "1", "6", "6", "6", "6", "6"],
+    //   ["6", "1", "1", "1", "6", "1", "1", "6"],
+    //   ["1", "1", "1", "1", "1", "1", "1", "6"],
+    //   ["6", "1", "1", "1", "6", "1", "1", "6"],
+    //   ["6", "6", "1", "6", "6", "6", "6", "6"],
+    //   ["6", "6", "1", "6", "6", "1", "1", "6"],
+    //   ["6", "6", "1", "6", "6", "1", "1", "6"],
+    //   ["6", "6", "1", "1", "1", "1", "1", "6"],
+    //   ["6", "6", "6", "6", "6", "1", "1", "6"],
+    //   ["6", "6", "6", "6", "6", "6", "6", "6"],
     // ];
 
-    const patternSize = 3;
-    const extractedPatterns = extractPatterns2D(inputImage, patternSize);
-
+    const extractedPatterns = extractPatternsWrap(inputImage, patternSize);
+    
+    //console.log(extractedPatterns);
     let constraintMappingForAllKeySets = buildConstraintsMap(extractedPatterns, patternSize);
+    console.log(constraintMappingForAllKeySets);
 
     this.generator.createTileset(this.object.children);
 
@@ -74,46 +94,8 @@ export class LevelGenerator extends Component {
       GameGlobals.globalObjectCache.reset();
     }
     this.blockCache = GameGlobals.globalObjectCache;
-    
-    for (let row = 0; row < size; row++) {
-      for (let col = 0; col < size; col++) {
-        //this.createTile(row - size / 2, 0, col - size / 2, "Floor01");
-        const cell = grid.getCell(row, 0, col);
-        if (cell && cell.isCollapsed) {
-          const currentTile = grid.getPattern(cell.possiblePatterns[0]);
-          // Loop through the rows of the 3x3 grid
-       
-          for (let gridRow = 0; gridRow < 3; gridRow++) {
-            // Loop through the columns of the 3x3 grid
-            for (let gridColumn = 0; gridColumn < 3; gridColumn++) {
-              if (currentTile) {
-                // Calculate the row and col positions for each tile in the 3x3 grid,
-                // adjusting their positions based on their indices within the grid.
-                const newRowPos = (row * patternSize)+gridRow - ((size*patternSize)/2);
-                const newColPos = (col * patternSize)+gridColumn - ((size* patternSize)/2);
-                const tileIndex = grid.getPattern(cell.possiblePatterns[0]).pattern[gridRow][gridColumn];
-                const tile = this.generator.getTile(tileIndex);
 
-                this.createTile(
-                  newRowPos,
-                  0,
-                  newColPos,
-                  tile.object
-                );
-              }
-            }
-          }
-          // if (currentTile) {
-          //   this.createTile(
-          //     row - size / 2,
-          //     0,
-          //     col - size / 2,
-          //     grid.getPattern(cell.possiblePatterns[0]).object
-          //   );
-          // }
-        }
-      }
-    }
+    this.render(grid);
 
     return;
 
@@ -186,6 +168,38 @@ export class LevelGenerator extends Component {
     // console.log(`blocks in cache: ${this.blockCache.index}`);
     // cameraRotation = this.currentLd.cam;
     // return { cameraPosition, targetsToComplete, cameraRotation };
+  }
+
+  render(grid) {
+    for (let row = 0; row < size; row++) {
+      for (let col = 0; col < size; col++) {
+        //this.createTile(row - size / 2, 0, col - size / 2, "Floor01");
+        const cell = grid.getCell(row, 0, col);
+        if (cell && cell.isCollapsed && cell.possiblePatterns.length === 1) {
+          const currentTile = grid.getPattern(cell.possiblePatterns[0]);
+          let ps = patternSize - 1;
+          // Loop through the rows of the 3x3 grid
+
+          for (let gridRow = 0; gridRow < ps; gridRow++) {
+            // Loop through the columns of the 3x3 grid
+            for (let gridColumn = 0; gridColumn < ps; gridColumn++) {
+              if (currentTile) {
+                // Calculate the row and col positions for each tile in the 3x3 grid,
+                // adjusting their positions based on their indices within the grid.
+                const newRowPos = row * ps + gridRow - (size * ps) / 2;
+                const newColPos = col * ps + gridColumn - (size * ps) / 2;
+                const tileIndex = grid.getPattern(cell.possiblePatterns[0]).pattern[gridRow][
+                  gridColumn
+                ];
+                const tile = this.generator.getTile(tileIndex);
+
+                this.createTile(newRowPos, 0, newColPos, tile.object);
+              }
+            }
+          }
+        }
+      }
+    }
   }
 
   // createCube(x, y, z, tile) {

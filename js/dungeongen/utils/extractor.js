@@ -12,7 +12,7 @@ function rotatePattern(pattern, patternSize) {
   return rotatedPattern;
 }
 
-export function extractPatterns(input, patternSize) {
+export function extractPatterns2D(input, patternSize) {
   const width = input[0].length;
   const height = input.length;
 
@@ -32,23 +32,66 @@ export function extractPatterns(input, patternSize) {
 
       let currentPattern= basePattern;
       // Rotate and add the pattern to the map
-      for (let r = 0; r < 4; r++) {
-        // Four cardinal directions
+      // for (let r = 0; r < 4; r++) {
+      //   // Four cardinal directions
 
-        if (r !== 0) {
-          currentPattern = rotatePattern(currentPattern,patternSize);
+      //   if (r !== 0) {
+      //     currentPattern = rotatePattern(currentPattern,patternSize);
+      //   }
+
+      let key = JSON.stringify(currentPattern);
+
+        if (!patterns.has(key)) {
+          patterns.set(key, { pattern: currentPattern, weight: 1 });
+        } else {
+          let value = patterns.get(key);
+          value.weight += 1;
+          patterns.set(key, value);
         }
+      //}
+    }
+  }
+
+  return Array.from(patterns.values());
+}
+
+export function extractPatternsWrap(input, patternSize) {
+  const width = input[0].length;
+  const height = input.length;
+
+  let patterns = new Map();
+
+  for (let y = 0; y < height ; y++) {
+    for (let x = 0; x < width; x++) {
+      let basePattern = [];
+
+      for (let i = 0; i < patternSize; i++) {
+        let row = [];
+        for (let j = 0; j < patternSize; j++) {
+          row.push(input[(x + i)% height][(y + j)%width]);
+        }
+        basePattern.push(row);
+      }
+
+      let currentPattern= basePattern;
+      // Rotate and add the pattern to the map
+      // for (let r = 0; r < 4; r++) {
+      //   // Four cardinal directions
+
+      //   if (r !== 0) {
+      //     currentPattern = rotatePattern(currentPattern,patternSize);
+      //   }
 
         let key = JSON.stringify(currentPattern);
 
         if (!patterns.has(key)) {
-          patterns.set(key, { pattern: currentPattern, count: 1 });
+          patterns.set(key, { pattern: currentPattern, weight: 1 });
         } else {
           let value = patterns.get(key);
-          value.count += 1;
+          value.weight += 1;
           patterns.set(key, value);
         }
-      }
+      //}
     }
   }
 
@@ -99,7 +142,8 @@ export function checkConstraints(patternA, patternB) {
   // Check top
   let topMatch = true;
   for (let i = 0; i < size; i++) {
-    if (patternA[0][i] !== patternB[size - 1][i]) {
+    
+    if (patternA[i][0] !== patternB[i][size - 1]) {
       topMatch = false;
       break;
     }
@@ -108,7 +152,7 @@ export function checkConstraints(patternA, patternB) {
   // Check bottom
   let bottomMatch = true;
   for (let i = 0; i < size; i++) {
-    if (patternA[size - 1][i] !== patternB[0][i]) {
+    if (patternA[i][size - 1] !== patternB[i][0]) {
       bottomMatch = false;
       break;
     }
@@ -117,7 +161,7 @@ export function checkConstraints(patternA, patternB) {
   // Check left
   let leftMatch = true;
   for (let j = 0; j < size; j++) {
-    if (patternA[j][0] !== patternB[j][size - 1]) {
+    if (patternA[0][j] !== patternB[size - 1][j]) {
       leftMatch = false;
       break;
     }
@@ -126,7 +170,7 @@ export function checkConstraints(patternA, patternB) {
   // Check right
   let rightMatch = true;
   for (let j = 0; j < size; j++) {
-    if (patternA[j][size - 1] !== patternB[j][0]) {
+    if (patternA[size - 1][j] !== patternB[0][j]) {
       rightMatch = false;
       break;
     }

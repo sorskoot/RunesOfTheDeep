@@ -1,4 +1,5 @@
 import rng from "@sorskoot/wonderland-components/src/utils/rng";
+import { rngWithWeight } from "../forFramework/rngWithWeight";
 
 export class Cell {
  
@@ -25,7 +26,7 @@ export class Cell {
   /**
    * Collapse the cell to a single tile
    */
-  collapse(){
+  collapse(allPatterns ){
     if(this.possiblePatterns.length === 0){
         throw new Error("Cannot collapse a cell with no possible tiles.");
     }
@@ -34,9 +35,16 @@ export class Cell {
         return; // already collapsed
     }
 
+    // get weights from all patterns that are in the possible patterns    
+    const posibleWeights = allPatterns.filter((p,i)=>
+      this.possiblePatterns.includes(i)).map(p=>p.weight);
+    //allPatterns.map(p=>p.weight);
+
     // collapse to a random option, this works even if there is only one option
-    this.possiblePatterns = [this.possiblePatterns[rng.getUniformInt(0, this.possiblePatterns.length - 1)]];
-    
+    //this.possiblePatterns = [this.possiblePatterns[rng.getUniformInt(0, this.possiblePatterns.length - 1)]];
+    this.possiblePatterns = [rngWithWeight(this.possiblePatterns, posibleWeights)]
+      
+    //console.log("Collapsed cell to: " + this.possiblePatterns[0]);
     // mark as collapsed
     this.isCollapsed = true;
   }
@@ -46,11 +54,17 @@ export class Cell {
    * But it might change in the future when weigth is added to the possible tiles.
    * @returns {number} The entropy of the cell
    */
-  calculateEntropy(){
+  calculateEntropy(allPatterns){
     if(this.isCollapsed){
         return 0;
     }else{
-        return this.possiblePatterns.length;
+      const posibleWeights = allPatterns.filter((p,i)=>this.possiblePatterns.includes(i)).map(p=>p.weight);
+
+      let totalWeight = posibleWeights.reduce((total, itemWithWeight) => {
+        return total + itemWithWeight;
+      }, 0);
+
+        return totalWeight;
     }
   }
 }

@@ -749,7 +749,7 @@
             "translation": [
                 -8.0,
                 0.0,
-                0.0
+                2.9802322387695313e-8
             ],
             "rotation": [
                 0.0,
@@ -869,6 +869,38 @@
                 1.0
             ],
             "name": "Wall02"
+        },
+        "277": {
+            "parent": "238",
+            "components": [
+                null,
+                {
+                    "type": "tags",
+                    "tags": {
+                        "tags": "air"
+                    }
+                },
+                {
+                    "type": "tile-descriptor"
+                }
+            ],
+            "translation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scaling": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "name": "Air"
         }
     },
     "meshes": {
@@ -1620,7 +1652,9 @@
                 "js/",
                 "node_modules/@sorskoot/wonderland-components/src/components",
                 "js/dungeongen/components",
-                "js/components"
+                "js/components",
+                "js/dungeongen",
+                "js/dungeongen/utils"
             ],
             "bundlingType": "esbuild",
             "libraryPaths": [
