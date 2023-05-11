@@ -111,3 +111,23 @@ imgui.ini
 **.asd
 
 .npmrc
+CustomUnityDesigner/Runes of the Deep Designer/Library/
+CustomUnityDesigner/Runes of the Deep Designer/Temp/
+CustomUnityDesigner/Runes of the Deep Designer/UnityPackageManager
+CustomUnityDesigner/Runes of the Deep Designer/obj
+CustomUnityDesigner/Runes of the Deep Designer/QCAR
+CustomUnityDesigner/Runes of the Deep Designer/App/
+CustomUnityDesigner/Runes of the Deep Designer/Apk/
+CustomUnityDesigner/Runes of the Deep Designer/Application
+CustomUnityDesigner/Runes of the Deep Designer/Logs
+CustomUnityDesigner/Runes of the Deep Designer/UWP
+CustomUnityDesigner/Runes of the Deep Designer/**/Assets/Dependencies
+CustomUnityDesigner/Runes of the Deep Designer/**/Assets/Dependencies.meta
+CustomUnityDesigner/Runes of the Deep Designer/**/MSbuild
+CustomUnityDesigner/Runes of the Deep Designer/MSBuildForUnity.Common.props
+CustomUnityDesigner/Runes of the Deep Designer/**/StreamingAssets/Movies
+CustomUnityDesigner/Runes of the Deep Designer/**/.editorconfig
+CustomUnityDesigner/Runes of the Deep Designer/Builds/WSAPlayer
+CustomUnityDesigner/Runes of the Deep Designer/**/Packages/packages-lock.json
+CustomUnityDesigner/Runes of the Deep Designer/**/*.sln.DotSettings.user
+CustomUnityDesigner/Runes of the Deep Designer/**/.idea
