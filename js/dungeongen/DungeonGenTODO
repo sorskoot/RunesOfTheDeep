@@ -1,6 +1,2 @@
-To Refactor:
-    ✔ Change the use of Tile to Pattern/Constraint in Grid @done(23-05-09 22:29)
-    ☐ Replace Array in constraints with TileAdjacencyMatrix
-    ☐ Remove #tileset from Grid
-    ☐ Create a nice class for patterns and constraints combined
-    ☐ Remove the adjacency from Tile
+Dungeon generation ideas
+    

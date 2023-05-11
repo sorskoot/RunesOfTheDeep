@@ -7,40 +7,29 @@ import { getInvertedDirection, getNeighbors } from "./utils/gridHelpers";
 import { deepClone } from "./utils/deepClone";
 
 const DIRECTION_OFFSETS = {
-  north: { x: 0, y: 0, z: 1 },
-  east: { x: 1, y: 0, z: 0 },
-  south: { x: 0, y: 0, z: -10 },
-  west: { x: -1, y: 0, z: 0 },
-  // up: { x: 0, y: 1, z: 0 },
-  // down: { x: 0, y: -1, z: 0 },
+  north: { x: 0, y: 1 },
+  east: { x: 1, y: 0 },
+  south: { x: 0, y: -1 },
+  west: { x: -1, y: 0 },
 };
 
 export class Grid {
   sizeX;
   sizeY;
-  sizeZ;
-
-  /**
-   * The entire tileset to use for the level.
-   * @type {TileSet}
-   */
-  #tileSet_TO_BE_REMOVED_AND_REPLACED;
 
   /**
    * The grid of cells that make up the level.
-   * @type {Cell[][][]}
+   * @type {Cell[][]}
    */
-  #grid = [[[]]];
+  #grid = [[]];
 
   patterns;
 
   constraints;
 
-  constructor(sizeX, sizeY, sizeZ, tileSet, extractedPatterns, constraintMappingForAllKeySets) {
+  constructor(sizeX, sizeY, tileSet, extractedPatterns, constraintMappingForAllKeySets) {
     this.sizeX = sizeX;
     this.sizeY = sizeY;
-    this.sizeZ = sizeZ;
-    this.#tileSet_TO_BE_REMOVED_AND_REPLACED = tileSet;
 
     this.patterns = extractedPatterns;
     this.constraints = constraintMappingForAllKeySets;
@@ -49,9 +38,7 @@ export class Grid {
 
   debug() {
     // remove Y layer but keep X and Z
-    let grid2D = this.#grid.map((x) =>
-      x.map((y) => y.map((z) => z).map((t) => t.possiblePatterns))
-    );
+    let grid2D = this.#grid.map((x) => x.map((y) => y.map((t) => t.possiblePatterns)));
 
     console.table(grid2D);
   }
@@ -61,14 +48,8 @@ export class Grid {
 
     for (let x = 0; x < this.sizeX; x++) {
       this.#grid[x] = new Array(this.sizeY);
-
       for (let y = 0; y < this.sizeY; y++) {
-        this.#grid[x][y] = new Array(this.sizeZ);
-
-        for (let z = 0; z < this.sizeZ; z++) {
-          // Initialize the cell at [x][y][z] with default value, e.g., null or an object.
-          this.#grid[x][y][z] = new Cell(this.patterns.length);
-        }
+        this.#grid[x][y] = new Room();
       }
     }
 
@@ -79,11 +60,10 @@ export class Grid {
    * Gets a cell from the grid at the given indices.
    * @param {number} x X-index of the cell
    * @param {number} y Y-index of the cell
-   * @param {number} z Z-index of the cell
    * @returns {Cell} The cell at the given indices
    */
-  getCell(x, y, z) {
-    return this.#grid[x][y][z];
+  getCell(x, y) {
+    return this.#grid[x][y];
   }
 
   /**
@@ -103,7 +83,7 @@ export class Grid {
 
     let picked = rng.getItem(entropyCells);
 
-    const cell = this.#grid[picked.x][picked.y][picked.z];
+    const cell = this.#grid[picked.x][picked.y];
 
     if (!cell.isCollapsed && cell.possiblePatterns.length === 0) {
       // we have a contradiction
@@ -131,11 +111,9 @@ export class Grid {
 
     for (let x = 0; x < this.#grid.length; x++) {
       for (let y = 0; y < this.#grid[x].length; y++) {
-        for (let z = 0; z < this.#grid[x][y].length; z++) {
-          const cell = this.#grid[x][y][z];
-          if (cell.calculateEntropy(this.patterns) === 1) {
-            cell.collapse(this.patterns);
-          }
+        const cell = this.#grid[x][y];
+        if (cell.calculateEntropy(this.patterns) === 1) {
+          cell.collapse(this.patterns);
         }
       }
     }
@@ -148,40 +126,26 @@ export class Grid {
 
     for (let x = 0; x < this.#grid.length; x++) {
       for (let y = 0; y < this.#grid[x].length; y++) {
-        for (let z = 0; z < this.#grid[x][y].length; z++) {
-          const cell = this.#grid[x][y][z];
-          if (cell.isCollapsed) {
-            continue; // skip collapsed cells
-          }
-          const entropy = cell.calculateEntropy(this.patterns);
-          if (entropy < minEntropy) {
-            minEntropy = entropy;
-            lowestEntropyCells = [{ x, y, z, entropy }];
-          } else if (entropy === minEntropy) {
-            lowestEntropyCells.push({ x, y, z, entropy });
-          }
+        const cell = this.#grid[x][y];
+        if (cell.isCollapsed) {
+          continue; // skip collapsed cells
+        }
+        const entropy = cell.calculateEntropy(this.patterns);
+        if (entropy < minEntropy) {
+          minEntropy = entropy;
+          lowestEntropyCells = [{ x, y, entropy }];
+        } else if (entropy === minEntropy) {
+          lowestEntropyCells.push({ x, y, entropy });
         }
       }
     }
-
     return lowestEntropyCells;
   }
 
-  /**
-    
-   currentOptions = [1]
-   neighborOptions = [1,2,3]
-
-   constraints for 1 are [1,2]
-
-
-   
-   */
-
   calculateConstrainedPatterns(current, neighbor) {
-    const currentCell = this.getCell(current.x, current.y, current.z);
+    const currentCell = this.getCell(current.x, current.y);
     const currentOptions = currentCell.possiblePatterns;
-    const neighborCell = this.getCell(neighbor.x, neighbor.y, neighbor.z);
+    const neighborCell = this.getCell(neighbor.x, neighbor.y);
     const neighborOptions = neighborCell.possiblePatterns;
     const constrainedPatternsSet = new Set();
 
@@ -202,14 +166,14 @@ export class Grid {
   }
 
   hasChangesInPossiblePatterns(neighbor, constrainedPatterns) {
-    const neighborCell = this.getCell(neighbor.x, neighbor.y, neighbor.z);
+    const neighborCell = this.getCell(neighbor.x, neighbor.y);
     const neighborOptions = neighborCell.possiblePatterns;
     const hasChanges = neighborOptions.length !== constrainedPatterns.length;
     return hasChanges;
   }
 
   updatePossiblePatterns(neighbor, constrainedPatterns) {
-    const neighborCell = this.getCell(neighbor.x, neighbor.y, neighbor.z);
+    const neighborCell = this.getCell(neighbor.x, neighbor.y);
     neighborCell.possiblePatterns = constrainedPatterns;
     if (constrainedPatterns.length === 1) {
       neighborCell.collapse(this.patterns);
@@ -217,7 +181,7 @@ export class Grid {
   }
 
   noValidOptionsLeft(neighbor) {
-    const neighborCell = this.getCell(neighbor.x, neighbor.y, neighbor.z);
+    const neighborCell = this.getCell(neighbor.x, neighbor.y);
     const neighborOptions = neighborCell.possiblePatterns;
     return neighborOptions.length === 0;
   }
@@ -235,27 +199,27 @@ export class Grid {
     let counter = 0;
     while (!queue.isEmpty()) {
       counter++;
-      if(counter > 50) {
+      if (counter > 50) {
         return true;
       }
       const position = queue.dequeue();
 
       for (let directionOffset in DIRECTION_OFFSETS) {
         const offsetX = DIRECTION_OFFSETS[directionOffset].x;
-        const offsetZ = DIRECTION_OFFSETS[directionOffset].z;
+        const offsetY = DIRECTION_OFFSETS[directionOffset].y;
 
         const neighborX = position.x + offsetX;
-        const neighborZ = position.z + offsetZ;
+        const neighborY = position.y + offsetY;
 
         if (
           neighborX < 0 ||
-          neighborZ < 0 ||
-          neighborZ >= grid.length ||
+          neighborY < 0 ||
+          neighborY >= grid.length ||
           neighborX >= grid.length
         ) {
           continue;
         }
-        let neighborPosition = { x: neighborX, y: 0, z: neighborZ, name: directionOffset };
+        let neighborPosition = { x: neighborX, y:  neighborY, name: directionOffset };
 
         const constrainedPatterns = this.calculateConstrainedPatterns(position, neighborPosition);
         if (constrainedPatterns.length === 0) {
@@ -265,7 +229,7 @@ export class Grid {
         if (this.hasChangesInPossiblePatterns(neighborPosition, constrainedPatterns)) {
           this.updatePossiblePatterns(neighborPosition, constrainedPatterns);
 
-          const cellNeighbor = this.getCell(neighborPosition.x, 0, neighborPosition.z);
+          const cellNeighbor = this.getCell(neighborPosition.x, neighborPosition.y);
 
           if (!cellNeighbor.isCollapsed) {
             if (this.noValidOptionsLeft(neighborPosition)) {
@@ -282,15 +246,15 @@ export class Grid {
     return true;
   }
 
-  getDirectionNameFromOffsets(offsetX, offsetZ) {
-    const absMaxOffset = Math.max(Math.abs(offsetX), Math.abs(offsetZ));
+  getDirectionNameFromOffsets(offsetX, offsetY) {
+    const absMaxOffset = Math.max(Math.abs(offsetX), Math.abs(offsetY));
 
     const normalizedOffsetX = offsetX / absMaxOffset;
-    const normalizedOffsetZ = offsetZ / absMaxOffset;
+    const normalizedOffsetY = offsetY / absMaxOffset;
 
-    if (normalizedOffsetZ === -1) {
+    if (normalizedOffsetY === -1) {
       return "north";
-    } else if (normalizedOffsetZ === 1) {
+    } else if (normalizedOffsetY === 1) {
       return "south";
     }
 
@@ -302,15 +266,79 @@ export class Grid {
 
     return directionName || null;
   }
+
   /**
    *
-   * @param {{x:number, y:number,z:number}} position
+   * @param {{x:number, y:number}} position
    * @returns
    */
   findUncollapsedNeighbors(position) {
     let neighbors = getNeighbors(this, position);
     return neighbors.filter(
-      (neighbor) => !this.getCell(neighbor.x, neighbor.y, neighbor.z).isCollapsed
+      (neighbor) => !this.getCell(neighbor.x, neighbor.y).isCollapsed
     );
+  }
+
+  generateMaze(width, height) {
+    const maze = new Array(height)
+      .fill(null)
+      .map(() => new Array(width).fill(null).map(() => new Room()));
+  
+    function removeWall(x1, y1, x2, y2) {
+      if (x1 === x2) {
+        if (y1 > y2) {
+          maze[y1][x1].doors.top = false;
+          maze[y2][x2].doors.bottom = false;
+        } else {
+          maze[y1][x1].doors.bottom = false;
+          maze[y2][x2].doors.top = false;
+        }
+      } else {
+        if (x1 > x2) {
+          maze[y1][x1].doors.left = false;
+          maze[y2][x2].doors.right = false;
+        } else {
+          maze[y1][x1].doors.right = false;
+          maze[y2][x2].doors.left = false;
+        }
+      }
+    }
+  
+    function isValidCoordinates(x, y) {
+      return x >= 0 && x < width && y >= 0 && y < height;
+    }
+  
+    function shuffleArray(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+    }
+
+    function generateMazeRecursively(x, y, visitedList) {
+      visitedList.push(`${x},${y}`);
+    
+      const directions = [
+        { dx: -1, dy: 0 },
+        { dx: 1, dy: 0 },
+        { dx: 0, dy: -1 },
+        { dx: 0, dy: 1 },
+      ];
+    
+      shuffleArray(directions);
+    
+      for (const dir of directions) {
+        const newX = x + dir.dx;
+        const newY = y + dir.dy;
+    
+        if (
+          isValidCoordinates(newX, newY) &&
+          !visitedList.includes(`${newX},${newY}`)
+        ) {
+          removeWall(x, y, newX, newY);
+          generateMazeRecursively(newX, newY, visitedList);
+        }
+      }
+    }
   }
 }

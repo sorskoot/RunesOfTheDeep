@@ -2,13 +2,12 @@ import { Component, Type } from "@wonderlandengine/api";
 import { cloneObject, ObjectCache } from "@sorskoot/wonderland-components";
 import { LevelData } from "../data/level-data";
 import GameGlobals from "../globals";
-import { Generator } from "../dungeongen/generator";
-import {
-  buildConstraintsMap,
-  extractPatternsWrap ,
-} from "../dungeongen/utils/extractor";
+import { MazeGenerator } from "../dungeongen/MazeGenerator";
+import { TileSet } from "../dungeongen/tileset";
+import { PatternSet } from "../dungeongen/PatternSet";
+import { Room } from "../dungeongen/room";
 
-const size = 5;
+const size = 9;
 const patternSize = 3;
 
 export class LevelGenerator extends Component {
@@ -21,7 +20,7 @@ export class LevelGenerator extends Component {
    * overrides the init method of the component
    */
   init() {
-    this.generator = new Generator(size, 1, size);
+    this.generator = new MazeGenerator(size, size);
   }
 
   /**
@@ -34,68 +33,29 @@ export class LevelGenerator extends Component {
 
     this.currentLd = LevelData[level];
     this.levelParent = parent || this.levelRoot;
-    // const inputImage = [
-    //   ["7", "6", "6", "6", "6", "6", "6", "6","6"],
-    //   ["6", "3", "3", "6", "6", "3", "3", "3","3"],
-    //   ["6", "3", "1", "3", "3", "2", "1", "1","3"],
-    //   ["6", "3", "1", "1", "1", "1", "1", "1","3"],
-    //   ["6", "3", "1", "1", "5", "1", "1", "1","3"],
-    //   ["6", "3", "1", "1", "1", "1", "1", "1","3"],
-    //   ["6", "3", "1", "1", "1", "1", "1", "1","3"],
-    //   ["6", "3", "1", "1", "1", "1", "1", "1","3"],
-    //   ["6", "3", "3", "3", "3", "3", "3", "3","3"]];
-//const inputImage = [
-//       ["1", "1", "1"],
-//       ["1", "5", "1"],
-//       ["1", "1", "1"],
-//     ];
-    // Usage example:
-    const inputImage = [
-      ["1", "1", "1","1"],
-      ["1", "6", "6","6"],
-      ["1", "6", "2","6"],
-      ["1", "6", "6","6"],
-    ];
 
-    // const inputImage = [
-    //   ["6", "6", "1", "6", "6", "6", "6", "6"],
-    //   ["6", "1", "1", "1", "6", "1", "1", "6"],
-    //   ["1", "1", "1", "1", "1", "1", "1", "6"],
-    //   ["6", "1", "1", "1", "6", "1", "1", "6"],
-    //   ["6", "6", "1", "6", "6", "6", "6", "6"],
-    //   ["6", "6", "1", "6", "6", "1", "1", "6"],
-    //   ["6", "6", "1", "6", "6", "1", "1", "6"],
-    //   ["6", "6", "1", "1", "1", "1", "1", "6"],
-    //   ["6", "6", "6", "6", "6", "1", "1", "6"],
-    //   ["6", "6", "6", "6", "6", "6", "6", "6"],
-    // ];
+    this.tileset = new TileSet(this.object.children, {});
+    this.patternSet = new PatternSet();
 
-    const extractedPatterns = extractPatternsWrap(inputImage, patternSize);
-    
-    //console.log(extractedPatterns);
-    let constraintMappingForAllKeySets = buildConstraintsMap(extractedPatterns, patternSize);
-    console.log(constraintMappingForAllKeySets);
+    this.generator.generate();
 
-    this.generator.createTileset(this.object.children);
+    console.log(this.generator.maze);
 
-    const grid = this.generator.generate(extractedPatterns, constraintMappingForAllKeySets);
-
-    console.log(grid);
     this.levelParent.children.length = 0;
     if (!GameGlobals.globalObjectCache) {
       GameGlobals.globalObjectCache = new ObjectCache(
         this.engine,
         "blocks",
-        1200,
+        2400,
         this.levelParent,
-        8000
+        16000
       );
     } else {
       GameGlobals.globalObjectCache.reset();
     }
     this.blockCache = GameGlobals.globalObjectCache;
 
-    this.render(grid);
+    this.render(this.generator);
 
     return;
 
@@ -169,33 +129,40 @@ export class LevelGenerator extends Component {
     // cameraRotation = this.currentLd.cam;
     // return { cameraPosition, targetsToComplete, cameraRotation };
   }
-
-  render(grid) {
+  /**
+   *
+   * @param {MazeGenerator} generator
+   */
+  render(generator) {
     for (let row = 0; row < size; row++) {
       for (let col = 0; col < size; col++) {
         //this.createTile(row - size / 2, 0, col - size / 2, "Floor01");
-        const cell = grid.getCell(row, 0, col);
-        if (cell && cell.isCollapsed && cell.possiblePatterns.length === 1) {
-          const currentTile = grid.getPattern(cell.possiblePatterns[0]);
-          let ps = patternSize - 1;
-          // Loop through the rows of the 3x3 grid
+        const currentRoom = generator.getRoom(row, col);
 
-          for (let gridRow = 0; gridRow < ps; gridRow++) {
-            // Loop through the columns of the 3x3 grid
-            for (let gridColumn = 0; gridColumn < ps; gridColumn++) {
-              if (currentTile) {
-                // Calculate the row and col positions for each tile in the 3x3 grid,
-                // adjusting their positions based on their indices within the grid.
-                const newRowPos = row * ps + gridRow - (size * ps) / 2;
-                const newColPos = col * ps + gridColumn - (size * ps) / 2;
-                const tileIndex = grid.getPattern(cell.possiblePatterns[0]).pattern[gridRow][
-                  gridColumn
-                ];
-                const tile = this.generator.getTile(tileIndex);
+        let ps = 5;
 
-                this.createTile(newRowPos, 0, newColPos, tile.object);
-              }
+        const pattern = this.patternSet.get(currentRoom.toKey());
+
+        for (let gridRow = 0; gridRow < ps; gridRow++) {
+          // Loop through the columns of the 3x3 grid
+          for (let gridColumn = 0; gridColumn < ps; gridColumn++) {
+            // Calculate the row and col positions for each tile in the 3x3 grid,
+            // adjusting their positions based on their indices within the grid.
+            const newRowPos = row * ps + gridRow - (size * ps) / 2;
+            const newColPos = col * ps + gridColumn - (size * ps) / 2;
+
+            let tileIndex = pattern[gridRow][gridColumn];
+            if(currentRoom.isEntrance) {
+              tileIndex = 5;
             }
+            if(currentRoom.isExit) {
+              tileIndex = 4;
+            }
+            if(currentRoom.isTreasure && tileIndex == 6) {
+              tileIndex = 7;
+            }
+            let tile = this.tileset.getTile(tileIndex);
+            this.createTile(newRowPos, 0, newColPos, tile.object);
           }
         }
       }

@@ -1,14 +1,12 @@
 // Function to rotate a pattern 90 degrees clockwise
-function rotatePattern(pattern, patternSize) {
+export function rotatePattern(pattern, patternSize) {
   let rotatedPattern = [];
-
   for (let i = 0; i < patternSize; i++) {
     rotatedPattern.push([]);
     for (let j = patternSize - 1; j >= 0; j--) {
       rotatedPattern[i].push(pattern[j][i]);
     }
   }
-
   return rotatedPattern;
 }
 
