@@ -1205,58 +1205,10 @@
                 "file": "models\\oculus-touch-v2-right.glb"
             }
         },
-        "246": {
-            "link": {
-                "name": "tiles_2.png",
-                "file": "assets\\tiles\\tiles_2.png"
-            }
-        },
-        "248": {
-            "link": {
-                "name": "tiles_1.png",
-                "file": "assets\\tiles\\tiles_1.png"
-            }
-        },
-        "250": {
-            "link": {
-                "name": "tiles_0.png",
-                "file": "assets\\tiles\\tiles_0.png"
-            }
-        },
-        "258": {
-            "link": {
-                "name": "tiles_3.png",
-                "file": "assets\\tiles\\tiles_3.png"
-            }
-        },
-        "260": {
-            "link": {
-                "name": "tiles_4.png",
-                "file": "assets\\tiles\\tiles_4.png"
-            }
-        },
         "268": {
             "link": {
                 "name": "texture_0",
                 "file": "models\\Tiles.fbx"
-            }
-        },
-        "272": {
-            "link": {
-                "name": "tiles_5.png",
-                "file": "assets\\tiles\\tiles_5.png"
-            }
-        },
-        "276": {
-            "link": {
-                "name": "tiles_7.png",
-                "file": "assets\\tiles\\tiles_7.png"
-            }
-        },
-        "281": {
-            "link": {
-                "name": "tiles_9.png",
-                "file": "assets\\tiles\\tiles_9.png"
             }
         },
         "284": {
@@ -1354,60 +1306,6 @@
                 256,
                 256
             ]
-        },
-        "245": {
-            "link": {
-                "name": "tiles_2.png",
-                "file": "assets\\tiles\\tiles_2.png"
-            }
-        },
-        "247": {
-            "link": {
-                "name": "tiles_1.png",
-                "file": "assets\\tiles\\tiles_1.png"
-            }
-        },
-        "249": {
-            "link": {
-                "name": "tiles_0.png",
-                "file": "assets\\tiles\\tiles_0.png"
-            }
-        },
-        "257": {
-            "link": {
-                "name": "tiles_3.png",
-                "file": "assets\\tiles\\tiles_3.png"
-            }
-        },
-        "259": {
-            "link": {
-                "name": "tiles_4.png",
-                "file": "assets\\tiles\\tiles_4.png"
-            }
-        },
-        "267": {
-            "link": {
-                "name": "image_0",
-                "file": "models\\Tiles.fbx"
-            }
-        },
-        "271": {
-            "link": {
-                "name": "tiles_5.png",
-                "file": "assets\\tiles\\tiles_5.png"
-            }
-        },
-        "275": {
-            "link": {
-                "name": "tiles_7.png",
-                "file": "assets\\tiles\\tiles_7.png"
-            }
-        },
-        "280": {
-            "link": {
-                "name": "tiles_9.png",
-                "file": "assets\\tiles\\tiles_9.png"
-            }
         },
         "283": {
             "link": {
@@ -2085,13 +1983,6 @@
         "models/teleport-indicator.glb",
         "models/Tiles.fbx",
         "assets/tiles/tiles_2.png",
-        "assets/tiles/tiles_1.png",
-        "assets/tiles/tiles_0.png",
-        "assets/tiles/tiles_3.png",
-        "assets/tiles/tiles_4.png",
-        "assets/tiles/tiles_5.png",
-        "assets/tiles/tiles_7.png",
-        "assets/tiles/tiles_9.png",
         "assets/tiles/tiles_00.png",
         "assets/tiles/tiles_01.png",
         "assets/tiles/tiles_02.png",

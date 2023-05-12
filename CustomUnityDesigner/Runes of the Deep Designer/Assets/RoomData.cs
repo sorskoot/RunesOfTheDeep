@@ -2,9 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelData : MonoBehaviour
+public class RoomData
 {
+    [Tooltip("X")]
     public int width;
+    [Tooltip("Y")]
     public int height;
-    public int cam;
+    [Tooltip("Z")]
+    public int depth;
+    
 }
