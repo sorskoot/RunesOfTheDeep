@@ -590,7 +590,7 @@
             "translation": [
                 -2.0,
                 0.0,
-                0.0
+                -0.0
             ],
             "rotation": [
                 0.0,
@@ -643,7 +643,7 @@
             "translation": [
                 -4.0,
                 0.0,
-                0.0
+                -0.0
             ],
             "rotation": [
                 0.0,
@@ -749,7 +749,7 @@
             "translation": [
                 -8.0,
                 0.0,
-                2.9802322387695313e-8
+                0.0
             ],
             "rotation": [
                 0.0,
@@ -901,6 +901,128 @@
                 1.0
             ],
             "name": "Air"
+        },
+        "278": {
+            "parent": "238",
+            "components": [
+                null,
+                {
+                    "type": "collision",
+                    "collision": {
+                        "collider": "aabb",
+                        "aabb": {
+                            "extents": [
+                                0.5,
+                                1.0,
+                                0.5
+                            ]
+                        },
+                        "groups": 255
+                    }
+                },
+                {
+                    "type": "tags",
+                    "tags": {
+                        "tags": "Door"
+                    }
+                },
+                {
+                    "type": "mesh",
+                    "mesh": {
+                        "mesh": "265",
+                        "material": "279"
+                    }
+                },
+                {
+                    "type": "tile-descriptor"
+                }
+            ],
+            "translation": [
+                -3.0,
+                0.0,
+                -2.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scaling": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "name": "Door"
+        },
+        "282": {
+            "parent": "278",
+            "components": [
+                null,
+                {
+                    "type": "mesh",
+                    "mesh": {
+                        "mesh": "265",
+                        "material": "279"
+                    }
+                }
+            ],
+            "translation": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scaling": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "name": "Door"
+        },
+        "299": {
+            "parent": "238",
+            "components": [
+                null,
+                {
+                    "type": "tags",
+                    "tags": {
+                        "tags": "ceiling"
+                    }
+                },
+                {
+                    "type": "mesh",
+                    "mesh": {
+                        "mesh": "300",
+                        "material": "302"
+                    }
+                },
+                {
+                    "type": "tile-descriptor"
+                }
+            ],
+            "translation": [
+                -1.1920928955078125e-7,
+                0.0,
+                2.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scaling": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "name": "Ceiling01"
         }
     },
     "meshes": {
@@ -1050,6 +1172,12 @@
                 "name": "Cube",
                 "file": "models\\Tiles.fbx"
             }
+        },
+        "300": {
+            "link": {
+                "name": "Ceiling",
+                "file": "models\\Tiles.fbx"
+            }
         }
     },
     "textures": {
@@ -1123,6 +1251,66 @@
             "link": {
                 "name": "tiles_7.png",
                 "file": "assets\\tiles\\tiles_7.png"
+            }
+        },
+        "281": {
+            "link": {
+                "name": "tiles_9.png",
+                "file": "assets\\tiles\\tiles_9.png"
+            }
+        },
+        "284": {
+            "link": {
+                "name": "tiles_00.png",
+                "file": "assets\\tiles\\tiles_00.png"
+            }
+        },
+        "286": {
+            "link": {
+                "name": "tiles_01.png",
+                "file": "assets\\tiles\\tiles_01.png"
+            }
+        },
+        "288": {
+            "link": {
+                "name": "tiles_02.png",
+                "file": "assets\\tiles\\tiles_02.png"
+            }
+        },
+        "290": {
+            "link": {
+                "name": "tiles_03.png",
+                "file": "assets\\tiles\\tiles_03.png"
+            }
+        },
+        "292": {
+            "link": {
+                "name": "tiles_04.png",
+                "file": "assets\\tiles\\tiles_04.png"
+            }
+        },
+        "294": {
+            "link": {
+                "name": "tiles_05.png",
+                "file": "assets\\tiles\\tiles_05.png"
+            }
+        },
+        "296": {
+            "link": {
+                "name": "tiles_07.png",
+                "file": "assets\\tiles\\tiles_07.png"
+            }
+        },
+        "298": {
+            "link": {
+                "name": "tiles_09.png",
+                "file": "assets\\tiles\\tiles_09.png"
+            }
+        },
+        "304": {
+            "link": {
+                "name": "tiles_10.png",
+                "file": "assets\\tiles\\tiles_10.png"
             }
         }
     },
@@ -1213,6 +1401,66 @@
             "link": {
                 "name": "tiles_7.png",
                 "file": "assets\\tiles\\tiles_7.png"
+            }
+        },
+        "280": {
+            "link": {
+                "name": "tiles_9.png",
+                "file": "assets\\tiles\\tiles_9.png"
+            }
+        },
+        "283": {
+            "link": {
+                "name": "tiles_00.png",
+                "file": "assets\\tiles\\tiles_00.png"
+            }
+        },
+        "285": {
+            "link": {
+                "name": "tiles_01.png",
+                "file": "assets\\tiles\\tiles_01.png"
+            }
+        },
+        "287": {
+            "link": {
+                "name": "tiles_02.png",
+                "file": "assets\\tiles\\tiles_02.png"
+            }
+        },
+        "289": {
+            "link": {
+                "name": "tiles_03.png",
+                "file": "assets\\tiles\\tiles_03.png"
+            }
+        },
+        "291": {
+            "link": {
+                "name": "tiles_04.png",
+                "file": "assets\\tiles\\tiles_04.png"
+            }
+        },
+        "293": {
+            "link": {
+                "name": "tiles_05.png",
+                "file": "assets\\tiles\\tiles_05.png"
+            }
+        },
+        "295": {
+            "link": {
+                "name": "tiles_07.png",
+                "file": "assets\\tiles\\tiles_07.png"
+            }
+        },
+        "297": {
+            "link": {
+                "name": "tiles_09.png",
+                "file": "assets\\tiles\\tiles_09.png"
+            }
+        },
+        "303": {
+            "link": {
+                "name": "tiles_10.png",
+                "file": "assets\\tiles\\tiles_10.png"
             }
         }
     },
@@ -1454,35 +1702,35 @@
             "name": "Floor01",
             "pipeline": "240",
             "FlatSorskoot": {
-                "flatTexture": "250"
+                "flatTexture": "284"
             }
         },
         "254": {
             "name": "Floor02",
             "pipeline": "240",
             "FlatSorskoot": {
-                "flatTexture": "248"
+                "flatTexture": "286"
             }
         },
         "255": {
             "name": "Floor03",
             "pipeline": "240",
             "FlatSorskoot": {
-                "flatTexture": "246"
+                "flatTexture": "288"
             }
         },
         "261": {
             "name": "Floor04",
             "pipeline": "240",
             "FlatSorskoot": {
-                "flatTexture": "258"
+                "flatTexture": "290"
             }
         },
         "262": {
             "name": "Floor05",
             "pipeline": "240",
             "FlatSorskoot": {
-                "flatTexture": "260"
+                "flatTexture": "292"
             }
         },
         "269": {
@@ -1495,14 +1743,28 @@
             "name": "Wall01",
             "pipeline": "240",
             "FlatSorskoot": {
-                "flatTexture": "272"
+                "flatTexture": "294"
             }
         },
         "274": {
             "name": "Wall02",
             "pipeline": "240",
             "FlatSorskoot": {
-                "flatTexture": "276"
+                "flatTexture": "296"
+            }
+        },
+        "279": {
+            "name": "Door",
+            "pipeline": "240",
+            "FlatSorskoot": {
+                "flatTexture": "298"
+            }
+        },
+        "302": {
+            "name": "Ceiling01",
+            "pipeline": "240",
+            "FlatSorskoot": {
+                "flatTexture": "304"
             }
         }
     },
@@ -1828,7 +2090,17 @@
         "assets/tiles/tiles_3.png",
         "assets/tiles/tiles_4.png",
         "assets/tiles/tiles_5.png",
-        "assets/tiles/tiles_7.png"
+        "assets/tiles/tiles_7.png",
+        "assets/tiles/tiles_9.png",
+        "assets/tiles/tiles_00.png",
+        "assets/tiles/tiles_01.png",
+        "assets/tiles/tiles_02.png",
+        "assets/tiles/tiles_03.png",
+        "assets/tiles/tiles_04.png",
+        "assets/tiles/tiles_05.png",
+        "assets/tiles/tiles_07.png",
+        "assets/tiles/tiles_09.png",
+        "assets/tiles/tiles_10.png"
     ],
     "fonts": {
         "230": {
