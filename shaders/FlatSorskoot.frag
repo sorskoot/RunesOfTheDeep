@@ -1,5 +1,9 @@
 #include "lib/Compatibility.frag"
 
+#define USE_VIEW_POSITION
+#define USE_LIGHTS
+#define USE_NORMAL
+
 #define FEATURE_EMISSIVE_MAPPING
 #define FEATURE_SORSKOOT
 
@@ -13,10 +17,25 @@
 #define USE_EMISSIVE_MAPPING
 #endif
 
+#if NUM_LIGHTS > 0
+#define USE_POSITION_WORLD
+#endif
+
+#if NUM_SHADOWS > 0
+#define USE_POSITION_VIEW
+#endif
+
 #include "lib/Inputs.frag"
 
+#if NUM_LIGHTS > 0
+#include "lib/Quaternion.glsl"
+#include "lib/Lights.frag"
+#endif
+
 #include "lib/Textures.frag"
+#include "lib/Surface.frag"
 #include "lib/Materials.frag"
+
 
 struct Material {
     mediump uint flatTexture;
@@ -41,6 +60,10 @@ float fogFactorExp2(float dist, float density) {
     const float LOG2 = -1.442695;
     float d = density * dist;
     return 1.0 - clamp(exp2(d*d*LOG2), 0.0, 1.0);
+}
+
+mediump float phongDiffuseBrdf(mediump vec3 lightDir, mediump vec3 normal) {
+    return max(0.0, dot(lightDir, normal));
 }
 
 void main() {
@@ -88,14 +111,41 @@ void main() {
     vec4 pixelated = textureAtlas(mat.flatTexture, topLeftUV);
     vec4 original = textureAtlas(mat.flatTexture, clamp(fragTextureCoords, 1.0/32.0, 1.0-1.0/32.0));
     
+   
 
     vec4 finalColor = mix(pixelated,original,gaussianValue(fragTextureCoords, 64.0));
 
     float dist = gl_FragCoord.z/gl_FragCoord.w;
     float fogFactor = fogFactorExp2(dist, 0.1);
     vec4 theColor = mix(finalColor, vec4(0.,0.,0.,1.), fogFactor);
+    
+    SurfaceData surface = computeSurfaceData(fragNormal);
+    mediump vec3 normal = surface.normal;
+    outColor = vec4(0.0,0.0,0.0,1.0);
+ #if NUM_LIGHTS > 0
+        mediump vec3 viewDir = normalize(fragPositionWorld - viewPositionWorld);
+        lowp uint i = 0u;
+        for(; i < numPointLights; ++i) {
+            mediump vec4 lightData = lightColors[i];
+            /* dot product of mediump vec3 can be NaN for distances > 128 */
+            highp vec3 lightPos = lightPositionsWorld[i];
+            highp vec3 lightDirAccurate = lightPos - fragPositionWorld;
+            mediump float distSq = dot(lightDirAccurate, lightDirAccurate);
+            mediump float attenuation = distanceAttenuation(distSq, lightData.a);
 
-    outColor = theColor; 
-    outColor.rgb = mix(theColor.rgb,finalColor.rgb,emissiveAmount.r);
-    outColor.a = finalColor.a; // Force alpha back in
+            if(attenuation < 0.001)
+                continue;
+            
+            mediump vec3 lightDir = lightDirAccurate;
+            lightDir *= inversesqrt(distSq);
+
+            /* Add diffuse color */
+            mediump vec3 value = theColor.rgb*phongDiffuseBrdf(lightDir, normal);
+            outColor.rgb += attenuation*value*lightData.rgb;
+        }
+    #endif
+
+    
+    //outColor.rgb = mix(theColor.rgb,finalColor.rgb,emissiveAmount.r);
+    //outColor.a = finalColor.a; // Force alpha back in
 }
