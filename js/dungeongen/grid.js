@@ -2,7 +2,7 @@ import rng from "@sorskoot/wonderland-components/src/utils/rng";
 import { Cell } from "./cell";
 import { TileSet } from "./tileset";
 import { Tile } from "./tile";
-import { Queue } from "../forFramework/queue.js";
+import { Queue } from "@sorskoot/wonderland-components/src/utils/queue";
 import { getInvertedDirection, getNeighbors } from "./utils/gridHelpers";
 import { deepClone } from "./utils/deepClone";
 

@@ -12,4 +12,7 @@ public class Room
 
     [JsonProperty("data")]
     public Tile[,,] Pattern{ get; set; }
+
+    [JsonProperty("start")]
+    public RoomStart Start { get; set; }
 }

@@ -55,12 +55,11 @@ export class LevelGenerator extends Component {
     }
     this.blockCache = GameGlobals.globalObjectCache;
 
-    this.render(this.generator);
+    const currentRoom = this.generator.getRoom(0, 0);
+    this.render(currentRoom);
+    let cameraPosition = [this.currentLd.start.X, this.currentLd.start.Y,this.currentLd.start.Z];
+    let cameraRotation = [this.currentLd.start.Rx, this.currentLd.start.Ry,this.currentLd.start.Rz];
 
-    return;
-
-    // let cameraPosition, cameraRotation;
-    // let targetsToComplete = 0;
     // for (let layer = 0; layer < this.currentLd.layer.length; layer++) {
     //   for (let row = 0; row < this.currentLd.layer[layer].data.length; row++) {
     //     for (
@@ -126,14 +125,34 @@ export class LevelGenerator extends Component {
     //   }
     // }
     // console.log(`blocks in cache: ${this.blockCache.index}`);
-    // cameraRotation = this.currentLd.cam;
-    // return { cameraPosition, targetsToComplete, cameraRotation };
+    //cameraRotation = this.currentLd.cam;
+    return { cameraPosition, cameraRotation };
   }
+
   /**
    *
+   * @param {Room} room
+   */
+  render(room) {
+    const roomdesign = this.currentLd;
+    for (let i = 0; i < roomdesign.width; i++) {
+      for (let j = 0; j < roomdesign.height; j++) {
+        for (let h = 0; h < roomdesign.depth; h++) {
+          const tileIndex = roomdesign.data[i][j][h];
+          if (tileIndex!=null && tileIndex!=undefined) {
+            let tile = this.tileset.getTileByName(tileIndex.data);
+            console.log(tileIndex.data);
+            this.createTile(i, j, h, tile.object);
+          }
+        }
+      }
+    }
+  }
+  /**
+   * Renders a debug view of the map
    * @param {MazeGenerator} generator
    */
-  render(generator) {
+  renderDebug(generator) {
     for (let row = 0; row < size; row++) {
       for (let col = 0; col < size; col++) {
         //this.createTile(row - size / 2, 0, col - size / 2, "Floor01");
@@ -152,13 +171,13 @@ export class LevelGenerator extends Component {
             const newColPos = col * ps + gridColumn - (size * ps) / 2;
 
             let tileIndex = pattern[gridRow][gridColumn];
-            if(currentRoom.isEntrance) {
+            if (currentRoom.isEntrance) {
               tileIndex = 5;
             }
-            if(currentRoom.isExit) {
+            if (currentRoom.isExit) {
               tileIndex = 4;
             }
-            if(currentRoom.isTreasure && tileIndex == 6) {
+            if (currentRoom.isTreasure && tileIndex == 6) {
               tileIndex = 7;
             }
             let tile = this.tileset.getTile(tileIndex);

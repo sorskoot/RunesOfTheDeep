@@ -1023,6 +1023,21 @@
                 1.0
             ],
             "name": "Ceiling01"
+        },
+        "305": {
+            "name": "Teleport Manager",
+            "parent": "234",
+            "components": [
+                {
+                    "type": "sorskoot-teleport",
+                    "sorskoot-teleport": {
+                        "camRoot": "14",
+                        "cam": "17",
+                        "eyeLeft": "18",
+                        "eyeRight": "19"
+                    }
+                }
+            ]
         }
     },
     "meshes": {
@@ -1982,7 +1997,6 @@
         "models/button.glb",
         "models/teleport-indicator.glb",
         "models/Tiles.fbx",
-        "assets/tiles/tiles_2.png",
         "assets/tiles/tiles_00.png",
         "assets/tiles/tiles_01.png",
         "assets/tiles/tiles_02.png",

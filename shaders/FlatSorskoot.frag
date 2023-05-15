@@ -92,7 +92,7 @@ void main() {
     vec4 finalColor = mix(pixelated,original,gaussianValue(fragTextureCoords, 64.0));
 
     float dist = gl_FragCoord.z/gl_FragCoord.w;
-    float fogFactor = 0.0;//fogFactorExp2(dist, 0.1);
+    float fogFactor = fogFactorExp2(dist, 0.1);
     vec4 theColor = mix(finalColor, vec4(0.,0.,0.,1.), fogFactor);
 
     outColor = theColor; 

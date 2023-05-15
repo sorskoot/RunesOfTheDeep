@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.SceneManagement;
 using System.Linq;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 public static class Export
@@ -18,7 +19,7 @@ public static class Export
             return;
         }
 
-
+        var cam = room.GetComponentInChildren<Camera>();
 
         // analyze current room to get the width, height and depth and min and max x,y,z
 
@@ -31,7 +32,7 @@ public static class Export
         foreach (var tile in tiles)
         {
             min = Vector3Int.Min(min, Vector3Int.FloorToInt(tile.transform.position));
-            max = Vector3Int.Max(max, Vector3Int.CeilToInt(tile.transform.position));
+            max = Vector3Int.Max(max, Vector3Int.FloorToInt(tile.transform.position));
         }
 
         var roomData = new RoomData
@@ -49,6 +50,15 @@ public static class Export
             Width = roomData.width,
             Depth = roomData.depth,
             Height = roomData.height,
+            Start = new RoomStart()
+            {
+                X = cam.transform.position.x - min.x,
+                Y = cam.transform.position.y - min.y,
+                Z = cam.transform.position.z - min.z,
+                Rx = cam.transform.rotation.eulerAngles.x,
+                Ry = cam.transform.rotation.eulerAngles.y,
+                Rz = cam.transform.rotation.eulerAngles.z,
+            },
             Pattern = new Tile[roomData.width, roomData.height, roomData.depth]
         };
 
@@ -58,10 +68,9 @@ public static class Export
             var tilepos = tile.transform.position;
             // make the tilepos relative to the min
             var tileOffset = tilepos - min;
-            Debug.Log(tileOffset);
-
+            
             // add tile to the pattern
-            exportedLevel.Pattern[(int)(tilepos.x+ tileOffset.x), (int)(tilepos.y + tileOffset.y), (int)(tilepos.z + tileOffset.z)] = new Tile()
+            exportedLevel.Pattern[(int)(tileOffset.x), (int)(tileOffset.y), (int)(tileOffset.z)] = new Tile()
             {
                 Data = tile.WonderlandName
             };
@@ -106,9 +115,9 @@ public static class Export
 
         //}
 
-        //JObject jo = JObject.FromObject(exportedLevel);
-        //string result = jo.ToString(Formatting.None);
-        //result = result.Replace("\"0\"", "0");
-        //Debug.Log(result);
+        JObject jo = JObject.FromObject(exportedLevel);
+        string result = jo.ToString(Formatting.None);
+        result = result.Replace("\"0\"", "0");
+        Debug.Log(result);
     }
 }

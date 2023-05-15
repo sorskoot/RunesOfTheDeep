@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3290843551757160370, guid: 5a9d39b8b97d9a64daeea1e229ac2a66, type: 3}
       propertyPath: m_Name
-      value: CeilingBase
+      value: Ceiling01
       objectReference: {fileID: 0}
     - target: {fileID: 5773021371402497284, guid: 5a9d39b8b97d9a64daeea1e229ac2a66, type: 3}
       propertyPath: m_RootOrder
@@ -54,6 +54,10 @@ PrefabInstance:
     - target: {fileID: 5773021371402497284, guid: 5a9d39b8b97d9a64daeea1e229ac2a66, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8244135989938942931, guid: 5a9d39b8b97d9a64daeea1e229ac2a66, type: 3}
+      propertyPath: WonderlandName
+      value: Ceiling01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a9d39b8b97d9a64daeea1e229ac2a66, type: 3}

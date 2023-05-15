@@ -20,6 +20,7 @@ import {VrModeActiveSwitch} from '@wonderlandengine/components';
 import {WasdControlsComponent} from '@wonderlandengine/components';
 import {Game} from './components/game.js';
 import {LevelGenerator} from './components/level-generator.js';
+import {SorskootTeleport} from './components/teleport.js';
 import {TileDescriptor} from './dungeongen/components/tileComponent.js';
 import {Tags} from './../node_modules/@sorskoot/wonderland-components/src/components/tags.js';
 /* wle:auto-imports:end */
@@ -88,6 +89,7 @@ engine.registerComponent(VrModeActiveSwitch);
 engine.registerComponent(WasdControlsComponent);
 engine.registerComponent(Game);
 engine.registerComponent(LevelGenerator);
+engine.registerComponent(SorskootTeleport);
 engine.registerComponent(TileDescriptor);
 engine.registerComponent(Tags);
 /* wle:auto-register:end */

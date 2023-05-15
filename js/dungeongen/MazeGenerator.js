@@ -1,6 +1,6 @@
 import { Tile } from "./tile";
 import { Room } from "./room";
-import { shuffleArray } from "../forFramework/arrayHelpers";
+import { shuffleArray } from "@sorskoot/wonderland-components/src/utils/arrayHelpers";
 
 const DIRECTION_OFFSETS = {
   north: { x: 0, y: 1 },

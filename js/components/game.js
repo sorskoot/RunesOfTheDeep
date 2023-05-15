@@ -36,8 +36,8 @@ export class Game extends Component {
       
              let result = this.#levelGen.generate(level);
       
-            // GameGlobals.gameState.playerRotation = result.cameraRotation;
-            // GameGlobals.gameState.playerPosition = result.cameraPosition;
+           //  GameGlobals.gameState.playerRotation = result.cameraRotation;
+              GameGlobals.gameState.playerPosition = result.cameraPosition;
             // GameGlobals.gameState.availableTargets = result.targetsToComplete;
             // GameGlobals.levelState.availableTargets = result.targetsToComplete;
           });
