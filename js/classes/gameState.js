@@ -18,6 +18,8 @@ export class GameState {
         this.levelSubject = new Subject();
         this.availableTargetsSubject = new Subject();
         this.levelState = null;
+        
+        this.currentRoomSubject = new Subject();
 
         this.levelSubject.subscribe(level => {            
         });
@@ -91,20 +93,21 @@ export class GameState {
         return this._isInVR;
     }
 
+    _currentRoom= [0,0];
+    set currentRoom(value) {
+        this._currentRoom = value;
+        this.currentRoomSubject.next(value);
+    }
+    get currentRoom() {
+        return this._currentRoom;
+    }   
+
     offTarget(){
-        this.availableTargets++;
+        
     }
 
-    onTarget(){        
-        this.availableTargets--;
-        if(this.availableTargets == 0){
-            if(this.level==14){                
-                this.state = State.Title; 
-                this.playerRotation = 0;
-                // Should be complete, but title for now to prevent crash
-            }else{            
-                this.level++;            
-            }
-        }
+    navigateToRoom(roomx,roomy){
+        this.currentRoom = [roomx,roomy];
     }
+
 }

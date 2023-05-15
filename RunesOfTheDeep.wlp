@@ -197,7 +197,7 @@
                     "type": "cursor",
                     "cursor": {
                         "cursorObject": null,
-                        "collisionGroup": 0,
+                        "collisionGroup": 7,
                         "cursorRayObject": "209",
                         "cursorRayScalingAxis": "y"
                     }
@@ -377,8 +377,8 @@
                 {
                     "type": "cursor",
                     "cursor": {
-                        "cursorObject": null,
-                        "collisionGroup": 0,
+                        "cursorObject": "308",
+                        "collisionGroup": 7,
                         "cursorRayObject": "213",
                         "cursorRayScalingAxis": "y"
                     }
@@ -917,7 +917,7 @@
                                 0.5
                             ]
                         },
-                        "groups": 255
+                        "groups": 128
                     }
                 },
                 {
@@ -935,6 +935,9 @@
                 },
                 {
                     "type": "tile-descriptor"
+                },
+                {
+                    "type": "cursor-target"
                 }
             ],
             "translation": [
@@ -1071,6 +1074,41 @@
                 1.0
             ],
             "parent": "235"
+        },
+        "307": {
+            "name": "Dummy",
+            "parent": "237",
+            "components": [
+                {
+                    "type": "door-handler"
+                },
+                {
+                    "type": "cursor-target"
+                }
+            ],
+            "translation": [
+                0.0,
+                -500.0,
+                0.0
+            ]
+        },
+        "308": {
+            "name": "CursorMesh",
+            "parent": "237",
+            "components": [
+                {
+                    "type": "mesh",
+                    "mesh": {
+                        "mesh": "8",
+                        "material": "22"
+                    }
+                }
+            ],
+            "scaling": [
+                0.1,
+                0.1,
+                0.1
+            ]
         }
     },
     "meshes": {

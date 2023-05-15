@@ -77,19 +77,27 @@ export class MazeGenerator {
     switch (direction) {
       case "north":
         this.maze[x1][y1].doors.north = true;
+        this.maze[x1][y1].targetRooms.north={ x: x2, y: y2 };
         this.maze[x2][y2].doors.south = true;
+        this.maze[x2][y2].targetRooms.south={ x: x1, y: y1 };
         break;
       case "east":
         this.maze[x1][y1].doors.east = true;
+        this.maze[x1][y1].targetRooms.east={ x: x2, y: y2 };
         this.maze[x2][y2].doors.west = true;
+        this.maze[x2][y2].targetRooms.west={ x: x1, y: y1 };
         break;
       case "south":
         this.maze[x1][y1].doors.south = true;
+        this.maze[x1][y1].targetRooms.south={ x: x2, y: y2 };
         this.maze[x2][y2].doors.north = true;
+        this.maze[x2][y2].targetRooms.north={ x: x1, y: y1 };
         break;
       case "west":
         this.maze[x1][y1].doors.west = true;
+        this.maze[x1][y1].targetRooms.west={ x: x2, y: y2 };
         this.maze[x2][y2].doors.east = true;
+        this.maze[x2][y2].targetRooms.east={ x: x1, y: y1 };
         break;
     }
   }

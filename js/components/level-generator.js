@@ -6,6 +6,7 @@ import { MazeGenerator } from "../dungeongen/MazeGenerator";
 import { TileSet } from "../dungeongen/tileset";
 import { PatternSet } from "../dungeongen/PatternSet";
 import { Room } from "../dungeongen/room";
+import { RoomRenderer } from "../dungeongen/RoomRenderer";
 
 const size = 9;
 const patternSize = 3;
@@ -37,9 +38,9 @@ export class LevelGenerator extends Component {
     this.tileset = new TileSet(this.object.children, {});
     this.patternSet = new PatternSet();
 
-    this.generator.generate();
 
-    console.log(this.generator.maze);
+
+    this.generator.generate();
 
     this.levelParent.children.length = 0;
     if (!GameGlobals.globalObjectCache) {
@@ -53,10 +54,20 @@ export class LevelGenerator extends Component {
     } else {
       GameGlobals.globalObjectCache.reset();
     }
+
+    this.roomRenderer = new RoomRenderer(this.engine, this.levelParent, this.tileset, GameGlobals.globalObjectCache);
     this.blockCache = GameGlobals.globalObjectCache;
 
-    const currentRoom = this.generator.getRoom(0, 0);
-    this.render(currentRoom);
+    GameGlobals.gameState.currentRoomSubject.subscribe(r=>{
+      const currentRoom = this.generator.getRoom(r[0], r[1]);
+      //this.render(currentRoom);
+      this.levelParent.children.length = 0;
+      GameGlobals.globalObjectCache.reset();
+      this.roomRenderer.render(currentRoom);
+    });
+
+    
+
     let cameraPosition = [this.currentLd.start.X, this.currentLd.start.Y,this.currentLd.start.Z];
     let cameraRotation = [this.currentLd.start.Rx, this.currentLd.start.Ry,this.currentLd.start.Rz];
 

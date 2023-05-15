@@ -27,9 +27,7 @@ export class TileSet {
     );
     this.#tiles.add(new Tile("Wall01", this.#findObject(tileObjects, "Wall01"), this.#tiles.size));
     this.#tiles.add(new Tile("Wall02", this.#findObject(tileObjects, "Wall02"), this.#tiles.size));
-    this.#tiles.add(
-      new Tile("Door", this.#findObject(tileObjects, "Door"), this.#tiles.size)
-    );
+    this.#tiles.add(new Tile("Door", this.#findObject(tileObjects, "Door"), this.#tiles.size));
     this.#tiles.add(
       new Tile("Ceiling01", this.#findObject(tileObjects, "Ceiling01"), this.#tiles.size)
     );
@@ -65,7 +63,12 @@ export class TileSet {
     return [...this.#tiles][index];
   }
 
-  getTileByName(name){
+  /**
+   * Get a tile by its name.
+   * @param {string} name
+   * @returns {Tile} The tile with the given name.
+   */
+  getTileByName(name) {
     return [...this.#tiles].find((x) => x.name == name);
   }
 

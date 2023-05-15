@@ -13,11 +13,13 @@
 
 /* wle:auto-imports:start */
 import {Cursor} from '@wonderlandengine/components';
+import {CursorTarget} from '@wonderlandengine/components';
 import {HowlerAudioListener} from '@wonderlandengine/components';
 import {MouseLookComponent} from '@wonderlandengine/components';
 import {PlayerHeight} from '@wonderlandengine/components';
 import {VrModeActiveSwitch} from '@wonderlandengine/components';
 import {WasdControlsComponent} from '@wonderlandengine/components';
+import {DoorHandler} from './components/door-handler.js';
 import {Game} from './components/game.js';
 import {LevelGenerator} from './components/level-generator.js';
 import {SorskootTeleport} from './components/teleport.js';
@@ -82,11 +84,13 @@ if (document.readyState === 'loading') {
 
 /* wle:auto-register:start */
 engine.registerComponent(Cursor);
+engine.registerComponent(CursorTarget);
 engine.registerComponent(HowlerAudioListener);
 engine.registerComponent(MouseLookComponent);
 engine.registerComponent(PlayerHeight);
 engine.registerComponent(VrModeActiveSwitch);
 engine.registerComponent(WasdControlsComponent);
+engine.registerComponent(DoorHandler);
 engine.registerComponent(Game);
 engine.registerComponent(LevelGenerator);
 engine.registerComponent(SorskootTeleport);

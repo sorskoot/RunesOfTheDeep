@@ -72,7 +72,8 @@ public static class Export
             // add tile to the pattern
             exportedLevel.Pattern[(int)(tileOffset.x), (int)(tileOffset.y), (int)(tileOffset.z)] = new Tile()
             {
-                Data = tile.WonderlandName
+                Data = tile.WonderlandName,
+                DoorDirection = tile.IsDoor?tile.DoorDirection:null
             };
 
         }
