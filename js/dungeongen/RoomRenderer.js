@@ -26,6 +26,9 @@ export class RoomRenderer {
    */
   render(room) {
     const roomdesign = LevelData[0];
+    if (room.isEntrance) {
+      this.createTile(3, 0, 3, this.tileset.getTileByName("Firepit").object);
+    }
     for (let i = 0; i < roomdesign.width; i++) {
       for (let j = 0; j < roomdesign.height; j++) {
         for (let h = 0; h < roomdesign.depth; h++) {
@@ -33,7 +36,7 @@ export class RoomRenderer {
             let door = roomdesign.data[i][j][h].door;
             let data = roomdesign.data[i][j][h].data;
             let setupDoor = false;
-            if (door!=null && door!=undefined) {
+            if (door != null && door != undefined) {
               setupDoor = true;
               if (door == 0 && !room.doors.north) {
                 data = "Wall01";
@@ -54,17 +57,25 @@ export class RoomRenderer {
             }
 
             let tile = this.tileset.getTileByName(data);
+
             let newObj = this.createTile(i, j, h, tile.object);
 
-            if (door!=undefined && setupDoor) {
-              newObj.addComponent(DoorHandler, {
-                direction: door,
-                targetRoomX: room.getTargetRoom([..."NESW"][door]).x,
-                targetRoomY: room.getTargetRoom([..."NESW"][door]).y,
-              });
+            if (door != undefined && setupDoor) {
+              let oldComp = newObj.getComponent(DoorHandler);
+              if (oldComp) {
+                oldComp.direction = door;
+                oldComp.targetRoomX = room.getTargetRoom([..."NESW"][door]).x;
+                oldComp.targetRoomY = room.getTargetRoom([..."NESW"][door]).y;
+                oldComp.active = true;
+              } else
+                newObj.addComponent(DoorHandler, {
+                  direction: door,
+                  targetRoomX: room.getTargetRoom([..."NESW"][door]).x,
+                  targetRoomY: room.getTargetRoom([..."NESW"][door]).y,
+                });
             }
 
-            if (door!=undefined && !setupDoor) {
+            if (door != undefined && !setupDoor) {
               //add an extra wall to close the gap
               this.createTile(i, j + 1, h, tile.object);
             }

@@ -168,7 +168,8 @@
                     "type": "light",
                     "light": {
                         "intensity": 3.3329999
-                    }
+                    },
+                    "active": true
                 }
             ],
             "translation": [
@@ -1056,7 +1057,8 @@
                             0.4941176,
                             0.0
                         ]
-                    }
+                    },
+                    "active": true
                 }
             ],
             "translation": [
@@ -1079,7 +1081,7 @@
         },
         "307": {
             "name": "Dummy",
-            "parent": "237",
+            "parent": "236",
             "components": [
                 {
                     "type": "door-handler"
@@ -1092,11 +1094,22 @@
                 0.0,
                 -500.0,
                 0.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scaling": [
+                1.0,
+                1.0,
+                1.0
             ]
         },
         "308": {
             "name": "CursorMesh",
-            "parent": "237",
+            "parent": "236",
             "components": [
                 {
                     "type": "mesh",
@@ -1110,6 +1123,17 @@
                 0.1,
                 0.1,
                 0.1
+            ],
+            "translation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
             ]
         },
         "314": {
@@ -1145,6 +1169,67 @@
                 }
             ],
             "name": "ScreenFade"
+        },
+        "315": {
+            "name": "Gems",
+            "parent": "238",
+            "components": [
+                {
+                    "type": "mesh",
+                    "mesh": {
+                        "mesh": "321",
+                        "material": "251"
+                    }
+                },
+                {
+                    "type": "tags",
+                    "tags": {
+                        "tags": "Objects"
+                    }
+                }
+            ]
+        },
+        "326": {
+            "name": "Firepit",
+            "parent": "238",
+            "components": [
+                {
+                    "type": "mesh",
+                    "mesh": {
+                        "mesh": "324",
+                        "material": "251"
+                    }
+                },
+                {
+                    "type": "tags",
+                    "tags": {
+                        "tags": "Objects"
+                    }
+                },
+                {
+                    "type": "mesh",
+                    "mesh": {
+                        "mesh": "325",
+                        "material": "262"
+                    }
+                }
+            ],
+            "translation": [
+                1.5,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scaling": [
+                1.0,
+                1.0,
+                1.0
+            ]
         }
     },
     "meshes": {
@@ -1305,6 +1390,36 @@
             "link": {
                 "name": "InvertedSphere",
                 "file": "models\\InvertedSphere.fbx"
+            }
+        },
+        "319": {
+            "link": {
+                "name": "rocks-small",
+                "file": "models\\Tiles.fbx"
+            }
+        },
+        "320": {
+            "link": {
+                "name": "gems",
+                "file": "models\\Tiles.fbx"
+            }
+        },
+        "321": {
+            "link": {
+                "name": "gems.0",
+                "file": "models\\Tiles.fbx"
+            }
+        },
+        "324": {
+            "link": {
+                "name": "fireplace",
+                "file": "models\\Tiles.fbx"
+            }
+        },
+        "325": {
+            "link": {
+                "name": "fireplace.0",
+                "file": "models\\Tiles.fbx"
             }
         }
     },
@@ -1809,6 +1924,36 @@
             "link": {
                 "name": "DefaultMaterial",
                 "file": "models\\InvertedSphere.fbx"
+            }
+        },
+        "316": {
+            "link": {
+                "name": "14 BROWN-LIGHTEST",
+                "file": "models\\Tiles.fbx"
+            }
+        },
+        "317": {
+            "link": {
+                "name": "11 BROWN-MEDIUM",
+                "file": "models\\Tiles.fbx"
+            }
+        },
+        "318": {
+            "link": {
+                "name": "44 BLUE",
+                "file": "models\\Tiles.fbx"
+            }
+        },
+        "322": {
+            "link": {
+                "name": "14 BROWN-LIGHTEST.001",
+                "file": "models\\Tiles.fbx"
+            }
+        },
+        "323": {
+            "link": {
+                "name": "11 BROWN-MEDIUM.001",
+                "file": "models\\Tiles.fbx"
             }
         }
     },

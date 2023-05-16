@@ -44,5 +44,25 @@ export class Game extends Component {
     setTimeout(() => {
       GameGlobals.gameState.level = 0;
     },1000); // just delay the start. This will change once we have a menu.
+
+    window.addEventListener("keyup", (e) => {
+      let p = GameGlobals.gameState.currentRoom;
+      if (e.code == "Digit1") {
+        p[0] +=1;
+        GameGlobals.gameState.currentRoom = p;
+      }
+      if (e.code == "Digit2") {
+        p[0] -=1;
+        GameGlobals.gameState.currentRoom = p;
+      }
+      if (e.code == "Digit3") {
+        p[1] +=1;
+        GameGlobals.gameState.currentRoom = p;
+      }
+      if (e.code == "Digit4") {
+        p[1] -=1;
+        GameGlobals.gameState.currentRoom = p;
+      }
+    });
   }
 }

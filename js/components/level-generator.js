@@ -1,5 +1,6 @@
 import { Component, Type } from "@wonderlandengine/api";
-import { cloneObject, ObjectCache } from "@sorskoot/wonderland-components";
+import { ObjectCache,cloneObject } from "@sorskoot/wonderland-components";
+
 import { LevelData } from "../data/level-data";
 import GameGlobals from "../globals";
 import { MazeGenerator } from "../dungeongen/MazeGenerator";
@@ -57,7 +58,7 @@ export class LevelGenerator extends Component {
         "blocks",
         2400,
         this.levelParent,
-        16000
+        24000
       );
     } else {
       GameGlobals.globalObjectCache.reset();
@@ -75,7 +76,7 @@ export class LevelGenerator extends Component {
       const currentRoom = this.generator.getRoom(r[0], r[1]);
       //this.render(currentRoom);
       this.fadeScreenComponent.FadeOutCompleted.once(() => {
-        this.levelParent.children.length = 0;
+        //this.levelParent.children.length = 0;
         GameGlobals.globalObjectCache.reset();
         this.roomRenderer.render(currentRoom);
       });
@@ -215,7 +216,7 @@ export class LevelGenerator extends Component {
             // adjusting their positions based on their indices within the grid.
             const newRowPos = row * ps + gridRow - (size * ps) / 2;
             const newColPos = col * ps + gridColumn - (size * ps) / 2;
-
+            
             let tileIndex = pattern[gridRow][gridColumn];
             if (currentRoom.isEntrance) {
               tileIndex = 5;

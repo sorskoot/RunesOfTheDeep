@@ -1,5 +1,5 @@
 import {Component, MeshComponent, Type, Emitter} from '@wonderlandengine/api';
-import { Easing, clamp, lerp } from '../forFramework/lerp';
+import { Easing, clamp, lerp } from '@sorskoot/wonderland-components/src/utils/lerp';
 
 export class FadeScreen extends Component {
     static TypeName = 'fade-screen';

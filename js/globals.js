@@ -9,6 +9,7 @@ const GameGlobals = {
   soundFxPlayer: new SoundfxPlayer(),
   musicPlayer: new MusicPlayer(),
   particlePool: null,
+  globalObjectCache:null
 };
 
 export default GameGlobals;
