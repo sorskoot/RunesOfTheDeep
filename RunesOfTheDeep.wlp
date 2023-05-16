@@ -463,7 +463,8 @@
                     "type": "game",
                     "game": {
                         "levelGenObject": "238",
-                        "playerObject": "14"
+                        "playerObject": "14",
+                        "fadeScreenObject": "314"
                     }
                 }
             ]
@@ -494,7 +495,8 @@
                 {
                     "type": "level-generator",
                     "level-generator": {
-                        "levelRoot": "237"
+                        "levelRoot": "237",
+                        "fadeScreenObject": "314"
                     }
                 }
             ]
@@ -1109,6 +1111,40 @@
                 0.1,
                 0.1
             ]
+        },
+        "314": {
+            "link": {
+                "name": "InvertedSphere",
+                "file": "models\\InvertedSphere.fbx"
+            },
+            "parent": "18",
+            "translation": [
+                0.0,
+                0.0,
+                2.384185791015625e-7
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scaling": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "components": [
+                {
+                    "mesh": {
+                        "material": "311"
+                    }
+                },
+                {
+                    "type": "fade-screen"
+                }
+            ],
+            "name": "ScreenFade"
         }
     },
     "meshes": {
@@ -1263,6 +1299,12 @@
             "link": {
                 "name": "Ceiling",
                 "file": "models\\Tiles.fbx"
+            }
+        },
+        "313": {
+            "link": {
+                "name": "InvertedSphere",
+                "file": "models\\InvertedSphere.fbx"
             }
         }
     },
@@ -1750,6 +1792,24 @@
             "FlatSorskoot": {
                 "flatTexture": "304"
             }
+        },
+        "311": {
+            "name": "ScreenFade",
+            "pipeline": "310",
+            "Flat": {
+                "color": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            }
+        },
+        "312": {
+            "link": {
+                "name": "DefaultMaterial",
+                "file": "models\\InvertedSphere.fbx"
+            }
         }
     },
     "shaders": {
@@ -2058,6 +2118,25 @@
                 "name": "FlatSorskoot",
                 "file": "default"
             }
+        },
+        "310": {
+            "link": {
+                "name": "FlatSorskoot",
+                "file": "default"
+            },
+            "shader": "2",
+            "name": "ScreenFade",
+            "features": {
+                "ALPHA_MASKED": true
+            },
+            "depthTest": false,
+            "blending": true,
+            "depthFunction": "always",
+            "blendSrcRgb": "source alpha",
+            "blendSrcAlpha": "source alpha",
+            "blendDestRgb": "one minus source alpha",
+            "blendDestAlpha": "one minus source alpha",
+            "blendEqAlpha": "max"
         }
     },
     "files": [
@@ -2076,7 +2155,8 @@
         "assets/tiles/tiles_05.png",
         "assets/tiles/tiles_07.png",
         "assets/tiles/tiles_09.png",
-        "assets/tiles/tiles_10.png"
+        "assets/tiles/tiles_10.png",
+        "models/InvertedSphere.fbx"
     ],
     "fonts": {
         "230": {

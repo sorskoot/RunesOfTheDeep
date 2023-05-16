@@ -7,6 +7,7 @@ import { TileSet } from "../dungeongen/tileset";
 import { PatternSet } from "../dungeongen/PatternSet";
 import { Room } from "../dungeongen/room";
 import { RoomRenderer } from "../dungeongen/RoomRenderer";
+import { FadeScreen } from "./fadeScreen";
 
 const size = 9;
 const patternSize = 3;
@@ -15,16 +16,25 @@ export class LevelGenerator extends Component {
   static TypeName = "level-generator";
   static Properties = {
     levelRoot: { type: Type.Object },
+    fadeScreenObject: { type: Type.Object },
   };
+  /**
+   * @type {FadeScreen}
+   */
+  fadeScreenComponent;
 
   /**
    * overrides the init method of the component
    */
   init() {
-    this.generator = new MazeGenerator(size, size);
+    this.generator = new MazeGenerator(size, size);    
   }
 
-  /**
+  start(){
+    this.fadeScreenComponent = this.fadeScreenObject.getComponent(FadeScreen);
+  }
+
+    /**
    * Generates a level
    * @param {Number} level The level to generate
    * @returns {cameraPosition, targetsToComplete, cameraRotation}
@@ -37,8 +47,6 @@ export class LevelGenerator extends Component {
 
     this.tileset = new TileSet(this.object.children, {});
     this.patternSet = new PatternSet();
-
-
 
     this.generator.generate();
 
@@ -55,22 +63,33 @@ export class LevelGenerator extends Component {
       GameGlobals.globalObjectCache.reset();
     }
 
-    this.roomRenderer = new RoomRenderer(this.engine, this.levelParent, this.tileset, GameGlobals.globalObjectCache);
+    this.roomRenderer = new RoomRenderer(
+      this.engine,
+      this.levelParent,
+      this.tileset,
+      GameGlobals.globalObjectCache
+    );
     this.blockCache = GameGlobals.globalObjectCache;
 
-    GameGlobals.gameState.currentRoomSubject.subscribe(r=>{
+    GameGlobals.gameState.currentRoomSubject.subscribe((r) => {
       const currentRoom = this.generator.getRoom(r[0], r[1]);
       //this.render(currentRoom);
-      this.levelParent.children.length = 0;
-      GameGlobals.globalObjectCache.reset();
-      this.roomRenderer.render(currentRoom);
+      this.fadeScreenComponent.FadeOutCompleted.once(() => {
+        this.levelParent.children.length = 0;
+        GameGlobals.globalObjectCache.reset();
+        this.roomRenderer.render(currentRoom);
+      });
+      this.fadeScreenComponent.fadeOut();
     });
-    
-    this.renderDebug(this.generator);
-    
 
-    let cameraPosition = [this.currentLd.start.X, this.currentLd.start.Y,this.currentLd.start.Z];
-    let cameraRotation = [this.currentLd.start.Rx, this.currentLd.start.Ry,this.currentLd.start.Rz];
+    this.renderDebug(this.generator);
+
+    let cameraPosition = [this.currentLd.start.X, this.currentLd.start.Y, this.currentLd.start.Z];
+    let cameraRotation = [
+      this.currentLd.start.Rx,
+      this.currentLd.start.Ry,
+      this.currentLd.start.Rz,
+    ];
 
     // for (let layer = 0; layer < this.currentLd.layer.length; layer++) {
     //   for (let row = 0; row < this.currentLd.layer[layer].data.length; row++) {
@@ -151,7 +170,7 @@ export class LevelGenerator extends Component {
       for (let j = 0; j < roomdesign.height; j++) {
         for (let h = 0; h < roomdesign.depth; h++) {
           const tileIndex = roomdesign.data[i][j][h];
-          if (tileIndex!=null && tileIndex!=undefined) {
+          if (tileIndex != null && tileIndex != undefined) {
             let tile = this.tileset.getTileByName(tileIndex.data);
             this.createTile(i, j, h, tile.object);
           }
@@ -165,11 +184,11 @@ export class LevelGenerator extends Component {
    */
   renderDebug(generator) {
     const canvas = document.createElement("canvas");
-//    canvas.style.display = "none";
+    //    canvas.style.display = "none";
     canvas.style.position = "absolute";
     canvas.style.top = "0px";
     canvas.style.left = "0px";
-    canvas.style.zIndex = "100";    
+    canvas.style.zIndex = "100";
     //scale canvas 300%, nearest neighbor
     canvas.style.width = "256px";
     canvas.style.imageRendering = "pixelated";
@@ -208,29 +227,33 @@ export class LevelGenerator extends Component {
               tileIndex = 7;
             }
             let tile = this.tileset.getTile(tileIndex);
-          //  this.createTile(newRowPos, 0, newColPos, tile.object);
+            //  this.createTile(newRowPos, 0, newColPos, tile.object);
 
             //also draw the tile as a pixel to the canvas:
-            switch(tileIndex){
+            switch (tileIndex) {
               case 5:
-                ctx.fillStyle = "green";break;
+                ctx.fillStyle = "green";
+                break;
               case 4:
-                ctx.fillStyle = "red";break;
+                ctx.fillStyle = "red";
+                break;
               case 6:
-                ctx.fillStyle = "blue";break;
+                ctx.fillStyle = "blue";
+                break;
               case 7:
-                ctx.fillStyle = "yellow";break;
+                ctx.fillStyle = "yellow";
+                break;
               default:
                 ctx.fillStyle = "gray";
                 break;
             }
-            if(tileIndex>=4)
-            ctx.fillRect(
-              (newRowPos + size*ps/2) * 2 ,
-              (newColPos + size*ps/2) * 2 ,
-              2,
-              2
-            );
+            if (tileIndex >= 4)
+              ctx.fillRect(
+                (newRowPos + (size * ps) / 2) * 2,
+                (newColPos + (size * ps) / 2) * 2,
+                2,
+                2
+              );
           }
         }
       }

@@ -106,8 +106,15 @@ export class GameState {
         
     }
 
+    navigating=false;
+
     navigateToRoom(roomx,roomy){
+        if(this.navigating) return;
+        this.navigating=true;
+        
         this.currentRoom = [roomx,roomy];
+        
+        this.navigating=false;
     }
 
 }
