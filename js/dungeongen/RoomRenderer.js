@@ -26,45 +26,47 @@ export class RoomRenderer {
    */
   render(room) {
     const roomdesign = LevelData[0];
-
     for (let i = 0; i < roomdesign.width; i++) {
       for (let j = 0; j < roomdesign.height; j++) {
         for (let h = 0; h < roomdesign.depth; h++) {
-          const tileIndex = roomdesign.data[i][j][h];
-          if (tileIndex != null && tileIndex != undefined) {
+          if (roomdesign.data[i][j][h]) {
+            let door = roomdesign.data[i][j][h].door;
+            let data = roomdesign.data[i][j][h].data;
             let setupDoor = false;
-            if (tileIndex.door) {
+            if (door!=null && door!=undefined) {
               setupDoor = true;
-              if (tileIndex.door == 0 && !room.doors.north) {
-                tileIndex.data = "Wall01";
+              if (door == 0 && !room.doors.north) {
+                data = "Wall01";
                 setupDoor = false;
               }
-              if (tileIndex.door == 1 && !room.doors.east) {
-                tileIndex.data = "Wall01";
+              if (door == 1 && !room.doors.east) {
+                data = "Wall01";
                 setupDoor = false;
               }
-              if (tileIndex.door == 2 && !room.doors.south) {
-                tileIndex.data = "Wall01";
+              if (door == 2 && !room.doors.south) {
+                data = "Wall01";
                 setupDoor = false;
               }
-              if (tileIndex.door == 3 && !room.doors.west) {
-                tileIndex.data = "Wall01";
+              if (door == 3 && !room.doors.west) {
+                data = "Wall01";
                 setupDoor = false;
               }
-            }
-            let tile = this.tileset.getTileByName(tileIndex.data);
-            let newObj = this.createTile(i, j, h, tile.object);
-         
-            if (tileIndex.door && setupDoor) {
-              newObj.addComponent(DoorHandler, {
-                direction: tileIndex.door,
-                targetRoomX: room.getTargetRoom([..."NESW"][tileIndex.door]).x,
-                targetRoomY: room.getTargetRoom([..."NESW"][tileIndex.door]).y,
-              });              
             }
 
-            if(tileIndex.door && !setupDoor){ //add an extra wall to close the gap
-                this.createTile(i, j+1, h, tile.object);
+            let tile = this.tileset.getTileByName(data);
+            let newObj = this.createTile(i, j, h, tile.object);
+
+            if (door!=undefined && setupDoor) {
+              newObj.addComponent(DoorHandler, {
+                direction: door,
+                targetRoomX: room.getTargetRoom([..."NESW"][door]).x,
+                targetRoomY: room.getTargetRoom([..."NESW"][door]).y,
+              });
+            }
+
+            if (door!=undefined && !setupDoor) {
+              //add an extra wall to close the gap
+              this.createTile(i, j + 1, h, tile.object);
             }
           }
         }

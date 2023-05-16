@@ -65,7 +65,8 @@ export class LevelGenerator extends Component {
       GameGlobals.globalObjectCache.reset();
       this.roomRenderer.render(currentRoom);
     });
-
+    
+    this.renderDebug(this.generator);
     
 
     let cameraPosition = [this.currentLd.start.X, this.currentLd.start.Y,this.currentLd.start.Z];
@@ -152,7 +153,6 @@ export class LevelGenerator extends Component {
           const tileIndex = roomdesign.data[i][j][h];
           if (tileIndex!=null && tileIndex!=undefined) {
             let tile = this.tileset.getTileByName(tileIndex.data);
-            console.log(tileIndex.data);
             this.createTile(i, j, h, tile.object);
           }
         }
@@ -164,6 +164,22 @@ export class LevelGenerator extends Component {
    * @param {MazeGenerator} generator
    */
   renderDebug(generator) {
+    const canvas = document.createElement("canvas");
+//    canvas.style.display = "none";
+    canvas.style.position = "absolute";
+    canvas.style.top = "0px";
+    canvas.style.left = "0px";
+    canvas.style.zIndex = "100";    
+    //scale canvas 300%, nearest neighbor
+    canvas.style.width = "256px";
+    canvas.style.imageRendering = "pixelated";
+
+    canvas.width = 100;
+    canvas.height = 100;
+    const ctx = canvas.getContext("2d");
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
     for (let row = 0; row < size; row++) {
       for (let col = 0; col < size; col++) {
         //this.createTile(row - size / 2, 0, col - size / 2, "Floor01");
@@ -192,11 +208,34 @@ export class LevelGenerator extends Component {
               tileIndex = 7;
             }
             let tile = this.tileset.getTile(tileIndex);
-            this.createTile(newRowPos, 0, newColPos, tile.object);
+          //  this.createTile(newRowPos, 0, newColPos, tile.object);
+
+            //also draw the tile as a pixel to the canvas:
+            switch(tileIndex){
+              case 5:
+                ctx.fillStyle = "green";break;
+              case 4:
+                ctx.fillStyle = "red";break;
+              case 6:
+                ctx.fillStyle = "blue";break;
+              case 7:
+                ctx.fillStyle = "yellow";break;
+              default:
+                ctx.fillStyle = "gray";
+                break;
+            }
+            if(tileIndex>=4)
+            ctx.fillRect(
+              (newRowPos + size*ps/2) * 2 ,
+              (newColPos + size*ps/2) * 2 ,
+              2,
+              2
+            );
           }
         }
       }
     }
+    document.body.appendChild(canvas);
   }
 
   // createCube(x, y, z, tile) {

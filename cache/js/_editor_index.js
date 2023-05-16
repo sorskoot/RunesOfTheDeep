@@ -2,8 +2,6 @@ import * as __wonderlandengine_components from '@wonderlandengine/components';
 _registerEditor(__wonderlandengine_components);
 import * as __zestymarket_wonderland_sdk from '@zestymarket/wonderland-sdk';
 _registerEditor(__zestymarket_wonderland_sdk);
-import * as _D__Dev_RunesOfTheDeep_js_classes_gameState_js from 'D:/Dev/RunesOfTheDeep/js/classes/gameState.js';
-_registerEditor(_D__Dev_RunesOfTheDeep_js_classes_gameState_js);
 import * as _D__Dev_RunesOfTheDeep_js_components_door_handler_js from 'D:/Dev/RunesOfTheDeep/js/components/door-handler.js';
 _registerEditor(_D__Dev_RunesOfTheDeep_js_components_door_handler_js);
 import * as _D__Dev_RunesOfTheDeep_js_components_game_js from 'D:/Dev/RunesOfTheDeep/js/components/game.js';
