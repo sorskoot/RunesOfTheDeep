@@ -2,8 +2,6 @@ import * as __wonderlandengine_components from '@wonderlandengine/components';
 _registerEditor(__wonderlandengine_components);
 import * as __zestymarket_wonderland_sdk from '@zestymarket/wonderland-sdk';
 _registerEditor(__zestymarket_wonderland_sdk);
-import * as _D__Dev_RunesOfTheDeep_js_classes_gameState_js from 'D:/Dev/RunesOfTheDeep/js/classes/gameState.js';
-_registerEditor(_D__Dev_RunesOfTheDeep_js_classes_gameState_js);
 import * as _D__Dev_RunesOfTheDeep_js_components_door_handler_js from 'D:/Dev/RunesOfTheDeep/js/components/door-handler.js';
 _registerEditor(_D__Dev_RunesOfTheDeep_js_components_door_handler_js);
 import * as _D__Dev_RunesOfTheDeep_js_components_fadeScreen_js from 'D:/Dev/RunesOfTheDeep/js/components/fadeScreen.js';
@@ -44,6 +42,8 @@ import * as _D__Dev_RunesOfTheDeep_node_modules__sorskoot_wonderland_components_
 _registerEditor(_D__Dev_RunesOfTheDeep_node_modules__sorskoot_wonderland_components_src_components_flipbook_js);
 import * as _D__Dev_RunesOfTheDeep_node_modules__sorskoot_wonderland_components_src_components_prefab_storage_js from 'D:/Dev/RunesOfTheDeep/node_modules/@sorskoot/wonderland-components/src/components/prefab-storage.js';
 _registerEditor(_D__Dev_RunesOfTheDeep_node_modules__sorskoot_wonderland_components_src_components_prefab_storage_js);
+import * as _D__Dev_RunesOfTheDeep_node_modules__sorskoot_wonderland_components_src_components_prefab_js from 'D:/Dev/RunesOfTheDeep/node_modules/@sorskoot/wonderland-components/src/components/prefab.js';
+_registerEditor(_D__Dev_RunesOfTheDeep_node_modules__sorskoot_wonderland_components_src_components_prefab_js);
 import * as _D__Dev_RunesOfTheDeep_node_modules__sorskoot_wonderland_components_src_components_shootBase_js from 'D:/Dev/RunesOfTheDeep/node_modules/@sorskoot/wonderland-components/src/components/shootBase.js';
 _registerEditor(_D__Dev_RunesOfTheDeep_node_modules__sorskoot_wonderland_components_src_components_shootBase_js);
 import * as _D__Dev_RunesOfTheDeep_node_modules__sorskoot_wonderland_components_src_components_snow_particles_js from 'D:/Dev/RunesOfTheDeep/node_modules/@sorskoot/wonderland-components/src/components/snow-particles.js';

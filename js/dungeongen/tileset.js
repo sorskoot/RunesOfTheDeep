@@ -31,8 +31,13 @@ export class TileSet {
     this.#tiles.add(
       new Tile("Ceiling01", this.#findObject(tileObjects, "Ceiling01"), this.#tiles.size)
     );
+
     this.#tiles.add(
       new Tile("Firepit", this.#findObject(tileObjects, "Firepit"), this.#tiles.size)
+    );
+
+    this.#tiles.add(
+      new Tile("Gems", this.#findObject(tileObjects, "Gems"), this.#tiles.size)
     );
   }
 

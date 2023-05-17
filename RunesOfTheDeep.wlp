@@ -471,7 +471,12 @@
             ]
         },
         "235": {
-            "name": "Lights"
+            "name": "Lights",
+            "translation": [
+                0.0,
+                -1000.0,
+                0.0
+            ]
         },
         "236": {
             "name": "TitleScreen"
@@ -538,7 +543,7 @@
                 }
             ],
             "translation": [
-                -1.1920928955078125e-7,
+                8.5,
                 0.0,
                 -1.4901161193847656e-8
             ],
@@ -591,9 +596,9 @@
                 }
             ],
             "translation": [
-                -2.0,
+                6.5,
                 0.0,
-                -0.0
+                0.0
             ],
             "rotation": [
                 0.0,
@@ -644,9 +649,9 @@
                 }
             ],
             "translation": [
-                -4.0,
+                4.5,
                 0.0,
-                -0.0
+                0.0
             ],
             "rotation": [
                 0.0,
@@ -697,7 +702,7 @@
                 }
             ],
             "translation": [
-                -6.0,
+                2.5000002,
                 0.0,
                 0.0
             ],
@@ -750,7 +755,7 @@
                 }
             ],
             "translation": [
-                -8.0,
+                0.5000002,
                 0.0,
                 0.0
             ],
@@ -803,7 +808,7 @@
                 }
             ],
             "translation": [
-                -8.0,
+                0.5000002,
                 0.0,
                 -2.0
             ],
@@ -856,7 +861,7 @@
                 }
             ],
             "translation": [
-                -5.5,
+                3.0000002,
                 0.0,
                 -2.0
             ],
@@ -888,7 +893,7 @@
                 }
             ],
             "translation": [
-                0.0,
+                8.5,
                 0.0,
                 0.0
             ],
@@ -944,7 +949,7 @@
                 }
             ],
             "translation": [
-                -3.0,
+                5.5,
                 0.0,
                 -2.0
             ],
@@ -1013,7 +1018,7 @@
                 }
             ],
             "translation": [
-                -1.1920928955078125e-7,
+                8.5,
                 0.0,
                 2.0
             ],
@@ -1187,6 +1192,22 @@
                         "tags": "Objects"
                     }
                 }
+            ],
+            "translation": [
+                8.5,
+                0.0,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scaling": [
+                1.0,
+                1.0,
+                1.0
             ]
         },
         "326": {
@@ -1212,12 +1233,61 @@
                         "mesh": "325",
                         "material": "262"
                     }
+                },
+                {
+                    "type": "mesh",
+                    "mesh": {
+                        "mesh": "252",
+                        "material": "251"
+                    }
                 }
             ],
             "translation": [
-                1.5,
+                10.0,
                 0.0,
-                0.0
+                -0.0036008
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scaling": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "332": {
+            "name": "Rock",
+            "parent": "238",
+            "components": [
+                {
+                    "type": "mesh",
+                    "mesh": {
+                        "mesh": "331",
+                        "material": "330"
+                    }
+                },
+                {
+                    "type": "tags",
+                    "tags": {
+                        "tags": "Objects"
+                    }
+                },
+                {
+                    "type": "mesh",
+                    "mesh": {
+                        "mesh": "252",
+                        "material": "251"
+                    }
+                }
+            ],
+            "translation": [
+                8.5,
+                0.0,
+                1.5
             ],
             "rotation": [
                 0.0,
@@ -1421,6 +1491,18 @@
                 "name": "fireplace.0",
                 "file": "models\\Tiles.fbx"
             }
+        },
+        "331": {
+            "link": {
+                "name": "Rock",
+                "file": "models\\Tiles.fbx"
+            }
+        },
+        "335": {
+            "link": {
+                "name": "InvertedSphere",
+                "file": "models\\Tiles.fbx"
+            }
         }
     },
     "textures": {
@@ -1506,6 +1588,18 @@
             "link": {
                 "name": "tiles_10.png",
                 "file": "assets\\tiles\\tiles_10.png"
+            }
+        },
+        "329": {
+            "link": {
+                "name": "texture_1",
+                "file": "models\\Tiles.fbx"
+            }
+        },
+        "334": {
+            "link": {
+                "name": "texture_2",
+                "file": "models\\Tiles.fbx"
             }
         }
     },
@@ -1602,6 +1696,24 @@
             "link": {
                 "name": "tiles_10.png",
                 "file": "assets\\tiles\\tiles_10.png"
+            }
+        },
+        "327": {
+            "link": {
+                "name": "image_0",
+                "file": "models\\Tiles.fbx"
+            }
+        },
+        "328": {
+            "link": {
+                "name": "image_1",
+                "file": "models\\Tiles.fbx"
+            }
+        },
+        "333": {
+            "link": {
+                "name": "image_2",
+                "file": "models\\Tiles.fbx"
             }
         }
     },
@@ -1954,6 +2066,16 @@
             "link": {
                 "name": "11 BROWN-MEDIUM.001",
                 "file": "models\\Tiles.fbx"
+            }
+        },
+        "330": {
+            "link": {
+                "name": "Rock",
+                "file": "models\\Tiles.fbx"
+            },
+            "pipeline": "240",
+            "FlatSorskoot": {
+                "flatTexture": "268"
             }
         }
     },

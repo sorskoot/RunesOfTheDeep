@@ -5,6 +5,7 @@ export class Room {
     this.isExit = false;
     this.isEntrance = false;
     this.isTreasure = false;
+    this.seed = 0;
   }
 
   toKey() {

@@ -69,9 +69,7 @@ With this blueprint outlined above, "Runes of the Deep: Dwarven Cave Chronicles"
 
 ## IX. Technical Implementation:
 
-1. Level Generation - Wave Function Collapse Algorithm
-To procedurally generate the interconnected chambers and rooms within the dungeon, we will employ the Wave Function Collapse (WFC) algorithm. This advanced procedural generation technique uses input patterns (e.g., pre-designed room templates, hallways, and other game elements) to create complex, coherent levels by collapsing compatible tiles in a grid-like fashion.
-The WFC algorithm ensures that generated levels maintain a sense of consistency and purposeful design while still offering unique configurations with every playthrough. Designers can specify various input patterns and constraints to influence the appearance of dungeons and fine-tune difficulty progression throughout the game.
+1. Level Generation - Maze generation combined with random rooms.
 
 2. Game Engine - Wonderland Engine
 Runes of the Deep: Dwarven Cave Chronicles will be developed using the Wonderland Engine as its core game engine platform. The Wonderland Engine is a cutting-edge WebXR-focused engine optimized for creating highly efficient virtual reality experiences with minimal performance overhead.
@@ -79,7 +77,79 @@ Utilizing Wonderland Engine allows us to create an immersive VR experience tailo
 
 Together, these technical choices ensure that Runes of the Deep: Dwarven Cave Chronicles delivers an innovative gameplay experience in procedurally generated environments while remaining highly optimized for diverse virtual reality hardware setups within confined playing spaces.
 
-### Note
+## X. Details on Rooms and Props 
 
-This design is created by Rosie as a first draft and tweaked by hand. Since it mostly generated it probably going to change a lot while developing the game.
+There rooms and pros are just for brainstorming and are probably going to change or they might just not work with the roomscale VR in mind.
+
+### Types of Rooms
+
+#### Special Rooms
+These special rooms may occur at the dead ends in the maze and might provide extra props, ores or gems.
+- The Abandoned Forge: A large chamber with ancient, rusted anvils and furnaces, once used by skilled dwarven blacksmiths to craft weapons and armor.
+- The Hall of Heroes: A grand corridor adorned with statues of legendary dwarven heroes, each standing on a pedestal with an inscription detailing their great feats.
+- The Mine Shaft Chamber: A cavernous room where players will encounter multiple branching tunnels leading to different areas of the stronghold, some more treacherous than others.
+- The Library Archives: A once-impressive library filled with crumbling bookshelves and scattered scrolls, offering glimpses into the dwarves' extensive knowledge.
+- The Crystal Cavern: A mesmerizing room filled with glowing crystals and rare gemstones protruding from the walls, providing a source of magical energy.
+- The Throne Room: An opulent chamber containing a magnificent throne crafted from precious metals, where the ruler of the stronghold would have held court.
+- The Barracks: A functional room with rows of abandoned bunk beds and weapon racks that once housed the stronghold's military force.
+- The Great Dining Hall: An enormous communal space featuring long tables and benches, now eerily empty and covered in a layer of dust.
+- The Alchemy Lab: A small yet fascinating chamber littered with beakers, flasks, and other equipment used for creating powerful potions or conducting magical experiments.
+- The Collapsed Chamber: An unstable area marked by rubble and debris where players must navigate carefully to avoid triggering any further cave-ins or traps left behind by desperate dwarves during "The Shattering."
+ 
+#### Common Rooms
+There rooms can occur often.
+- The Trap Room: A deceptively simple chamber filled with hidden pressure plates, tripwires, and other dangerous mechanisms designed to catch intruders off-guard.
+- The Shifting Tunnels: A series of branching pathways with walls made from a mix of rocks and ores. Players can mine for valuable resources while fending off lurking mobs, but the layout changes periodically as tunnels cave in or new ones open.
+- The Flooded Cavern: An underground chamber partially submerged in water, where players must navigate slippery platforms and avoid deep pools teeming with aquatic creatures or hazards.
+- The Glistening Vein Chamber: A spacious room with rich deposits of sparkling gems embedded within the walls, attracting both miners and monster guardians. Players must navigate carefully between clusters to avoid dislodging precious stones and triggering an avalanche.
+- The Steam Vents Room: A heated chamber filled with various metal-rich ores, where players mine close to natural steam vents emitting scalding bursts at irregular intervals – forcing them to be cautious while extracting resources and battling aggressive creatures drawn to the warmth.
+- The Terraced Mining Pits: A multi-leveled area with platforms connected by ladders and ropes, allowing players to climb and descend as they gather ore deposits scattered across each level – all while fending off aerial and ground-based foes taking advantage of the vertical terrain.
+- The Slumbering Golem Chamber: A cavernous space populated by powerful rock golems guarding precious ore veins, who awaken when disturbed by mining activities – challenging players to balance resource gathering with managing unexpected combat encounters.
+- The Fungi Forest Room: An underground grove overgrown with bioluminescent mushrooms that cast an eerie glow over valuable ores hidden beneath their roots. Players must contend with fungal creatures seeking to protect their territory as they harvest both minerals and potentially useful plants.
+- The Echoing Chasm: A deep pit-like chamber echoing with strange noises produced by roaming monsters and dripping water from above. Ore deposits are nestled on narrow ledges along its walls, encouraging careful exploration while combating adversaries eager to knock intruders into the abyss below.
+- The Bridge Spanning Chambers: A series of interconnected rooms separated by ancient stone bridges crumbling underfoot, requiring precise movement to access the valuable ores located within each pocket – all while dodging enemy attacks threatening to send unwary adventurers plummeting downward.
+- The Elemental Nexus Room: An underground chamber infused with elemental energy that imbues nearby ores with magical properties – attracting powerful elemental creatures keen on protecting these prized resources from exploitation.
+- The Whispers' Web Gallery: A dark corridor lined with spider web-covered alcoves containing coveted minerals interspersed among delicate strands capable of ensnaring unwitting adventurers - forcing them to tread lightly while dispatching arachnid foes stalking from the shadows.
+
+### Types of Props
+- Abandoned mining equipment: Pickaxes, shovels, and mining carts
+- Ancient dwarven weapons: Battle-axes, hammers, and shields with intricate engravings
+- Crystals and gemstones: Precious minerals that emit a faint glow or have magical properties
+- Torn pages from old tomes: Fragments containing hints about the stronghold's history or maps of its layout
+- Broken statues: Once-majestic representations of dwarven heroes or leaders now in ruins
+- Unlit torches and lanterns: Devices for lighting the way in darker sections of the dungeon/mine
+- Dwarven inscriptions and murals: Detailed artwork on walls depicting important events or individuals from the citadel's past
+- Gilded treasure chests: Ornate containers holding valuable items or powerful artifacts
+- Remnants of machinery or contraptions: Puzzle pieces for unlocking secret passages or activating hidden mechanisms within the stronghold
+- Bones and skulls of fallen creatures or dwarves: Evidence of previous battles fought in the depths of Ironforge Mountains
+
+
+## XI. Dungeon and Story
+The journey through the dungeons should follow the Kishōtenketsu structure. Here's a first idea on how that might be implemented.
+
+1. Introduction (Ki):
+
+The entrance area for the dungeon sets the scene and introduces the player to the environment. This area can include an ancient entrance, lore-inscribed walls, or even a relic room that provides hints about the legend of this forgotten citadel. In this section, players should feel intrigued by the story and have a clear understanding of their goal: seeking powerful artifacts and untold riches hidden within.
+
+2. Development (Shō):
+
+As players progress through the maze-dungeon, gradually introduce more complex layouts, traps, puzzles, and enemy encounters. This section is about exploration and discovery while piecing together clues about this once-great dwarven citadel's history. Include areas with remnants of engineering marvels, workshops with abandoned tools used in crafting relics, or rooms containing murals showcasing their past glory.
+
+3. Twist (Ten):
+
+Introduce a turning point or twist in the maze-dungeon by revealing what led to its downfall - "The Shattering." Players could stumble upon a central chamber where they witness evidence of misuse of artifacts' powers causing destruction in certain sections. This section may also showcase new types of enemies – goblins, trolls, undead monstrosities – indicating how once-hallowed chambers now stand infested due to greed-driven catastrophe.
+
+4. Conclusion (Ketsu):
+
+Design the final part of the maze-dungeon with increasing challenges leading to a climactic confrontation or discovery at its deepest recesses – revealing an even greater secret tied to both player character's fate and the entire dwarven race. Integrate choices that force players to decide between using discovered artifacts responsibly or risking another "Shattering" event for personal gain.
+
+By following these guidelines and aligning your maze-dungeon progression with Kishōtenketsu storytelling structure, we create an engaging gaming experience for players while immersing them in a rich lore-filled world throughout their journey.
+
+### Implementation
+
+One way of getting this to work is to keep track of the distance in 'rooms' how for we are into the dungeon and change the story accordingly. 
+
+# Note
+
+The first draft of this design document is created by Rosie and tweaked by hand. Since it mostly generated it probably going to change a lot while developing the game. The document is vastly extended since using a combination of AI and just I. 
 

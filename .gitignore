@@ -131,3 +131,6 @@ CustomUnityDesigner/Runes of the Deep Designer/Builds/WSAPlayer
 CustomUnityDesigner/Runes of the Deep Designer/**/Packages/packages-lock.json
 CustomUnityDesigner/Runes of the Deep Designer/**/*.sln.DotSettings.user
 CustomUnityDesigner/Runes of the Deep Designer/**/.idea
+Idea.md.backup
+art/Tiles.blend1
+art/.autosave/

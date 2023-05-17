@@ -4,6 +4,7 @@ import { LevelData } from "../data/level-data";
 import { Room } from "./room";
 import { DoorHandler } from "../components/door-handler";
 import { TileSet } from "./tileset";
+import RNG from "@sorskoot/wonderland-components/src/utils/rng";
 
 export class RoomRenderer {
   /**
@@ -83,6 +84,18 @@ export class RoomRenderer {
         }
       }
     }
+
+    this.createInerior(room,roomdesign);
+  }
+
+  /**
+   * Creates the interior of a room
+   * @param {Room} room 
+   * @param {*} roomdesign
+   */
+  createInerior(room, roomdesign) {
+     const roomRNG = RNG.clone().setSeed(room.seed);
+
   }
 
   /**
