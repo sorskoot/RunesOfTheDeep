@@ -1300,6 +1300,87 @@
                 1.0,
                 1.0
             ]
+        },
+        "336": {
+            "name": "Rat",
+            "parent": "338",
+            "components": [
+                {
+                    "type": "mesh",
+                    "mesh": {
+                        "mesh": "252",
+                        "material": "337"
+                    }
+                },
+                {
+                    "type": "flipbook",
+                    "flipbook": {
+                        "base": "337",
+                        "url": "Rat.png",
+                        "columns": 2,
+                        "rows": 1,
+                        "speed": 4.0
+                    }
+                }
+            ],
+            "translation": [
+                1.5000003,
+                0.75,
+                3.0000016
+            ],
+            "rotation": [
+                0.4999084,
+                0.5000964,
+                -0.4999107,
+                0.5000844
+            ],
+            "scaling": [
+                1.5,
+                1.5,
+                1.5
+            ]
+        },
+        "338": {
+            "name": "Empty"
+        },
+        "340": {
+            "name": "Bat",
+            "parent": "338",
+            "components": [
+                {
+                    "type": "mesh",
+                    "mesh": {
+                        "mesh": "252",
+                        "material": "337"
+                    }
+                },
+                {
+                    "type": "flipbook",
+                    "flipbook": {
+                        "base": "337",
+                        "url": "Bat.png",
+                        "columns": 2,
+                        "rows": 1,
+                        "speed": 4.0
+                    }
+                }
+            ],
+            "translation": [
+                6.9999995,
+                2.2500009,
+                2.0000011
+            ],
+            "rotation": [
+                0.499908,
+                -0.500088,
+                0.4999175,
+                0.5000863
+            ],
+            "scaling": [
+                1.4999912,
+                1.4999992,
+                1.4999996
+            ]
         }
     },
     "meshes": {
@@ -2077,6 +2158,15 @@
             "FlatSorskoot": {
                 "flatTexture": "268"
             }
+        },
+        "337": {
+            "name": "Rat",
+            "pipeline": "240",
+            "FlatSorskoot": {
+                "flatTexture": "284",
+                "pixelSize": 24.0,
+                "size": 24
+            }
         }
     },
     "shaders": {
@@ -2384,7 +2474,9 @@
             "link": {
                 "name": "FlatSorskoot",
                 "file": "default"
-            }
+            },
+            "blending": true,
+            "sampleAlphaToCoverage": true
         },
         "310": {
             "link": {
@@ -2404,6 +2496,14 @@
             "blendDestRgb": "one minus source alpha",
             "blendDestAlpha": "one minus source alpha",
             "blendEqAlpha": "max"
+        },
+        "339": {
+            "link": {
+                "name": "FlatSorskoot",
+                "file": "default"
+            },
+            "name": "FlatSorskoot Alpha",
+            "blending": true
         }
     },
     "files": [

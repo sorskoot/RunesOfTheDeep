@@ -154,24 +154,16 @@ One way of getting this to work is to keep track of the distance in 'rooms' how 
 
 ### Enemies
 
-- Cave Rats (Easy): Small, fast-moving rodents with sharp teeth that scurry around and nip at the player's ankles. They often attack in groups and can be taken out with a well-placed kick or swing of a weapon.
-
+- Cave Rats (Easy+Medium): Small, fast-moving rodents with sharp teeth that scurry around and nip at the player's ankles. They often attack in groups and can be taken out with a well-placed kick or swing of a weapon. These ca be infected.
+- Spiders (Easy+Medium): Hide in the corners of at the ceiling and drop down when the player comes close.  These can be poisonous. 
 - Goblin Scouts (Easy): Short, green-skinned creatures armed with rusty daggers and slingshots. They prefer to attack from a distance, but will use their daggers when cornered.
-
 - Undead Dwarves (Medium): The reanimated corpses of fallen dwarven warriors, still clad in their tattered armor. They wield rusty weapons and are slow but relentless in their pursuit of the player.
-
 - Troll Brutes (Medium): Larger than goblins, these hulking creatures possess incredible strength and swing large clubs at the player to deal massive damage.
-
 - Ensnaring Fungi (Medium): Strange, bioluminescent fungi that have grown over time due to lingering magic within the stronghold's walls. When approached too closely, they extend tendrils to ensnare the player and slowly drain their life force.
-
-- Poisonous Bats (Hard): Large bats with venomous bites that swoop down from above to attack unsuspecting players. Their presence is often signaled by eerie screeching echoing through the caverns.
-
+- Bats (Medium+Hard): Large bats (can be venomous) that swoop down from above to attack unsuspecting players. Their presence is often signaled by eerie screeching echoing through the caverns.
 - Rival Dwarven Faction Soldiers (Hard): Armed with more advanced weapons than undead dwarves, these enemies have various combat abilities depending on their rank – such as archers raining arrows from afar or warriors charging into melee combat.
-
 - Golem Protectors (Hard): Animated stone constructs built by the dwarves as guardians for their most precious relics prior to "The Shattering." They are nearly impervious to physical attacks but can be weakened through magical means or exploiting specific weak points on their bodies.
-
 - Corrupted Artifacts (Very Hard): These once-magnificent relics have become twisted by malevolent energies unleashed during "The Shattering," which give them various powers such as unleashing devastating magical attacks or summoning powerful minions to fight alongside them.
-
 - The Shattered One (Final Boss - Extremely Hard): A vengeful spirit born from the combined greed and ambition of those who caused "The Shattering." It is an ethereal creature that possesses ancient artifacts, gaining unique abilities from each one it claims and using them against the player in its ultimate bid for power.
 
 Players must defeat each of these enemies by learning their attack patterns and exploiting weaknesses while managing limited resources like health potions or magical items found throughout the dungeon to ultimately uncover secrets locked away within the Ironforge Mountains' depths.
