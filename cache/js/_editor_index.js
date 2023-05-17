@@ -10,6 +10,8 @@ import * as _D__Dev_RunesOfTheDeep_js_components_game_js from 'D:/Dev/RunesOfThe
 _registerEditor(_D__Dev_RunesOfTheDeep_js_components_game_js);
 import * as _D__Dev_RunesOfTheDeep_js_components_level_generator_js from 'D:/Dev/RunesOfTheDeep/js/components/level-generator.js';
 _registerEditor(_D__Dev_RunesOfTheDeep_js_components_level_generator_js);
+import * as _D__Dev_RunesOfTheDeep_js_components_look_at_player_js from 'D:/Dev/RunesOfTheDeep/js/components/look-at-player.js';
+_registerEditor(_D__Dev_RunesOfTheDeep_js_components_look_at_player_js);
 import * as _D__Dev_RunesOfTheDeep_js_components_teleport_js from 'D:/Dev/RunesOfTheDeep/js/components/teleport.js';
 _registerEditor(_D__Dev_RunesOfTheDeep_js_components_teleport_js);
 import * as _D__Dev_RunesOfTheDeep_js_dungeongen_MazeGenerator_js from 'D:/Dev/RunesOfTheDeep/js/dungeongen/MazeGenerator.js';
