@@ -74,6 +74,7 @@ export class LevelGenerator extends Component {
 
     GameGlobals.gameState.currentRoomSubject.subscribe((r) => {
       const currentRoom = this.generator.getRoom(r[0], r[1]);
+      console.log(currentRoom.distanceFromEntrance);
       //this.render(currentRoom);
       this.fadeScreenComponent.FadeOutCompleted.once(() => {
         //this.levelParent.children.length = 0;

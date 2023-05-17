@@ -122,6 +122,7 @@ There rooms can occur often.
 - Gilded treasure chests: Ornate containers holding valuable items or powerful artifacts
 - Remnants of machinery or contraptions: Puzzle pieces for unlocking secret passages or activating hidden mechanisms within the stronghold
 - Bones and skulls of fallen creatures or dwarves: Evidence of previous battles fought in the depths of Ironforge Mountains
+- Ores; Can be used to upgrade weapons, tools and shields.
 
 
 ## XI. Dungeon and Story
@@ -148,6 +149,54 @@ By following these guidelines and aligning your maze-dungeon progression with Ki
 ### Implementation
 
 One way of getting this to work is to keep track of the distance in 'rooms' how for we are into the dungeon and change the story accordingly. 
+
+## XI. Enemies and Traps
+
+### Enemies
+
+- Cave Rats (Easy): Small, fast-moving rodents with sharp teeth that scurry around and nip at the player's ankles. They often attack in groups and can be taken out with a well-placed kick or swing of a weapon.
+
+- Goblin Scouts (Easy): Short, green-skinned creatures armed with rusty daggers and slingshots. They prefer to attack from a distance, but will use their daggers when cornered.
+
+- Undead Dwarves (Medium): The reanimated corpses of fallen dwarven warriors, still clad in their tattered armor. They wield rusty weapons and are slow but relentless in their pursuit of the player.
+
+- Troll Brutes (Medium): Larger than goblins, these hulking creatures possess incredible strength and swing large clubs at the player to deal massive damage.
+
+- Ensnaring Fungi (Medium): Strange, bioluminescent fungi that have grown over time due to lingering magic within the stronghold's walls. When approached too closely, they extend tendrils to ensnare the player and slowly drain their life force.
+
+- Poisonous Bats (Hard): Large bats with venomous bites that swoop down from above to attack unsuspecting players. Their presence is often signaled by eerie screeching echoing through the caverns.
+
+- Rival Dwarven Faction Soldiers (Hard): Armed with more advanced weapons than undead dwarves, these enemies have various combat abilities depending on their rank – such as archers raining arrows from afar or warriors charging into melee combat.
+
+- Golem Protectors (Hard): Animated stone constructs built by the dwarves as guardians for their most precious relics prior to "The Shattering." They are nearly impervious to physical attacks but can be weakened through magical means or exploiting specific weak points on their bodies.
+
+- Corrupted Artifacts (Very Hard): These once-magnificent relics have become twisted by malevolent energies unleashed during "The Shattering," which give them various powers such as unleashing devastating magical attacks or summoning powerful minions to fight alongside them.
+
+- The Shattered One (Final Boss - Extremely Hard): A vengeful spirit born from the combined greed and ambition of those who caused "The Shattering." It is an ethereal creature that possesses ancient artifacts, gaining unique abilities from each one it claims and using them against the player in its ultimate bid for power.
+
+Players must defeat each of these enemies by learning their attack patterns and exploiting weaknesses while managing limited resources like health potions or magical items found throughout the dungeon to ultimately uncover secrets locked away within the Ironforge Mountains' depths.
+
+### Traps
+
+- Tripwire (Easy): A barely visible wire stretched across the floor that, when stepped on or touched, triggers a hidden mechanism to release darts or activate a swinging pendulum. Players can avoid it by carefully stepping over the wire or disarming it.
+
+- Pressure Plates (Easy): Subtle depressions in the floor tiles that activate various traps, such as releasing poisonous gas or causing spikes to protrude from the walls. Players can bypass them by finding alternative routes or placing objects on the plates to avoid triggering them directly.
+
+- Pit Traps (Medium): False flooring hiding deep pits filled with sharp spikes, concealed beneath an apparently safe surface. Players must be cautious of these traps and use ranged weapons or magical abilities to test suspicious floors for safety.
+
+- Swinging Pendulums (Medium): Massive blades hanging from the ceiling that swing back and forth across a narrow passageway. Timing is crucial for players to sprint past these traps unscathed.
+
+- Flamethrower Statues (Medium): Stone statues of dwarven warriors with mouths that emit bursts of flame when triggered, often located in tight spaces where dodging is difficult. Players must time their movements carefully to avoid being scorched.
+
+- Sliding Walls (Hard): Walls that suddenly slide closed once triggered, either crushing unwary adventurers between them or separating party members and isolating them from one another. Keen observation of wall markings can help players anticipate and avoid this trap.
+
+- Collapsing Ceilings (Hard): Sections of ceilings rigged with hidden mechanisms to collapse under certain conditions, such as entering a specific room or removing an item from its pedestal. Players must search for structural weaknesses or clues indicating potential danger before proceeding.
+
+- Magical Runes (Hard): Glyphs engraved into floors, walls, or ceilings that trigger powerful spells upon activation – ranging from localized explosions to summoning hostile creatures against players who inadvertently activate them with touch or magical energy proximity detection.
+
+- Acid Pools (Very Hard): Hidden pools of corrosive acid disguised as water sources; adventurers who attempt to quench their thirst become victims instead, suffering severe damage over time until they manage to neutralize it using items like antidote potions found within the stronghold's depths.
+
+- The Guardian's Curse Trap (Final Trap - Extremely Hard): A unique trap located deep within the stronghold near valuable relics; those who get too close are inflicted with a potent curse sapping their strength and magic gradually while buffeting enemies around them with increased power – only lifted by defeating enemies drawn towards cursed players in increasingly difficult waves before reaching vital relics protected by this supernatural failsafe measure meant solely for "The Shattering" preventers caught unprepared during artifact handling events.
 
 # Note
 

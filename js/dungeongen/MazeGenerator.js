@@ -132,9 +132,12 @@ export class MazeGenerator {
     ];
 
     shuffleArray(directions);
+    
+    const currentRoom = this.getRoom(x, y);
+    currentRoom.distanceFromEntrance = distance;
 
     if(distance%10==0){
-      this.getRoom(x, y).isTreasure = true;
+      currentRoom.isTreasure = true;
     }
 
     for (const dir of directions) {

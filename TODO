@@ -4,5 +4,34 @@ Must Have:
     Basic game loop:
         ☐ Teleportation
         ☐ Reaching the end of the level
+    Design:
+        ☐ place props in the rooms to make every room unique
+        Roomtypes:
+            ☐ Entrance 
+                # this room give an introduction to the game
+            ☐ Introduction rooms
+                # these rooms give an introduction to the game mechanics
+                # these rooms are shown at a distance < 5 rooms from the entrance
+            ☐ Normal rooms
+                # these rooms are the main part of the game
+                # the get progressively harder
+            ☐ Hard Rooms
+                # the final rooms of the game, it should be clear the Shattering took it tool
+            ☐ 'The Shattering'-room
+                # this room is the last room of the game
+Should Have:
+    Design:
+        ☐ Add special treasure rooms every 10 rooms
+        ☐ Add special rooms at the end of each wrong path
+            # the can have some special treasure or tell a part of the lore
 
+Could Have:
+    ☐ Particles
+    ☐ Sound
+    ☐ Music
+    
+Would like:
 
+---
+
+Later:
