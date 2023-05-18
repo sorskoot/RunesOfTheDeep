@@ -4,6 +4,8 @@ Must Have:
     Basic game loop:
         ☐ Teleportation
         ☐ Reaching the end of the level
+    Unity Desiger:
+        ☐ Add a indicator for a random prop
     Design:
         ☐ place props in the rooms to make every room unique
         Roomtypes:
@@ -29,7 +31,7 @@ Could Have:
     ☐ Particles
     ☐ Sound
     ☐ Music
-    
+
 Would like:
 
 ---

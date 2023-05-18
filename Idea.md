@@ -26,17 +26,26 @@ As players uncover more about what transpired during "The Shattering" and delve 
 
 Piecing together clues from scattered documents and surviving murals on dungeon walls while encountering disillusioned dwarves still dwelling underground adds depth to both story and lore elements. It is up to players whether they choose to use discovered artifacts responsibly or follow down the ill-fated footsteps of those who brought about "The Shattering."
 
-## III. Gameplay Mechanics
+## III. Gameplay 
+
+### 1. Mechanics
 
 1. Procedurally Generated Levels - Each playthrough will present unique challenges with randomly generated dungeons offering varying levels of difficulty.
 2. Combat System - Players must engage in close-quarters combat using hammers or axes.
 3. Mining System - Players need to upgrade or buy tools to mine harder rocks as they progress to get better tools and weapons.
-4. Locomotion System - Players can move using teleportation on a grid. You can only teleport 1 or 2 tiles round you. To exit the room the player must be on the tile adjacent to the door.
-5. Upgradable Tools & Weapons - Throughout gameplay, players will gather resources for upgrading equipment such as mining tools for resource gathering and weapons for combat effectiveness.
-6. Artifact Collection - Discover hidden magical artifacts imbued with special powers that offer advantages during gameplay.
-7. Traps and Puzzles - Navigate through environmental hazards and solve puzzles scattered throughout dungeons.
-8. Permadeath - Upon character death, players must start anew but can retain some upgrades acquired in previous runs.
-9. Game progress will be saved between sessions.
+4. Upgradable Tools & Weapons - Throughout gameplay, players will gather resources for upgrading equipment such as mining tools for resource gathering and weapons for combat effectiveness.
+5. Artifact Collection - Discover hidden magical artifacts imbued with special powers that offer advantages during gameplay.
+6. Traps and Puzzles - Navigate through environmental hazards and solve puzzles scattered throughout dungeons.
+7. Permadeath - Upon character death, players must start anew but can retain some upgrades acquired in previous runs.
+8. Game progress will be saved between sessions.
+
+### 2. Controls
+1. Teleport - Players can move using teleportation on a grid. You can only teleport 1 or 2 tiles round you. To exit the room the player must be on the tile adjacent to the door.
+2. Rotate - Snap to rotate
+3. Move right controller with sword or pick axe
+4. Block attacks with shield in left controller
+5. Stats and menu is on inside of shield
+
 
 ## IV. Characters
 
@@ -123,6 +132,9 @@ There rooms can occur often.
 - Remnants of machinery or contraptions: Puzzle pieces for unlocking secret passages or activating hidden mechanisms within the stronghold
 - Bones and skulls of fallen creatures or dwarves: Evidence of previous battles fought in the depths of Ironforge Mountains
 - Ores; Can be used to upgrade weapons, tools and shields.
+
+### Technical
+Every room gets a seed assigned when it is generated. Everything in the room will be randomly placed using that seed. This (should) mean that it is safe to delete every when the room is exited, because it will generate exactly the same as before because it is using the same seed. Also, when saving the game, only the seed needs to be saved. The only problem here might arise when the game is updated, and changed, when the player reloads the game.
 
 
 ## XI. Dungeon and Story

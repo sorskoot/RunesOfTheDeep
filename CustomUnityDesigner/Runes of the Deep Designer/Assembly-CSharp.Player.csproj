@@ -62,6 +62,10 @@
     <Compile Include="Assets\Room.cs" />
     <Compile Include="Assets\RoomStart.cs" />
     <Compile Include="Assets\TileDescriptor.cs" />
+    <Compile Include="Assets\PropDescriptor.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\level.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

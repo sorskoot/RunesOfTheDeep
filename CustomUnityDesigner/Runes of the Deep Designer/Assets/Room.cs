@@ -1,5 +1,4 @@
 using Newtonsoft.Json;
-using UnityEditor.Experimental.GraphView;
 
 public class Room
 {
@@ -15,4 +14,7 @@ public class Room
 
     [JsonProperty("start")]
     public RoomStart Start { get; set; }
+
+    [JsonProperty("roomType")]
+    public string RoomType { get; set; }
 }
