@@ -8,7 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{ED42CAE0-FBBD-1C68-7CBB-6BC477561937}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -56,11 +57,21 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Editor\Export.cs" />
+    <Compile Include="Assets\Editor\GroupInto.cs" />
+    <Compile Include="Assets\Editor\MathExtensions.cs" />
+    <Compile Include="Assets\Editor\RandomizeSprites.cs" />
+    <Compile Include="Assets\Editor\RealignTiles.cs" />
+    <Compile Include="Assets\Editor\RenameSelection.cs" />
+    <Compile Include="Assets\Editor\ReplaceSprite.cs" />
+    <Compile Include="Assets\Editor\RoundOffColliders.cs" />
+    <Compile Include="Assets\Editor\ScriptableObjectUtility.cs" />
+    <Compile Include="Assets\Editor\SelectBySprite.cs" />
+    <Compile Include="Assets\Editor\SelectMissingSprites.cs" />
     <Compile Include="Assets\RoomData.cs" />
     <Compile Include="Assets\Pattern.cs" />
     <Compile Include="Assets\RoomDescriptor.cs" />
     <Compile Include="Assets\Room.cs" />
-    <Compile Include="Assets\Export.cs" />
     <Compile Include="Assets\RoomStart.cs" />
     <Compile Include="Assets\TileDescriptor.cs" />
   </ItemGroup>
@@ -773,8 +784,6 @@
     <Reference Include="Unity.VisualScripting.State">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.State.dll</HintPath>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

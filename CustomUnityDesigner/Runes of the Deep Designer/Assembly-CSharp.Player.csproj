@@ -60,7 +60,6 @@
     <Compile Include="Assets\Pattern.cs" />
     <Compile Include="Assets\RoomDescriptor.cs" />
     <Compile Include="Assets\Room.cs" />
-    <Compile Include="Assets\Export.cs" />
     <Compile Include="Assets\RoomStart.cs" />
     <Compile Include="Assets\TileDescriptor.cs" />
   </ItemGroup>

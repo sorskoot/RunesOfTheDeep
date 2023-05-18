@@ -31,7 +31,7 @@ Piecing together clues from scattered documents and surviving murals on dungeon 
 1. Procedurally Generated Levels - Each playthrough will present unique challenges with randomly generated dungeons offering varying levels of difficulty.
 2. Combat System - Players must engage in close-quarters combat using hammers or axes.
 3. Mining System - Players need to upgrade or buy tools to mine harder rocks as they progress to get better tools and weapons.
-4. Locomotion System - Players can move using teleportation on a grid.
+4. Locomotion System - Players can move using teleportation on a grid. You can only teleport 1 or 2 tiles round you. To exit the room the player must be on the tile adjacent to the door.
 5. Upgradable Tools & Weapons - Throughout gameplay, players will gather resources for upgrading equipment such as mining tools for resource gathering and weapons for combat effectiveness.
 6. Artifact Collection - Discover hidden magical artifacts imbued with special powers that offer advantages during gameplay.
 7. Traps and Puzzles - Navigate through environmental hazards and solve puzzles scattered throughout dungeons.

@@ -62,6 +62,7 @@
     <Compile Include="Assets\Editor\RandomizeSprites.cs" />
     <Compile Include="Assets\Editor\MathExtensions.cs" />
     <Compile Include="Assets\Editor\SelectMissingSprites.cs" />
+    <Compile Include="Assets\Editor\Export.cs" />
     <Compile Include="Assets\Editor\RoundOffColliders.cs" />
     <Compile Include="Assets\Editor\RealignTiles.cs" />
     <Compile Include="Assets\Editor\RenameSelection.cs" />
