@@ -1,3 +1,5 @@
+import { RoomTypes } from "./roomTemplates";
+
 export class Room {
   constructor() {
     this.doors = { north: false, west: false, south: false, east: false };
@@ -29,5 +31,10 @@ export class Room {
       case "W":
         return this.targetRooms.west;
     }
+  }
+
+  getRoomType(){
+    if(this.isEntrance) return RoomTypes.Entrance;
+    return RoomTypes.Normal;
   }
 }
