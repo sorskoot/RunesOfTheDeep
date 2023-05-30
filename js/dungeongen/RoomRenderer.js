@@ -1,3 +1,7 @@
+/**
+ * @file This file contains the RoomRenderer class.
+ * @requires typedefs.js
+ */
 import { WonderlandEngine, Object3D } from "@wonderlandengine/api";
 import { Tags, cloneObject } from "@sorskoot/wonderland-components";
 //import { LevelData } from "../data/level-data";
@@ -69,80 +73,46 @@ export class RoomRenderer {
             let newObj = this.createTile(i, h, j, tile.object);
             let tags = newObj.getComponent(Tags);
             if (tags && tags.hasTag("Door")) {
+              /** @type {DirectionSymbol} */
               let door = roomdesign[i][j];
-              let oldComp = newObj.getComponent(DoorHandler);
-              if (oldComp) {
-                oldComp.direction = door;
-                oldComp.targetRoomX = room.getTargetRoom(door).x;
-                oldComp.targetRoomY = room.getTargetRoom(door).y;
-                oldComp.active = true;
-              } else
-                newObj.addComponent(DoorHandler, {
-                  direction: door,
-                  targetRoomX: room.getTargetRoom(door).x,
-                  targetRoomY: room.getTargetRoom(door).y,
-                });
+              this.setupDoor(newObj, door, room.getTargetRoom(door));
             }
           }
         }
       }
     }
-    //     for (let h = 0; h < roomdesign.depth; h++) {
-    //       if (roomdesign.data[i][j][h]) {
-    //         let door = roomdesign.data[i][j][h].door;
-    //         let data = roomdesign.data[i][j][h].data;
-    //         let setupDoor = false;
-    //         if (door != null && door != undefined) {
-    //           setupDoor = true;
-    //           if (door == 0 && !room.doors.north) {
-    //             data = "Wall01";
-    //             setupDoor = false;
-    //           }
-    //           if (door == 1 && !room.doors.east) {
-    //             data = "Wall01";
-    //             setupDoor = false;
-    //           }
-    //           if (door == 2 && !room.doors.south) {
-    //             data = "Wall01";
-    //             setupDoor = false;
-    //           }
-    //           if (door == 3 && !room.doors.west) {
-    //             data = "Wall01";
-    //             setupDoor = false;
-    //           }
-    //         }
-
-    //         let tile = this.tileset.getTileByName(data);
-
-    //         let newObj = this.createTile(i, j, h, tile.object);
-
-    //         if (door != undefined && setupDoor) {
-    //           let oldComp = newObj.getComponent(DoorHandler);
-    //           if (oldComp) {
-    //             oldComp.direction = door;
-    //             oldComp.targetRoomX = room.getTargetRoom([..."NESW"][door]).x;
-    //             oldComp.targetRoomY = room.getTargetRoom([..."NESW"][door]).y;
-    //             oldComp.active = true;
-    //           } else
-    //             newObj.addComponent(DoorHandler, {
-    //               direction: door,
-    //               targetRoomX: room.getTargetRoom([..."NESW"][door]).x,
-    //               targetRoomY: room.getTargetRoom([..."NESW"][door]).y,
-    //             });
-    //         }
-
-    //         if (door != undefined && !setupDoor) {
-    //           //add an extra wall to close the gap
-    //           this.createTile(i, j + 1, h, tile.object);
-    //         }
-    //       }
-    //     }
-    //   }
-    //}
-
     this.createInerior(room, roomdesign);
   }
 
+  /**
+   * Setup the scripts for the door, adding a new one if needed.
+   * @param {Object3D} newObj the newly created object (the door)
+   * @param {DirectionSymbol} door The direction symbol of the door
+   * @param {*} room 
+   */
+  setupDoor(newObj,door, room) {
+
+    let oldComp = newObj.getComponent(DoorHandler);
+    if (oldComp) {
+      oldComp.direction = door;
+      oldComp.targetRoomX = room.x;
+      oldComp.targetRoomY = room.y;
+      oldComp.active = true;
+    }
+    else
+      newObj.addComponent(DoorHandler, {
+        direction: door,
+        targetRoomX: room.x,
+        targetRoomY: room.y,
+      });
+  }
+
+  /**
+   * 
+   * @param {*} h 
+   * @param {*} hasDoor 
+   * @returns 
+   */
   #renderDoorOrWall(h, hasDoor) {
     if (h === 0) {
       if (hasDoor) {

@@ -1,3 +1,8 @@
+/**
+ * @file This file contains the Room class.
+ * @requires typedefs.js
+ */
+
 import { RoomTypes } from "./roomTemplates";
 
 export class Room {
@@ -20,6 +25,11 @@ export class Room {
     return key;
   }
 
+  /**
+   * Gets the room in a specific direction
+   * @param {DirectionSymbol} direction 
+   * @returns {Room} the room in that direction; null if there is no room in that direction
+   */
   getTargetRoom(direction) {
     switch (direction) {
       case "N":
@@ -33,6 +43,10 @@ export class Room {
     }
   }
 
+  /**
+   * 
+   * @returns {RoomTypes} the type of the room
+   */
   getRoomType(){
     if(this.isEntrance) return RoomTypes.Entrance;
     return RoomTypes.Normal;

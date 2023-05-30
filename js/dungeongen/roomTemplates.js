@@ -1,34 +1,39 @@
+/**
+ * @file This file contains the RoomRenderer class.
+ * @requires typedefs.js
+ */
+
 export const RoomTypes = {
-    Entrance: "entrance",
-    Exit: "exit",
-    Treasure: "treasure",
-    Normal: "normal",
+    Entrance: /** @type {RoomType} */ ("entrance"),
+    Exit: /** @type {RoomType} */ ("exit"),
+    Treasure: /** @type {RoomType} */ ("treasure"),
+    Normal: /** @type {RoomType} */ ("normal"),
 }
 
 export class RoomTemplate{
     /**
      * @description the name of the room
-     * @type {string} name
+     * @type {string | undefined} name
      */
     name;
     /**
      * @description the type of the room
-     * @type {RoomTypes} type
+     * @type {RoomType | undefined} type
      */
     type;
     /**
      * @description the pattern of the room
-     * @type {string[]} pattern
+     * @type {string[] | undefined} pattern
      */
     pattern;
     /**
-     * @description the height of the ceiling in tiles, randomly chosen from this array 
-     * @type {number[]} ceilingHeight
+     * @description the height of the ceiling in tiles, randomly chosen from this array
+     * @type {number[] | undefined} ceilingHeight
      */
     ceilingHeight;
     /**
      * @description whether or not this room can be rotated
-     * @type {boolean} canBeRotated
+     * @type {boolean | undefined} canBeRotated
      */
     canBeRotated;
 }
