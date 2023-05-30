@@ -28,6 +28,8 @@ import * as _D__Dev_RunesOfTheDeep_js_dungeongen_grid_js from 'D:/Dev/RunesOfThe
 _registerEditor(_D__Dev_RunesOfTheDeep_js_dungeongen_grid_js);
 import * as _D__Dev_RunesOfTheDeep_js_dungeongen_room_js from 'D:/Dev/RunesOfTheDeep/js/dungeongen/room.js';
 _registerEditor(_D__Dev_RunesOfTheDeep_js_dungeongen_room_js);
+import * as _D__Dev_RunesOfTheDeep_js_dungeongen_roomTemplates_js from 'D:/Dev/RunesOfTheDeep/js/dungeongen/roomTemplates.js';
+_registerEditor(_D__Dev_RunesOfTheDeep_js_dungeongen_roomTemplates_js);
 import * as _D__Dev_RunesOfTheDeep_js_dungeongen_tile_js from 'D:/Dev/RunesOfTheDeep/js/dungeongen/tile.js';
 _registerEditor(_D__Dev_RunesOfTheDeep_js_dungeongen_tile_js);
 import * as _D__Dev_RunesOfTheDeep_js_dungeongen_tileset_js from 'D:/Dev/RunesOfTheDeep/js/dungeongen/tileset.js';

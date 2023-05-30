@@ -1,5 +1,5 @@
 import { WonderlandEngine, Object3D } from "@wonderlandengine/api";
-import { cloneObject } from "@sorskoot/wonderland-components";
+import { Tags, cloneObject } from "@sorskoot/wonderland-components";
 //import { LevelData } from "../data/level-data";
 import { Room } from "./room";
 import { DoorHandler } from "../components/door-handler";
@@ -50,20 +50,39 @@ export class RoomRenderer {
               }
               break;
             case "N":
+              tile = this.#renderDoorOrWall(h, room.doors.north);
+              break;
             case "E":
+              tile = this.#renderDoorOrWall(h, room.doors.east);
+              break;
             case "S":
+              tile = this.#renderDoorOrWall(h, room.doors.south);
+              break;
             case "W":
-              if (h == 0) {
-                tile = this.tileset.getTileByName("Door");
-              } else if (h > 1) {
-                tile = this.tileset.getTileByName("Wall01");
-              }
+              tile = this.#renderDoorOrWall(h, room.doors.west);
               break;
             default:
               continue;
           }
-          if(tile){ // only render a tile if we have a tile.
-            this.createTile(i, h, j, tile.object);
+          if (tile) {
+            // only render a tile if we have a tile.
+            let newObj = this.createTile(i, h, j, tile.object);
+            let tags = newObj.getComponent(Tags);
+            if (tags && tags.hasTag("Door")) {
+              let door = roomdesign[i][j];
+              let oldComp = newObj.getComponent(DoorHandler);
+              if (oldComp) {
+                oldComp.direction = door;
+                oldComp.targetRoomX = room.getTargetRoom(door).x;
+                oldComp.targetRoomY = room.getTargetRoom(door).y;
+                oldComp.active = true;
+              } else
+                newObj.addComponent(DoorHandler, {
+                  direction: door,
+                  targetRoomX: room.getTargetRoom(door).x,
+                  targetRoomY: room.getTargetRoom(door).y,
+                });
+            }
           }
         }
       }
@@ -122,6 +141,20 @@ export class RoomRenderer {
     //}
 
     this.createInerior(room, roomdesign);
+  }
+
+  #renderDoorOrWall(h, hasDoor) {
+    if (h === 0) {
+      if (hasDoor) {
+        return this.tileset.getTileByName("Door");
+      } else {
+        return this.tileset.getTileByName("Wall01");
+      }
+    } else if (h === 1 && !hasDoor) {
+      return this.tileset.getTileByName("Wall01");
+    } else if (h > 1) {
+      return this.tileset.getTileByName("Wall01");
+    }
   }
 
   /**
