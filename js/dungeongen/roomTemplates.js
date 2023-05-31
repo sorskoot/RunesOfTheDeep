@@ -28,9 +28,9 @@ export class RoomTemplate{
     pattern;
     /**
      * @description the height of the ceiling in tiles, randomly chosen from this array
-     * @type {number[] | undefined} ceilingHeight
+     * @type {number[]} ceilingHeight
      */
-    ceilingHeight;
+    ceilingHeight = [2];
     /**
      * @description whether or not this room can be rotated
      * @type {boolean | undefined} canBeRotated

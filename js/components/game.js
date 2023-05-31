@@ -1,15 +1,18 @@
-import { Component, Type } from "@wonderlandengine/api";
+import { Component, Object3D, Property } from "@wonderlandengine/api";
 import GameGlobals from "../globals";
 import { LevelGenerator } from "./level-generator";
-import { FadeScreen } from "./fadeScreen";
 
 export class Game extends Component {
   static TypeName = "game";
   static Properties = {
-    levelGenObject: { type: Type.Object },
-    playerObject: { type: Type.Object },
+    levelGenObject: Property.object(),
+    playerObject: Property.object(),
   };
 
+  /**
+   * @type {Object3D}
+   */
+  levelGenObject;
   /**
    * @type {LevelGenerator}
    */
@@ -17,8 +20,7 @@ export class Game extends Component {
 
   init() {
     // document.getElementById("afterLoading").style.display = "block";
-
-    this.#levelGen = this.levelGenObject.getComponent("level-generator");
+    this.#levelGen = this.levelGenObject.getComponent(LevelGenerator);
 
     this.engine.onXRSessionStart.add(() => (GameGlobals.gameState.isInVR = true));
     this.engine.onXRSessionEnd.add(() => (GameGlobals.gameState.isInVR = false));
@@ -35,7 +37,7 @@ export class Game extends Component {
       //  GameGlobals.gameState.playerRotation = result.cameraRotation;
       GameGlobals.gameState.playerPosition = result.cameraPosition;
 
-      GameGlobals.gameState.navigateToRoom(0, 0, "none");
+      GameGlobals.gameState.navigateToRoom(0, 0);
 
       // GameGlobals.gameState.availableTargets = result.targetsToComplete;
       // GameGlobals.levelState.availableTargets = result.targetsToComplete;
@@ -43,24 +45,24 @@ export class Game extends Component {
 
     setTimeout(() => {
       GameGlobals.gameState.level = 0;
-    },1000); // just delay the start. This will change once we have a menu.
+    }, 1000); // just delay the start. This will change once we have a menu.
 
     window.addEventListener("keyup", (e) => {
       let p = GameGlobals.gameState.currentRoom;
       if (e.code == "Digit1") {
-        p[0] +=1;
+        p[0] += 1;
         GameGlobals.gameState.currentRoom = p;
       }
       if (e.code == "Digit2") {
-        p[0] -=1;
+        p[0] -= 1;
         GameGlobals.gameState.currentRoom = p;
       }
       if (e.code == "Digit3") {
-        p[1] +=1;
+        p[1] += 1;
         GameGlobals.gameState.currentRoom = p;
       }
       if (e.code == "Digit4") {
-        p[1] -=1;
+        p[1] -= 1;
         GameGlobals.gameState.currentRoom = p;
       }
     });

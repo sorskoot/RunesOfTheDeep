@@ -1,5 +1,5 @@
-import { Component, Type } from "@wonderlandengine/api";
-import { ObjectCache,cloneObject } from "@sorskoot/wonderland-components";
+import { Component, Type, Object3D } from "@wonderlandengine/api";
+import { ObjectCache, cloneObject } from "@sorskoot/wonderland-components";
 
 import { LevelData } from "../data/level-data";
 import GameGlobals from "../globals";
@@ -19,7 +19,21 @@ export class LevelGenerator extends Component {
     levelRoot: { type: Type.Object },
     fadeScreenObject: { type: Type.Object },
   };
+
   /**
+   * The object used to get the fade screen component from.
+   * @type {Object3D}
+   */
+  fadeScreenObject;
+
+  /**
+   * The level root object. All level objects will be added as children of this object.
+   * @type {Object3D}
+   */
+  levelRoot;
+  
+  /**
+   * The component that is used to fade the screen to black and back.
    * @type {FadeScreen}
    */
   fadeScreenComponent;
@@ -28,17 +42,20 @@ export class LevelGenerator extends Component {
    * overrides the init method of the component
    */
   init() {
-    this.generator = new MazeGenerator(size, size);    
+    this.generator = new MazeGenerator(size, size);
   }
 
-  start(){
+  /**
+   * overrides the start method of the component
+   */
+  start() {
     this.fadeScreenComponent = this.fadeScreenObject.getComponent(FadeScreen);
   }
 
-    /**
+  /**
    * Generates a level
    * @param {Number} level The level to generate
-   * @returns {cameraPosition, targetsToComplete, cameraRotation}
+   * @returns {any}
    */
   generate(level = 0, parent = null) {
     console.log("generate level", level);
@@ -46,7 +63,7 @@ export class LevelGenerator extends Component {
     this.currentLd = LevelData[level];
     this.levelParent = parent || this.levelRoot;
 
-    this.tileset = new TileSet(this.object.children, {});
+    this.tileset = new TileSet(this.object.children);
     this.patternSet = new PatternSet();
 
     this.generator.generate();
@@ -93,78 +110,12 @@ export class LevelGenerator extends Component {
       this.currentLd.start.Rz,
     ];
 
-    // for (let layer = 0; layer < this.currentLd.layer.length; layer++) {
-    //   for (let row = 0; row < this.currentLd.layer[layer].data.length; row++) {
-    //     for (
-    //       let col = 0;
-    //       col < this.currentLd.layer[layer].data[row].length;
-    //       col++
-    //     ) {
-    //       let tile = this.currentLd.layer[layer].data[row][col];
-
-    //       if (layer == 0 && tile != "T") {
-    //         this.createFloor(
-    //           row - this.currentLd.width / 2,
-    //           0,
-    //           col - this.currentLd.height / 2
-    //         );
-    //       }
-
-    //       if (layer == this.currentLd.layer.length - 1) {
-    //         this.createCeiling(
-    //           row - this.currentLd.width / 2,
-    //           layer + 1,
-    //           col - this.currentLd.height / 2
-    //         );
-    //       }
-
-    //       if (tile == 0) {
-    //         continue;
-    //       }
-    //       switch (tile) {
-    //         case "S":
-    //           cameraPosition = [
-    //             row - this.currentLd.width / 2,
-    //             0,
-    //             col - this.currentLd.height / 2,
-    //           ];
-    //           break;
-    //         case "B":
-    //           this.createBox(
-    //             row - this.currentLd.width / 2,
-    //             col - this.currentLd.height / 2,
-    //             layer
-    //           );
-    //           break;
-    //         case "T":
-    //           this.createTarget(
-    //             row - this.currentLd.width / 2,
-    //             col - this.currentLd.height / 2,
-    //             layer
-    //           );
-    //           targetsToComplete++;
-    //           break;
-
-    //         default:
-    //           this.createCube(
-    //             row - this.currentLd.width / 2,
-    //             layer,
-    //             col - this.currentLd.height / 2,
-    //             tile
-    //           );
-    //           break;
-    //       }
-    //     }
-    //   }
-    // }
-    // console.log(`blocks in cache: ${this.blockCache.index}`);
-    //cameraRotation = this.currentLd.cam;
     return { cameraPosition, cameraRotation };
   }
 
   /**
-   *
-   * @param {Room} room
+   * Creates a room in the scene that is rendered and where the player can do stuff
+   * @param {Room} room The room to render
    */
   render(room) {
     const roomdesign = this.currentLd;
@@ -217,7 +168,7 @@ export class LevelGenerator extends Component {
             // adjusting their positions based on their indices within the grid.
             const newRowPos = row * ps + gridRow - (size * ps) / 2;
             const newColPos = col * ps + gridColumn - (size * ps) / 2;
-            
+
             let tileIndex = pattern[gridRow][gridColumn];
             if (currentRoom.isEntrance) {
               tileIndex = 5;

@@ -6,6 +6,11 @@ export class LookAtPlayer extends Component {
         target: {type: Type.Object}
     }
 
+    /**
+     * The player object that the object looks at
+     */
+    target;
+
     update(dt) {
          if (this.target) {
             let pos = this.target.getPositionWorld();

@@ -1,11 +1,11 @@
-import {Component, MeshComponent, Type, Emitter} from '@wonderlandengine/api';
+import {Component, MeshComponent, Property, Emitter} from '@wonderlandengine/api';
 import { Easing, clamp, lerp } from '@sorskoot/wonderland-components/src/utils/lerp';
 
 export class FadeScreen extends Component {
     static TypeName = 'fade-screen';
     static Properties = {
-        fadeInTime: {type: Type.Float, default: 1},
-        continuous:{ type: Type.Bool, default: true}
+        fadeInTime: Property.float(1),
+        continuous: Property.bool(true)
     }
 
     /**
@@ -19,6 +19,18 @@ export class FadeScreen extends Component {
      * @type {Emitter}
      */
     FadeOutCompleted;
+
+    /**
+     * The time it takes to fade in or out.
+     * @type {number}
+     */
+    fadeInTime;
+
+    /**
+     * If true, the screen will fade in again after fading out.
+     * @type {boolean}
+     */
+    continuous;
 
     init() {
         this.FadeInCompleted = new Emitter();
@@ -50,15 +62,15 @@ export class FadeScreen extends Component {
         this.#isRunning = true;
     }
 
-    update(dt) {
+    update(delta) {
         if (this.#isRunning) {
             let alpha;
             if(this.#isFadingIn){
-                this.#deltaTime -= dt / this.fadeInTime;
+                this.#deltaTime -= delta / this.fadeInTime;
                 alpha = clamp(lerp(0, 1, this.#deltaTime, Easing.InQuad), 0, 1);
             }
             if(this.#isFadingOut){
-                this.#deltaTime += dt / this.fadeInTime;
+                this.#deltaTime += delta / this.fadeInTime;
                 alpha = clamp(lerp(0, 1, this.#deltaTime, Easing.OutQuad), 0, 1);
             }
 

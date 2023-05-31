@@ -26,10 +26,15 @@ export class Tile {
   /**
    * 
    * @param {string} name 
-   * @param {Object3D} object 
+   * @param {Object3D|undefined} object 
    * @param {number} index 
    */
   constructor(name, object, index) {
+
+    if(!object){
+      throw new Error("object is undefined");
+    }
+
     this.name = name;
     this.object = object;
     this.index = index;

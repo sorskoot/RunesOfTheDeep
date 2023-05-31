@@ -5,16 +5,20 @@
 
 import { WonderlandEngine, Object3D } from "@wonderlandengine/api";
 import { Tags, cloneObject } from "@sorskoot/wonderland-components";
-//import { LevelData } from "../data/level-data";
 import { Room } from "./room";
 import { DoorHandler } from "../components/door-handler";
 import { TileSet } from "./tileset";
 import RNG from "@sorskoot/wonderland-components/src/utils/rng";
 import { roomTemplates } from "./roomTemplates";
+import { Tile } from "./tile";
 
+/**
+ * The Room Renderer is responsible for rendering a room.
+ */
 export class RoomRenderer {
+
   /**
-   *
+   * Instantiates a new RoomRenderer
    * @param {WonderlandEngine} engine
    * @param {Object3D} parent
    * @param {TileSet} tileset
@@ -32,10 +36,17 @@ export class RoomRenderer {
    * @param {Room} room The room to render
    */
   render(room) {
-    //const roomdesign = LevelData[0];
     let template = roomTemplates.find((template) => template.type == room.getRoomType());
-
+    
+    if(!template) {
+      throw new Error(`No template found for room type ${room.getRoomType()}`);
+    }
+    
     const roomdesign = template.pattern;
+    if(!roomdesign) {
+      throw new Error(`No room design found for room type ${room.getRoomType()}`);
+    }
+
     for (let i = 0; i < roomdesign.length; i++) {
       for (let j = 0; j < roomdesign[i].length; j++) {
         for (let h = 0; h < template.ceilingHeight[0]; h++) {
@@ -74,9 +85,7 @@ export class RoomRenderer {
             let newObj = this.createTile(i, h, j, tile.object);
             let tags = newObj.getComponent(Tags);
             if (tags && tags.hasTag("Door")) {
-              /** @type {DirectionSymbol} */
-              let door = roomdesign[i][j];
-              this.setupDoor(newObj, door, room.getTargetRoom(door));
+              this.setupDoor(newObj, room.getTargetRoom(roomdesign[i][j]));
             }
           }
         }
@@ -87,32 +96,28 @@ export class RoomRenderer {
 
   /**
    * Setup the scripts for the door, adding a new one if needed.
-   * @param {Object3D} newObj the newly created object (the door)
-   * @param {DirectionSymbol} door The direction symbol of the door
+   * @param {Object3D} newObj the newly created object (the door)   
    * @param {*} room 
    */
-  setupDoor(newObj,door, room) {
-
+  setupDoor(newObj, room) {
     let oldComp = newObj.getComponent(DoorHandler);
     if (oldComp) {
-      oldComp.direction = door;
       oldComp.targetRoomX = room.x;
       oldComp.targetRoomY = room.y;
       oldComp.active = true;
     }
     else
       newObj.addComponent(DoorHandler, {
-        direction: door,
         targetRoomX: room.x,
         targetRoomY: room.y,
       });
   }
 
   /**
-   * 
-   * @param {*} h 
-   * @param {*} hasDoor 
-   * @returns 
+   * Renders a door or wall depending on the height and if it there's a door
+   * @param {number} h 
+   * @param {boolean} hasDoor 
+   * @returns {Tile}
    */
   #renderDoorOrWall(h, hasDoor) {
     if (h === 0) {
