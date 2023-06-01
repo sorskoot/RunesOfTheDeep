@@ -1418,9 +1418,9 @@
                 }
             ],
             "translation": [
-                6.5,
-                2.0,
-                4.5
+                8.4893178,
+                -1000.0,
+                2.3070492
             ],
             "rotation": [
                 0.0,
@@ -1468,6 +1468,87 @@
                 1.0
             ],
             "parent": "235"
+        },
+        "344": {
+            "name": "Weapon",
+            "parent": "129",
+            "translation": [
+                0.0,
+                0.0,
+                0.0099999
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scaling": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "355": {
+            "link": {
+                "name": "Sword",
+                "file": "models\\Sword.fbx"
+            },
+            "parent": "344",
+            "scaling": [
+                0.3,
+                0.3,
+                0.3
+            ],
+            "rotation": [
+                -0.7071068,
+                0.0,
+                0.0,
+                0.7071068
+            ]
+        },
+        "356": {
+            "name": "Shield",
+            "parent": "130",
+            "rotation": [
+                0.3875147,
+                -0.591468,
+                -0.3875155,
+                0.5914639
+            ],
+            "translation": [
+                -0.100226,
+                0.0018591,
+                0.0762849
+            ],
+            "scaling": [
+                0.9999756,
+                1.0,
+                0.9999758
+            ]
+        },
+        "359": {
+            "link": {
+                "name": "Shield1H",
+                "file": "models\\Shield.fbx"
+            },
+            "parent": "356",
+            "scaling": [
+                0.8000001,
+                0.8000001,
+                0.8
+            ],
+            "translation": [
+                -1.0764711788624481e-8,
+                0.0,
+                3.4272676430191495e-7
+            ],
+            "rotation": [
+                -2.8936327112205618e-8,
+                -0.0,
+                -0.2427287,
+                0.9700942
+            ]
         }
     },
     "meshes": {
@@ -1676,6 +1757,42 @@
             "link": {
                 "name": "Plane.001",
                 "file": "models\\Tiles.fbx"
+            }
+        },
+        "350": {
+            "link": {
+                "name": "Cylinder.037",
+                "file": "models\\Sword.fbx"
+            }
+        },
+        "351": {
+            "link": {
+                "name": "Cylinder.037.0",
+                "file": "models\\Sword.fbx"
+            }
+        },
+        "352": {
+            "link": {
+                "name": "Cylinder.037.1",
+                "file": "models\\Sword.fbx"
+            }
+        },
+        "353": {
+            "link": {
+                "name": "Cylinder.037.2",
+                "file": "models\\Sword.fbx"
+            }
+        },
+        "354": {
+            "link": {
+                "name": "Cylinder.037.3",
+                "file": "models\\Sword.fbx"
+            }
+        },
+        "358": {
+            "link": {
+                "name": "Shield1hMesh",
+                "file": "models\\Shield.fbx"
             }
         }
     },
@@ -2260,6 +2377,42 @@
                 "pixelSize": 24.0,
                 "size": 24
             }
+        },
+        "345": {
+            "link": {
+                "name": "DarkSteel",
+                "file": "models\\Sword.fbx"
+            }
+        },
+        "346": {
+            "link": {
+                "name": "DarkWood",
+                "file": "models\\Sword.fbx"
+            }
+        },
+        "347": {
+            "link": {
+                "name": "LightWood",
+                "file": "models\\Sword.fbx"
+            }
+        },
+        "348": {
+            "link": {
+                "name": "LightSteel",
+                "file": "models\\Sword.fbx"
+            }
+        },
+        "349": {
+            "link": {
+                "name": "Steel",
+                "file": "models\\Sword.fbx"
+            }
+        },
+        "357": {
+            "link": {
+                "name": "Shield1h Mat",
+                "file": "models\\Shield.fbx"
+            }
         }
     },
     "shaders": {
@@ -2616,7 +2769,9 @@
         "assets/tiles/tiles_07.png",
         "assets/tiles/tiles_09.png",
         "assets/tiles/tiles_10.png",
-        "models/InvertedSphere.fbx"
+        "models/InvertedSphere.fbx",
+        "models/Sword.fbx",
+        "models/Shield.fbx"
     ],
     "fonts": {
         "230": {
