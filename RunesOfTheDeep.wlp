@@ -17,6 +17,14 @@
                 0.9999998,
                 1.0,
                 0.9999998
+            ],
+            "components": [
+                {
+                    "type": "wasd-controls",
+                    "wasd-controls": {
+                        "headObject": "17"
+                    }
+                }
             ]
         },
         "15": {
@@ -308,12 +316,6 @@
             "components": [
                 {
                     "type": "player-height"
-                },
-                {
-                    "type": "wasd-controls",
-                    "wasd-controls": {
-                        "headObject": "17"
-                    }
                 }
             ],
             "translation": [

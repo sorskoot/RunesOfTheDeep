@@ -35,7 +35,7 @@ export class Game extends Component {
       let result = this.#levelGen.generate(level);
 
       //  GameGlobals.gameState.playerRotation = result.cameraRotation;
-      GameGlobals.gameState.playerPosition = result.cameraPosition;
+  //    GameGlobals.gameState.playerPosition = result.cameraPosition;
 
       GameGlobals.gameState.navigateToRoom(0, 0);
 

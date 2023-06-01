@@ -111,14 +111,14 @@ export class LevelGenerator extends Component {
 
     this.renderDebug(this.generator);
 
-    let cameraPosition = [this.currentLd.start.X, this.currentLd.start.Y, this.currentLd.start.Z];
-    let cameraRotation = [
-      this.currentLd.start.Rx,
-      this.currentLd.start.Ry,
-      this.currentLd.start.Rz,
-    ];
-
-    return { cameraPosition, cameraRotation };
+    // let cameraPosition = [this.currentLd.start.X, this.currentLd.start.Y, this.currentLd.start.Z];
+    // let cameraRotation = [
+    //   this.currentLd.start.Rx,
+    //   this.currentLd.start.Ry,
+    //   this.currentLd.start.Rz,
+    // ];
+    // console.log("cameraPosition", cameraPosition, "cameraRotation", cameraRotation)
+    // return { cameraPosition, cameraRotation };
   }
 
   /**

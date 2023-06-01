@@ -108,12 +108,23 @@ export class GameState {
 
     navigating=false;
 
-    navigateToRoom(roomx,roomy){
+    /**
+     * Navigate to a room
+     * @param {number} roomx 
+     * @param {number} roomy 
+     * @param {DirectionSymbol} direction 
+     */
+    navigateToRoom(roomx,roomy, direction=null){
         if(this.navigating) return;
         this.navigating=true;
         
         this.currentRoom = [roomx,roomy];
         
+        // use direction to teleport to the correct location in the new room
+        if(!direction){
+            this.playerPosition = [3,0,7];
+            this.playerRotation = 270;
+        }
         this.navigating=false;
     }
 

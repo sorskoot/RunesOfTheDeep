@@ -73,6 +73,6 @@ export class SorskootTeleport extends Component {
 
   #rotatePlayer(rotationToAdd) {
     this.camRoot.resetRotation();
-    this.camRoot.rotateAxisAngleDegLocal([0, 1, 0], rotationToAdd);
+    this.camRoot.rotateAxisAngleDegObject([0, 1, 0], rotationToAdd);
   }
 }

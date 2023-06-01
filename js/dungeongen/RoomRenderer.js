@@ -101,7 +101,6 @@ export class RoomRenderer {
                 tile = this.#tileset.getTileByName("Floor01");
               } else if (h == template.ceilingHeight[0] - 1) {
                 tile = this.#tileset.getTileByName("Ceiling01");
-                console.log(tile);
               } else {
                 continue;
               }
@@ -126,7 +125,8 @@ export class RoomRenderer {
             let newObj = this.createTile(i, h, j, tile.object);
             let tags = newObj.getComponent(Tags);
             if (tags && tags.hasTag("Door")) {
-              this.setupDoor(newObj, room.getTargetRoom(roomdesign[i][j]));
+              this.setupDoor(newObj, room.getTargetRoom(roomdesign[i][j]),
+              /** @type {DirectionSymbol} */ (roomdesign[i][j]));
             }
           }
         }
@@ -140,15 +140,18 @@ export class RoomRenderer {
    * Setup the scripts for the door, adding a new one if needed.
    * @param {Object3D} newObj the newly created object (the door)
    * @param {*} room
+   * @param {DirectionSymbol} direction
    */
-  setupDoor(newObj, room) {
+  setupDoor(newObj, room, direction) {
     let oldComp = newObj.getComponent(DoorHandler);
     if (oldComp) {
+      oldComp.direction = direction;
       oldComp.targetRoomX = room.x;
       oldComp.targetRoomY = room.y;
       oldComp.active = true;
     } else
       newObj.addComponent(DoorHandler, {
+        direction: direction,
         targetRoomX: room.x,
         targetRoomY: room.y,
       });

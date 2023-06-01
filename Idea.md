@@ -202,6 +202,14 @@ Players must defeat each of these enemies by learning their attack patterns and 
 
 - The Guardian's Curse Trap (Final Trap - Extremely Hard): A unique trap located deep within the stronghold near valuable relics; those who get too close are inflicted with a potent curse sapping their strength and magic gradually while buffeting enemies around them with increased power – only lifted by defeating enemies drawn towards cursed players in increasingly difficult waves before reaching vital relics protected by this supernatural failsafe measure meant solely for "The Shattering" preventers caught unprepared during artifact handling events.
 
+# possible assets
+
+These assets might be usable for the first version of the game:
+
+- https://merchant-shade.itch.io/16x16-mixed-rpg-icons (free)
+- https://xenophero.itch.io/rock-sprites (free)
+- https://incremental-inc.itch.io/ores-and-rocks-16x16-pixel-sprites ($2)
+
 # Note
 
 The first draft of this design document is created by Rosie and tweaked by hand. Since it mostly generated it probably going to change a lot while developing the game. The document is vastly extended since using a combination of AI and just I. 
