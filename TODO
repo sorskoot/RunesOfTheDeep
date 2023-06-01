@@ -7,6 +7,7 @@ Must Have:
             # max distance should be 1 tile, otherwise similar to SS13
         ☐ When entering a room you should start at the door you entered from
         ☐ Reaching the end of the level
+        ✔ Snap-to-rotate @done(23-06-01 11:49)
     Design:
         ☐ Give the player a sword and a shield
         ☐ place props in the rooms to make every room unique

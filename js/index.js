@@ -27,6 +27,7 @@ import {LookAtPlayer} from './components/look-at-player.js';
 import {SorskootTeleport} from './components/teleport.js';
 import {TileDescriptor} from './dungeongen/components/tileComponent.js';
 import {Flipbook} from './../node_modules/@sorskoot/wonderland-components/src/components/flipbook.js';
+import {SnapRotate} from './../node_modules/@sorskoot/wonderland-components/src/components/snap-rotate.js';
 import {Tags} from './../node_modules/@sorskoot/wonderland-components/src/components/tags.js';
 /* wle:auto-imports:end */
 
@@ -101,6 +102,7 @@ engine.registerComponent(LookAtPlayer);
 engine.registerComponent(SorskootTeleport);
 engine.registerComponent(TileDescriptor);
 engine.registerComponent(Flipbook);
+engine.registerComponent(SnapRotate);
 engine.registerComponent(Tags);
 /* wle:auto-register:end */
 
