@@ -3,11 +3,16 @@
 Must Have:
     Basic game loop:
         ☐ Teleportation
+            # teleport to places around the room
+            # max distance should be 1 tile, otherwise similar to SS13
+        ☐ When entering a room you should start at the door you entered from
         ☐ Reaching the end of the level
-    Unity Desiger:
-        ☐ Add a indicator for a random prop
     Design:
+        ☐ Give the player a sword and a shield
         ☐ place props in the rooms to make every room unique
+        ☐ better looking indicators
+        ☐ Lighting should be placed based on the map
+            # This might mean there has to be a lighting pool
         Roomtypes:
             ☐ Entrance 
                 # this room give an introduction to the game
@@ -23,7 +28,6 @@ Must Have:
                 # this room is the last room of the game
 Should Have:
     Design:
-        ☐ Add special treasure rooms every 10 rooms
         ☐ Add special rooms at the end of each wrong path
             # the can have some special treasure or tell a part of the lore
 
@@ -32,8 +36,11 @@ Could Have:
     ☐ Sound
     ☐ Music
 
-Would like:
 
 ---
 
-Later:
+
+Archive:
+  ✘ Unity Desiger: @cancelled(23-06-01 07:59) @project(Must Have)
+  ✘ Add a indicator for a random prop @cancelled(23-06-01 07:59) @project(Must Have)
+  ✔ Add special treasure rooms every 10 rooms @done(23-06-01 07:59) @project(Should Have.Design)
