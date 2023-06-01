@@ -167,7 +167,12 @@
                 {
                     "type": "light",
                     "light": {
-                        "intensity": 3.3329999
+                        "intensity": 3.3329999,
+                        "color": [
+                            1.0,
+                            0.4941176,
+                            0.0
+                        ]
                     },
                     "active": true
                 }
@@ -508,7 +513,8 @@
                     "type": "level-generator",
                     "level-generator": {
                         "levelRoot": "237",
-                        "fadeScreenObject": "314"
+                        "fadeScreenObject": "314",
+                        "lights": "235"
                     }
                 }
             ]
@@ -1394,6 +1400,74 @@
                 1.4999992,
                 1.4999996
             ]
+        },
+        "342": {
+            "name": "Light",
+            "components": [
+                {
+                    "type": "light",
+                    "light": {
+                        "intensity": 3.3329999,
+                        "color": [
+                            1.0,
+                            0.4941176,
+                            0.0
+                        ]
+                    },
+                    "active": true
+                }
+            ],
+            "translation": [
+                6.5,
+                2.0,
+                4.5
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scaling": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "parent": "235"
+        },
+        "343": {
+            "name": "Light",
+            "components": [
+                {
+                    "type": "light",
+                    "light": {
+                        "intensity": 3.3329999,
+                        "color": [
+                            1.0,
+                            0.4941176,
+                            0.0
+                        ]
+                    },
+                    "active": true
+                }
+            ],
+            "translation": [
+                0.9878668,
+                -997.5812377,
+                1.1810134
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scaling": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "parent": "235"
         }
     },
     "meshes": {

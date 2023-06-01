@@ -47,18 +47,18 @@ export const roomTemplates = [
     {
         name: "entrance",
         type: RoomTypes.Entrance,
-        ceilingHeight: [3],
+        ceilingHeight: [4],
         canBeRotated: false,
         pattern: [
             " #####N##### ",
             "#.C........C#",
-            "#...........#",
+            "#.........%.#",
             "#..........# ",
-            "#..........# ",
+            "#..%.......# ",
             "W...........E",
             "#C........CC#",
             "#...........#",
-            "##..........#",
+            "##.....%....#",
             "  ##........#",
             "    #S###### "
         ]
@@ -66,13 +66,13 @@ export const roomTemplates = [
     {
         name: "normal",
         type: RoomTypes.Normal,
-        ceilingHeight: [2,3],
+        ceilingHeight: [3,4],
         canBeRotated: true,
         pattern: [
             " #N#   ",
             " #..## ",
             "#X...X#",
-            "W......E",
+            "W..%...E",
             "#....X#",
             " #S### "
         ]
@@ -88,13 +88,13 @@ export const RoomTemplatePatternDefinitions = {
     },
     "W": { // Door to the west
     },
-    "C": { // Campfire
+    "C": { // Campfire( max 1 per room)
     },
     ".": { // Empty space
     },
     "#": { // Wall
     },
-    "%": { // Wall with Torch
+    "%": { // Torch (light)
     },
     "X":{// Enemy
     },

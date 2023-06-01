@@ -1,4 +1,4 @@
-import { Component, Type, Object3D } from "@wonderlandengine/api";
+import { Component, Property, Object3D } from "@wonderlandengine/api";
 import { ObjectCache, cloneObject } from "@sorskoot/wonderland-components";
 
 import { LevelData } from "../data/level-data";
@@ -16,8 +16,9 @@ const patternSize = 3;
 export class LevelGenerator extends Component {
   static TypeName = "level-generator";
   static Properties = {
-    levelRoot: { type: Type.Object },
-    fadeScreenObject: { type: Type.Object },
+    levelRoot: Property.object(),
+    fadeScreenObject: Property.object(),
+    lights: Property.object(), // Lights are the children of this object. 
   };
 
   /**
@@ -31,6 +32,12 @@ export class LevelGenerator extends Component {
    * @type {Object3D}
    */
   levelRoot;
+
+  /**
+   * The root object of the lights. Available Lights are children of this.
+   * @type {Object3D}
+   */
+  lights;
   
   /**
    * The component that is used to fade the screen to black and back.
@@ -85,6 +92,7 @@ export class LevelGenerator extends Component {
       this.engine,
       this.levelParent,
       this.tileset,
+      this.lights.children,
       GameGlobals.globalObjectCache
     );
     this.blockCache = GameGlobals.globalObjectCache;
