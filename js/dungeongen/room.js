@@ -71,6 +71,12 @@ export class Room {
     if(this.isEntrance){
       return RoomTypes.Entrance;
     }
+    if(this.isExit){
+      return RoomTypes.Exit;
+    }
+    if(this.isTreasure){
+      return RoomTypes.Treasure;
+    }
     return RoomTypes.Normal;
   }
 

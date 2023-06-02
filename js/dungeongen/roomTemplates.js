@@ -107,6 +107,38 @@ export const roomTemplates = [
       " #...# ",
       " ##S## ",
     ],
+  },{
+    name: "Final room",
+    type: RoomTypes.Exit,
+    ceilingHeight: [4],
+    canBeRotated: false,
+    pattern: [
+      "#N#########",
+      "W..%......#",
+      "#.........#",
+      "#.........#",
+      "#..%...%..#",
+      "#.........#",
+      "#.........#",
+      "#......%..E",
+      "#########S#",
+    ],
+  },{
+    name: "Treasure Room",
+    type: RoomTypes.Treasure,
+    ceilingHeight: [3],
+    canBeRotated: false,
+    pattern: [
+      "#N#########",
+      "W..%..#...#",
+      "#.....#...#",
+      "#.....#...#",
+      "#..%...%..#",
+      "#...#.....#",
+      "#...#.....#",
+      "#...#..%..E",
+      "#########S#",
+    ],
   },
 ];
 
