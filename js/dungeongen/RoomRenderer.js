@@ -12,6 +12,7 @@ import RNG from "@sorskoot/wonderland-components/src/utils/rng";
 import { ObjectCache } from "@sorskoot/wonderland-components";
 import { roomTemplates } from "./roomTemplates";
 import { Tile } from "./tile";
+import rng from "@sorskoot/wonderland-components/src/utils/rng";
 
 /**
  * The Room Renderer is responsible for rendering a room.
@@ -69,9 +70,11 @@ export class RoomRenderer {
    * @param {Room} room The room to render
    */
   render(room) {
+
     let template = room.getRoomTemplate();
     if(!template){
-      template = roomTemplates.find(t => t.type == room.getRoomType());
+      const possitbleTemplate = roomTemplates.filter(t => t.type == room.getRoomType());
+      template = rng.getItem(possitbleTemplate);
       room.setRoomTemplate(template);
     }
 
