@@ -20,7 +20,7 @@ Must Have:
         ✔ Lighting should be placed based on the map @done(23-06-01 12:51)
             # This might mean there has to be a lighting pool
     Roomtypes:
-        ☐ Make sure we can select a random room with as specific type
+        ✔ Make sure we can select a random room with as specific type @done(23-06-02 22:08)
         Rooms:
             ☐ Entrance 
                 # this room give an introduction to the game
