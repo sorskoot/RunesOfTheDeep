@@ -1,12 +1,17 @@
 # Things to do before the first playable version
 
 Must Have:
+    ☐ Redo collision objects so everythings fits nicely
     Basic game loop:
         ☐ Teleportation
             # teleport to places around the room
             # max distance should be 1 tile, otherwise similar to SS13
-        ☐ When entering a room you should start at the door you entered from
-        ☐ Reaching the end of the level
+        ✔ When entering a room you should start at the door you entered from @done(23-06-02 20:42)
+            ☐ Once a room is entered all random stuff is stored in the room
+                # this means the room 'knows' what template is used. 
+                # Also, when a room is entered for a second time it 
+                # should be the same as before.
+        ☐ Reaching the end of the level        
         ✔ Snap-to-rotate @done(23-06-01 11:49)
     Design:
         ✔ Give the player a sword and a shield @done(23-06-01 13:21)
@@ -14,7 +19,7 @@ Must Have:
         ☐ better looking indicators
         ✔ Lighting should be placed based on the map @done(23-06-01 12:51)
             # This might mean there has to be a lighting pool
-        Roomtypes:
+    Roomtypes:
             ☐ Entrance 
                 # this room give an introduction to the game
             ☐ Introduction rooms

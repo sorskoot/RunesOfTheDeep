@@ -69,8 +69,14 @@ export class RoomRenderer {
    * @param {Room} room The room to render
    */
   render(room) {
-    let template = roomTemplates.find((template) => template.type == room.getRoomType());
+    let template = room.getRoomTemplate();
+    if(!template){
+      template = roomTemplates.find(t => t.type == room.getRoomType());
+      room.setRoomTemplate(template);
+    }
+
     let roomLights = [];
+    
     if (!template) {
       throw new Error(`No template found for room type ${room.getRoomType()}`);
     }
@@ -79,19 +85,19 @@ export class RoomRenderer {
     if (!roomdesign) {
       throw new Error(`No room design found for room type ${room.getRoomType()}`);
     }
-
-    for (let i = 0; i < roomdesign.length; i++) {
-      for (let j = 0; j < roomdesign[i].length; j++) {
+    
+    for (let y = 0; y < roomdesign.length; y++) {
+      for (let x = 0; x < roomdesign[y].length; x++) {
         for (let h = 0; h < template.ceilingHeight[0]; h++) {
           let tile;
-          switch (roomdesign[i][j]) {
+          switch (roomdesign[y][x]) {
             case "#":
               tile = this.#tileset.getTileByName("Wall01");
               break;
             case "%": // Light, but floor or wall is rendered as well
               if (h == 0) {
                 // only store light once
-                roomLights.push([i, h, j]);
+                roomLights.push([x, h, y]);
               }
             case "C": // Campfire, but floor or wall is rendered as well
             case "X": // Ememy, but floor or wall is rendered as well
@@ -122,11 +128,11 @@ export class RoomRenderer {
           }
           if (tile) {
             // only render a tile if we have a tile.
-            let newObj = this.createTile(i, h, j, tile.object);
+            let newObj = this.createTile(x, h, y, tile.object);
             let tags = newObj.getComponent(Tags);
             if (tags && tags.hasTag("Door")) {
-              this.setupDoor(newObj, room.getTargetRoom(roomdesign[i][j]),
-              /** @type {DirectionSymbol} */ (roomdesign[i][j]));
+              this.setupDoor(newObj, room.getTargetRoom(roomdesign[y][x]),
+              /** @type {DirectionSymbol} */ (roomdesign[y][x]));
             }
           }
         }

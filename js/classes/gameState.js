@@ -21,7 +21,7 @@ export class GameState {
         
         this.currentRoomSubject = new Subject();
 
-        this.levelSubject.subscribe(level => {            
+        this.levelSubject.subscribe(level => {
         });
 
         this.stateSubject = new Subject();
@@ -53,7 +53,6 @@ export class GameState {
     get level() {
         return this._level;
     }
-
     
     _playerPosition = [0,0,0];
     set playerPosition(value) {
@@ -109,6 +108,11 @@ export class GameState {
     navigating=false;
 
     /**
+     * The direction the player entered the room from
+     * @type {DirectionSymbol}
+     */
+    roomPreviousExitDirection = null;
+    /**
      * Navigate to a room
      * @param {number} roomx 
      * @param {number} roomy 
@@ -118,13 +122,17 @@ export class GameState {
         if(this.navigating) return;
         this.navigating=true;
         
-        this.currentRoom = [roomx,roomy];
-        
-        // use direction to teleport to the correct location in the new room
-        if(!direction){
-            this.playerPosition = [3,0,7];
+        if(direction){
+            this.roomPreviousExitDirection=direction;
+        }else{
+            this.playerPosition = [3, 0, 7];
             this.playerRotation = 270;
         }
+
+        this.currentRoom = [roomx, roomy];
+        
+        // use direction to teleport to the correct location in the new room
+       
         this.navigating=false;
     }
 

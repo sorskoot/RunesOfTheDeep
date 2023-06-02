@@ -42,13 +42,16 @@ export function getNeighbors(grid, position) {
   return neighbors;
 }
 
+/**
+ * Inverts a direction
+ * @param {DirectionSymbol} direction Direction to invert
+ * @returns {DirectionSymbol} Inverted Direction
+ */
 export function getInvertedDirection(direction){
     switch(direction){
-        case "north": return "south";
-        case "south": return "north";
-        case "east": return "west";
-        case "west": return "east";
-        case "up": return "down";
-        case "down": return "up";
+        case "N": return "S";
+        case "S": return "N";
+        case "E": return "W";
+        case "W": return "E";
     }
 }

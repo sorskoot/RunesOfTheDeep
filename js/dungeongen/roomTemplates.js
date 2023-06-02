@@ -10,7 +10,7 @@ export const RoomTypes = {
     Normal: /** @type {RoomType} */ ("normal"),
 }
 
-export class RoomTemplate{
+export class RoomTemplate {
     /**
      * @description the name of the room
      * @type {string | undefined} name
@@ -36,6 +36,7 @@ export class RoomTemplate{
      * @type {boolean | undefined} canBeRotated
      */
     canBeRotated;
+
 }
 
 /**

@@ -39,8 +39,6 @@ export class Grid {
   debug() {
     // remove Y layer but keep X and Z
     let grid2D = this.#grid.map((x) => x.map((y) => y.map((t) => t.possiblePatterns)));
-
-    console.table(grid2D);
   }
 
   #createGrid() {

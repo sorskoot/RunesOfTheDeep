@@ -42,6 +42,8 @@ import * as _D__Dev_RunesOfTheDeep_js_dungeongen_utils_extractor_js from 'D:/Dev
 _registerEditor(_D__Dev_RunesOfTheDeep_js_dungeongen_utils_extractor_js);
 import * as _D__Dev_RunesOfTheDeep_js_dungeongen_utils_gridHelpers_js from 'D:/Dev/RunesOfTheDeep/js/dungeongen/utils/gridHelpers.js';
 _registerEditor(_D__Dev_RunesOfTheDeep_js_dungeongen_utils_gridHelpers_js);
+import * as _D__Dev_RunesOfTheDeep_js_forFramework_findCharInStringArray_js from 'D:/Dev/RunesOfTheDeep/js/forFramework/findCharInStringArray.js';
+_registerEditor(_D__Dev_RunesOfTheDeep_js_forFramework_findCharInStringArray_js);
 import * as _D__Dev_RunesOfTheDeep_js_globals_js from 'D:/Dev/RunesOfTheDeep/js/globals.js';
 _registerEditor(_D__Dev_RunesOfTheDeep_js_globals_js);
 import * as _D__Dev_RunesOfTheDeep_node_modules__sorskoot_wonderland_components_src_components_flipbook_js from 'D:/Dev/RunesOfTheDeep/node_modules/@sorskoot/wonderland-components/src/components/flipbook.js';

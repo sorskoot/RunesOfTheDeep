@@ -49,20 +49,24 @@ export class Game extends Component {
 
     window.addEventListener("keyup", (e) => {
       let p = GameGlobals.gameState.currentRoom;
-      if (e.code == "Digit1") {
+      if (e.code == "Digit1") { // SOUTH
         p[0] += 1;
+        GameGlobals.gameState.roomPreviousExitDirection = "S";
         GameGlobals.gameState.currentRoom = p;
       }
-      if (e.code == "Digit2") {
+      if (e.code == "Digit2") { // NORTH
         p[0] -= 1;
+        GameGlobals.gameState.roomPreviousExitDirection = "N";
         GameGlobals.gameState.currentRoom = p;
       }
-      if (e.code == "Digit3") {
+      if (e.code == "Digit3") { // EAST
         p[1] += 1;
+        GameGlobals.gameState.roomPreviousExitDirection = "E";
         GameGlobals.gameState.currentRoom = p;
       }
-      if (e.code == "Digit4") {
+      if (e.code == "Digit4") { // WEST
         p[1] -= 1;
+        GameGlobals.gameState.roomPreviousExitDirection = "W";
         GameGlobals.gameState.currentRoom = p;
       }
     });

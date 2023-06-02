@@ -50,7 +50,6 @@ export class MazeGenerator {
         this.maze[x][y] = new Room();
       }
     }
-    console.log(JSON.stringify(this.maze));
     return this.maze;
   }
 

@@ -3,13 +3,14 @@
  * @requires typedefs.js
  *
  * @typedef {Object} RoomDirections - The rooms a door will take you to
- * @property {Room|null|undefined} north The room in the north direction
- * @property {Room|null|undefined} east The room in the east direction
- * @property {Room|null|undefined} south The room in the south direction
- * @property {Room|null|undefined} west The room in the west direction
+ * @property {{x:number, y:number}|null|undefined} north The room in the north direction
+ * @property {{x:number, y:number}|null|undefined} east The room in the east direction
+ * @property {{x:number, y:number}|null|undefined} south The room in the south direction
+ * @property {{x:number, y:number}|null|undefined} west The room in the west direction
  */
 
-import { RoomTypes } from "./roomTemplates";
+import { findCharInStringArray } from "../forFramework/findCharInStringArray";
+import { RoomTemplate, RoomTypes } from "./roomTemplates";
 
 export class Room {
 
@@ -18,6 +19,12 @@ export class Room {
    * @type {RoomDirections}
    */
   targetRooms;
+
+  /**
+   * The template used to generate this room
+   * @type {RoomTemplate} The room template used to generate this room
+   */
+  #roomTemplate = null;
 
   constructor() {
     this.doors = { north: false, west: false, south: false, east: false };
@@ -65,5 +72,32 @@ export class Room {
       return RoomTypes.Entrance;
     }
     return RoomTypes.Normal;
+  }
+
+  /**
+   * 
+   * @param {RoomTemplate} roomTemplate 
+   */
+  setRoomTemplate(roomTemplate) {
+    if(this.#roomTemplate === null){
+      this.#roomTemplate = roomTemplate;
+    }else{
+      console.warn("RoomTemplate already set");
+    }
+  }
+
+  getRoomTemplate(){
+    return this.#roomTemplate;
+  }
+
+  /**
+   * Gets the door in a specific direction from the template
+   * @param {DirectionSymbol} direction 
+   * @returns {{x:number, y:number}}|null} the X/Y coordinates of the door; or null if there is no door in that direction
+   */
+  getDoor(direction){
+    // get the door from the template
+    let result = findCharInStringArray(this.#roomTemplate.pattern, direction);
+    return result;
   }
 }

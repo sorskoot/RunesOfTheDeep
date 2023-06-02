@@ -9,6 +9,7 @@ import { PatternSet } from "../dungeongen/PatternSet";
 import { Room } from "../dungeongen/room";
 import { RoomRenderer } from "../dungeongen/RoomRenderer";
 import { FadeScreen } from "./fadeScreen";
+import { getInvertedDirection } from "../dungeongen/utils/gridHelpers";
 
 const size = 9;
 const patternSize = 3;
@@ -18,7 +19,7 @@ export class LevelGenerator extends Component {
   static Properties = {
     levelRoot: Property.object(),
     fadeScreenObject: Property.object(),
-    lights: Property.object(), // Lights are the children of this object. 
+    lights: Property.object(), // Lights are the children of this object.
   };
 
   /**
@@ -38,7 +39,7 @@ export class LevelGenerator extends Component {
    * @type {Object3D}
    */
   lights;
-  
+
   /**
    * The component that is used to fade the screen to black and back.
    * @type {FadeScreen}
@@ -65,7 +66,6 @@ export class LevelGenerator extends Component {
    * @returns {any}
    */
   generate(level = 0, parent = null) {
-    console.log("generate level", level);
 
     this.currentLd = LevelData[level];
     this.levelParent = parent || this.levelRoot;
@@ -99,26 +99,42 @@ export class LevelGenerator extends Component {
 
     GameGlobals.gameState.currentRoomSubject.subscribe((r) => {
       const currentRoom = this.generator.getRoom(r[0], r[1]);
-      console.log(currentRoom.distanceFromEntrance);
-      //this.render(currentRoom);
       this.fadeScreenComponent.FadeOutCompleted.once(() => {
-        //this.levelParent.children.length = 0;
         GameGlobals.globalObjectCache.reset();
         this.roomRenderer.render(currentRoom);
+        if (GameGlobals.gameState.roomPreviousExitDirection) {
+          let enterDirection = getInvertedDirection(
+            GameGlobals.gameState.roomPreviousExitDirection
+          );
+          let exit = currentRoom.getDoor(enterDirection);
+          let rotation = 0;
+          switch (enterDirection) {
+            case "N":
+              exit.y += 1;
+              rotation = 180;
+              break;
+            case "S":
+              exit.y -= 1;
+              rotation = 0;
+              break;
+            case "E":
+              exit.x -= 1;
+              rotation = 90;
+              break;
+            case "W":
+              exit.x += 1;
+              rotation = 270;
+              break;
+          }
+          GameGlobals.gameState.playerPosition = [exit.x, 0, exit.y];
+          GameGlobals.gameState.playerRotation = rotation;
+        }
       });
+
       this.fadeScreenComponent.fadeOut();
     });
 
     this.renderDebug(this.generator);
-
-    // let cameraPosition = [this.currentLd.start.X, this.currentLd.start.Y, this.currentLd.start.Z];
-    // let cameraRotation = [
-    //   this.currentLd.start.Rx,
-    //   this.currentLd.start.Ry,
-    //   this.currentLd.start.Rz,
-    // ];
-    // console.log("cameraPosition", cameraPosition, "cameraRotation", cameraRotation)
-    // return { cameraPosition, cameraRotation };
   }
 
   /**
@@ -210,8 +226,8 @@ export class LevelGenerator extends Component {
             }
             if (tileIndex >= 4)
               ctx.fillRect(
-                (newRowPos + (size * ps) / 2) * 2,
                 (newColPos + (size * ps) / 2) * 2,
+                (newRowPos + (size * ps) / 2) * 2,
                 2,
                 2
               );
