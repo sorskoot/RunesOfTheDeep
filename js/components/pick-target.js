@@ -1,9 +1,10 @@
 import { Component, Object3D, Property } from "@wonderlandengine/api";
 
-import { vec3, quat2 } from "gl-matrix";
+import { vec3} from "gl-matrix";
 import GameGlobals from "../globals";
 import { State } from "../classes/gameState";
 import { Sounds } from "../utils/soundfx-player";
+import { Tags } from "@sorskoot/wonderland-components";
 
 export class PickTarget extends Component {
   static TypeName = "pick-target";
@@ -40,12 +41,24 @@ export class PickTarget extends Component {
    */
   navControllerObject;
 
-  canTrigger() {
+  /**
+   * Whether the picking is active or not
+   * @returns {boolean}
+   */
+  #canTrigger() {
     return true;
   }
 
-  pickingAllowed(obj, x, y, z) {
-    let tags = obj.getComponent("tags");
+  /**
+   * Validates whether the object can be picked or not
+   * @param {Object3D} obj 
+   * @param {Number} x 
+   * @param {Number} y 
+   * @param {Number} z 
+   * @returns {boolean} Boolean indicating whether the object can be picked or not
+   */
+  #pickingAllowed(obj, x, y, z) {
+    let tags = obj.getComponent(Tags);
     if (!tags) {
       return false;
     }
@@ -62,8 +75,15 @@ export class PickTarget extends Component {
     return true;
   }
 
-  picked(obj, x, y, z) {
-    let tags = obj.getComponent("tags");
+  /**
+   * Handles the picking of an object
+   * @param {Object3D} obj The object that is picked
+   * @param {Number} x 
+   * @param {Number} y 
+   * @param {Number} z 
+   */
+  #picked(obj, x, y, z) {
+    let tags = obj.getComponent(Tags);
     if (!tags) return;
     let position = GameGlobals.gameState.playerPosition;
     //this.player.getTranslationWorld(position);
@@ -74,9 +94,8 @@ export class PickTarget extends Component {
         break;
       case tags.hasTag("button"):
         break;
-      case tags.hasTag("box"):
-        let bc = obj.parent.getComponent("box-controller");
-        bc.slide();
+      case tags.hasTag("door"):
+        console.log("picking door not implemented yet");
         break;
     }
   }
@@ -89,7 +108,7 @@ export class PickTarget extends Component {
       console.error("No input component found on object with pick-target component");
     }
 
-    this.hideIndicators();
+    this.#hideIndicators();
     this.initialized = true;
   }
 
@@ -99,7 +118,7 @@ export class PickTarget extends Component {
       return;
     }
     const buttonPressed = xrInputSource.gamepad.buttons[0].pressed;
-    if (buttonPressed && this.pickingActive === false && this.canTrigger()) {
+    if (buttonPressed && this.pickingActive === false && this.#canTrigger()) {
       this.pickingActive = true;
     }
 
@@ -109,12 +128,12 @@ export class PickTarget extends Component {
         const hitPos = this.hitObject.getPositionWorld();
         const x = hitPos[0];
         const y = hitPos[2];
-        if (this.pickingAllowed(this.hitObject, x, 0, y)) {
-          this.picked(this.hitObject, x, 0, y);
+        if (this.#pickingAllowed(this.hitObject, x, 0, y)) {
+          this.#picked(this.hitObject, x, 0, y);
         }
 
         if (!this.indicatorHidden) {
-          this.hideIndicators();
+          this.#hideIndicators();
           
         }
         this.hitSpot = undefined;
@@ -146,10 +165,10 @@ export class PickTarget extends Component {
         const hitPos = this.hitObject.getPositionWorld();
         const x = hitPos[0];
         const y = hitPos[2];
-        this.showIndicator(this.hitObject, x, 0, y);
+        this.#showIndicator(this.hitObject, x, 0, y);
       } else {
         if (!this.indicatorHidden) {
-          this.hideIndicators();
+          this.#hideIndicators();
         }
         this.hitSpot = undefined;
         this.hitObject = undefined;
@@ -157,18 +176,28 @@ export class PickTarget extends Component {
     }
   }
 
-  hideIndicators() {
+  /**
+   * Hides the indicators
+   */
+  #hideIndicators() {
     this.allowedPickerMeshObject.setPositionWorld([1000, -1000, 1000]);
     this.notAllowedPickerMeshObject.setPositionWorld([1000, -1000, 1000]);
     this.indicatorHidden = true;
   }
 
-  showIndicator(obj, x, y, z) {
-    let tags = obj.getComponent("tags");
+  /**
+   * Shows the indicator for the object
+   * @param {Object3D} obj the targeted object
+   * @param {Number} x 
+   * @param {Number} y 
+   * @param {Number} z 
+   */
+  #showIndicator(obj, x, y, z) {
+    let tags = obj.getComponent(Tags);
     if (!tags) return;
     switch (true) {
       case tags.hasTag("floor"):
-        if (this.pickingAllowed(obj, x, y, z)) {
+        if (this.#pickingAllowed(obj, x, y, z)) {
           this.notAllowedPickerMeshObject.setPositionWorld([
             1000, -1000, 1000,
           ]);
@@ -186,9 +215,7 @@ export class PickTarget extends Component {
         //     buttonController.hover();
         //   }
         break;
-      case tags.hasTag("box"):
-        // let bc = obj.parent.getComponent('box-controller');
-        // bc.slide();
+      case tags.hasTag("door"):
         break;
     }
   }

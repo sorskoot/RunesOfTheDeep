@@ -31,13 +31,14 @@ Piecing together clues from scattered documents and surviving murals on dungeon 
 ### 1. Mechanics
 
 1. Procedurally Generated Levels - Each playthrough will present unique challenges with randomly generated dungeons offering varying levels of difficulty.
-2. Combat System - Players must engage in close-quarters combat using hammers or axes.
-3. Mining System - Players need to upgrade or buy tools to mine harder rocks as they progress to get better tools and weapons.
-4. Upgradable Tools & Weapons - Throughout gameplay, players will gather resources for upgrading equipment such as mining tools for resource gathering and weapons for combat effectiveness.
-5. Artifact Collection - Discover hidden magical artifacts imbued with special powers that offer advantages during gameplay.
-6. Traps and Puzzles - Navigate through environmental hazards and solve puzzles scattered throughout dungeons.
-7. Permadeath - Upon character death, players must start anew but can retain some upgrades acquired in previous runs.
-8. Game progress will be saved between sessions.
+1. Combat System - Players must engage in close-quarters combat using hammers or axes.
+1. Mining System - Players need to upgrade or buy tools to mine harder rocks as they progress to get better tools and weapons.
+1. Upgradable Tools & Weapons - Throughout gameplay, players will gather resources for upgrading equipment such as mining tools for resource gathering and weapons for combat effectiveness.
+1. Artifact Collection - Discover hidden magical artifacts imbued with special powers that offer advantages during gameplay.
+1. Traps and Puzzles - Navigate through environmental hazards and solve puzzles scattered throughout dungeons.
+1. Permadeath - Upon character death, players must start anew but can retain some upgrades acquired in previous runs.
+1. Game progress will be saved between sessions.
+1. The player will have a map that slowly encovers all the dungeons visited.
 
 ### 2. Controls
 1. Teleport - Players can move using teleportation on a grid. You can only teleport 1 or 2 tiles round you. To exit the room the player must be on the tile adjacent to the door.

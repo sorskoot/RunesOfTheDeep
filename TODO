@@ -44,6 +44,11 @@ Could Have:
     ☐ Sound
     ☐ Music
 
+Would Like:
+    ☐ The 'pick-target' component should be more versatile.
+        # the picking and checking if something can be picked should
+        # be separated. This way the component should be more reusable.
+
 Bugs:
     ☐ There might be an issue if the player goes to the next room while the fade in/out is still going
 ---
