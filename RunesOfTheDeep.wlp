@@ -259,7 +259,10 @@
                 },
                 {
                     "type": "vr-mode-active-switch",
-                    "active": true
+                    "active": false,
+                    "vr-mode-active-switch": {
+                        "affectChildren": false
+                    }
                 }
             ],
             "translation": [
@@ -365,7 +368,8 @@
                     "mesh": {
                         "mesh": "10",
                         "material": "128"
-                    }
+                    },
+                    "active": false
                 }
             ],
             "translation": [
@@ -1486,7 +1490,7 @@
             "translation": [
                 0.0,
                 0.0,
-                0.0099999
+                0.0
             ],
             "rotation": [
                 0.0,
@@ -1498,24 +1502,6 @@
                 1.0,
                 1.0,
                 1.0
-            ]
-        },
-        "355": {
-            "link": {
-                "name": "Sword",
-                "file": "models\\Sword.fbx"
-            },
-            "parent": "344",
-            "scaling": [
-                0.3,
-                0.3,
-                0.3
-            ],
-            "rotation": [
-                -0.7071068,
-                0.0,
-                0.0,
-                0.7071068
             ]
         },
         "356": {
@@ -1550,9 +1536,9 @@
                 0.8
             ],
             "translation": [
-                -1.0764711788624481e-8,
+                -1.076471178862448e-8,
                 0.0,
-                3.4272676430191495e-7
+                3.42726764301915e-7
             ],
             "rotation": [
                 -2.8936327112205618e-8,
@@ -1617,6 +1603,64 @@
                         "material": "368"
                     }
                 }
+            ]
+        },
+        "374": {
+            "name": "Character",
+            "parent": "338",
+            "components": [
+                {
+                    "type": "mesh",
+                    "mesh": {
+                        "mesh": "7",
+                        "material": "375"
+                    }
+                }
+            ],
+            "translation": [
+                3.0,
+                0.5,
+                3.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scaling": [
+                0.5,
+                0.5,
+                0.5
+            ]
+        },
+        "386": {
+            "name": "Mesh",
+            "parent": "344",
+            "components": [
+                {
+                    "type": "mesh",
+                    "mesh": {
+                        "mesh": "341",
+                        "material": "379"
+                    }
+                }
+            ],
+            "scaling": [
+                0.4999979,
+                0.5,
+                0.4999975
+            ],
+            "translation": [
+                -4.842877388000488e-7,
+                -0.1757894,
+                -0.0901024
+            ],
+            "rotation": [
+                -0.2705947,
+                -0.6532805,
+                0.2706015,
+                0.6532823
             ]
         }
     },
@@ -1973,6 +2017,36 @@
                 "name": "tiles_12.png",
                 "file": "assets\\tiles\\tiles_12.png"
             }
+        },
+        "377": {
+            "link": {
+                "name": "tiles_13.png",
+                "file": "assets\\tiles\\tiles_13.png"
+            }
+        },
+        "381": {
+            "link": {
+                "name": "iron-weapons_00.png",
+                "file": "static\\Weapons\\Iron\\iron-weapons_00.png"
+            }
+        },
+        "383": {
+            "link": {
+                "name": "iron-weapons_08.png",
+                "file": "static\\Weapons\\Iron\\iron-weapons_08.png"
+            }
+        },
+        "385": {
+            "link": {
+                "name": "iron-weapons_11.png",
+                "file": "static\\Weapons\\Iron\\iron-weapons_11.png"
+            }
+        },
+        "389": {
+            "link": {
+                "name": "iron-weapons_17.png",
+                "file": "static\\Weapons\\Iron\\iron-weapons_17.png"
+            }
         }
     },
     "images": {
@@ -2098,6 +2172,36 @@
             "link": {
                 "name": "tiles_12.png",
                 "file": "assets\\tiles\\tiles_12.png"
+            }
+        },
+        "376": {
+            "link": {
+                "name": "tiles_13.png",
+                "file": "assets\\tiles\\tiles_13.png"
+            }
+        },
+        "380": {
+            "link": {
+                "name": "iron-weapons_00.png",
+                "file": "static\\Weapons\\Iron\\iron-weapons_00.png"
+            }
+        },
+        "382": {
+            "link": {
+                "name": "iron-weapons_08.png",
+                "file": "static\\Weapons\\Iron\\iron-weapons_08.png"
+            }
+        },
+        "384": {
+            "link": {
+                "name": "iron-weapons_11.png",
+                "file": "static\\Weapons\\Iron\\iron-weapons_11.png"
+            }
+        },
+        "388": {
+            "link": {
+                "name": "iron-weapons_17.png",
+                "file": "static\\Weapons\\Iron\\iron-weapons_17.png"
             }
         }
     },
@@ -2520,6 +2624,29 @@
             "FlatSorskoot": {
                 "flatTexture": "372"
             }
+        },
+        "375": {
+            "name": "CharacterTest",
+            "pipeline": "240",
+            "FlatSorskoot": {
+                "flatTexture": "377"
+            }
+        },
+        "379": {
+            "name": "Weapon",
+            "pipeline": "387",
+            "FlatSorskoot": {
+                "flatTexture": "389"
+            },
+            "Flat": {
+                "flatTexture": "385",
+                "color": [
+                    0.0,
+                    1.0,
+                    0.0179371,
+                    1.0
+                ]
+            }
         }
     },
     "shaders": {
@@ -2857,6 +2984,16 @@
             },
             "name": "FlatSorskoot Alpha",
             "blending": true
+        },
+        "387": {
+            "link": {
+                "name": "FlatSorskoot",
+                "file": "default"
+            },
+            "blending": true,
+            "sampleAlphaToCoverage": true,
+            "name": "FlatSorskoot 2 sided",
+            "doubleSided": true
         }
     },
     "files": [
@@ -2880,7 +3017,12 @@
         "models/Sword.fbx",
         "models/Shield.fbx",
         "assets/tiles/tiles_11.png",
-        "assets/tiles/tiles_12.png"
+        "assets/tiles/tiles_12.png",
+        "assets/tiles/tiles_13.png",
+        "static/Weapons/Iron/iron-weapons_00.png",
+        "static/Weapons/Iron/iron-weapons_08.png",
+        "static/Weapons/Iron/iron-weapons_11.png",
+        "static/Weapons/Iron/iron-weapons_17.png"
     ],
     "fonts": {
         "230": {

@@ -142,7 +142,7 @@ export class RoomRenderer {
       }
     }
     this.#setupLights(roomLights, room);
-    this.createInerior(room, roomdesign);
+    this.createInterior(room, roomdesign);
   }
 
   /**
@@ -212,8 +212,32 @@ export class RoomRenderer {
    * @param {Room} room
    * @param {*} roomdesign
    */
-  createInerior(room, roomdesign) {
+  createInterior(room, roomdesign) {
     const roomRNG = RNG.clone().setSeed(room.seed);
+    
+    let hasFirepit = false;
+
+    for (let y = 0; y < roomdesign.length; y++) {
+      for (let x = 0; x < roomdesign[y].length; x++) {
+          let tile;
+          switch (roomdesign[y][x]) {
+            case "C": // Campfire /Firepit
+              if(!hasFirepit){
+                console.log("campfire");
+                tile = this.#tileset.getTileByName("Firepit");
+                hasFirepit=true;
+              }
+              break;
+            default:
+              continue;
+          }
+          if (tile) {
+            // only render a tile if we have a tile.
+            let newObj = this.createTile(x, 0, y, tile.object);
+          }
+        
+      }
+    }
   }
 
   /**

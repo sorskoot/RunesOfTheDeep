@@ -1,7 +1,7 @@
 {
     "views": {
         "console": {
-            "showInfo": false,
+            "showInfo": true,
             "showWarnings": true,
             "showErrors": true
         },
@@ -24,7 +24,7 @@
         "Project Data": false,
         "Benchmark": false,
         "Profile": false,
-        "Preferences": true,
+        "Preferences": false,
         "Localization": false
     }
 }

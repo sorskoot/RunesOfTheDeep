@@ -210,7 +210,8 @@ These assets might be usable for the first version of the game:
 - https://merchant-shade.itch.io/16x16-mixed-rpg-icons (free)
 - https://xenophero.itch.io/rock-sprites (free)
 - https://incremental-inc.itch.io/ores-and-rocks-16x16-pixel-sprites ($2)
-
+- https://merchant-shade.itch.io/16x16-puny-characters-plus-sprites ($10)
+- 
 # Note
 
 The first draft of this design document is created by Rosie and tweaked by hand. Since it mostly generated it probably going to change a lot while developing the game. The document is vastly extended since using a combination of AI and just I. 
