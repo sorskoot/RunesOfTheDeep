@@ -42,7 +42,8 @@
                             ]
                         },
                         "groups": 4
-                    }
+                    },
+                    "active": false
                 }
             ],
             "translation": [
@@ -402,6 +403,14 @@
                     "input": {
                         "type": "ray right"
                     }
+                },
+                {
+                    "type": "pick-target",
+                    "pick-target": {
+                        "allowedPickerMeshObject": "365",
+                        "notAllowedPickerMeshObject": "366",
+                        "player": "14"
+                    }
                 }
             ],
             "translation": [
@@ -536,7 +545,7 @@
                                 0.5
                             ]
                         },
-                        "groups": 255
+                        "groups": 2
                     }
                 },
                 {
@@ -589,7 +598,7 @@
                                 0.5
                             ]
                         },
-                        "groups": 255
+                        "groups": 2
                     }
                 },
                 {
@@ -642,7 +651,7 @@
                                 0.5
                             ]
                         },
-                        "groups": 255
+                        "groups": 2
                     }
                 },
                 {
@@ -695,7 +704,7 @@
                                 0.5
                             ]
                         },
-                        "groups": 255
+                        "groups": 2
                     }
                 },
                 {
@@ -748,7 +757,7 @@
                                 0.5
                             ]
                         },
-                        "groups": 255
+                        "groups": 2
                     }
                 },
                 {
@@ -1551,6 +1560,64 @@
                 -0.2427287,
                 0.9700942
             ]
+        },
+        "365": {
+            "name": "Teleport Allowed",
+            "parent": "234",
+            "translation": [
+                0.0,
+                0.0,
+                1.1416704
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scaling": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "components": [
+                {
+                    "type": "mesh",
+                    "mesh": {
+                        "mesh": "252",
+                        "material": "367"
+                    }
+                }
+            ]
+        },
+        "366": {
+            "name": "Teleport Not Allowed",
+            "parent": "234",
+            "translation": [
+                0.0,
+                0.2006953,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scaling": [
+                1.0,
+                1.0,
+                1.0
+            ],
+            "components": [
+                {
+                    "type": "mesh",
+                    "mesh": {
+                        "mesh": "252",
+                        "material": "368"
+                    }
+                }
+            ]
         }
     },
     "meshes": {
@@ -1894,6 +1961,18 @@
                 "name": "texture_2",
                 "file": "models\\Tiles.fbx"
             }
+        },
+        "370": {
+            "link": {
+                "name": "tiles_11.png",
+                "file": "assets\\tiles\\tiles_11.png"
+            }
+        },
+        "372": {
+            "link": {
+                "name": "tiles_12.png",
+                "file": "assets\\tiles\\tiles_12.png"
+            }
         }
     },
     "images": {
@@ -2007,6 +2086,18 @@
             "link": {
                 "name": "image_2",
                 "file": "models\\Tiles.fbx"
+            }
+        },
+        "369": {
+            "link": {
+                "name": "tiles_11.png",
+                "file": "assets\\tiles\\tiles_11.png"
+            }
+        },
+        "371": {
+            "link": {
+                "name": "tiles_12.png",
+                "file": "assets\\tiles\\tiles_12.png"
             }
         }
     },
@@ -2415,6 +2506,20 @@
                 "name": "Shield1h Mat",
                 "file": "models\\Shield.fbx"
             }
+        },
+        "367": {
+            "name": "Teleport Allowed",
+            "pipeline": "240",
+            "FlatSorskoot": {
+                "flatTexture": "370"
+            }
+        },
+        "368": {
+            "name": "Teleport Not Allowed",
+            "pipeline": "240",
+            "FlatSorskoot": {
+                "flatTexture": "372"
+            }
         }
     },
     "shaders": {
@@ -2773,7 +2878,9 @@
         "assets/tiles/tiles_10.png",
         "models/InvertedSphere.fbx",
         "models/Sword.fbx",
-        "models/Shield.fbx"
+        "models/Shield.fbx",
+        "assets/tiles/tiles_11.png",
+        "assets/tiles/tiles_12.png"
     ],
     "fonts": {
         "230": {

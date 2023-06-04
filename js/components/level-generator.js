@@ -273,6 +273,6 @@ export class LevelGenerator extends Component {
     let blockObj = tile;
     let obj = cloneObject(this.engine, blockObj, this.blockCache);
     obj.resetPositionRotation();
-    obj.setPositionLocal([x, y, z]);
+    obj.setPositionWorld([x, y, z]);
   }
 }

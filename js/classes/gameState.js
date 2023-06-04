@@ -136,4 +136,7 @@ export class GameState {
         this.navigating=false;
     }
 
+    canTeleportToPosition(x, y, z) {
+        return true;
+    }
 }

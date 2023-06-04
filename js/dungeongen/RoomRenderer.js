@@ -198,7 +198,7 @@ export class RoomRenderer {
       light.resetPositionRotation();
       if(roomLights[index]){
         light.getComponent(LightComponent).active = true;
-        light.setPositionLocal([roomLights[index][0], 2, roomLights[index][2]]);
+        light.setPositionWorld([roomLights[index][0], 2, roomLights[index][2]]);
       }else{
         light.getComponent(LightComponent).active = false;
       }
@@ -228,7 +228,7 @@ export class RoomRenderer {
     let blockObj = tile;
     let obj = cloneObject(this.#engine, blockObj, this.#blockCache);
     obj.resetPositionRotation();
-    obj.setPositionLocal([x, y, z]);
+    obj.setPositionWorld([x, y, z]);
     return obj;
   }
 }

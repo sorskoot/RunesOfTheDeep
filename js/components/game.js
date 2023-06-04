@@ -1,6 +1,7 @@
 import { Component, Object3D, Property } from "@wonderlandengine/api";
 import GameGlobals from "../globals";
 import { LevelGenerator } from "./level-generator";
+import { State } from "../classes/gameState";
 
 export class Game extends Component {
   static TypeName = "game";
@@ -26,6 +27,8 @@ export class Game extends Component {
     this.engine.onXRSessionEnd.add(() => (GameGlobals.gameState.isInVR = false));
 
     this.engine.onXRSessionStart.add(() => {});
+
+    GameGlobals.gameState.state = State.Playing;
   }
 
   start() {
