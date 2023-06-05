@@ -203,6 +203,11 @@ Players must defeat each of these enemies by learning their attack patterns and 
 
 - The Guardian's Curse Trap (Final Trap - Extremely Hard): A unique trap located deep within the stronghold near valuable relics; those who get too close are inflicted with a potent curse sapping their strength and magic gradually while buffeting enemies around them with increased power – only lifted by defeating enemies drawn towards cursed players in increasingly difficult waves before reaching vital relics protected by this supernatural failsafe measure meant solely for "The Shattering" preventers caught unprepared during artifact handling events.
 
+# Weapons
+
+There will be a lot of different weapons. The player stars with a random iron weapon. There will be chests scattered around. These chests are of a random level (Small, medium, large) and the further the game progresses the better the stuff in the chests. Chests in the beginning are made from wood, later they will become iron and gold. Weapons found in the chests will have random stats, but these will increase the further in the game the player gets. 
+
+
 # possible assets
 
 These assets might be usable for the first version of the game:

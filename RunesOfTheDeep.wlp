@@ -319,12 +319,13 @@
             "parent": "14",
             "components": [
                 {
-                    "type": "player-height"
+                    "type": "player-height",
+                    "active": true
                 }
             ],
             "translation": [
                 0.0,
-                1.75,
+                0.0,
                 0.0
             ],
             "rotation": [
@@ -1348,13 +1349,6 @@
                         "rows": 1,
                         "speed": 4.0
                     }
-                },
-                {
-                    "type": "look-at-player",
-                    "look-at-player": {
-                        "target": "17"
-                    },
-                    "active": false
                 }
             ],
             "translation": [
@@ -1614,6 +1608,25 @@
                     "mesh": {
                         "mesh": "7",
                         "material": "375"
+                    }
+                },
+                {
+                    "type": "collision",
+                    "collision": {
+                        "collider": "box",
+                        "box": {
+                            "extents": [
+                                0.5,
+                                0.5,
+                                0.1
+                            ]
+                        }
+                    }
+                },
+                {
+                    "type": "look-at",
+                    "look-at": {
+                        "target": "14"
                     }
                 }
             ],
@@ -2627,7 +2640,7 @@
         },
         "375": {
             "name": "CharacterTest",
-            "pipeline": "240",
+            "pipeline": "387",
             "FlatSorskoot": {
                 "flatTexture": "377"
             }
@@ -2803,7 +2816,8 @@
             "libraryPaths": [
                 "/js/lib/"
             ],
-            "esbuildFlags": "--target=ES2022 --format=esm"
+            "esbuildFlags": "--target=ES2022 --format=esm",
+            "entryPoint": "js/index.ts"
         },
         "runtime": {
             "visualizeColliders": false,
@@ -2814,7 +2828,7 @@
             }
         },
         "editor": {
-            "serverPort": 7551
+            "serverPort": 2525
         },
         "rendering": {
             "clearColor": [

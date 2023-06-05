@@ -1,9 +1,14 @@
 # Things to do before the first playable version
 
 Must Have:
+    ☐ @critical Implement first enemies
+    ☐ @critical Implement first fighting mechanics
+
     ☐ Redo collision objects so everythings fits nicely
     Basic game loop:
-        ☐ Teleportation
+        Teleportation:
+            ✔ Basic teleportation @done(23-06-04 22:37)
+            ☐ Limited teleportation to 1 block
             # teleport to places around the room
             # max distance should be 1 tile, otherwise similar to SS13
         ✔ When entering a room you should start at the door you entered from @done(23-06-02 20:42)
