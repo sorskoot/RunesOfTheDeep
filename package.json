@@ -11,6 +11,7 @@
   "keywords": [
     "wonderland-engine"
   ],
+  "license": "MIT",
   "dependencies": {
     "@wonderlandengine/api": "^1.0.0",
     "@wonderlandengine/components": "^1.0.3",
