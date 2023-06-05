@@ -1,6 +1,7 @@
 import { Component, Property } from "@wonderlandengine/api";
 import { CursorTarget } from "@wonderlandengine/components";
-import GameGlobals from "../globals";
+import GameGlobals from "../globals.js";
+import {property} from '@wonderlandengine/api/decorators.js';
 
 /**
  * This class handles the door interactions
@@ -10,24 +11,22 @@ import GameGlobals from "../globals";
  */
 export class DoorHandler extends Component {
   static TypeName = "door-handler";
-  static Properties = {
-    direction: Property.string(),
-    targetRoomX: Property.int(),
-    targetRoomY: Property.int(),
-  };
 
   /**
    * @type {DirectionSymbol} The direction the door is facing
-   */
-  direction;
+   */  
+  @property.string("N")
+  direction:DirectionSymbol;
 
   /**
    * @type {number} X position of the room behind the door.
    */
+  @property.int(0)
   targetRoomX;
   /**
    * @type {number} Y position of the room behind the door.
    */
+  @property.int(0)
   targetRoomY;
 
   start() {

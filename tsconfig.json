@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+      "forceConsistentCasingInFileNames": true,
       "experimentalDecorators": true,
       "allowJs": true,
       "checkJs": true,
@@ -7,5 +8,6 @@
       "target": "es2022",
       "moduleResolution": "nodenext"
     },
-    "exclude": ["node_modules"]
+    "exclude": ["node_modules"],
+    "include": ["js/**/*"]
   }

@@ -17,4 +17,5 @@ export class LookAt extends Component {
             this.object.rotateAxisAngleDegObject([0, 1, 0], 180);
          }
     }
+
 };

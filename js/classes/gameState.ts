@@ -1,4 +1,5 @@
 import { Subject } from 'rxjs';
+import { LevelState } from './levelState.js';
 
 export const State={
     Init:-1,
@@ -17,7 +18,8 @@ export class GameState {
         this.isInVRSubject = new Subject();
         this.levelSubject = new Subject();
         this.availableTargetsSubject = new Subject();
-        this.levelState = null;
+        
+        this.levelState = new LevelState();
         
         this.currentRoomSubject = new Subject();
 
@@ -27,6 +29,9 @@ export class GameState {
         this.stateSubject = new Subject();
     }
 
+    levelState:LevelState;
+
+    stateSubject: Subject<number>;
     _state = State.Init;
     set state(value) {
         this._state = value;
@@ -36,6 +41,7 @@ export class GameState {
         return this._state;
     }
 
+    availableTargetsSubject: Subject<number>;
     _availableTargets = 0;
     set availableTargets(value) {
         this._availableTargets = value;
@@ -45,6 +51,7 @@ export class GameState {
         return this._availableTargets;
     }
 
+    levelSubject: Subject<number>;
     _level = 0;
     set level(value) {
         this._level = value;
@@ -54,6 +61,7 @@ export class GameState {
         return this._level;
     }
     
+    playerPositionSubject: Subject<number[]>;
     _playerPosition = [0,0,0];
     set playerPosition(value) {
         this._previousPlayerPosition = this._playerPosition;
@@ -67,7 +75,8 @@ export class GameState {
     get previousPlayerPosition() {
         return this._previousPlayerPosition;
     }
-  
+    
+    playerRotationSubject: Subject<number>;
     _playerRotation = 0;
     set playerRotation(value) {
         this._previousPlayerRotation = this._playerRotation;
@@ -83,6 +92,7 @@ export class GameState {
         return this._previousPlayerRotation;
     }
 
+    isInVRSubject: Subject<boolean>;
     _isInVR = false;
     set isInVR(value) {
         this._isInVR = value;
@@ -92,6 +102,7 @@ export class GameState {
         return this._isInVR;
     }
 
+    currentRoomSubject: Subject<number[]>;
     _currentRoom= [0,0];
     set currentRoom(value) {
         this._currentRoom = value;
@@ -109,16 +120,16 @@ export class GameState {
 
     /**
      * The direction the player entered the room from
-     * @type {DirectionSymbol}
      */
-    roomPreviousExitDirection = null;
+    roomPreviousExitDirection:DirectionSymbol = null;
+ 
     /**
      * Navigate to a room
      * @param {number} roomx 
      * @param {number} roomy 
      * @param {DirectionSymbol} direction 
      */
-    navigateToRoom(roomx,roomy, direction=null){
+    navigateToRoom(roomx:number,roomy:number, direction:DirectionSymbol=null){
         if(this.navigating) return;
         this.navigating=true;
         
@@ -136,7 +147,14 @@ export class GameState {
         this.navigating=false;
     }
 
-    canTeleportToPosition(x, y, z) {
+    /**
+     * Is it possible to teleport to the given position?
+     * @param x 
+     * @param y 
+     * @param z 
+     * @returns true if it is possible to teleport to the given position
+     */
+    canTeleportToPosition(x:number, y:number, z:number) {
         return true;
     }
 }
