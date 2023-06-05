@@ -9,6 +9,7 @@ type RoomDirections = {
   east: {x:number, y:number}|null|undefined }
 
 import { findCharInStringArray } from "../forFramework/findCharInStringArray.js";
+import { DirectionSymbol } from "../types/index.js";
 import { RoomTemplate, RoomTypes } from "./roomTemplates.js";
 
 export class Room {
@@ -129,7 +130,8 @@ export class Room {
    * @param {DirectionSymbol} direction 
    * @returns {{x:number, y:number}}|null} the X/Y coordinates of the door; or null if there is no door in that direction
    */
-  getDoor(direction){
+  getDoor(direction: DirectionSymbol|string): { x: number; y: number; }|null
+  {
     // get the door from the template
     let result = findCharInStringArray(this.#roomTemplate.pattern, direction);
     return result;

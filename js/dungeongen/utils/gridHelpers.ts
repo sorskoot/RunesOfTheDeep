@@ -1,3 +1,4 @@
+import { DirectionSymbol } from "../../types/index.js";
 import { Grid } from "../grid.js";
 
 const NEIGHBOR_OFFSETS = [
@@ -47,7 +48,7 @@ export function getNeighbors(grid, position) {
  * @param {DirectionSymbol} direction Direction to invert
  * @returns {DirectionSymbol} Inverted Direction
  */
-export function getInvertedDirection(direction){
+export function getInvertedDirection(direction:DirectionSymbol):DirectionSymbol{
     switch(direction){
         case "N": return "S";
         case "S": return "N";

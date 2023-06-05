@@ -4,9 +4,10 @@
       "experimentalDecorators": true,
       "allowJs": true,
       "checkJs": true,
-      "strict": false,
+      "strict": true,
       "target": "es2022",
       "moduleResolution": "nodenext",
+      "outDir": "dist",
     },
     "exclude": ["node_modules"],
     "include": ["js/**/*"]

@@ -1,4 +1,4 @@
-import { Component, Property } from "@wonderlandengine/api";
+import { Component } from "@wonderlandengine/api";
 import { CursorTarget } from "@wonderlandengine/components";
 import GameGlobals from "../globals.js";
 import {property} from '@wonderlandengine/api/decorators.js';
@@ -16,18 +16,19 @@ export class DoorHandler extends Component {
    * @type {DirectionSymbol} The direction the door is facing
    */  
   @property.string("N")
-  direction:DirectionSymbol;
+  direction:DirectionSymbol = "N";
 
   /**
    * @type {number} X position of the room behind the door.
    */
   @property.int(0)
-  targetRoomX;
+  targetRoomX:number =0 ;
+
   /**
    * @type {number} Y position of the room behind the door.
    */
   @property.int(0)
-  targetRoomY;
+  targetRoomY:number = 0;
 
   start() {
     const target = this.object.getComponent(CursorTarget);

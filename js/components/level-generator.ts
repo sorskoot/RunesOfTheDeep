@@ -10,6 +10,7 @@ import { Room } from "../dungeongen/room.js";
 import { RoomRenderer } from "../dungeongen/RoomRenderer.js";
 import { FadeScreen } from "./fadeScreen.js";
 import { getInvertedDirection } from "../dungeongen/utils/gridHelpers.js";
+import { property } from "@wonderlandengine/api/decorators.js";
 
 const size = 9;
 const patternSize = 3;
@@ -24,28 +25,41 @@ export class LevelGenerator extends Component {
 
   /**
    * The object used to get the fade screen component from.
-   * @type {Object3D}
    */
-  fadeScreenObject;
+  @property.object()
+  fadeScreenObject!: Object3D;
 
   /**
    * The level root object. All level objects will be added as children of this object.
-   * @type {Object3D}
    */
-  levelRoot;
+  @property.object()
+  levelRoot!: Object3D;
 
   /**
    * The root object of the lights. Available Lights are children of this.
-   * @type {Object3D}
    */
-  lights;
+  lights!: Object3D;
 
   /**
    * The component that is used to fade the screen to black and back.
-   * @type {FadeScreen}
    */
-  fadeScreenComponent;
+  fadeScreenComponent!: FadeScreen;
 
+  generator!: MazeGenerator;
+  
+  levelParent!: Object3D;
+  
+  currentLd!: {
+    width: number;
+    height: number;
+    depth: number;
+    data: ({ data: string; door: null } | { data: string; door: number } | null)[][][];
+    start: { X: number; Y: number; Z: number; Rx: number; Ry: number; Rz: number };
+  };
+  tileset!: TileSet;
+  patternSet!: PatternSet;
+  roomRenderer!: RoomRenderer;
+  blockCache!: ObjectCache;
   /**
    * overrides the init method of the component
    */
@@ -57,7 +71,11 @@ export class LevelGenerator extends Component {
    * overrides the start method of the component
    */
   start() {
-    this.fadeScreenComponent = this.fadeScreenObject.getComponent(FadeScreen);
+    const fsc = this.fadeScreenObject.getComponent(FadeScreen);
+    if (!fsc) {
+      throw new Error("No FadeScreen component found on fadeScreenObject");
+    }
+    this.fadeScreenComponent = fsc;
   }
 
   /**
@@ -65,8 +83,7 @@ export class LevelGenerator extends Component {
    * @param {Number} level The level to generate
    * @returns {any}
    */
-  generate(level = 0, parent = null) {
-
+  generate(level: number = 0, parent: Object3D | null = null): any {
     this.currentLd = LevelData[level];
     this.levelParent = parent || this.levelRoot;
 
@@ -100,34 +117,36 @@ export class LevelGenerator extends Component {
     GameGlobals.gameState.currentRoomSubject.subscribe((r) => {
       const currentRoom = this.generator.getRoom(r[0], r[1]);
       this.fadeScreenComponent.FadeOutCompleted.once(() => {
-        GameGlobals.globalObjectCache.reset();
+        this.blockCache.reset();
         this.roomRenderer.render(currentRoom);
         if (GameGlobals.gameState.roomPreviousExitDirection) {
           let enterDirection = getInvertedDirection(
             GameGlobals.gameState.roomPreviousExitDirection
           );
           let exit = currentRoom.getDoor(enterDirection);
-          let rotation = 0;
-          switch (enterDirection) {
-            case "N":
-              exit.y += 1;
-              rotation = 180;
-              break;
-            case "S":
-              exit.y -= 1;
-              rotation = 0;
-              break;
-            case "E":
-              exit.x -= 1;
-              rotation = 90;
-              break;
-            case "W":
-              exit.x += 1;
-              rotation = 270;
-              break;
+          if (exit) {
+            let rotation = 0;
+            switch (enterDirection) {
+              case "N":
+                exit.y += 1;
+                rotation = 180;
+                break;
+              case "S":
+                exit.y -= 1;
+                rotation = 0;
+                break;
+              case "E":
+                exit.x -= 1;
+                rotation = 90;
+                break;
+              case "W":
+                exit.x += 1;
+                rotation = 270;
+                break;
+            }
+            GameGlobals.gameState.playerPosition = [exit.x, 0, exit.y];
+            GameGlobals.gameState.playerRotation = rotation;
           }
-          GameGlobals.gameState.playerPosition = [exit.x, 0, exit.y];
-          GameGlobals.gameState.playerRotation = rotation;
         }
       });
 
@@ -141,7 +160,7 @@ export class LevelGenerator extends Component {
    * Creates a room in the scene that is rendered and where the player can do stuff
    * @param {Room} room The room to render
    */
-  render(room) {
+  render(room: Room) {
     const roomdesign = this.currentLd;
     for (let i = 0; i < roomdesign.width; i++) {
       for (let j = 0; j < roomdesign.height; j++) {
@@ -149,7 +168,11 @@ export class LevelGenerator extends Component {
           const tileIndex = roomdesign.data[i][j][h];
           if (tileIndex != null && tileIndex != undefined) {
             let tile = this.tileset.getTileByName(tileIndex.data);
-            this.createTile(i, j, h, tile.object);
+            if(tile){
+              this.createTile(i, j, h, tile.object);
+            }else{
+              console.warn("Tile not found: " + tileIndex.data);
+            }
           }
         }
       }
@@ -159,7 +182,7 @@ export class LevelGenerator extends Component {
    * Renders a debug view of the map
    * @param {MazeGenerator} generator
    */
-  renderDebug(generator) {
+  renderDebug(generator: MazeGenerator) {
     const canvas = document.createElement("canvas");
     //    canvas.style.display = "none";
     canvas.style.position = "absolute";
@@ -172,7 +195,7 @@ export class LevelGenerator extends Component {
 
     canvas.width = 100;
     canvas.height = 100;
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -238,40 +261,13 @@ export class LevelGenerator extends Component {
     document.body.appendChild(canvas);
   }
 
-  // createCube(x, y, z, tile) {
-  //   let t = "0000" + tile;
-  //   let blockObj = this.object.children.find(
-  //     (x) => x.name === `Block${t.substr(t.length - 2, 2)}`
-  //   );
-  //   let obj = cloneObject(blockObj, this.blockCache);
-  //   obj.resetPositionRotation();
-  //   obj.setPositionLocal([x, y, z]);
-  // }
-
-  // createCeiling(x, y, z) {
-  //   this.createTile(x, y, z, `Ceiling01`);
-  // }
-
-  // createFloor(x, y, z) {
-  //   this.createTile(x, y, z, `Floor01`);
-  // }
-
-  // createTarget(x, z, layer) {
-  //   this.createTile(x, layer, z, `Floor_Target`);
-  // }
-
-  // createBox(x, z, layer) {
-  //   let blockObj = this.object.children.find((x) => x.name === "Block06");
-  //   let box = cloneObject(blockObj, this.blockCache);
-  //   box.resetPositionRotation();
-  //   box.setPositionLocal([x, layer, z]);
-  //   let boxController = box.getComponent("box-controller");
-  //   boxController.setState(GameGlobals.levelState.getNewBoxState());
-  // }
-
-  createTile(x, y, z, tile) {
+ 
+  createTile(x:number, y:number, z:number, tile:Object3D) {
     let blockObj = tile;
     let obj = cloneObject(this.engine, blockObj, this.blockCache);
+    if(!obj){
+      throw new Error("Could not clone object: " + blockObj.name);
+    }
     obj.resetPositionRotation();
     obj.setPositionWorld([x, y, z]);
   }

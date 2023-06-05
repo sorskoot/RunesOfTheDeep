@@ -1,5 +1,6 @@
 import { Subject } from 'rxjs';
 import { LevelState } from './levelState.js';
+import { DirectionSymbol } from '../types/index.js';
 
 export const State={
     Init:-1,
@@ -116,21 +117,26 @@ export class GameState {
         
     }
 
+    /**
+     * Whether or not the player is currently navigating to a room
+     */
     navigating=false;
 
     /**
      * The direction the player entered the room from
      */
-    roomPreviousExitDirection:DirectionSymbol = null;
+    roomPreviousExitDirection:DirectionSymbol|null = null;
  
     /**
      * Navigate to a room
-     * @param {number} roomx 
-     * @param {number} roomy 
-     * @param {DirectionSymbol} direction 
+     * @param {number} roomx the x position on the map of the room to navigate to
+     * @param {number} roomy the y position on the map of the room to navigate to
+     * @param {DirectionSymbol|null} direction the direction the player exited the room from, if null the player will be teleported to the center of the room (this should only happen at the start)
      */
-    navigateToRoom(roomx:number,roomy:number, direction:DirectionSymbol=null){
-        if(this.navigating) return;
+    navigateToRoom(roomx:number,roomy:number, direction:DirectionSymbol|null=null){
+        if(this.navigating){
+            return;
+        }
         this.navigating=true;
         
         if(direction){

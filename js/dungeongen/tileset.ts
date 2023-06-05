@@ -10,13 +10,13 @@ export class TileSet {
    * The set of tiles.
    * @type {Set<Tile>}
    */
-  #tiles;
+  #tiles: Set<Tile>;
 
   /**
    * Initializes a new instance of the TileSet class.
    * @param {Object3D[]} tileObjects The list of Wonderland objects that represent the tiles.
    */
-  constructor(tileObjects) {
+  constructor(tileObjects: Object3D[]) {
     this.#tiles = new Set();
     this.#tiles.add(new Tile("Air", this.#findObject(tileObjects, "Air"), this.#tiles.size));
     this.#tiles.add(
@@ -55,7 +55,7 @@ export class TileSet {
    * @param {number} index The index of the tile to get.
    * @returns {Tile} The tile at the given index.
    */
-  getTile(index) {
+  getTile(index: number): Tile {
     return [...this.#tiles][index];
   }
 
@@ -64,7 +64,7 @@ export class TileSet {
    * @param {string} name
    * @returns {Tile|undefined} The tile with the given name.
    */
-  getTileByName(name) {
+  getTileByName(name: string): Tile | undefined {
     return [...this.#tiles].find((x) => x.name == name);
   }
 
@@ -74,7 +74,7 @@ export class TileSet {
    * @param {string} name name of the object to find
    * @returns {Object3D|undefined} the object with the given name
    */
-  #findObject(objects, name) {
+  #findObject(objects: Object3D[], name: string): Object3D | undefined {
     return objects.find((x) => x.name === name);
   }
 }

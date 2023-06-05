@@ -2,6 +2,7 @@ import { Component, Object3D, Property } from "@wonderlandengine/api";
 import GameGlobals from "../globals.js";
 import { LevelGenerator } from "./level-generator.js";
 import { State } from "../classes/gameState.js";
+import { property } from "@wonderlandengine/api/decorators.js";
 
 export class Game extends Component {
   static TypeName = "game";
@@ -10,18 +11,20 @@ export class Game extends Component {
     playerObject: Property.object(),
   };
 
-  /**
-   * @type {Object3D}
-   */
-  levelGenObject;
-  /**
-   * @type {LevelGenerator}
-   */
-  #levelGen;
+  @property.object()
+  levelGenObject!: Object3D;
+
+  @property.object()
+  playerObject!: Object3D;
+
+  #levelGen!: LevelGenerator;
 
   init() {
-    // document.getElementById("afterLoading").style.display = "block";
-    this.#levelGen = this.levelGenObject.getComponent(LevelGenerator);
+    const lg = this.levelGenObject.getComponent(LevelGenerator)
+    if(!lg){
+      throw new Error("LevelGenerator not found on levelGenObject")
+    }
+    this.#levelGen = lg;
 
     this.engine.onXRSessionStart.add(() => (GameGlobals.gameState.isInVR = true));
     this.engine.onXRSessionEnd.add(() => (GameGlobals.gameState.isInVR = false));

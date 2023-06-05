@@ -1,36 +1,38 @@
-import {Component, MeshComponent, Property, Emitter} from '@wonderlandengine/api';
+import {Component, MeshComponent, Emitter} from '@wonderlandengine/api';
 import { Easing, clamp, lerp } from '@sorskoot/wonderland-components';
+import { property } from '@wonderlandengine/api/decorators.js';
+import { FlatMaterial } from '../types/index.js';
 
 export class FadeScreen extends Component {
     static TypeName = 'fade-screen';
-    static Properties = {
-        fadeInTime: Property.float(1),
-        continuous: Property.bool(true)
-    }
-
-    /**
-     * Called when the fade in process is completed.
-     * @type {Emitter}
-     */
-    FadeInCompleted;
-
-    /**
-     * Called when the fade out process is completed.
-     * @type {Emitter}
-     */
-    FadeOutCompleted;
 
     /**
      * The time it takes to fade in or out.
      * @type {number}
      */
-    fadeInTime;
+    @property.float(1)
+    fadeInTime:number = 1;
 
     /**
      * If true, the screen will fade in again after fading out.
      * @type {boolean}
      */
-    continuous;
+    @property.bool(true)
+    continuous:boolean = true
+
+    /**
+     * Called when the fade in process is completed.
+     * @type {Emitter}
+     */
+    FadeInCompleted!: Emitter;
+
+    /**
+     * Called when the fade out process is completed.
+     * @type {Emitter}
+     */
+    FadeOutCompleted!: Emitter;
+
+;
 
     init() {
         this.FadeInCompleted = new Emitter();
@@ -38,16 +40,21 @@ export class FadeScreen extends Component {
     }
 
     /**
+     * The mesh component of the object. This should be a black sphere around the head
+     * of the player that fades in and out.
      * @type {MeshComponent}
-     */
-    mesh;
+     */    
+    mesh!:MeshComponent;
+
     #isRunning = false;
     #deltaTime = 0;
     #isFadingIn = false;
     #isFadingOut = false;
 
     start() {
-        this.mesh = this.object.getComponent(MeshComponent);
+        const mc = this.object.getComponent(MeshComponent);
+        if(!mc) throw new Error('No mesh component found on object');
+        this.mesh = mc;
         this.mesh.active = false;
     }
 
@@ -62,9 +69,9 @@ export class FadeScreen extends Component {
         this.#isRunning = true;
     }
 
-    update(delta) {
+    update(delta:number) {
         if (this.#isRunning) {
-            let alpha;
+            let alpha:number=0;
             if(this.#isFadingIn){
                 this.#deltaTime -= delta / this.fadeInTime;
                 alpha = clamp(lerp(0, 1, this.#deltaTime, Easing.InQuad), 0, 1);
@@ -87,12 +94,23 @@ export class FadeScreen extends Component {
                         this.fadeIn();
                     }
                 }else{
-                    this.mesh.material.color = [0,0,0,0];
+
+                    const flatMaterial = this.mesh.material as FlatMaterial;
+                    if (flatMaterial)
+                    {
+                        flatMaterial.color = [0,0,0,0];
+                    }
+
+
                     this.#deltaTime = 0;
                     this.FadeInCompleted.notify();
                 }
             }
-            this.mesh.material.color = [0,0,0,alpha];
+            const flatMaterial = this.mesh.material as FlatMaterial;
+            if (flatMaterial)
+            {
+                flatMaterial.color = [0,0,0, alpha];
+            }
         }
     }
 
