@@ -1,10 +1,6 @@
-import rng from "@sorskoot/wonderland-components/src/utils/rng";
-import { Cell } from "./cell";
-import { TileSet } from "./tileset";
-import { Tile } from "./tile";
-import { Queue } from "@sorskoot/wonderland-components/src/utils/queue";
-import { getInvertedDirection, getNeighbors } from "./utils/gridHelpers";
-import { deepClone } from "./utils/deepClone";
+import { rng, Queue } from "@sorskoot/wonderland-components";
+import { getNeighbors } from "./utils/gridHelpers.js";
+import { deepClone } from "./utils/deepClone.js";
 
 const DIRECTION_OFFSETS = {
   north: { x: 0, y: 1 },

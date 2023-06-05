@@ -1,15 +1,15 @@
 import { Component, Property, Object3D } from "@wonderlandengine/api";
 import { ObjectCache, cloneObject } from "@sorskoot/wonderland-components";
 
-import { LevelData } from "../data/level-data";
-import GameGlobals from "../globals";
-import { MazeGenerator } from "../dungeongen/MazeGenerator";
-import { TileSet } from "../dungeongen/tileset";
-import { PatternSet } from "../dungeongen/PatternSet";
-import { Room } from "../dungeongen/room";
-import { RoomRenderer } from "../dungeongen/RoomRenderer";
-import { FadeScreen } from "./fadeScreen";
-import { getInvertedDirection } from "../dungeongen/utils/gridHelpers";
+import { LevelData } from "../data/level-data.js";
+import GameGlobals from "../globals.js";
+import { MazeGenerator } from "../dungeongen/MazeGenerator.js";
+import { TileSet } from "../dungeongen/tileset.js";
+import { PatternSet } from "../dungeongen/PatternSet.js";
+import { Room } from "../dungeongen/room.js";
+import { RoomRenderer } from "../dungeongen/RoomRenderer.js";
+import { FadeScreen } from "./fadeScreen.js";
+import { getInvertedDirection } from "../dungeongen/utils/gridHelpers.js";
 
 const size = 9;
 const patternSize = 3;

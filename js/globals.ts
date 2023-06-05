@@ -1,6 +1,6 @@
-import { SoundfxPlayer } from "./utils/soundfx-player";
-import { MusicPlayer } from "./utils/music-player";
-import { GameState } from "./classes/gameState";
+import { SoundfxPlayer } from "./utils/soundfx-player.js";
+import { MusicPlayer } from "./utils/music-player.js";
+import { GameState } from "./classes/gameState.js";
 
 const GameGlobals = {
   gameState: new GameState(),

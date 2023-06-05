@@ -1,5 +1,5 @@
 import { Object3D } from "@wonderlandengine/api";
-import { Tile } from "./tile";
+import { Tile } from "./tile.js";
 
 /**
  * The set of tiles used by the game.

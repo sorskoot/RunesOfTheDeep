@@ -1,6 +1,6 @@
-import { Tile } from "./tile";
-import { Room } from "./room";
-import { shuffleArray } from "@sorskoot/wonderland-components/src/utils/arrayHelpers";
+import { Tile } from "./tile.js";
+import { Room } from "./room.js";
+import { shuffleArray } from "@sorskoot/wonderland-components";
 
 const DIRECTION_OFFSETS = {
   north: { x: 0, y: 1 },
@@ -19,9 +19,10 @@ export class MazeGenerator {
    */
   maze = [[]];
 
-  patterns;
+  patterns: { [x: string]: any; };
 
-  constraints;
+  constraints: any;
+  farthestRoom: { x: number; y: number; distance: number; };
 
   constructor(sizeX, sizeY, tileSet, extractedPatterns, constraintMappingForAllKeySets) {
     this.mazeWidth = sizeX;

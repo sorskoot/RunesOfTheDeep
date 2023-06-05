@@ -320,12 +320,12 @@
             "components": [
                 {
                     "type": "player-height",
-                    "active": true
+                    "active": false
                 }
             ],
             "translation": [
                 0.0,
-                0.0,
+                1.75,
                 0.0
             ],
             "rotation": [
@@ -1611,19 +1611,6 @@
                     }
                 },
                 {
-                    "type": "collision",
-                    "collision": {
-                        "collider": "box",
-                        "box": {
-                            "extents": [
-                                0.5,
-                                0.5,
-                                0.1
-                            ]
-                        }
-                    }
-                },
-                {
                     "type": "look-at",
                     "look-at": {
                         "target": "14"
@@ -2640,7 +2627,7 @@
         },
         "375": {
             "name": "CharacterTest",
-            "pipeline": "387",
+            "pipeline": "240",
             "FlatSorskoot": {
                 "flatTexture": "377"
             }
@@ -2797,7 +2784,9 @@
                 1,
                 0,
                 3
-            ]
+            ],
+            "customIndexHtml": false,
+            "packageForStreaming": false
         },
         "vr": {
             "leftEyeObject": "18",
@@ -2828,7 +2817,7 @@
             }
         },
         "editor": {
-            "serverPort": 2525
+            "serverPort": 1456
         },
         "rendering": {
             "clearColor": [

@@ -5,14 +5,9 @@
 
 import { WonderlandEngine, Object3D, LightComponent } from "@wonderlandengine/api";
 import { Tags, cloneObject } from "@sorskoot/wonderland-components";
-import { Room } from "./room";
-import { DoorHandler } from "../components/door-handler";
-import { TileSet } from "./tileset";
-import RNG from "@sorskoot/wonderland-components/src/utils/rng";
-import { ObjectCache } from "@sorskoot/wonderland-components";
-import { roomTemplates } from "./roomTemplates";
-import { Tile } from "./tile";
-import rng from "@sorskoot/wonderland-components/src/utils/rng";
+import { DoorHandler } from "../components/door-handler.js";
+import { rng} from "@sorskoot/wonderland-components";
+import { roomTemplates } from "./roomTemplates.js";
 
 /**
  * The Room Renderer is responsible for rendering a room.
@@ -213,7 +208,7 @@ export class RoomRenderer {
    * @param {*} roomdesign
    */
   createInterior(room, roomdesign) {
-    const roomRNG = RNG.clone().setSeed(room.seed);
+    const roomRNG = rng.clone().setSeed(room.seed);
     
     let hasFirepit = false;
 

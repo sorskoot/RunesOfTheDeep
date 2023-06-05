@@ -1,7 +1,7 @@
 import { Component, Object3D, Property } from "@wonderlandengine/api";
 
 import { vec3 } from "gl-matrix";
-import GameGlobals from "../globals";
+import GameGlobals from "../globals.js";
 
 export class SorskootTeleport extends Component {
   static TypeName = "sorskoot-teleport";

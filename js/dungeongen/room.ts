@@ -1,16 +1,15 @@
 /**
- * @file This file contains the Room class.
- * @requires typedefs.js
- *
- * @typedef {Object} RoomDirections - The rooms a door will take you to
- * @property {{x:number, y:number}|null|undefined} north The room in the north direction
- * @property {{x:number, y:number}|null|undefined} east The room in the east direction
- * @property {{x:number, y:number}|null|undefined} south The room in the south direction
- * @property {{x:number, y:number}|null|undefined} west The room in the west direction
- */
+ * This file contains the Room class.
+*/
 
-import { findCharInStringArray } from "../forFramework/findCharInStringArray";
-import { RoomTemplate, RoomTypes } from "./roomTemplates";
+type RoomDirections = { 
+  north:{x:number, y:number}|null|undefined, 
+  west: {x:number, y:number}|null|undefined, 
+  south:{x:number, y:number}|null|undefined, 
+  east: {x:number, y:number}|null|undefined }
+
+import { findCharInStringArray } from "../forFramework/findCharInStringArray.js";
+import { RoomTemplate, RoomTypes } from "./roomTemplates.js";
 
 export class Room {
 
@@ -18,13 +17,42 @@ export class Room {
    * The rooms a door will take you to
    * @type {RoomDirections}
    */
-  targetRooms;
+  targetRooms: RoomDirections;
 
   /**
-   * The template used to generate this room
-   * @type {RoomTemplate} The room template used to generate this room
+   * The template used to generate this room  
    */
-  #roomTemplate = null;
+  #roomTemplate: RoomTemplate = null;
+
+  /**
+   * Does this room have a door in each direction?
+   */
+  doors: { north: boolean; west: boolean; south: boolean; east: boolean; };
+
+  /**
+   * Is this room the exit, the final room of the game?
+   */
+  isExit: boolean;
+
+  /**
+   * Is this room the entrance, the first room of the game? 
+   */
+  isEntrance: boolean;
+
+  /**
+   * Is this room a treasure room?
+   */
+  isTreasure: boolean;
+
+  /**
+   * The seed used to generate this room
+   */
+  seed: number;
+
+  /**
+   * The distance from the entrance
+   */
+  distanceFromEntrance: number;
 
   constructor() {
     this.doors = { north: false, west: false, south: false, east: false };
@@ -48,9 +76,9 @@ export class Room {
   /**
    * Gets the room in a specific direction
    * @param {DirectionSymbol|string} direction 
-   * @returns {Room|undefined|null} the room in that direction; null if there is no room in that direction
+   * @returns {{x:number, y:number}|null|undefined} the room in that direction; null if there is no room in that direction
    */
-  getTargetRoom(direction) {
+  getTargetRoom(direction: DirectionSymbol|string):{x:number, y:number}|null|undefined {
     switch (direction) {
       case "N":
         return this.targetRooms.north;

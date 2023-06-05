@@ -1,5 +1,4 @@
-import rng from "@sorskoot/wonderland-components/src/utils/rng";
-import { rngWithWeight } from "@sorskoot/wonderland-components/src/utils/rngWithWeight";
+import { rngWithWeight } from "@sorskoot/wonderland-components";
 
 export class Cell {
  

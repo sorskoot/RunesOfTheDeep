@@ -1,5 +1,5 @@
-import { State } from "../classes/gameState";
-import StorageSpace13 from "../globals";
+import { State } from "../classes/gameState.js";
+import StorageSpace13 from "../globals.js";
 
 export const Songs = {
     complete:0,

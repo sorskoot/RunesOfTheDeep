@@ -1,7 +1,7 @@
 import { Component, Object3D, Property } from "@wonderlandengine/api";
-import GameGlobals from "../globals";
-import { LevelGenerator } from "./level-generator";
-import { State } from "../classes/gameState";
+import GameGlobals from "../globals.js";
+import { LevelGenerator } from "./level-generator.js";
+import { State } from "../classes/gameState.js";
 
 export class Game extends Component {
   static TypeName = "game";

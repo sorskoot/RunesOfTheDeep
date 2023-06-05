@@ -12,6 +12,9 @@
  */
 
 /* wle:auto-imports:start */
+import {Flipbook} from '@sorskoot/wonderland-components';
+import {SnapRotate} from '@sorskoot/wonderland-components';
+import {Tags} from '@sorskoot/wonderland-components';
 import {Cursor} from '@wonderlandengine/components';
 import {CursorTarget} from '@wonderlandengine/components';
 import {HowlerAudioListener} from '@wonderlandengine/components';
@@ -27,9 +30,6 @@ import {LookAt} from './components/look-at.js';
 import {PickTarget} from './components/pick-target.js';
 import {SorskootTeleport} from './components/teleport.js';
 import {TileDescriptor} from './dungeongen/components/tileComponent.js';
-import {Flipbook} from './../node_modules/@sorskoot/wonderland-components/src/components/flipbook.js';
-import {SnapRotate} from './../node_modules/@sorskoot/wonderland-components/src/components/snap-rotate.js';
-import {Tags} from './../node_modules/@sorskoot/wonderland-components/src/components/tags.js';
 /* wle:auto-imports:end */
 
 import {loadRuntime} from '@wonderlandengine/api';
@@ -88,6 +88,9 @@ if (document.readyState === 'loading') {
 }
 
 /* wle:auto-register:start */
+engine.registerComponent(Flipbook);
+engine.registerComponent(SnapRotate);
+engine.registerComponent(Tags);
 engine.registerComponent(Cursor);
 engine.registerComponent(CursorTarget);
 engine.registerComponent(HowlerAudioListener);
@@ -103,9 +106,6 @@ engine.registerComponent(LookAt);
 engine.registerComponent(PickTarget);
 engine.registerComponent(SorskootTeleport);
 engine.registerComponent(TileDescriptor);
-engine.registerComponent(Flipbook);
-engine.registerComponent(SnapRotate);
-engine.registerComponent(Tags);
 /* wle:auto-register:end */
 
 engine.scene.load(`${Constants.ProjectName}.bin`);

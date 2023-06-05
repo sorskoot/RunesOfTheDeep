@@ -1,4 +1,4 @@
-import { Grid } from "../grid";
+import { Grid } from "../grid.js";
 
 const NEIGHBOR_OFFSETS = [
   { x: -1, y: 0, z: 0, name: "west" },

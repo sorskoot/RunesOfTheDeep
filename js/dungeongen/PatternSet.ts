@@ -1,4 +1,4 @@
-import { rotatePattern } from "./utils/extractor";
+import { rotatePattern } from "./utils/extractor.js";
 
 export class PatternSet {
   #patterns = new Map();

@@ -1,4 +1,4 @@
-import GameGlobals from "../globals";
+import GameGlobals from "../globals.js";
 
 export class LevelState {
 

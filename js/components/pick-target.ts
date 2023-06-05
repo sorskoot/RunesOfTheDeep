@@ -1,9 +1,9 @@
 import { Component, Object3D, Property } from "@wonderlandengine/api";
 
 import { vec3} from "gl-matrix";
-import GameGlobals from "../globals";
-import { State } from "../classes/gameState";
-import { Sounds } from "../utils/soundfx-player";
+import GameGlobals from "../globals.js";
+import { State } from "../classes/gameState.js";
+import { Sounds } from "../utils/soundfx-player.js";
 import { Tags } from "@sorskoot/wonderland-components";
 
 export class PickTarget extends Component {

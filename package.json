@@ -18,6 +18,6 @@
     "@zestymarket/wonderland-sdk": "^2.0.4",
     "gl-matrix": "^3.4.3",
     "rxjs": "^7.8.1",
-    "@sorskoot/wonderland-components": "1.0.13"
+    "@sorskoot/wonderland-components": "1.1.5"
   }
 }
