@@ -26,12 +26,8 @@ import * as _D__Dev_RunesOfTheDeep_js_dungeongen_PatternSet_ts from 'D:/Dev/Rune
 _registerEditor(_D__Dev_RunesOfTheDeep_js_dungeongen_PatternSet_ts);
 import * as _D__Dev_RunesOfTheDeep_js_dungeongen_RoomRenderer_ts from 'D:/Dev/RunesOfTheDeep/js/dungeongen/RoomRenderer.ts';
 _registerEditor(_D__Dev_RunesOfTheDeep_js_dungeongen_RoomRenderer_ts);
-import * as _D__Dev_RunesOfTheDeep_js_dungeongen_cell_ts from 'D:/Dev/RunesOfTheDeep/js/dungeongen/cell.ts';
-_registerEditor(_D__Dev_RunesOfTheDeep_js_dungeongen_cell_ts);
 import * as _D__Dev_RunesOfTheDeep_js_dungeongen_components_tileComponent_ts from 'D:/Dev/RunesOfTheDeep/js/dungeongen/components/tileComponent.ts';
 _registerEditor(_D__Dev_RunesOfTheDeep_js_dungeongen_components_tileComponent_ts);
-import * as _D__Dev_RunesOfTheDeep_js_dungeongen_grid_ts from 'D:/Dev/RunesOfTheDeep/js/dungeongen/grid.ts';
-_registerEditor(_D__Dev_RunesOfTheDeep_js_dungeongen_grid_ts);
 import * as _D__Dev_RunesOfTheDeep_js_dungeongen_room_ts from 'D:/Dev/RunesOfTheDeep/js/dungeongen/room.ts';
 _registerEditor(_D__Dev_RunesOfTheDeep_js_dungeongen_room_ts);
 import * as _D__Dev_RunesOfTheDeep_js_dungeongen_roomTemplates_ts from 'D:/Dev/RunesOfTheDeep/js/dungeongen/roomTemplates.ts';
@@ -40,11 +36,9 @@ import * as _D__Dev_RunesOfTheDeep_js_dungeongen_tile_ts from 'D:/Dev/RunesOfThe
 _registerEditor(_D__Dev_RunesOfTheDeep_js_dungeongen_tile_ts);
 import * as _D__Dev_RunesOfTheDeep_js_dungeongen_tileset_ts from 'D:/Dev/RunesOfTheDeep/js/dungeongen/tileset.ts';
 _registerEditor(_D__Dev_RunesOfTheDeep_js_dungeongen_tileset_ts);
-import * as _D__Dev_RunesOfTheDeep_js_dungeongen_utils_deepClone_ts from 'D:/Dev/RunesOfTheDeep/js/dungeongen/utils/deepClone.ts';
-_registerEditor(_D__Dev_RunesOfTheDeep_js_dungeongen_utils_deepClone_ts);
+import * as _D__Dev_RunesOfTheDeep_js_dungeongen_utils_directionHelpers_ts from 'D:/Dev/RunesOfTheDeep/js/dungeongen/utils/directionHelpers.ts';
+_registerEditor(_D__Dev_RunesOfTheDeep_js_dungeongen_utils_directionHelpers_ts);
 import * as _D__Dev_RunesOfTheDeep_js_dungeongen_utils_extractor_ts from 'D:/Dev/RunesOfTheDeep/js/dungeongen/utils/extractor.ts';
 _registerEditor(_D__Dev_RunesOfTheDeep_js_dungeongen_utils_extractor_ts);
-import * as _D__Dev_RunesOfTheDeep_js_dungeongen_utils_gridHelpers_ts from 'D:/Dev/RunesOfTheDeep/js/dungeongen/utils/gridHelpers.ts';
-_registerEditor(_D__Dev_RunesOfTheDeep_js_dungeongen_utils_gridHelpers_ts);
 import * as _D__Dev_RunesOfTheDeep_js_globals_ts from 'D:/Dev/RunesOfTheDeep/js/globals.ts';
 _registerEditor(_D__Dev_RunesOfTheDeep_js_globals_ts);

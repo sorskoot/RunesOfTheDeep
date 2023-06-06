@@ -812,20 +812,6 @@
             "components": [
                 null,
                 {
-                    "type": "collision",
-                    "collision": {
-                        "collider": "aabb",
-                        "aabb": {
-                            "extents": [
-                                0.5,
-                                1.0,
-                                0.5
-                            ]
-                        },
-                        "groups": 255
-                    }
-                },
-                {
                     "type": "tags",
                     "tags": {
                         "tags": "wall"
@@ -864,20 +850,6 @@
             "parent": "238",
             "components": [
                 null,
-                {
-                    "type": "collision",
-                    "collision": {
-                        "collider": "aabb",
-                        "aabb": {
-                            "extents": [
-                                0.5,
-                                1.0,
-                                0.5
-                            ]
-                        },
-                        "groups": 255
-                    }
-                },
                 {
                     "type": "tags",
                     "tags": {
@@ -950,20 +922,6 @@
             "components": [
                 null,
                 {
-                    "type": "collision",
-                    "collision": {
-                        "collider": "aabb",
-                        "aabb": {
-                            "extents": [
-                                0.5,
-                                2.0,
-                                0.5
-                            ]
-                        },
-                        "groups": 128
-                    }
-                },
-                {
                     "type": "tags",
                     "tags": {
                         "tags": "Door"
@@ -978,9 +936,6 @@
                 },
                 {
                     "type": "tile-descriptor"
-                },
-                {
-                    "type": "cursor-target"
                 }
             ],
             "translation": [
@@ -1746,6 +1701,237 @@
                 0.7071066,
                 0.0,
                 0.7071068
+            ]
+        },
+        "394": {
+            "name": "collisionObject",
+            "parent": "278",
+            "components": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                {
+                    "type": "collision",
+                    "collision": {
+                        "collider": "aabb",
+                        "aabb": {
+                            "extents": [
+                                0.5,
+                                1.0,
+                                0.5
+                            ]
+                        },
+                        "groups": 128
+                    }
+                },
+                {
+                    "type": "cursor-target"
+                }
+            ],
+            "translation": [
+                0.0,
+                1.0,
+                0.0
+            ]
+        },
+        "395": {
+            "name": "collisionObject",
+            "parent": "273",
+            "components": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                {
+                    "type": "collision",
+                    "collision": {
+                        "collider": "aabb",
+                        "aabb": {
+                            "extents": [
+                                0.5,
+                                0.5,
+                                0.5
+                            ]
+                        },
+                        "groups": 255
+                    }
+                }
+            ],
+            "translation": [
+                0.0,
+                0.5,
+                0.0
+            ]
+        },
+        "396": {
+            "name": "collisionObject",
+            "parent": "266",
+            "components": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                {
+                    "type": "collision",
+                    "collision": {
+                        "collider": "aabb",
+                        "aabb": {
+                            "extents": [
+                                0.5,
+                                0.5,
+                                0.5
+                            ]
+                        },
+                        "groups": 255
+                    }
+                }
+            ],
+            "translation": [
+                0.0,
+                0.5,
+                0.0
             ]
         }
     },

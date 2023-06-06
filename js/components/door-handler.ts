@@ -3,6 +3,7 @@ import { CursorTarget } from "@wonderlandengine/components";
 import GameGlobals from "../globals.js";
 import {property} from '@wonderlandengine/api/decorators.js';
 import { DirectionSymbol } from "../types/index.js";
+import { wlUtils } from "@sorskoot/wonderland-components";
 
 /**
  * This class handles the door interactions
@@ -32,7 +33,8 @@ export class DoorHandler extends Component {
   targetRoomY:number = 0;
 
   start() {
-    const target = this.object.getComponent(CursorTarget);
+    let child = wlUtils.findChild(this.object, "collisionObject");
+    const target = child.getComponent(CursorTarget);
     if (!target) {
       console.error("DoorHandler needs a CursorTarget component on the same object");
       return;
