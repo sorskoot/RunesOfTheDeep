@@ -23,7 +23,7 @@ export class Room {
   /**
    * The template used to generate this room  
    */
-  #roomTemplate: RoomTemplate|null = null;
+  #roomTemplate: RoomTemplate | null = null;
 
   /**
    * Does this room have a door in each direction?

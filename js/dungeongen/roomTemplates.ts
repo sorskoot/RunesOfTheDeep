@@ -3,39 +3,42 @@
  * @requires typedefs.js
  */
 
-export const RoomTypes = {
-  Entrance: /** @type {RoomType} */ ("entrance"),
-  Exit: /** @type {RoomType} */ ("exit"),
-  Treasure: /** @type {RoomType} */ ("treasure"),
-  Normal: /** @type {RoomType} */ ("normal"),
+import { RoomType } from "../types/index.js";
+
+export const RoomTypes: Record<string, RoomType> = {
+  Entrance: "entrance",
+  Exit: "exit",
+  Treasure: "treasure",
+  Normal: "normal",
 };
 
-export class RoomTemplate {
+export interface RoomTemplate {
+  
   /**
    * @description the name of the room
    * @type {string | undefined} name
    */
-  name;
+  name: string;
   /**
    * @description the type of the room
    * @type {RoomType | undefined} type
    */
-  type;
+  type: RoomType;
   /**
    * @description the pattern of the room
    * @type {string[] | undefined} pattern
    */
-  pattern;
+  pattern: string[];
   /**
    * @description the height of the ceiling in tiles, randomly chosen from this array
    * @type {number[]} ceilingHeight
    */
-  ceilingHeight = [2];
+  ceilingHeight: number[];
   /**
    * @description whether or not this room can be rotated
    * @type {boolean | undefined} canBeRotated
    */
-  canBeRotated;
+  canBeRotated: boolean;
 }
 
 /**
@@ -43,7 +46,7 @@ export class RoomTemplate {
  * a random room template of that type is chosen and it is rotated if necessary.
  * @type {RoomTemplate[]}
  */
-export const roomTemplates = [
+export const roomTemplates: RoomTemplate[] = [
   {
     name: "entrance",
     type: RoomTypes.Entrance,

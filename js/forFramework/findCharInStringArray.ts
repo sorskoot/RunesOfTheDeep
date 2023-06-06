@@ -16,3 +16,17 @@ export function findCharInStringArray(grid: string[], targetChar: string): { x: 
   // If the character is not found, return null
   return null;
 }
+
+/**
+ * Finds a character based on its coordinates
+  */
+export function findCharInStringArrayByPos(grid: string[], x: number, y: number): string | null {
+  if (y < 0 || y >= grid.length) {
+    return null;
+  }
+  if(x < 0 || x >= grid[y].length) {
+    return null;
+  }
+
+  return grid[y][x];
+}

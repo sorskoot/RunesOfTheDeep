@@ -1,6 +1,8 @@
 import { Subject } from 'rxjs';
 import { LevelState } from './levelState.js';
 import { DirectionSymbol } from '../types/index.js';
+import { Room } from '../dungeongen/room.js';
+import { findCharInStringArrayByPos } from '../forFramework/findCharInStringArray.js';
 
 export const State={
     Init:-1,
@@ -12,6 +14,8 @@ export const State={
 }
 
 export class GameState {
+    
+    room: Room|null = null;
 
     constructor() {
         this.playerPositionSubject = new Subject();
@@ -161,6 +165,23 @@ export class GameState {
      * @returns true if it is possible to teleport to the given position
      */
     canTeleportToPosition(x:number, y:number, z:number) {
-        return true;
+        if(!this.room){
+            return false;
+        }
+        
+        const template = this.room.getRoomTemplate();
+        
+        if(!template){
+            console.error(`no template found for current room. Odd... We're in it.`);
+            return false;
+        }
+
+        const char = findCharInStringArrayByPos(template.pattern, x, z);
+
+        return char === '.' || char === '%'|| char === 'X';
     }
+
+    setCurrentRoom(currentRoom: Room) {
+        this.room = currentRoom;
+      }
 }

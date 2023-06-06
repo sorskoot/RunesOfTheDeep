@@ -19,7 +19,7 @@ export class Grid {
    */
   #grid = [[]];
 
-  patterns;
+  patterns; 
 
   constraints;
 

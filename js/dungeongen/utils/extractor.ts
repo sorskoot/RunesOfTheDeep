@@ -177,31 +177,31 @@ export function checkConstraints(patternA: string | any[], patternB: any[][]) {
   return { north: topMatch, south: bottomMatch, west: leftMatch, east: rightMatch };
 }
 
-export function buildConstraintsMap(patterns: any[]) {
-  const constraintsMap = new Map();
+// export function buildConstraintsMap(patterns: any[]) {
+//   const constraintsMap = new Map();
 
-  patterns.forEach((patternDataA: { pattern: any; }, keyA: any) => {
-    let constraintsObjectPerPatternDirectionWise = {};
+//   patterns.forEach((patternDataA: { pattern: any; }, keyA: any) => {
+//     let constraintsObjectPerPatternDirectionWise = {};
 
-    patterns.forEach((patternDataB: { pattern: any; }, keyB: any) => {
-      const constraintsBetweenPatterns = checkConstraints(
-        patternDataA.pattern,
-        patternDataB.pattern
-      );
+//     patterns.forEach((patternDataB: { pattern: any; }, keyB: any) => {
+//       const constraintsBetweenPatterns = checkConstraints(
+//         patternDataA.pattern,
+//         patternDataB.pattern
+//       );
 
-      //check all direction and store accordingly
+//       //check all direction and store accordingly
 
-      Object.keys(constraintsBetweenPatterns).forEach((direction) => {
-        if (constraintsBetweenPatterns[direction]) {
-          if (!constraintsObjectPerPatternDirectionWise[direction])
-            constraintsObjectPerPatternDirectionWise[direction] = [keyB];
-          else constraintsObjectPerPatternDirectionWise[direction].push(keyB);
-        }
-      });
-    });
+//       Object.keys(constraintsBetweenPatterns).forEach((direction) => {
+//         if (constraintsBetweenPatterns[direction]) {
+//           if (!constraintsObjectPerPatternDirectionWise[direction])
+//             constraintsObjectPerPatternDirectionWise[direction] = [keyB];
+//           else constraintsObjectPerPatternDirectionWise[direction].push(keyB);
+//         }
+//       });
+//     });
 
-    constraintsMap.set(keyA, constraintsObjectPerPatternDirectionWise);
-  });
+//     constraintsMap.set(keyA, constraintsObjectPerPatternDirectionWise);
+//   });
 
-  return constraintsMap;
-}
+//   return constraintsMap;
+// }

@@ -9,7 +9,7 @@ import { PatternSet } from "../dungeongen/PatternSet.js";
 import { Room } from "../dungeongen/room.js";
 import { RoomRenderer } from "../dungeongen/RoomRenderer.js";
 import { FadeScreen } from "./fadeScreen.js";
-import { getInvertedDirection } from "../dungeongen/utils/gridHelpers.js";
+import { getInvertedDirection } from "../dungeongen/utils/DirectionHelpers.js";
 import { property } from "@wonderlandengine/api/decorators.js";
 
 const size = 9;
@@ -151,6 +151,7 @@ export class LevelGenerator extends Component {
       });
 
       this.fadeScreenComponent.fadeOut();
+      GameGlobals.gameState.setCurrentRoom(currentRoom);
     });
 
     this.renderDebug(this.generator);

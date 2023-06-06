@@ -56,6 +56,7 @@ Would Like:
 
 Bugs:
     ☐ There might be an issue if the player goes to the next room while the fade in/out is still going
+    ☐ Snap-Rotation goes around the wrong pivot
 ---
 
 
