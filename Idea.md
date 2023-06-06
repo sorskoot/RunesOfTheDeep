@@ -216,6 +216,7 @@ These assets might be usable for the first version of the game:
 - https://xenophero.itch.io/rock-sprites (free)
 - https://incremental-inc.itch.io/ores-and-rocks-16x16-pixel-sprites ($2)
 - https://merchant-shade.itch.io/16x16-puny-characters-plus-sprites ($10)
+- https://brullov.itch.io/fire-animation
 - 
 # Note
 
