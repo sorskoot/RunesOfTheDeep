@@ -23,7 +23,7 @@ export class Room {
   /**
    * The template used to generate this room  
    */
-  #roomTemplate: RoomTemplate = null;
+  #roomTemplate: RoomTemplate|null = null;
 
   /**
    * Does this room have a door in each direction?
@@ -113,7 +113,7 @@ export class Room {
    * 
    * @param {RoomTemplate} roomTemplate 
    */
-  setRoomTemplate(roomTemplate) {
+  setRoomTemplate(roomTemplate: RoomTemplate) {
     if(this.#roomTemplate === null){
       this.#roomTemplate = roomTemplate;
     }else{
@@ -133,7 +133,10 @@ export class Room {
   getDoor(direction: DirectionSymbol|string): { x: number; y: number; }|null
   {
     // get the door from the template
-    let result = findCharInStringArray(this.#roomTemplate.pattern, direction);
-    return result;
+    if(this.#roomTemplate !== null){
+      let result = findCharInStringArray(this.#roomTemplate.pattern, direction);    
+      return result;
+    }
+    return null;
   }
 }

@@ -1,6 +1,6 @@
 // Function to rotate a pattern 90 degrees clockwise
-export function rotatePattern(pattern, patternSize) {
-  let rotatedPattern = [];
+export function rotatePattern(pattern: any[][], patternSize: number) {
+  let rotatedPattern:any[] = [];
   for (let i = 0; i < patternSize; i++) {
     rotatedPattern.push([]);
     for (let j = patternSize - 1; j >= 0; j--) {
@@ -10,7 +10,7 @@ export function rotatePattern(pattern, patternSize) {
   return rotatedPattern;
 }
 
-export function extractPatterns2D(input, patternSize) {
+export function extractPatterns2D(input: string | any[], patternSize: number) {
   const width = input[0].length;
   const height = input.length;
 
@@ -53,7 +53,7 @@ export function extractPatterns2D(input, patternSize) {
   return Array.from(patterns.values());
 }
 
-export function extractPatternsWrap(input, patternSize) {
+export function extractPatternsWrap(input: string | any[], patternSize: number) {
   const width = input[0].length;
   const height = input.length;
 
@@ -96,7 +96,7 @@ export function extractPatternsWrap(input, patternSize) {
   return Array.from(patterns.values());
 }
 
-export function extractPatterns3D(input, patternSize) {
+export function extractPatterns3D(input: string | any[], patternSize: number) {
   const width = input[0][0].length;
   const height = input[0].length;
   const depth = input.length;
@@ -134,7 +134,7 @@ export function extractPatterns3D(input, patternSize) {
   }
 }
 
-export function checkConstraints(patternA, patternB) {
+export function checkConstraints(patternA: string | any[], patternB: any[][]) {
   const size = patternA.length;
 
   // Check top
@@ -177,13 +177,13 @@ export function checkConstraints(patternA, patternB) {
   return { north: topMatch, south: bottomMatch, west: leftMatch, east: rightMatch };
 }
 
-export function buildConstraintsMap(patterns) {
+export function buildConstraintsMap(patterns: any[]) {
   const constraintsMap = new Map();
 
-  patterns.forEach((patternDataA, keyA) => {
+  patterns.forEach((patternDataA: { pattern: any; }, keyA: any) => {
     let constraintsObjectPerPatternDirectionWise = {};
 
-    patterns.forEach((patternDataB, keyB) => {
+    patterns.forEach((patternDataB: { pattern: any; }, keyB: any) => {
       const constraintsBetweenPatterns = checkConstraints(
         patternDataA.pattern,
         patternDataB.pattern

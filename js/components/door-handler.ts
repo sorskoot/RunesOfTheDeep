@@ -2,6 +2,7 @@ import { Component } from "@wonderlandengine/api";
 import { CursorTarget } from "@wonderlandengine/components";
 import GameGlobals from "../globals.js";
 import {property} from '@wonderlandengine/api/decorators.js';
+import { DirectionSymbol } from "../types/index.js";
 
 /**
  * This class handles the door interactions

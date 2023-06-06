@@ -2,6 +2,7 @@ import { Component, Object3D, Property } from "@wonderlandengine/api";
 
 import { vec3 } from "gl-matrix";
 import GameGlobals from "../globals.js";
+import { property } from "@wonderlandengine/api/decorators.js";
 
 export class SorskootTeleport extends Component {
   static TypeName = "sorskoot-teleport";
@@ -20,27 +21,31 @@ export class SorskootTeleport extends Component {
    * Left eye for use in VR
    * @type {Object3D}
    */
-  eyeLeft;
-   /**
+  @property.object()
+  eyeLeft!: Object3D;
+  /**
    * Right eye for use in VR
    * @type {Object3D}
    */
-  eyeRight;
-   /**
+  @property.object()
+  eyeRight!: Object3D;
+  /**
    * Non-vr camera for use outside of VR
    * @type {Object3D}
    */
-  cam;
+  @property.object()
+  cam!: Object3D;
   /**
    * Root of the player, the object that will be positioned on teleportation
    * @type {Object3D}
    */
-  camRoot;
+  @property.object()
+  camRoot!: Object3D;
+  
+  private _tempVec: Float32Array= new Float32Array(3);
+  private _tempVec0: Float32Array= new Float32Array(3);
 
   init() {
-    this._tempVec = new Float32Array(3);
-    this._tempVec0 = new Float32Array(3);
-
     GameGlobals.gameState.playerPositionSubject.subscribe((pos) => {
       this.#teleportPlayer(pos);
     });
@@ -49,7 +54,7 @@ export class SorskootTeleport extends Component {
     });
   }
 
-  #teleportPlayer(newPosition) {
+  #teleportPlayer(newPosition: number[]) {
     const p = this._tempVec;
     const p1 = this._tempVec0;
 
@@ -71,7 +76,7 @@ export class SorskootTeleport extends Component {
     this.camRoot.setPositionWorld(p);
   }
 
-  #rotatePlayer(rotationToAdd) {
+  #rotatePlayer(rotationToAdd: number) {
     this.camRoot.resetRotation();
     this.camRoot.rotateAxisAngleDegObject([0, 1, 0], rotationToAdd);
   }

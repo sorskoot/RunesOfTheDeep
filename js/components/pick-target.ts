@@ -1,51 +1,56 @@
-import { Component, Object3D, Property } from "@wonderlandengine/api";
+import { Component, Object3D } from "@wonderlandengine/api";
 
 import { vec3} from "gl-matrix";
 import GameGlobals from "../globals.js";
 import { State } from "../classes/gameState.js";
 import { Sounds } from "../utils/soundfx-player.js";
 import { Tags } from "@sorskoot/wonderland-components";
+import { property } from "@wonderlandengine/api/decorators.js";
 
 export class PickTarget extends Component {
   static TypeName = "pick-target";
-  static Properties = {
-    allowedPickerMeshObject: Property.object(),
-    notAllowedPickerMeshObject: Property.object(),
-    floorGroup: Property.int(1),
-    player: Property.object(),
-    navControllerObject: Property.object(),
-  };
   
   /**
    * @type {Object3D}
    */ 
-  allowedPickerMeshObject;
+  @property.object()
+  allowedPickerMeshObject!: Object3D;
 
   /**
    * @type {Object3D}
    */
-  notAllowedPickerMeshObject;
+  @property.object()
+  notAllowedPickerMeshObject!: Object3D;
 
   /**
    * @type {number}
    */
-  floorGroup;
+  @property.int(1<<2)
+  floorGroup: number = 1<<2;
 
   /**
    * @type {Object3D}
    */
-  player;
+  @property.object()
+  player!: Object3D;
 
   /**
    * @type {Object3D}
    */
-  navControllerObject;
+  @property.object()
+  navControllerObject!: Object3D;
+  pickingActive: boolean = false;
+  input: any;
+  initialized: boolean = false;
+  hitSpot: any;
+  hitObject: any;
+  indicatorHidden: any;
 
   /**
    * Whether the picking is active or not
    * @returns {boolean}
    */
-  #canTrigger() {
+  #canTrigger(): boolean {
     return true;
   }
 
@@ -57,7 +62,7 @@ export class PickTarget extends Component {
    * @param {Number} z 
    * @returns {boolean} Boolean indicating whether the object can be picked or not
    */
-  #pickingAllowed(obj, x, y, z) {
+  #pickingAllowed(obj: Object3D, x: number, y: number, z: number): boolean {
     let tags = obj.getComponent(Tags);
     if (!tags) {
       return false;
@@ -82,7 +87,7 @@ export class PickTarget extends Component {
    * @param {Number} y 
    * @param {Number} z 
    */
-  #picked(obj, x, y, z) {
+  #picked(obj: Object3D, x: number, y: number, z: number) {
     let tags = obj.getComponent(Tags);
     if (!tags) return;
     let position = GameGlobals.gameState.playerPosition;
@@ -112,7 +117,7 @@ export class PickTarget extends Component {
     this.initialized = true;
   }
 
-  update(dt) {
+  update(dt:number) {
     let xrInputSource = this.input.xrInputSource;
     if (!this.initialized || !xrInputSource) {
       return;
@@ -192,7 +197,7 @@ export class PickTarget extends Component {
    * @param {Number} y 
    * @param {Number} z 
    */
-  #showIndicator(obj, x, y, z) {
+  #showIndicator(obj: Object3D, x: number, y: number, z: number) {
     let tags = obj.getComponent(Tags);
     if (!tags) return;
     switch (true) {

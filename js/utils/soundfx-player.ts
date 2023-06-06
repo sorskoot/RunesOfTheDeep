@@ -7,6 +7,13 @@ export const Sounds = {
 }
 
 export class SoundfxPlayer{
+    initialized: boolean;
+    currentSfxIndex: number;
+    audiopool: HTMLAudioElement[];
+    pannerNodes: PannerNode[];
+    audioContext: any;
+    sounds!: HTMLAudioElement[];
+
     constructor() {
         this.initialized = false;          
         this.currentSfxIndex =0;
@@ -45,7 +52,7 @@ export class SoundfxPlayer{
         }
     }
 
-    playSound(audioIndex, pos) {
+    playSound(audioIndex:number, pos?:number[]) {
         if(!this.audioContext) return;
         if(!pos || !pos[0] || isNaN(pos[0])){
             pos=[0,0,0];

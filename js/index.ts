@@ -28,6 +28,7 @@ import {Game} from './components/game.js';
 import {LevelGenerator} from './components/level-generator.js';
 import {LookAt} from './components/look-at.js';
 import {PickTarget} from './components/pick-target.js';
+import {PlayerHeight2} from './components/player-height2.js';
 import {SorskootTeleport} from './components/teleport.js';
 import {TileDescriptor} from './dungeongen/components/tileComponent.js';
 /* wle:auto-imports:end */
@@ -57,6 +58,7 @@ window.WL = engine; // Deprecated: Backward compatibility.
 engine.onSceneLoaded.once(() => {
     const el = document.getElementById('version');
     if (el) setTimeout(() => el.remove(), 2000);
+
 });
 
 /* WebXR setup. */
@@ -104,6 +106,7 @@ engine.registerComponent(Game);
 engine.registerComponent(LevelGenerator);
 engine.registerComponent(LookAt);
 engine.registerComponent(PickTarget);
+engine.registerComponent(PlayerHeight2);
 engine.registerComponent(SorskootTeleport);
 engine.registerComponent(TileDescriptor);
 /* wle:auto-register:end */

@@ -4,10 +4,6 @@ import * as __wonderlandengine_components from '@wonderlandengine/components';
 _registerEditor(__wonderlandengine_components);
 import * as __zestymarket_wonderland_sdk from '@zestymarket/wonderland-sdk';
 _registerEditor(__zestymarket_wonderland_sdk);
-import * as _D__Dev_RunesOfTheDeep_js_classes_gameState_js from 'D:/Dev/RunesOfTheDeep/js/classes/gameState.js';
-_registerEditor(_D__Dev_RunesOfTheDeep_js_classes_gameState_js);
-import * as _D__Dev_RunesOfTheDeep_js_classes_levelState_js from 'D:/Dev/RunesOfTheDeep/js/classes/levelState.js';
-_registerEditor(_D__Dev_RunesOfTheDeep_js_classes_levelState_js);
 import * as _D__Dev_RunesOfTheDeep_js_components_door_handler_ts from 'D:/Dev/RunesOfTheDeep/js/components/door-handler.ts';
 _registerEditor(_D__Dev_RunesOfTheDeep_js_components_door_handler_ts);
 import * as _D__Dev_RunesOfTheDeep_js_components_fadeScreen_ts from 'D:/Dev/RunesOfTheDeep/js/components/fadeScreen.ts';
@@ -20,6 +16,8 @@ import * as _D__Dev_RunesOfTheDeep_js_components_look_at_ts from 'D:/Dev/RunesOf
 _registerEditor(_D__Dev_RunesOfTheDeep_js_components_look_at_ts);
 import * as _D__Dev_RunesOfTheDeep_js_components_pick_target_ts from 'D:/Dev/RunesOfTheDeep/js/components/pick-target.ts';
 _registerEditor(_D__Dev_RunesOfTheDeep_js_components_pick_target_ts);
+import * as _D__Dev_RunesOfTheDeep_js_components_player_height2_ts from 'D:/Dev/RunesOfTheDeep/js/components/player-height2.ts';
+_registerEditor(_D__Dev_RunesOfTheDeep_js_components_player_height2_ts);
 import * as _D__Dev_RunesOfTheDeep_js_components_teleport_ts from 'D:/Dev/RunesOfTheDeep/js/components/teleport.ts';
 _registerEditor(_D__Dev_RunesOfTheDeep_js_components_teleport_ts);
 import * as _D__Dev_RunesOfTheDeep_js_dungeongen_MazeGenerator_ts from 'D:/Dev/RunesOfTheDeep/js/dungeongen/MazeGenerator.ts';
@@ -50,5 +48,3 @@ import * as _D__Dev_RunesOfTheDeep_js_dungeongen_utils_gridHelpers_ts from 'D:/D
 _registerEditor(_D__Dev_RunesOfTheDeep_js_dungeongen_utils_gridHelpers_ts);
 import * as _D__Dev_RunesOfTheDeep_js_globals_ts from 'D:/Dev/RunesOfTheDeep/js/globals.ts';
 _registerEditor(_D__Dev_RunesOfTheDeep_js_globals_ts);
-import * as _D__Dev_RunesOfTheDeep_js_utils_soundfx_player_js from 'D:/Dev/RunesOfTheDeep/js/utils/soundfx-player.js';
-_registerEditor(_D__Dev_RunesOfTheDeep_js_utils_soundfx_player_js);

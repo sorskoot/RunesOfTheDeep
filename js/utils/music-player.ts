@@ -8,6 +8,12 @@ export const Songs = {
 }
 
 export class MusicPlayer{
+    initialized: boolean;
+    songs!: HTMLAudioElement[];
+    currentSong!: HTMLAudioElement;
+    isPlaying!: boolean;
+    firstTime!: boolean;
+
     constructor() {
         this.initialized = false;                  
     }
@@ -62,7 +68,7 @@ export class MusicPlayer{
         }
     }
 
-    playMusic(audioIndex) {
+    playMusic(audioIndex:number) {
         if(!this.initialized) return;
         this.currentSong.src = this.songs[audioIndex].src;  
         this.currentSong.loop = true;      

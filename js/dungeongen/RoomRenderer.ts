@@ -4,10 +4,14 @@
  */
 
 import { WonderlandEngine, Object3D, LightComponent } from "@wonderlandengine/api";
-import { Tags, cloneObject } from "@sorskoot/wonderland-components";
+import { ObjectCache, Tags, cloneObject } from "@sorskoot/wonderland-components";
 import { DoorHandler } from "../components/door-handler.js";
-import { rng} from "@sorskoot/wonderland-components";
+import { rng } from "@sorskoot/wonderland-components";
 import { roomTemplates } from "./roomTemplates.js";
+import { TileSet } from "./tileset.js";
+import { Room } from "./room.js";
+import { DirectionSymbol } from "../types/index.js";
+import { Tile } from "./tile.js";
 
 /**
  * The Room Renderer is responsible for rendering a room.
@@ -17,32 +21,32 @@ export class RoomRenderer {
    * A reference to the Wonderland Engine
    * @type {WonderlandEngine}
    */
-  #engine;
+  #engine: WonderlandEngine;
 
   /**
    * A reference to the parent of all objects in the room.
    * Generated objects will be a child of this object.
    * @type {Object3D}
    */
-  #parent;
+  #parent: Object3D;
 
   /**
    * A reference to the tileset
    * @type {TileSet}
    */
-  #tileset;
+  #tileset: TileSet;
 
   /**
    * A reference to the lights objects that can be used in the room
    * @type {Object3D[]}
    */
-  #lights;
+  #lights: Object3D[];
 
   /**
    * A reference to the block cache
    * @type {ObjectCache}
    */
-  #blockCache;
+  #blockCache!: ObjectCache;
 
   /**
    * Instantiates a new RoomRenderer
@@ -52,7 +56,13 @@ export class RoomRenderer {
    * @param {TileSet} tileset
    * @param {ObjectCache} blockCache
    */
-  constructor(engine, parent, tileset, lights, blockCache) {
+  constructor(
+    engine: WonderlandEngine,
+    parent: Object3D,
+    tileset: TileSet,
+    lights: Object3D[],
+    blockCache: ObjectCache
+  ) {
     this.#engine = engine;
     this.#parent = parent;
     this.#tileset = tileset;
@@ -64,17 +74,19 @@ export class RoomRenderer {
    * Renders a room
    * @param {Room} room The room to render
    */
-  render(room) {
-
+  render(room: Room) {
     let template = room.getRoomTemplate();
-    if(!template){
-      const possitbleTemplate = roomTemplates.filter(t => t.type == room.getRoomType());
+    if (!template) {
+      const possitbleTemplate = roomTemplates.filter((t) => t.type == room.getRoomType());
       template = rng.getItem(possitbleTemplate);
+      if (!template) {
+        throw new Error(`No template found for room type ${room.getRoomType()}`);
+      }
       room.setRoomTemplate(template);
     }
 
     let roomLights = [];
-    
+
     if (!template) {
       throw new Error(`No template found for room type ${room.getRoomType()}`);
     }
@@ -83,7 +95,7 @@ export class RoomRenderer {
     if (!roomdesign) {
       throw new Error(`No room design found for room type ${room.getRoomType()}`);
     }
-    
+
     for (let y = 0; y < roomdesign.length; y++) {
       for (let x = 0; x < roomdesign[y].length; x++) {
         for (let h = 0; h < template.ceilingHeight[0]; h++) {
@@ -100,7 +112,6 @@ export class RoomRenderer {
             case "C": // Campfire, but floor or wall is rendered as well
             case "X": // Ememy, but floor or wall is rendered as well
             case ".":
-             
               if (h == 0) {
                 tile = this.#tileset.getTileByName("Floor01");
               } else if (h == template.ceilingHeight[0] - 1) {
@@ -127,10 +138,17 @@ export class RoomRenderer {
           if (tile) {
             // only render a tile if we have a tile.
             let newObj = this.createTile(x, h, y, tile.object);
+            if (!newObj) {
+              console.warn(`No object found for tile ${tile.name}`);
+              continue;
+            }
             let tags = newObj.getComponent(Tags);
             if (tags && tags.hasTag("Door")) {
-              this.setupDoor(newObj, room.getTargetRoom(roomdesign[y][x]),
-              /** @type {DirectionSymbol} */ (roomdesign[y][x]));
+              this.setupDoor(
+                newObj,
+                room.getTargetRoom(roomdesign[y][x]),
+                /** @type {DirectionSymbol} */ roomdesign[y][x]
+              );
             }
           }
         }
@@ -146,7 +164,7 @@ export class RoomRenderer {
    * @param {*} room
    * @param {DirectionSymbol} direction
    */
-  setupDoor(newObj, room, direction) {
+  setupDoor(newObj: Object3D, room: any, direction: DirectionSymbol) {
     let oldComp = newObj.getComponent(DoorHandler);
     if (oldComp) {
       oldComp.direction = direction;
@@ -167,18 +185,34 @@ export class RoomRenderer {
    * @param {boolean} hasDoor
    * @returns {Tile}
    */
-  #renderDoorOrWall(h, hasDoor) {
+  #renderDoorOrWall(h: number, hasDoor: boolean): Tile {
     if (h === 0) {
       if (hasDoor) {
-        return this.#tileset.getTileByName("Door");
+        const doorTile = this.#tileset.getTileByName("Door");
+        if (!doorTile) {
+          throw new Error("No door tile found");
+        }
+        return doorTile;
       } else {
-        return this.#tileset.getTileByName("Wall01");
+        const wallTile = this.#tileset.getTileByName("Wall01");
+        if (!wallTile) {
+          throw new Error("No wall tile found");
+        }
+        return wallTile;
       }
     } else if (h === 1 && !hasDoor) {
-      return this.#tileset.getTileByName("Wall01");
-    } else if (h > 1) {
-      return this.#tileset.getTileByName("Wall01");
-    }
+      const wallTile = this.#tileset.getTileByName("Wall01");
+      if (!wallTile) {
+        throw new Error("No wall tile found");
+      }
+      return wallTile;
+    } else  {
+      const wallTile = this.#tileset.getTileByName("Wall01");
+      if (!wallTile) {
+        throw new Error("No wall tile found");
+      }
+      return wallTile;
+    } 
   }
 
   /**
@@ -187,19 +221,18 @@ export class RoomRenderer {
    * @param {*} room
    */
 
-  #setupLights(roomLights, room) {
+  #setupLights(roomLights: number[][], room: any) {
     for (let index = 0; index < this.#lights.length; index++) {
       const light = this.#lights[index];
       light.resetPositionRotation();
-      if(roomLights[index]){
-        light.getComponent(LightComponent).active = true;
+      if (roomLights[index]) {
+        light.getComponent(LightComponent)!.active = true;
         light.setPositionWorld([roomLights[index][0], 2, roomLights[index][2]]);
-      }else{
-        light.getComponent(LightComponent).active = false;
+      } else {
+        light.getComponent(LightComponent)!.active = false;
       }
     }
-    this.#lights
-
+    this.#lights;
   }
 
   /**
@@ -207,30 +240,29 @@ export class RoomRenderer {
    * @param {Room} room
    * @param {*} roomdesign
    */
-  createInterior(room, roomdesign) {
+  createInterior(room: Room, roomdesign: any) {
     const roomRNG = rng.clone().setSeed(room.seed);
-    
+
     let hasFirepit = false;
 
     for (let y = 0; y < roomdesign.length; y++) {
       for (let x = 0; x < roomdesign[y].length; x++) {
-          let tile;
-          switch (roomdesign[y][x]) {
-            case "C": // Campfire /Firepit
-              if(!hasFirepit){
-                console.log("campfire");
-                tile = this.#tileset.getTileByName("Firepit");
-                hasFirepit=true;
-              }
-              break;
-            default:
-              continue;
-          }
-          if (tile) {
-            // only render a tile if we have a tile.
-            let newObj = this.createTile(x, 0, y, tile.object);
-          }
-        
+        let tile;
+        switch (roomdesign[y][x]) {
+          case "C": // Campfire /Firepit
+            if (!hasFirepit) {
+              console.log("campfire");
+              tile = this.#tileset.getTileByName("Firepit");
+              hasFirepit = true;
+            }
+            break;
+          default:
+            continue;
+        }
+        if (tile) {
+          // only render a tile if we have a tile.
+          let newObj = this.createTile(x, 0, y, tile.object);
+        }
       }
     }
   }
@@ -243,9 +275,12 @@ export class RoomRenderer {
    * @param {*} tile
    * @returns Object3D
    */
-  createTile(x, y, z, tile) {
+  createTile(x: number, y: number, z: number, tile: Object3D) {
     let blockObj = tile;
     let obj = cloneObject(this.#engine, blockObj, this.#blockCache);
+    if (!obj) {
+      throw new Error("Cloning object failed");
+    }
     obj.resetPositionRotation();
     obj.setPositionWorld([x, y, z]);
     return obj;

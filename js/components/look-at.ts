@@ -8,7 +8,7 @@ export class LookAt extends Component {
      * The player object that the object looks at
      */
     @property.object()
-    target:Object3D;
+    target!:Object3D;
 
     update(dt: number) {
          if (this.target) {

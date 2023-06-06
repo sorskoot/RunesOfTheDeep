@@ -120,7 +120,9 @@ void main() {
         }
     #endif
 
+    #ifdef EMISSIVE_MAPPING
+       outColor.rgb = mix(outColor.rgb,pixelated.rgb,emissiveAmount.r);
+    #endif
     
-    //outColor.rgb = mix(theColor.rgb,finalColor.rgb,emissiveAmount.r);
     outColor.a = pixelated.a; // Force alpha back in
 }

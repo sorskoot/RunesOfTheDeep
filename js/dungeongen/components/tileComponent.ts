@@ -13,7 +13,7 @@ export class TileDescriptor extends Component {
     start() {
     }
 
-    update(dt) {
+    update(dt:number) {
     }
 
 };

@@ -16,27 +16,23 @@ const NEIGHBOR_OFFSETS = [
  * @param {{x:number,y:number,z:number}} position
  * @returns {{x:number,y:number,z:number}[]}
  */
-export function getNeighbors(grid, position) {
+export function getNeighbors(grid: Grid, position: { x: number; y: number; }): { x: number; y: number; }[] {
   const width = grid.sizeX;
   const height = grid.sizeY;
-  const depth = grid.sizeZ;
 
   const neighbors = [];
 
   for (const offset of NEIGHBOR_OFFSETS) {
     const newX = position.x + offset.x;
     const newY = position.y + offset.y;
-    const newZ = position.z + offset.z;
 
     if (
       newX >= 0 &&
       newX < width &&
       newY >= 0 &&
-      newY < height &&
-      newZ >= 0 &&
-      newZ < depth
+      newY < height 
     ) {
-      neighbors.push({ x: newX, y: newY, z: newZ, name: offset.name });
+      neighbors.push({ x: newX, y: newY, name: offset.name });
     }
   }
 

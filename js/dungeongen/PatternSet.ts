@@ -61,7 +61,7 @@ export class PatternSet {
    * @returns {number[][]} the pattern for the given key
    */
 
-  get(key) {
+  get(key: string): number[][] {
     if (this.#patterns.has(key)) {
       return this.#patterns.get(key);
     }else{
