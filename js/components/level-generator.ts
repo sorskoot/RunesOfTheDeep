@@ -9,8 +9,8 @@ import { PatternSet } from "../dungeongen/PatternSet.js";
 import { Room } from "../dungeongen/room.js";
 import { RoomRenderer } from "../dungeongen/RoomRenderer.js";
 import { FadeScreen } from "./fadeScreen.js";
-import { getInvertedDirection } from "../dungeongen/utils/DirectionHelpers.js";
 import { property } from "@wonderlandengine/api/decorators.js";
+import { getInvertedDirection } from "../dungeongen/utils/directionHelpers.js";
 
 const size = 9;
 const patternSize = 3;

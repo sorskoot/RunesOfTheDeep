@@ -147,7 +147,7 @@ export class RoomRenderer {
               this.setupDoor(
                 newObj,
                 room.getTargetRoom(roomdesign[y][x]),
-                /** @type {DirectionSymbol} */ roomdesign[y][x]
+                roomdesign[y][x] as DirectionSymbol
               );
             }
           }

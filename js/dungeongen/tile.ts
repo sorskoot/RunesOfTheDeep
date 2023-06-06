@@ -9,30 +9,28 @@ export class Tile {
    * name of the 3d object
    * @type {string}
    */
-  name;
+  name: string;
 
   /**
    * reference to the 3D object
    * @type {Object3D}
    */
-  object;
+  object: Object3D;
 
   /**
    * Index in the tileset
    * @type {number}
    */
-  index;
+  index: number;
 
-  /**
-   * 
-   * @param {string} name 
-   * @param {Object3D|undefined} object 
-   * @param {number} index 
-   */
-  constructor(name, object, index) {
+  constructor(name: string, object: Object3D | undefined, index: number) {
 
     if(!object){
       throw new Error("object is undefined");
+    }
+
+    if(!name || name.length == 0){
+      throw new Error("name should not be empty");
     }
 
     this.name = name;
