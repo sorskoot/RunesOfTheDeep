@@ -12,6 +12,7 @@ import { TileSet } from "./tileset.js";
 import { Room } from "./room.js";
 import { DirectionSymbol } from "../types/index.js";
 import { Tile } from "./tile.js";
+import { findCharInStringArray } from "../forFramework/findCharInStringArray.js";
 
 /**
  * The Room Renderer is responsible for rendering a room.
@@ -109,6 +110,9 @@ export class RoomRenderer {
                 // only store light once
                 roomLights.push([x, h, y]);
               }
+            case "1": // Character 1
+            case "2": // Character 2
+            case "3": // Character 3
             case "C": // Campfire, but floor or wall is rendered as well
             case "X": // Ememy, but floor or wall is rendered as well
             case ".":
@@ -156,6 +160,24 @@ export class RoomRenderer {
     }
     this.#setupLights(roomLights, room);
     this.createInterior(room, roomdesign);
+    this.addCharacters(room, roomdesign);
+  }
+
+  addCharacters(room: Room, roomdesign: string[]) {
+    let pattern = room.getRoomTemplate()?.pattern;
+    if (!pattern) {
+      return;
+    }
+
+    let character1Pos = findCharInStringArray(pattern,"1");
+    
+    if(character1Pos) {
+      
+    }
+
+    let character2Pos = findCharInStringArray(pattern,"2");
+    let character3Pos = findCharInStringArray(pattern,"3");
+      
   }
 
   /**

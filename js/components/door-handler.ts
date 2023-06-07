@@ -34,6 +34,10 @@ export class DoorHandler extends Component {
 
   start() {
     let child = wlUtils.findChild(this.object, "collisionObject");
+    if (!child) {
+      console.error("DoorHandler needs a child object with the name 'collisionObject'");
+      return;
+    }
     const target = child.getComponent(CursorTarget);
     if (!target) {
       console.error("DoorHandler needs a CursorTarget component on the same object");

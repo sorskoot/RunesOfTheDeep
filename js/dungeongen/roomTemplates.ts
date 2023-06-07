@@ -39,6 +39,13 @@ export interface RoomTemplate {
    * @type {boolean | undefined} canBeRotated
    */
   canBeRotated: boolean;
+
+  /**
+   * The characters that are spawned in this room.
+   * On the template they are represented by a number corresponding 
+   * to the index in the characters array.
+   */
+  characters?: string[];
 }
 
 /**
@@ -56,14 +63,18 @@ export const roomTemplates: RoomTemplate[] = [
       " #####N##### ",
       "#...........#",
       "#...%.....%.#",
-      "#....C.....# ",
+      "#..1.C.....# ",
       "#.....%....# ",
       "W...........E",
       "#...........#",
-      "#...........#",
+      "#........2..#",
       "##.....%....#",
       "  ##........#",
       "    #S###### ",
+    ],
+    characters: [
+      "LittleDude",
+      "MagicDude"
     ],
   },
   {

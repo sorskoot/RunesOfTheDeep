@@ -12,11 +12,18 @@ export class TileSet {
    */
   #tiles: Set<Tile>;
 
+  #enemyObjects: Object3D[];
+  #characterObjects: Object3D[];
+  
   /**
    * Initializes a new instance of the TileSet class.
    * @param {Object3D[]} tileObjects The list of Wonderland objects that represent the tiles.
    */
-  constructor(tileObjects: Object3D[]) {
+  constructor(tileObjects: Object3D[], enemyObjects: Object3D[], characterObjects: Object3D[]) {
+    
+    this.#enemyObjects = enemyObjects;
+    this.#characterObjects = characterObjects;
+    
     this.#tiles = new Set();
     this.#tiles.add(new Tile("Air", this.#findObject(tileObjects, "Air"), this.#tiles.size));
     this.#tiles.add(

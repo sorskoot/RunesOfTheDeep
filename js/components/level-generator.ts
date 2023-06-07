@@ -17,11 +17,6 @@ const patternSize = 3;
 
 export class LevelGenerator extends Component {
   static TypeName = "level-generator";
-  static Properties = {
-    levelRoot: Property.object(),
-    fadeScreenObject: Property.object(),
-    lights: Property.object(), // Lights are the children of this object.
-  };
 
   /**
    * The object used to get the fade screen component from.
@@ -38,7 +33,17 @@ export class LevelGenerator extends Component {
   /**
    * The root object of the lights. Available Lights are children of this.
    */
+  @property.object()
   lights!: Object3D;
+
+  @property.object()
+  levelBlocks!: Object3D;
+
+  @property.object()
+  enemies!: Object3D;
+
+  @property.object()
+  characters!: Object3D;
 
   /**
    * The component that is used to fade the screen to black and back.
@@ -87,7 +92,10 @@ export class LevelGenerator extends Component {
     this.currentLd = LevelData[level];
     this.levelParent = parent || this.levelRoot;
 
-    this.tileset = new TileSet(this.object.children);
+    this.tileset = new TileSet(
+      this.levelBlocks.children,
+      this.enemies.children,
+      this.characters.children);
     this.patternSet = new PatternSet();
 
     this.generator.generate();

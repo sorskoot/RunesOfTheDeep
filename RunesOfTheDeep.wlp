@@ -497,7 +497,7 @@
                 {
                     "type": "game",
                     "game": {
-                        "levelGenObject": "238",
+                        "levelGenObject": "402",
                         "playerObject": "14",
                         "fadeScreenObject": "314"
                     }
@@ -530,16 +530,6 @@
                 0.0,
                 0.0,
                 1.0
-            ],
-            "components": [
-                {
-                    "type": "level-generator",
-                    "level-generator": {
-                        "levelRoot": "237",
-                        "fadeScreenObject": "314",
-                        "lights": "235"
-                    }
-                }
             ]
         },
         "241": {
@@ -1331,7 +1321,12 @@
             ]
         },
         "338": {
-            "name": "Enemies"
+            "name": "Enemies",
+            "translation": [
+                0.0,
+                -1000.0,
+                0.0
+            ]
         },
         "340": {
             "name": "Bat",
@@ -1562,8 +1557,8 @@
             ]
         },
         "374": {
-            "name": "Character",
-            "parent": "338",
+            "name": "LittleDude",
+            "parent": "403",
             "components": [
                 {
                     "type": "mesh",
@@ -1931,6 +1926,117 @@
             "translation": [
                 0.0,
                 0.5,
+                0.0
+            ]
+        },
+        "397": {
+            "name": "MagicDude",
+            "parent": "403",
+            "components": [
+                {
+                    "type": "mesh",
+                    "mesh": {
+                        "mesh": "7",
+                        "material": "401"
+                    }
+                },
+                {
+                    "type": "look-at",
+                    "look-at": {
+                        "target": "14"
+                    }
+                }
+            ],
+            "translation": [
+                4.5,
+                0.5,
+                3.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scaling": [
+                0.5,
+                0.5,
+                0.5
+            ]
+        },
+        "402": {
+            "name": "LevelGenerator",
+            "parent": "234",
+            "components": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                {
+                    "type": "level-generator",
+                    "level-generator": {
+                        "levelRoot": "237",
+                        "fadeScreenObject": "314",
+                        "lights": "235",
+                        "levelBlocks": "238",
+                        "enemies": "338",
+                        "characters": "403"
+                    }
+                }
+            ]
+        },
+        "403": {
+            "name": "Characters",
+            "translation": [
+                0.0,
+                -1000.0,
                 0.0
             ]
         }
@@ -2318,6 +2424,12 @@
                 "name": "iron-weapons_17.png",
                 "file": "static\\Weapons\\Iron\\iron-weapons_17.png"
             }
+        },
+        "400": {
+            "link": {
+                "name": "tiles_14.png",
+                "file": "assets\\tiles\\tiles_14.png"
+            }
         }
     },
     "images": {
@@ -2473,6 +2585,12 @@
             "link": {
                 "name": "iron-weapons_17.png",
                 "file": "static\\Weapons\\Iron\\iron-weapons_17.png"
+            }
+        },
+        "399": {
+            "link": {
+                "name": "tiles_14.png",
+                "file": "assets\\tiles\\tiles_14.png"
             }
         }
     },
@@ -2897,7 +3015,7 @@
             }
         },
         "375": {
-            "name": "CharacterTest",
+            "name": "Character LittleDude",
             "pipeline": "240",
             "FlatSorskoot": {
                 "flatTexture": "377"
@@ -2933,6 +3051,13 @@
                     0.0179371,
                     1.0
                 ]
+            }
+        },
+        "401": {
+            "name": "Character MagicDude",
+            "pipeline": "240",
+            "FlatSorskoot": {
+                "flatTexture": "400"
             }
         }
     },
@@ -3325,7 +3450,8 @@
         "static/Weapons/Iron/iron-weapons_00.png",
         "static/Weapons/Iron/iron-weapons_08.png",
         "static/Weapons/Iron/iron-weapons_11.png",
-        "static/Weapons/Iron/iron-weapons_17.png"
+        "static/Weapons/Iron/iron-weapons_17.png",
+        "assets/tiles/tiles_14.png"
     ],
     "fonts": {
         "230": {
