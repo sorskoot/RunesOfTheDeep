@@ -3,12 +3,14 @@
 Must Have:
     ☐ @critical Implement first enemies
     ☐ @critical Implement first fighting mechanics
+    ☐ Add treasure chests to the treasure rooms
+    ☐ Create loot tables for the treasure chests
 
     ✔ Redo collision objects so everythings fits nicely @done(23-06-06 22:21)
     Basic game loop:
         Teleportation:
             ✔ Basic teleportation @done(23-06-04 22:37)
-            ☐ Limited teleportation to 1 block
+            ✔ Limited teleportation to 1 block @done(23-06-07 23:29)
             # teleport to places around the room
             # max distance should be 1 tile, otherwise similar to SS13
         ✔ When entering a room you should start at the door you entered from @done(23-06-02 20:42)

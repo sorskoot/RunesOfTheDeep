@@ -1,6 +1,6 @@
-import { Component, Object3D } from "@wonderlandengine/api";
+import { Component, Object3D, math } from "@wonderlandengine/api";
 
-import { vec3} from "gl-matrix";
+import { vec2, vec3} from "gl-matrix";
 import GameGlobals from "../globals.js";
 import { State } from "../classes/gameState.js";
 import { Sounds } from "../utils/soundfx-player.js";
@@ -116,8 +116,11 @@ export class PickTarget extends Component {
     this.#hideIndicators();
     this.initialized = true;
   }
+  
+  forceNotAllowed = false;
 
   update(dt:number) {
+    
     let xrInputSource = this.input.xrInputSource;
     if (!this.initialized || !xrInputSource) {
       return;
@@ -133,7 +136,7 @@ export class PickTarget extends Component {
         const hitPos = this.hitObject.getPositionWorld();
         const x = hitPos[0];
         const y = hitPos[2];
-        if (this.#pickingAllowed(this.hitObject, x, 0, y)) {
+        if (this.#pickingAllowed(this.hitObject, x, 0, y) && !this.forceNotAllowed) {
           this.#picked(this.hitObject, x, 0, y);
         }
 
@@ -170,7 +173,16 @@ export class PickTarget extends Component {
         const hitPos = this.hitObject.getPositionWorld();
         const x = hitPos[0];
         const y = hitPos[2];
-        this.#showIndicator(this.hitObject, x, 0, y);
+        let pos = this.player.getPositionWorld();
+        let ppos = vec2.fromValues(Math.round(pos[0]), Math.round(pos[2]));
+        
+        if(vec2.distance(ppos, [x, y]) > 1.6) {
+           this.forceNotAllowed = true;
+         }else{
+           this.forceNotAllowed = false;
+         }
+
+        this.#showIndicator(this.hitObject, x, 0, y, this.forceNotAllowed);
       } else {
         if (!this.indicatorHidden) {
           this.#hideIndicators();
@@ -197,7 +209,15 @@ export class PickTarget extends Component {
    * @param {Number} y 
    * @param {Number} z 
    */
-  #showIndicator(obj: Object3D, x: number, y: number, z: number) {
+  #showIndicator(obj: Object3D, x: number, y: number, z: number, forceNotAllowed: boolean = false) {
+    
+    if(forceNotAllowed){ // it's not allow ever if we force it
+      this.allowedPickerMeshObject.setPositionWorld([1000, -1000, 1000]);
+      this.notAllowedPickerMeshObject.resetPositionRotation();
+      this.notAllowedPickerMeshObject.setPositionWorld([x, 0.01, z]);
+      return;
+    }
+
     let tags = obj.getComponent(Tags);
     if (!tags) return;
     switch (true) {
