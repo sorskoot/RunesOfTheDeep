@@ -5,6 +5,7 @@ import { Tile } from "./tile.js";
  * The set of tiles used by the game.
  */
 export class TileSet {
+
   
   /**
    * The set of tiles.
@@ -75,6 +76,10 @@ export class TileSet {
     return [...this.#tiles].find((x) => x.name == name);
   }
 
+  getCharacter(characterName: string) {
+    return this.#characterObjects.find((x) => x.name === characterName); 
+  }
+
   /**
    * Finds an object in the given list of objects with the given name.
    * @param {Object3D[]} objects list of objects to seach through
@@ -84,4 +89,6 @@ export class TileSet {
   #findObject(objects: Object3D[], name: string): Object3D | undefined {
     return objects.find((x) => x.name === name);
   }
+
+
 }

@@ -1,4 +1,4 @@
-import { Component, Property, Object3D } from "@wonderlandengine/api";
+import { Component, Object3D } from "@wonderlandengine/api";
 import { ObjectCache, cloneObject } from "@sorskoot/wonderland-components";
 
 import { LevelData } from "../data/level-data.js";
@@ -65,6 +65,7 @@ export class LevelGenerator extends Component {
   patternSet!: PatternSet;
   roomRenderer!: RoomRenderer;
   blockCache!: ObjectCache;
+  
   /**
    * overrides the init method of the component
    */

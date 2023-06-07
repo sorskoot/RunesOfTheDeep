@@ -164,18 +164,34 @@ export class RoomRenderer {
   }
 
   addCharacters(room: Room, roomdesign: string[]) {
-    let pattern = room.getRoomTemplate()?.pattern;
+    const roomTemplate = room.getRoomTemplate();
+    
+    if(!roomTemplate) {
+      console.warn('`No room template found for current room');
+      return; // can't do anything without a template.
+    }
+
+    let pattern = roomTemplate.pattern;
     if (!pattern) {
+      console.warn('`No pattern found for current template');
       return;
     }
 
     let character1Pos = findCharInStringArray(pattern,"1");
     
     if(character1Pos) {
-      
+      const characterName = roomTemplate.characters![0];
+      const character = this.#tileset.getCharacter(characterName);
+      character?.setPositionWorld([character1Pos.x,0.5,character1Pos.y]);
     }
 
     let character2Pos = findCharInStringArray(pattern,"2");
+
+    if(character2Pos) {
+      const characterName = roomTemplate.characters![1];
+      const character = this.#tileset.getCharacter(characterName);
+      character?.setPositionWorld([character2Pos.x,0.5,character2Pos.y]);
+    }
     let character3Pos = findCharInStringArray(pattern,"3");
       
   }
