@@ -80,6 +80,12 @@ export class TileSet {
     return this.#characterObjects.find((x) => x.name === characterName); 
   }
 
+  resetAllCharacters() {
+    for(let i = 0; i < this.#characterObjects.length; i++) {
+      this.#characterObjects[i].resetPositionRotation();
+    }
+  }
+
   /**
    * Finds an object in the given list of objects with the given name.
    * @param {Object3D[]} objects list of objects to seach through

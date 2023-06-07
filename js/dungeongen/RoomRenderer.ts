@@ -125,16 +125,16 @@ export class RoomRenderer {
               }
               break;
             case "N":
-              tile = this.#renderDoorOrWall(h, room.doors.north);
+              tile = this.#renderFloorOrWall(h, room.doors.north);
               break;
             case "E":
-              tile = this.#renderDoorOrWall(h, room.doors.east);
+              tile = this.#renderFloorOrWall(h, room.doors.east);
               break;
             case "S":
-              tile = this.#renderDoorOrWall(h, room.doors.south);
+              tile = this.#renderFloorOrWall(h, room.doors.south);
               break;
             case "W":
-              tile = this.#renderDoorOrWall(h, room.doors.west);
+              tile = this.#renderFloorOrWall(h, room.doors.west);
               break;
             default:
               continue;
@@ -146,54 +146,84 @@ export class RoomRenderer {
               console.warn(`No object found for tile ${tile.name}`);
               continue;
             }
-            let tags = newObj.getComponent(Tags);
-            if (tags && tags.hasTag("Door")) {
-              this.setupDoor(
-                newObj,
-                room.getTargetRoom(roomdesign[y][x]),
-                roomdesign[y][x] as DirectionSymbol
-              );
-            }
           }
         }
       }
     }
+
+    this.#addDoors(room, roomdesign);
     this.#setupLights(roomLights, room);
-    this.createInterior(room, roomdesign);
-    this.addCharacters(room, roomdesign);
+    this.#createInterior(room, roomdesign);
+    this.#addCharacters(room, roomdesign);
   }
 
-  addCharacters(room: Room, roomdesign: string[]) {
+  #addDoors(room: Room, roomdesign: string[]) {
+    if (room.doors.north) {
+      let door = findCharInStringArray(roomdesign, "N")!;
+      let tile = this.#tileset.getTileByName("Door")!;
+      let newObj = this.createTile(door.x, 0, door.y, tile.object);
+      newObj.rotateAxisAngleDegObject([0,1,0],180);
+      this.setupDoor(newObj, room.getTargetRoom("N"), "N");
+    }
+
+    if (room.doors.south) {
+      let door = findCharInStringArray(roomdesign, "S")!;
+      let tile = this.#tileset.getTileByName("Door")!;
+      let newObj = this.createTile(door.x, 0, door.y, tile.object);
+      this.setupDoor(newObj, room.getTargetRoom("S"), "S");
+    }
+
+    if (room.doors.east) {
+      let door = findCharInStringArray(roomdesign, "E")!;
+      let tile = this.#tileset.getTileByName("Door")!;
+      let newObj = this.createTile(door.x, 0, door.y, tile.object);
+      newObj.rotateAxisAngleDegObject([0,1,0],90);
+      this.setupDoor(newObj, room.getTargetRoom("E"), "E");
+    }
+
+    if (room.doors.west) {
+      let door = findCharInStringArray(roomdesign, "W")!;
+      let tile = this.#tileset.getTileByName("Door")!;
+      let newObj = this.createTile(door.x, 0, door.y, tile.object);
+      newObj.rotateAxisAngleDegObject([0,1,0],270);
+      this.setupDoor(newObj, room.getTargetRoom("W"), "W");
+    }
+  }
+
+  #addCharacters(room: Room, roomdesign: string[]) {
+    this.#tileset.resetAllCharacters();
+
     const roomTemplate = room.getRoomTemplate();
-    
-    if(!roomTemplate) {
-      console.warn('`No room template found for current room');
+
+    if (!roomTemplate) {
+      console.warn("`No room template found for current room");
       return; // can't do anything without a template.
     }
 
-    let pattern = roomTemplate.pattern;
-    if (!pattern) {
-      console.warn('`No pattern found for current template');
-      return;
+    if (!roomTemplate.characters || roomTemplate.characters.length == 0) {
+      return; // no characters to add
     }
 
-    let character1Pos = findCharInStringArray(pattern,"1");
-    
-    if(character1Pos) {
+    let character1Pos = findCharInStringArray(roomdesign, "1");
+    if (character1Pos) {
       const characterName = roomTemplate.characters![0];
       const character = this.#tileset.getCharacter(characterName);
-      character?.setPositionWorld([character1Pos.x,0.5,character1Pos.y]);
+      character?.setPositionWorld([character1Pos.x, 0.5, character1Pos.y]);
     }
 
-    let character2Pos = findCharInStringArray(pattern,"2");
-
-    if(character2Pos) {
+    let character2Pos = findCharInStringArray(roomdesign, "2");
+    if (character2Pos) {
       const characterName = roomTemplate.characters![1];
       const character = this.#tileset.getCharacter(characterName);
-      character?.setPositionWorld([character2Pos.x,0.5,character2Pos.y]);
+      character?.setPositionWorld([character2Pos.x, 0.5, character2Pos.y]);
     }
-    let character3Pos = findCharInStringArray(pattern,"3");
-      
+
+    let character3Pos = findCharInStringArray(roomdesign, "3");
+    if (character3Pos) {
+      const characterName = roomTemplate.characters![1];
+      const character = this.#tileset.getCharacter(characterName);
+      character?.setPositionWorld([character3Pos.x, 0.5, character3Pos.y]);
+    }
   }
 
   /**
@@ -218,19 +248,19 @@ export class RoomRenderer {
   }
 
   /**
-   * Renders a door or wall depending on the height and if it there's a door
+   * Renders a floor tile when there's a doorway or wall depending on the height and if it there's a door or not
    * @param {number} h
    * @param {boolean} hasDoor
    * @returns {Tile}
    */
-  #renderDoorOrWall(h: number, hasDoor: boolean): Tile {
+  #renderFloorOrWall(h: number, hasDoor: boolean): Tile | undefined {
     if (h === 0) {
       if (hasDoor) {
-        const doorTile = this.#tileset.getTileByName("Door");
-        if (!doorTile) {
-          throw new Error("No door tile found");
+        const floorTile = this.#tileset.getTileByName("Floor01");
+        if (!floorTile) {
+          throw new Error("No floor tile found");
         }
-        return doorTile;
+        return floorTile;
       } else {
         const wallTile = this.#tileset.getTileByName("Wall01");
         if (!wallTile) {
@@ -238,19 +268,23 @@ export class RoomRenderer {
         }
         return wallTile;
       }
-    } else if (h === 1 && !hasDoor) {
+    } else if (h === 1) {
+      if (!hasDoor) {
+        const wallTile = this.#tileset.getTileByName("Wall01");
+        if (!wallTile) {
+          throw new Error("No wall tile found");
+        }
+        return wallTile;
+      } else {
+        return;
+      }
+    } else {
       const wallTile = this.#tileset.getTileByName("Wall01");
       if (!wallTile) {
         throw new Error("No wall tile found");
       }
       return wallTile;
-    } else  {
-      const wallTile = this.#tileset.getTileByName("Wall01");
-      if (!wallTile) {
-        throw new Error("No wall tile found");
-      }
-      return wallTile;
-    } 
+    }
   }
 
   /**
@@ -278,7 +312,7 @@ export class RoomRenderer {
    * @param {Room} room
    * @param {*} roomdesign
    */
-  createInterior(room: Room, roomdesign: any) {
+  #createInterior(room: Room, roomdesign: any) {
     const roomRNG = rng.clone().setSeed(room.seed);
 
     let hasFirepit = false;

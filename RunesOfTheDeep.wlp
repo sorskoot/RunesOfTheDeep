@@ -920,7 +920,7 @@
                 {
                     "type": "mesh",
                     "mesh": {
-                        "mesh": "265",
+                        "mesh": "405",
                         "material": "279"
                     }
                 },
@@ -932,36 +932,6 @@
                 5.5,
                 0.0,
                 -2.0
-            ],
-            "rotation": [
-                0.0,
-                0.0,
-                0.0,
-                1.0
-            ],
-            "scaling": [
-                1.0,
-                1.0,
-                1.0
-            ],
-            "name": "Door"
-        },
-        "282": {
-            "parent": "278",
-            "components": [
-                null,
-                {
-                    "type": "mesh",
-                    "mesh": {
-                        "mesh": "265",
-                        "material": "279"
-                    }
-                }
-            ],
-            "translation": [
-                0.0,
-                1.0,
-                0.0
             ],
             "rotation": [
                 0.0,
@@ -1418,9 +1388,9 @@
                 }
             ],
             "translation": [
-                0.9878668,
+                4.7161774,
                 -997.5812377,
-                1.1810134
+                -2.5993101
             ],
             "rotation": [
                 0.0,
@@ -1487,7 +1457,7 @@
                 0.8
             ],
             "translation": [
-                -1.0764711788624481e-8,
+                -1.076471178862448e-8,
                 0.0,
                 3.42726764301915e-7
             ],
@@ -2284,6 +2254,12 @@
                 "name": "Shield1hMesh",
                 "file": "models\\Shield.fbx"
             }
+        },
+        "405": {
+            "link": {
+                "name": "Door",
+                "file": "models\\Tiles.fbx"
+            }
         }
     },
     "textures": {
@@ -3058,6 +3034,12 @@
             "pipeline": "240",
             "FlatSorskoot": {
                 "flatTexture": "400"
+            }
+        },
+        "404": {
+            "link": {
+                "name": "Door",
+                "file": "models\\Tiles.fbx"
             }
         }
     },
