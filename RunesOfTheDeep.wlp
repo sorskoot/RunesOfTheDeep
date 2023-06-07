@@ -1726,15 +1726,22 @@
                 {
                     "type": "collision",
                     "collision": {
-                        "collider": "aabb",
+                        "collider": "box",
                         "aabb": {
                             "extents": [
                                 0.5,
                                 1.0,
-                                0.5
+                                0.2
                             ]
                         },
-                        "groups": 128
+                        "groups": 128,
+                        "box": {
+                            "extents": [
+                                0.5,
+                                1.0,
+                                0.2
+                            ]
+                        }
                     }
                 },
                 {
@@ -1744,7 +1751,18 @@
             "translation": [
                 0.0,
                 1.0,
-                0.0
+                0.3139463
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scaling": [
+                1.0,
+                1.0,
+                1.0
             ]
         },
         "395": {
