@@ -46,6 +46,19 @@ export interface RoomTemplate {
    * to the index in the characters array.
    */
   characters?: string[];
+
+  /**
+   * The props that are spawned in this room. 
+   * Props will be placed random whereever there's a P on the template. 
+   */ 
+  props?: propDefinition[];
+}
+
+export interface propDefinition {
+  name: string;
+  chance?: number;
+  faceWall?: boolean;
+  mustBeAgainstWall?: boolean;
 }
 
 /**
@@ -61,21 +74,27 @@ export const roomTemplates: RoomTemplate[] = [
     canBeRotated: false,
     pattern: [
       " #####N##### ",
-      "#...........#",
-      "#...%.....%.#",
-      "#..1.C.....# ",
+      "#PP.......PP#",
+      "#P..%.....%P#",
+      "#P.1.C.....# ",
       "#.....%....##",
       "W...........E",
-      "#...........#",
-      "#........2..#",
-      "##.....%....#",
-      "  ##........#",
+      "#P..........#",
+      "#P.......2.P#",
+      "##P....%..PP#",
+      "  ##....PPPP#",
       "    #S###### ",
     ],
     characters: [
       "LittleDude",
       "MagicDude"
     ],
+    props:[
+      {name:"Barrel"},
+      {name:"BarrelBroken", chance:0.4},
+      {name:"Bench",faceWall:true, chance:0.1},
+      {name:"Banner",faceWall:true, chance:0.3, mustBeAgainstWall:true},
+    ]
   },
   {
     name: "normal",

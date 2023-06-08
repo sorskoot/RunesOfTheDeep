@@ -4,10 +4,10 @@
  */
 
 import { WonderlandEngine, Object3D, LightComponent } from "@wonderlandengine/api";
-import { ObjectCache, Tags, cloneObject } from "@sorskoot/wonderland-components";
+import { ObjectCache, Tags, cloneObject, rngWithWeight } from "@sorskoot/wonderland-components";
 import { DoorHandler } from "../components/door-handler.js";
 import { rng } from "@sorskoot/wonderland-components";
-import { roomTemplates } from "./roomTemplates.js";
+import { propDefinition, roomTemplates } from "./roomTemplates.js";
 import { TileSet } from "./tileset.js";
 import { Room } from "./room.js";
 import { DirectionSymbol } from "../types/index.js";
@@ -115,6 +115,7 @@ export class RoomRenderer {
             case "3": // Character 3
             case "C": // Campfire, but floor or wall is rendered as well
             case "X": // Ememy, but floor or wall is rendered as well
+            case "P": // Prop
             case ".":
               if (h == 0) {
                 tile = this.#tileset.getTileByName("Floor01");
@@ -313,14 +314,56 @@ export class RoomRenderer {
    * @param {*} roomdesign
    */
   #createInterior(room: Room, roomdesign: any) {
-    const roomRNG = rng.clone().setSeed(room.seed);
+    const roomRNG = rng.clone().setSeed(1);//room.seed);
 
     let hasFirepit = false;
 
     for (let y = 0; y < roomdesign.length; y++) {
       for (let x = 0; x < roomdesign[y].length; x++) {
         let tile;
+        let rotation = 0;
         switch (roomdesign[y][x]) {
+          case "P": // prop
+              // todo: use weighted random
+              const props = room.getRoomTemplate()!.props;
+              if(!props){
+                break;
+              }
+              const propChances = props.reduce((acc: Record<string, number>, p) => {
+                acc[p.name] = p.chance ?? 1;
+                return acc;
+              }, {});
+              let propname = roomRNG.getWeightedValue(propChances);
+              const prop = props.find((p) => p.name === propname)!;
+              tile = this.#tileset.getTileByName(prop.name);
+           
+              if (prop.mustBeAgainstWall) {
+                if(roomdesign[y-1][x] !== "#" &&
+                  roomdesign[y+1][x] !== "#" &&
+                  roomdesign[y][x-1] !== "#" &&
+                  roomdesign[y][x+1] !== "#"){
+                  continue; // not next to a wall, skip the prop.
+                }
+              }
+
+              if (prop.faceWall) {
+                const directions = [
+                  { x: 0, y: -1, rotation: 180 },
+                  { x: 1, y: 0, rotation: 90 },
+                  { x: -1, y: 0, rotation: 270 },
+                  { x: 0, y: 1, rotation: 0 }
+                ];
+                let possibleRotations = [];
+                for (const dir of directions) {
+                  if (roomdesign[y + dir.y][x + dir.x] === "#") {
+                    possibleRotations.push(dir);
+                  }
+                }
+                if (possibleRotations.length > 0) {
+                  rotation = roomRNG.getItem(possibleRotations).rotation;
+                }
+              }
+            break;
           case "C": // Campfire /Firepit
             if (!hasFirepit) {
               console.log("campfire");
@@ -334,6 +377,7 @@ export class RoomRenderer {
         if (tile) {
           // only render a tile if we have a tile.
           let newObj = this.createTile(x, 0, y, tile.object);
+          newObj.rotateAxisAngleDegObject([0, 1, 0],rotation);
         }
       }
     }

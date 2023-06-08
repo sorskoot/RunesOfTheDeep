@@ -26,36 +26,12 @@ export class TileSet {
     this.#characterObjects = characterObjects;
     
     this.#tiles = new Set();
-    this.#tiles.add(new Tile("Air", this.#findObject(tileObjects, "Air"), this.#tiles.size));
-    this.#tiles.add(
-      new Tile("Floor01", this.#findObject(tileObjects, "Floor01"), this.#tiles.size)
-    );
-    this.#tiles.add(
-      new Tile("Floor02", this.#findObject(tileObjects, "Floor02"), this.#tiles.size)
-    );
-    this.#tiles.add(
-      new Tile("Floor03", this.#findObject(tileObjects, "Floor03"), this.#tiles.size)
-    );
-    this.#tiles.add(
-      new Tile("Floor04", this.#findObject(tileObjects, "Floor04"), this.#tiles.size)
-    );
-    this.#tiles.add(
-      new Tile("Floor05", this.#findObject(tileObjects, "Floor05"), this.#tiles.size)
-    );
-    this.#tiles.add(new Tile("Wall01", this.#findObject(tileObjects, "Wall01"), this.#tiles.size));
-    this.#tiles.add(new Tile("Wall02", this.#findObject(tileObjects, "Wall02"), this.#tiles.size));
-    this.#tiles.add(new Tile("Door", this.#findObject(tileObjects, "Door"), this.#tiles.size));
-    this.#tiles.add(
-      new Tile("Ceiling01", this.#findObject(tileObjects, "Ceiling01"), this.#tiles.size)
-    );
 
-    this.#tiles.add(
-      new Tile("Firepit", this.#findObject(tileObjects, "Firepit"), this.#tiles.size)
-    );
-
-    this.#tiles.add(
-      new Tile("Gems", this.#findObject(tileObjects, "Gems"), this.#tiles.size)
-    );
+    for(let i = 0; i < tileObjects.length; i++) {
+      this.#tiles.add(
+        new Tile(tileObjects[i].name, tileObjects[i], this.#tiles.size)
+      );  
+    }
   }
 
   /**

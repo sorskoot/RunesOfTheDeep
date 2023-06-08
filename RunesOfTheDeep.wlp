@@ -2069,6 +2069,132 @@
                 1.0,
                 1.0
             ]
+        },
+        "417": {
+            "name": "BarrelBroken",
+            "parent": "238",
+            "components": [
+                {
+                    "type": "mesh",
+                    "mesh": {
+                        "mesh": "415",
+                        "material": "406"
+                    }
+                },
+                {
+                    "type": "mesh",
+                    "mesh": {
+                        "mesh": "416",
+                        "material": "407"
+                    }
+                },
+                {
+                    "type": "tags",
+                    "tags": {
+                        "tags": "Prop"
+                    }
+                }
+            ],
+            "translation": [
+                5.0,
+                0.0,
+                3.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scaling": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "420": {
+            "name": "Bench",
+            "parent": "238",
+            "components": [
+                {
+                    "type": "mesh",
+                    "mesh": {
+                        "mesh": "419",
+                        "material": "406"
+                    }
+                },
+                {
+                    "type": "tags",
+                    "tags": {
+                        "tags": "Prop"
+                    }
+                }
+            ],
+            "translation": [
+                5.0,
+                0.0,
+                4.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scaling": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "425": {
+            "name": "Banner",
+            "parent": "238",
+            "components": [
+                {
+                    "type": "mesh",
+                    "mesh": {
+                        "mesh": "423",
+                        "material": "422"
+                    }
+                },
+                {
+                    "type": "tags",
+                    "tags": {
+                        "tags": "Prop"
+                    }
+                },
+                {
+                    "type": "mesh",
+                    "mesh": {
+                        "mesh": "424",
+                        "material": "406"
+                    }
+                },
+                {
+                    "type": "mesh",
+                    "mesh": {
+                        "mesh": "429",
+                        "material": "428"
+                    }
+                }
+            ],
+            "translation": [
+                5.0,
+                0.0,
+                5.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scaling": [
+                1.0,
+                1.0,
+                1.0
+            ]
         }
     },
     "meshes": {
@@ -2332,6 +2458,48 @@
                 "name": "Barrel.0",
                 "file": "models\\Tiles.fbx"
             }
+        },
+        "415": {
+            "link": {
+                "name": "Barrel_Broken",
+                "file": "models\\Tiles.fbx"
+            }
+        },
+        "416": {
+            "link": {
+                "name": "Barrel_Broken.0",
+                "file": "models\\Tiles.fbx"
+            }
+        },
+        "418": {
+            "link": {
+                "name": "Mesh.001",
+                "file": "models\\Tiles.fbx"
+            }
+        },
+        "419": {
+            "link": {
+                "name": "Bench",
+                "file": "models\\Tiles.fbx"
+            }
+        },
+        "423": {
+            "link": {
+                "name": "Banner",
+                "file": "models\\Tiles.fbx"
+            }
+        },
+        "424": {
+            "link": {
+                "name": "Banner.0",
+                "file": "models\\Tiles.fbx"
+            }
+        },
+        "429": {
+            "link": {
+                "name": "Banner.1",
+                "file": "models\\Tiles.fbx"
+            }
         }
     },
     "textures": {
@@ -2489,6 +2657,18 @@
             "link": {
                 "name": "tiles_16.png",
                 "file": "assets\\tiles\\tiles_16.png"
+            }
+        },
+        "427": {
+            "link": {
+                "name": "tiles_17.png",
+                "file": "assets\\tiles\\tiles_17.png"
+            }
+        },
+        "431": {
+            "link": {
+                "name": "tiles_18.png",
+                "file": "assets\\tiles\\tiles_18.png"
             }
         }
     },
@@ -2663,6 +2843,18 @@
             "link": {
                 "name": "tiles_16.png",
                 "file": "assets\\tiles\\tiles_16.png"
+            }
+        },
+        "426": {
+            "link": {
+                "name": "tiles_17.png",
+                "file": "assets\\tiles\\tiles_17.png"
+            }
+        },
+        "430": {
+            "link": {
+                "name": "tiles_18.png",
+                "file": "assets\\tiles\\tiles_18.png"
             }
         }
     },
@@ -3157,6 +3349,26 @@
             "FlatSorskoot": {
                 "flatTexture": "414"
             }
+        },
+        "422": {
+            "link": {
+                "name": "Banner",
+                "file": "models\\Tiles.fbx"
+            },
+            "pipeline": "240",
+            "FlatSorskoot": {
+                "flatTexture": "427"
+            }
+        },
+        "428": {
+            "link": {
+                "name": "BannerLogo",
+                "file": "models\\Tiles.fbx"
+            },
+            "pipeline": "240",
+            "FlatSorskoot": {
+                "flatTexture": "431"
+            }
         }
     },
     "shaders": {
@@ -3551,7 +3763,9 @@
         "static/Weapons/Iron/iron-weapons_17.png",
         "assets/tiles/tiles_14.png",
         "assets/tiles/tiles_15.png",
-        "assets/tiles/tiles_16.png"
+        "assets/tiles/tiles_16.png",
+        "assets/tiles/tiles_17.png",
+        "assets/tiles/tiles_18.png"
     ],
     "fonts": {
         "230": {
