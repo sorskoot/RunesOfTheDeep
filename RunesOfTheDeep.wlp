@@ -2027,6 +2027,48 @@
                 -1000.0,
                 0.0
             ]
+        },
+        "410": {
+            "name": "Barrel",
+            "parent": "238",
+            "components": [
+                {
+                    "type": "mesh",
+                    "mesh": {
+                        "mesh": "408",
+                        "material": "406"
+                    }
+                },
+                {
+                    "type": "mesh",
+                    "mesh": {
+                        "mesh": "409",
+                        "material": "407"
+                    }
+                },
+                {
+                    "type": "tags",
+                    "tags": {
+                        "tags": "Prop"
+                    }
+                }
+            ],
+            "translation": [
+                5.0,
+                0.0,
+                2.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scaling": [
+                1.0,
+                1.0,
+                1.0
+            ]
         }
     },
     "meshes": {
@@ -2278,6 +2320,18 @@
                 "name": "Door",
                 "file": "models\\Tiles.fbx"
             }
+        },
+        "408": {
+            "link": {
+                "name": "Barrel",
+                "file": "models\\Tiles.fbx"
+            }
+        },
+        "409": {
+            "link": {
+                "name": "Barrel.0",
+                "file": "models\\Tiles.fbx"
+            }
         }
     },
     "textures": {
@@ -2423,6 +2477,18 @@
             "link": {
                 "name": "tiles_14.png",
                 "file": "assets\\tiles\\tiles_14.png"
+            }
+        },
+        "412": {
+            "link": {
+                "name": "tiles_15.png",
+                "file": "assets\\tiles\\tiles_15.png"
+            }
+        },
+        "414": {
+            "link": {
+                "name": "tiles_16.png",
+                "file": "assets\\tiles\\tiles_16.png"
             }
         }
     },
@@ -2585,6 +2651,18 @@
             "link": {
                 "name": "tiles_14.png",
                 "file": "assets\\tiles\\tiles_14.png"
+            }
+        },
+        "411": {
+            "link": {
+                "name": "tiles_15.png",
+                "file": "assets\\tiles\\tiles_15.png"
+            }
+        },
+        "413": {
+            "link": {
+                "name": "tiles_16.png",
+                "file": "assets\\tiles\\tiles_16.png"
             }
         }
     },
@@ -3059,6 +3137,26 @@
                 "name": "Door",
                 "file": "models\\Tiles.fbx"
             }
+        },
+        "406": {
+            "link": {
+                "name": "Wood",
+                "file": "models\\Tiles.fbx"
+            },
+            "pipeline": "240",
+            "FlatSorskoot": {
+                "flatTexture": "412"
+            }
+        },
+        "407": {
+            "link": {
+                "name": "Metal",
+                "file": "models\\Tiles.fbx"
+            },
+            "pipeline": "240",
+            "FlatSorskoot": {
+                "flatTexture": "414"
+            }
         }
     },
     "shaders": {
@@ -3451,7 +3549,9 @@
         "static/Weapons/Iron/iron-weapons_08.png",
         "static/Weapons/Iron/iron-weapons_11.png",
         "static/Weapons/Iron/iron-weapons_17.png",
-        "assets/tiles/tiles_14.png"
+        "assets/tiles/tiles_14.png",
+        "assets/tiles/tiles_15.png",
+        "assets/tiles/tiles_16.png"
     ],
     "fonts": {
         "230": {

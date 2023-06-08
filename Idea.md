@@ -134,6 +134,25 @@ There rooms can occur often.
 - Bones and skulls of fallen creatures or dwarves: Evidence of previous battles fought in the depths of Ironforge Mountains
 - Ores; Can be used to upgrade weapons, tools and shields.
 
+- Broken dwarven statues: Symbolize the fallen glory of the stronghold.
+- Rusty weapons and shields: Tell stories of past battles and conflict.
+- Abandoned mining equipment: Pickaxes, carts, and lanterns hint at dwarven industry.
+- Cracked pottery and dishware: Suggest daily life before "The Shattering."
+- Torn banners with faded insignias: Represent lost alliances or rival factions within the stronghold.
+- Withered plants and fungi: Indicate deteriorating conditions in once-lush caverns.
+- Candles, torches, and sconces: Offer light sources for navigation in dimly lit areas (some might still be burning).
+- Piles of bones or skeletal remains: Provide an eerie reminder of those who perished during "The Shattering" or since then by hostile creatures.
+- Stacks of old scrolls, books, or blueprin ts: Allude to lost knowledge about artifact usage.
+- Dusty barrels, crates, and chests: Contain hidden supplies or loot for players to discover while exploring.
+- Glowing gemstones embedded in walls or veins of ore deposits: Illuminate magical powers still present after "The Shattering."
+- Strange runes etched into surfaces (floors, walls, pillars): Signify enchantments or protective measures set up by surviving dwarves.
+- Mechanisms with intricate gears: Found around lock systems or as part of a puzzle that players need to solve to access the treasure or advance in the dungeon.
+- Faint scratch marks on floors/walls: Indicate previous trap activations and alert players to potential danger ahead.
+- Mural depicting a riddle or clue: Offers a hint about disarming a trap or unlocking a chamber containing valuable loot.
+- Glistening piles of gold coins and gems: Serve as rewards for overcoming challenges while exploring the dungeon.
+- Ornate weapon racks and armor stands: Display precious equipment that adventurers may covet for their own use.
+- Magic-infused items (potions, scrolls, wands): Offer unique abilities or powers that could aid players throughout their quest.
+
 ### Technical
 Every room gets a seed assigned when it is generated. Everything in the room will be randomly placed using that seed. This (should) mean that it is safe to delete every when the room is exited, because it will generate exactly the same as before because it is using the same seed. Also, when saving the game, only the seed needs to be saved. The only problem here might arise when the game is updated, and changed, when the player reloads the game.
 
