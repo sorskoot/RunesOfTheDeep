@@ -2195,6 +2195,48 @@
                 1.0,
                 1.0
             ]
+        },
+        "434": {
+            "name": "Pillar",
+            "parent": "238",
+            "components": [
+                {
+                    "type": "mesh",
+                    "mesh": {
+                        "mesh": "433",
+                        "material": "406"
+                    }
+                },
+                {
+                    "type": "mesh",
+                    "mesh": {
+                        "mesh": "432",
+                        "material": "407"
+                    }
+                },
+                {
+                    "type": "tags",
+                    "tags": {
+                        "tags": "Prop"
+                    }
+                }
+            ],
+            "translation": [
+                5.0,
+                0.0,
+                2.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scaling": [
+                1.0,
+                1.0,
+                1.0
+            ]
         }
     },
     "meshes": {
@@ -2498,6 +2540,18 @@
         "429": {
             "link": {
                 "name": "Banner.1",
+                "file": "models\\Tiles.fbx"
+            }
+        },
+        "432": {
+            "link": {
+                "name": "Pillar_Wood",
+                "file": "models\\Tiles.fbx"
+            }
+        },
+        "433": {
+            "link": {
+                "name": "Pillar_Wood.0",
                 "file": "models\\Tiles.fbx"
             }
         }

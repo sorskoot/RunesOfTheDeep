@@ -112,6 +112,44 @@ export const roomTemplates: RoomTemplate[] = [
   {
     name: "normal",
     type: RoomTypes.Normal,
+    ceilingHeight: [5, 8],
+    canBeRotated: true,
+    pattern: [
+        "    #N#", 
+        "   #...#", 
+        "  #.....#", 
+        " #.......#", 
+        "#.........#", 
+        "W....%....E",
+        "#.........#",
+        " #.......#",  
+        "  #.....#", 
+        "   #...#", 
+        "    #S#"],
+        
+  },
+  {
+    name: "normal",
+    type: RoomTypes.Normal,
+    ceilingHeight: [5],
+    canBeRotated: true,
+    pattern: [
+        " ####N####", 
+        "#.........#",
+        "#..P...P..#",        
+        "#.........#",        
+        "W....%....E",
+        "#.........#",        
+        "#..P...P..#",        
+        "#.........#",        
+        " ####S####"],
+    props:[
+      {name:"Pillar"},
+    ]
+  },
+  {
+    name: "normal",
+    type: RoomTypes.Normal,
     ceilingHeight: [3, 4],
     canBeRotated: true,
     pattern: [
