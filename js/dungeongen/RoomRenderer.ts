@@ -116,6 +116,7 @@ export class RoomRenderer {
             case "C": // Campfire, but floor or wall is rendered as well
             case "X": // Ememy, but floor or wall is rendered as well
             case "P": // Prop
+            case "!": // Chest
             case ".":
               if (h == 0) {
                 tile = this.#tileset.getTileByName("Floor01");
@@ -163,7 +164,7 @@ export class RoomRenderer {
       let door = findCharInStringArray(roomdesign, "N")!;
       let tile = this.#tileset.getTileByName("Door")!;
       let newObj = this.createTile(door.x, 0, door.y, tile.object);
-      newObj.rotateAxisAngleDegObject([0,1,0],180);
+      newObj.rotateAxisAngleDegObject([0, 1, 0], 180);
       this.setupDoor(newObj, room.getTargetRoom("N"), "N");
     }
 
@@ -178,7 +179,7 @@ export class RoomRenderer {
       let door = findCharInStringArray(roomdesign, "E")!;
       let tile = this.#tileset.getTileByName("Door")!;
       let newObj = this.createTile(door.x, 0, door.y, tile.object);
-      newObj.rotateAxisAngleDegObject([0,1,0],90);
+      newObj.rotateAxisAngleDegObject([0, 1, 0], 90);
       this.setupDoor(newObj, room.getTargetRoom("E"), "E");
     }
 
@@ -186,7 +187,7 @@ export class RoomRenderer {
       let door = findCharInStringArray(roomdesign, "W")!;
       let tile = this.#tileset.getTileByName("Door")!;
       let newObj = this.createTile(door.x, 0, door.y, tile.object);
-      newObj.rotateAxisAngleDegObject([0,1,0],270);
+      newObj.rotateAxisAngleDegObject([0, 1, 0], 270);
       this.setupDoor(newObj, room.getTargetRoom("W"), "W");
     }
   }
@@ -314,7 +315,7 @@ export class RoomRenderer {
    * @param {*} roomdesign
    */
   #createInterior(room: Room, roomdesign: any) {
-    const roomRNG = rng.clone().setSeed(1);//room.seed);
+    const roomRNG = rng.clone().setSeed(1); //room.seed);
 
     let hasFirepit = false;
 
@@ -324,45 +325,47 @@ export class RoomRenderer {
         let rotation = 0;
         switch (roomdesign[y][x]) {
           case "P": // prop
-              // todo: use weighted random
-              const props = room.getRoomTemplate()!.props;
-              if(!props){
-                break;
-              }
-              const propChances = props.reduce((acc: Record<string, number>, p) => {
-                acc[p.name] = p.chance ?? 1;
-                return acc;
-              }, {});
-              let propname = roomRNG.getWeightedValue(propChances);
-              const prop = props.find((p) => p.name === propname)!;
-              tile = this.#tileset.getTileByName(prop.name);
-           
-              if (prop.mustBeAgainstWall) {
-                if(roomdesign[y-1][x] !== "#" &&
-                  roomdesign[y+1][x] !== "#" &&
-                  roomdesign[y][x-1] !== "#" &&
-                  roomdesign[y][x+1] !== "#"){
-                  continue; // not next to a wall, skip the prop.
-                }
-              }
+            // todo: use weighted random
+            const props = room.getRoomTemplate()!.props;
+            if (!props) {
+              break;
+            }
+            const propChances = props.reduce((acc: Record<string, number>, p) => {
+              acc[p.name] = p.chance ?? 1;
+              return acc;
+            }, {});
+            let propname = roomRNG.getWeightedValue(propChances);
+            const prop = props.find((p) => p.name === propname)!;
+            tile = this.#tileset.getTileByName(prop.name);
 
-              if (prop.faceWall) {
-                const directions = [
-                  { x: 0, y: -1, rotation: 180 },
-                  { x: 1, y: 0, rotation: 90 },
-                  { x: -1, y: 0, rotation: 270 },
-                  { x: 0, y: 1, rotation: 0 }
-                ];
-                let possibleRotations = [];
-                for (const dir of directions) {
-                  if (roomdesign[y + dir.y][x + dir.x] === "#") {
-                    possibleRotations.push(dir);
-                  }
-                }
-                if (possibleRotations.length > 0) {
-                  rotation = roomRNG.getItem(possibleRotations).rotation;
+            if (prop.mustBeAgainstWall) {
+              if (
+                roomdesign[y - 1][x] !== "#" &&
+                roomdesign[y + 1][x] !== "#" &&
+                roomdesign[y][x - 1] !== "#" &&
+                roomdesign[y][x + 1] !== "#"
+              ) {
+                continue; // not next to a wall, skip the prop.
+              }
+            }
+
+            if (prop.faceWall) {
+              const directions = [
+                { x: 0, y: -1, rotation: 180 },
+                { x: 1, y: 0, rotation: 90 },
+                { x: -1, y: 0, rotation: 270 },
+                { x: 0, y: 1, rotation: 0 },
+              ];
+              let possibleRotations = [];
+              for (const dir of directions) {
+                if (roomdesign[y + dir.y][x + dir.x] === "#") {
+                  possibleRotations.push(dir);
                 }
               }
+              if (possibleRotations.length > 0) {
+                rotation = roomRNG.getItem(possibleRotations).rotation;
+              }
+            }
             break;
           case "C": // Campfire /Firepit
             if (!hasFirepit) {
@@ -371,13 +374,34 @@ export class RoomRenderer {
               hasFirepit = true;
             }
             break;
+          case "!":
+            const chests = room.getRoomTemplate()!.chests;
+            if (!chests) {
+              console.warn("No chests in room template, but there's a chest in the room design.");
+              break;
+            }
+            const chestChances = chests.reduce((acc: Record<string, number>, p) => {
+              acc[`Chest_${p.material}_${p.size}`] = p.chance ?? 1;
+              return acc;
+            }, {});
+            let chestname = roomRNG.getWeightedValue(chestChances);
+
+            const chest = chests.find(
+              (c) => c.material === chestname!.split("_")[1] && c.size === chestname!.split("_")[2]
+            )!;
+            
+            // add something to add loot to the chest.
+
+            tile = this.#tileset.getTileByName(chestname!);
+            rotation = chest.rotation;
+            break;
           default:
             continue;
         }
         if (tile) {
           // only render a tile if we have a tile.
           let newObj = this.createTile(x, 0, y, tile.object);
-          newObj.rotateAxisAngleDegObject([0, 1, 0],rotation);
+          newObj.rotateAxisAngleDegObject([0, 1, 0], rotation);
         }
       }
     }

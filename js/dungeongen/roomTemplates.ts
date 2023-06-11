@@ -52,6 +52,7 @@ export interface RoomTemplate {
    * Props will be placed random whereever there's a P on the template. 
    */ 
   props?: propDefinition[];
+  chests?: chestDefinition[];
 }
 
 export interface propDefinition {
@@ -59,6 +60,14 @@ export interface propDefinition {
   chance?: number;
   faceWall?: boolean;
   mustBeAgainstWall?: boolean;
+}
+
+export interface chestDefinition {
+  chance?: number;
+  material: "Iron"|"Gold",
+  size: "None"|"Small"|"Medium"|"Large"
+  rotation: 0|90|180|270;
+  loottable?: string;
 }
 
 /**
@@ -81,7 +90,7 @@ export const roomTemplates: RoomTemplate[] = [
       "W...........E",
       "#P..........#",
       "#P.......2.P#",
-      "##P....%..PP#",
+      "##P....%!.PP#",
       "  ##....PPPP#",
       "    #S###### ",
     ],
@@ -94,6 +103,9 @@ export const roomTemplates: RoomTemplate[] = [
       {name:"BarrelBroken", chance:0.4},
       {name:"Bench",faceWall:true, chance:0.1},
       {name:"Banner",faceWall:true, chance:0.3, mustBeAgainstWall:true},
+    ],
+    chests:[
+      {material:"Iron", size:"Large", rotation:270},
     ]
   },
   {
@@ -133,15 +145,17 @@ export const roomTemplates: RoomTemplate[] = [
     type: RoomTypes.Normal,
     ceilingHeight: [5],
     canBeRotated: true,
-    pattern: [
+    pattern: [        
         " ####N####", 
         "#.........#",
-        "#..P...P..#",        
-        "#.........#",        
+        "#.........#",
+        "#..P...P..#",
+        "#.........#",
         "W....%....E",
-        "#.........#",        
-        "#..P...P..#",        
-        "#.........#",        
+        "#.........#",
+        "#..P...P..#",
+        "#.........#",
+        "#.........#",
         " ####S####"],
     props:[
       {name:"Pillar"},
@@ -242,7 +256,7 @@ export const RoomTemplatePatternDefinitions = {
     // Enemy
   },
   "!": {
-    // Something special. Is decided based on the biome and the room type
+    // A chest, details defined in the room definition
   },
   P: {
     // Prop

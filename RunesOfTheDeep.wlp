@@ -1354,9 +1354,9 @@
                 }
             ],
             "translation": [
-                8.4893178,
-                -1000.0,
-                2.3070492
+                7.4230165,
+                -999.0551757,
+                3.8744812
             ],
             "rotation": [
                 0.0,
@@ -1457,7 +1457,7 @@
                 0.8
             ],
             "translation": [
-                -1.076471178862448e-8,
+                -1.0764711788624481e-8,
                 0.0,
                 3.42726764301915e-7
             ],
@@ -2113,27 +2113,27 @@
             ]
         },
         "420": {
-            "name": "Bench",
+            "name": "Chest_Iron_Small",
             "parent": "238",
             "components": [
                 {
                     "type": "mesh",
                     "mesh": {
-                        "mesh": "419",
-                        "material": "406"
+                        "mesh": "441",
+                        "material": "438"
                     }
                 },
                 {
                     "type": "tags",
                     "tags": {
-                        "tags": "Prop"
+                        "tags": "Chest"
                     }
                 }
             ],
             "translation": [
-                5.0,
+                6.5,
                 0.0,
-                4.0
+                2.5
             ],
             "rotation": [
                 0.0,
@@ -2225,6 +2225,111 @@
                 5.0,
                 0.0,
                 2.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scaling": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "444": {
+            "name": "Bench",
+            "parent": "238",
+            "components": [
+                {
+                    "type": "mesh",
+                    "mesh": {
+                        "mesh": "419",
+                        "material": "406"
+                    }
+                },
+                {
+                    "type": "tags",
+                    "tags": {
+                        "tags": "Prop"
+                    }
+                }
+            ],
+            "translation": [
+                5.0,
+                0.0,
+                4.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scaling": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "446": {
+            "name": "Chest_Iron_Medium",
+            "parent": "238",
+            "components": [
+                {
+                    "type": "mesh",
+                    "mesh": {
+                        "mesh": "440",
+                        "material": "438"
+                    }
+                },
+                {
+                    "type": "tags",
+                    "tags": {
+                        "tags": "Chest"
+                    }
+                }
+            ],
+            "translation": [
+                7.5,
+                0.0,
+                2.5
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scaling": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "447": {
+            "name": "Chest_Iron_Large",
+            "parent": "238",
+            "components": [
+                {
+                    "type": "mesh",
+                    "mesh": {
+                        "mesh": "439",
+                        "material": "438"
+                    }
+                },
+                {
+                    "type": "tags",
+                    "tags": {
+                        "tags": "Chest"
+                    }
+                }
+            ],
+            "translation": [
+                8.5,
+                0.0,
+                2.5
             ],
             "rotation": [
                 0.0,
@@ -2554,6 +2659,24 @@
                 "name": "Pillar_Wood.0",
                 "file": "models\\Tiles.fbx"
             }
+        },
+        "439": {
+            "link": {
+                "name": "Chest_Large",
+                "file": "models\\Tiles.fbx"
+            }
+        },
+        "440": {
+            "link": {
+                "name": "Chest_Medium",
+                "file": "models\\Tiles.fbx"
+            }
+        },
+        "441": {
+            "link": {
+                "name": "Chest_Small",
+                "file": "models\\Tiles.fbx"
+            }
         }
     },
     "textures": {
@@ -2723,6 +2846,18 @@
             "link": {
                 "name": "tiles_18.png",
                 "file": "assets\\tiles\\tiles_18.png"
+            }
+        },
+        "437": {
+            "link": {
+                "name": "texture_3",
+                "file": "models\\Tiles.fbx"
+            }
+        },
+        "443": {
+            "link": {
+                "name": "tiles_19.png",
+                "file": "assets\\tiles\\tiles_19.png"
             }
         }
     },
@@ -2909,6 +3044,18 @@
             "link": {
                 "name": "tiles_18.png",
                 "file": "assets\\tiles\\tiles_18.png"
+            }
+        },
+        "436": {
+            "link": {
+                "name": "image_3",
+                "file": "models\\Tiles.fbx"
+            }
+        },
+        "442": {
+            "link": {
+                "name": "tiles_19.png",
+                "file": "assets\\tiles\\tiles_19.png"
             }
         }
     },
@@ -3423,6 +3570,17 @@
             "FlatSorskoot": {
                 "flatTexture": "431"
             }
+        },
+        "438": {
+            "link": {
+                "name": "Chest",
+                "file": "models\\Tiles.fbx"
+            },
+            "name": "Chest Iron",
+            "pipeline": "240",
+            "FlatSorskoot": {
+                "flatTexture": "443"
+            }
         }
     },
     "shaders": {
@@ -3819,7 +3977,8 @@
         "assets/tiles/tiles_15.png",
         "assets/tiles/tiles_16.png",
         "assets/tiles/tiles_17.png",
-        "assets/tiles/tiles_18.png"
+        "assets/tiles/tiles_18.png",
+        "assets/tiles/tiles_19.png"
     ],
     "fonts": {
         "230": {
