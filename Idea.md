@@ -32,7 +32,7 @@ Piecing together clues from scattered documents and surviving murals on dungeon 
 
 1. Procedurally Generated Levels - Each playthrough will present unique challenges with randomly generated dungeons offering varying levels of difficulty.
 1. Combat System - Players must engage in close-quarters combat using hammers or axes.
-1. Mining System - Players need to upgrade or buy tools to mine harder rocks as they progress to get better tools and weapons.
+1. ~Mining System - Players need to upgrade or buy tools to mine harder rocks as they progress to get better tools and weapons.~
 1. Upgradable Tools & Weapons - Throughout gameplay, players will gather resources for upgrading equipment such as mining tools for resource gathering and weapons for combat effectiveness.
 1. Artifact Collection - Discover hidden magical artifacts imbued with special powers that offer advantages during gameplay.
 1. Traps and Puzzles - Navigate through environmental hazards and solve puzzles scattered throughout dungeons.
@@ -47,6 +47,39 @@ Piecing together clues from scattered documents and surviving murals on dungeon 
 4. Block attacks with shield in left controller
 5. Stats and menu is on inside of shield
 
+### 3. Turns
+Roguelikes have a common similarity: They are turn based. In normal games this mechanic can be implemented as the the player can be stopped from moving after a certain points are spend each turn. In VR this is near to impossible. We could just disable teleportation, but it will be really odd if you can't use you sword or shield while it's not your turn.
+
+To get a slight feel of a turnbased game the turns are only applied to the enemies and the turns will just loop. This means that every fixed number of seconds, maybe 5 at the start (this will probably change when refining the gameplay), the enemies have a certain points to spend. For example, a certain enemy has 2 move points and 1 attack point. The enemy will spend 2 seconds moving and 1 to attack. The enemy will wait until the next turn and might spend them again. The exact durations might vary.
+
+Other things that might work over turns are things like things being set on fire or things being poisoned. If you're on fire, you'll take X amount of damage every turn. For example 1 heart every 5 seconds for 3 turns, unless you find water.
+
+Traps could follow a similar pattern, like being activated for 2 steps and off by 3. While looping every 5 seconds. 
+
+### 4. Fighting
+Fighting is done with a sword. There are different swords, mostly for aesthetic. 
+
+Additional properties you can add to weapons, shields, and tools found in the dungeons:
+
+- Elemental Affinity: Weapons or shields could have an elemental attribute such as fire, ice, or lightning. These attributes may deal bonus damage against certain enemies, grant status effects like burning/freezing/shocking opponents, or provide resistance against specific elemental attacks.
+
+- Durability: Items may have limited durability that degrades with usage. As the item wears out, its stats decrease until it eventually breaks and becomes unusable. Players will need to repair or replace damaged items.
+
+- Weight: Each item can have a weight value that affects the player's overall carry capacity and mobility. Heavier items provide better defense or damage but reduce agility or movement speed.
+
+- Enchantments: Certain items could be enchanted with magical properties like increased critical hit chance, health regeneration, or status effect immunities (e.g., poison resistance).
+
+- Set Bonuses: Collecting multiple pieces of equipment from a particular set (e.g., a matching sword and shield) can grant additional stat bonuses when used together.
+
+- Skill Modifiers: Equipment may modify specific skills by granting access to new abilities (such as powerful sword techniques), increasing existing skill potency (like stronger shield bashes), or reducing ability cooldowns.
+
+- Rarity Levels: Weapons and shields could have varying rarity levels (common, rare, epic, legendary) which influence their overall stat potential and appearance.
+
+- Upgrade Slots: Some items may offer upgrade slots for players to insert gems or other components that enhance the item's properties further.
+
+- Socketed Runes/Magical Stones: Tools found in dungeons might contain socketed runes/magical stones that give additional effects when equipped together with weapons/shields depending on the combination used.
+
+- Unique Abilities: Certain legendary weapons or artifacts could come with unique abilities not found elsewhere in the game - like summoning allies during combat, casting powerful spells/effects after striking an enemy a certain number of times in a row etc.
 
 ## IV. Characters
 
@@ -54,16 +87,16 @@ Piecing together clues from scattered documents and surviving murals on dungeon 
 2. Enemies - Various adversaries dwell within caves including goblins, trolls, undead creatures or rival dwarf factions.
 3. NPCs - Interact with other dwarf miners or traders within safe zones who may offer quests or trade goods/services for resources.
 
-## V.Visual & Audio Design
+## V. Visual & Audio Design
 
 1. Visual Style: Pixel-art combined with a darker tone focusing on underground environments illuminated by torchlight or luminous flora/fauna. 
 2. Audio Design: Atmospheric sound design featuring echoing footsteps/clanking armor; dynamic music adapting based on danger level; distinct sound cues for abilities/enemy encounters; 
 
-## VI.Monetization
+## VI. Monetization
 
 Runes of the Deep: Dwarven Cave Chronicles will free to play with Zesty ads. But may include optional paid expansions featuring new storylines/dungeons/enemies/tools/weapons at later stages post-release. Probably using HeyVR coins.
 
-## VII.Development Schedule & Milestones
+## VII. Development Schedule & Milestones
 
 Estimated development time is 8-28 weeks divided into following phases:
 
@@ -79,13 +112,19 @@ With this blueprint outlined above, "Runes of the Deep: Dwarven Cave Chronicles"
 
 ## IX. Technical Implementation:
 
-1. Level Generation - Maze generation combined with random rooms.
+### Level Generation 
+Maze generation combined with random rooms.
 
-2. Game Engine - Wonderland Engine
+### Game Engine - Wonderland Engine
 Runes of the Deep: Dwarven Cave Chronicles will be developed using the Wonderland Engine as its core game engine platform. The Wonderland Engine is a cutting-edge WebXR-focused engine optimized for creating highly efficient virtual reality experiences with minimal performance overhead.
 Utilizing Wonderland Engine allows us to create an immersive VR experience tailored for confined spaces without sacrificing visual fidelity or gameplay complexity. Additionally, leveraging WebXR technology makes our game more accessible across different VR platforms such as Oculus Rift, HTC Vive, and Valve Index without requiring extensive adaptations for each device.
 
 Together, these technical choices ensure that Runes of the Deep: Dwarven Cave Chronicles delivers an innovative gameplay experience in procedurally generated environments while remaining highly optimized for diverse virtual reality hardware setups within confined playing spaces.
+
+### Enemies
+
+
+### Loot
 
 ## X. Details on Rooms and Props 
 
