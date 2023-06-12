@@ -17,7 +17,7 @@ class GoingSomewhere implements BehaviorBase {
         for (let i = 0; i < entity.movePoints; i++) {
           // Note that 'entity.move()' will call the move method of respective subclasses like Rat
           // If necessary, pass additional parameters, like target location or speed modifiers
-          entity.move(this.destination);
+          //entity.move(this.destination);
         }
       } else {
         console.error(`The given entity does not support moving.`);

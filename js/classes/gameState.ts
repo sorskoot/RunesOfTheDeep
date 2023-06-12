@@ -3,6 +3,8 @@ import { LevelState } from "./levelState.js";
 import { DirectionSymbol } from "../types/index.js";
 import { Room } from "../dungeongen/room.js";
 import { findCharInStringArrayByPos } from "../forFramework/findCharInStringArray.js";
+import { Sword } from "./items/sword.js";
+import iron from "./behaviors/iron.js";
 
 export const State = {
   Init: -1,

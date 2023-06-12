@@ -18,7 +18,7 @@ class Rat extends Enemy {
         this.move();
       }
       
-      // Attack action (Rat will use its attack point)
+      // Attack action (Rat will use its attack point) 
       if (this.isPlayerInRange()) {
         this.attack();
       }

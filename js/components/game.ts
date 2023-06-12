@@ -3,6 +3,8 @@ import GameGlobals from "../globals.js";
 import { LevelGenerator } from "./level-generator.js";
 import { State } from "../classes/gameState.js";
 import { property } from "@wonderlandengine/api/decorators.js";
+import { Sword } from "../classes/items/sword.js";
+import iron from "../classes/behaviors/iron.js";
 
 export class Game extends Component {
   static TypeName = "game";
@@ -47,7 +49,12 @@ export class Game extends Component {
 
       // GameGlobals.gameState.availableTargets = result.targetsToComplete;
       // GameGlobals.levelState.availableTargets = result.targetsToComplete;
-    });
+   
+    }
+    );
+    const testSword = new Sword();
+    testSword.addBehavior(iron);
+    console.log(`${testSword.name}:${testSword.attack()}`);
 
     setTimeout(() => {
       GameGlobals.gameState.level = 0;
@@ -76,5 +83,9 @@ export class Game extends Component {
         GameGlobals.gameState.currentRoom = p;
       }
     });
+  }
+
+  override update(delta: number): void {
+    
   }
 }

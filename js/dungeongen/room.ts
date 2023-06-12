@@ -10,7 +10,7 @@ type RoomDirections = {
 
 import { findCharInStringArray } from "../forFramework/findCharInStringArray.js";
 import { DirectionSymbol } from "../types/index.js";
-import { RoomTemplate, RoomTypes } from "./roomTemplates.js";
+import { RoomTemplate, RoomTypes, chestDefinition } from "./roomTemplates.js";
 
 export class Room {
 
@@ -54,6 +54,9 @@ export class Room {
    * The distance from the entrance
    */
   distanceFromEntrance: number;
+
+  chests?: chestDefinition[];
+
 
   constructor() {
     this.doors = { north: false, west: false, south: false, east: false };
