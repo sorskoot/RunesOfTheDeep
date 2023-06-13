@@ -16,12 +16,15 @@ export class TurnManager extends Component {
     private timeSinceLastStep: number = 0;
     private stepsTaken: number = 0;
     private isTurnInProgress: boolean = false;
+    private turnCounter: number = 0;
 
     override update(dt: number) {
         if (!this.isTurnInProgress) {
             this.isTurnInProgress = true;
             this.stepsTaken = 0;
             this.timeSinceLastStep = 0;
+            this.turnCounter++;
+            this.newTurn();
         }
 
         if (this.isTurnInProgress) {
@@ -38,12 +41,20 @@ export class TurnManager extends Component {
             if (this.stepsTaken == this.stepsPerTurn) {
                 // End of current turn
                 this.isTurnInProgress = false;
+                this.endTurn();
             }
         }
     }
 
     stepFunction() {
-        // Your step logic here
-        console.log("Step executed");
+     
+    }
+
+    newTurn(){
+     
+    }
+
+    endTurn(){
+     
     }
 }

@@ -2,7 +2,7 @@
     "views": {
         "console": {
             "showInfo": false,
-            "showWarnings": false,
+            "showWarnings": true,
             "showErrors": true
         },
         "sceneView": {
@@ -19,12 +19,12 @@
         "Console": true,
         "Scene Outline": true,
         "Properties": true,
-        "Project Settings": true,
-        "Resources": true,
+        "Project Settings": false,
+        "Resources": false,
         "Project Data": false,
         "Benchmark": false,
         "Profile": false,
-        "Preferences": false,
+        "Preferences": true,
         "Localization": false
     }
 }

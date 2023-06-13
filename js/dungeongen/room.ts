@@ -13,6 +13,7 @@ import { DirectionSymbol } from "../types/index.js";
 import { RoomTemplate, RoomTypes, chestDefinition } from "./roomTemplates.js";
 
 export class Room {
+  
 
   /**
    * The rooms a door will take you to
@@ -141,5 +142,11 @@ export class Room {
       return result;
     }
     return null;
+  }
+
+  addChest(chest: chestDefinition) {
+      // create a chest base on definition, if it's not there already and add it to the list
+
+      
   }
 }

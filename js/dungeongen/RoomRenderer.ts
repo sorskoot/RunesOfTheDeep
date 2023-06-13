@@ -394,6 +394,7 @@ export class RoomRenderer {
 
             tile = this.#tileset.getTileByName(chestname!);
             rotation = chest.rotation;
+            room.addChest(chest);
             break;
           default:
             continue;

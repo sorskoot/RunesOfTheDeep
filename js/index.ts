@@ -30,6 +30,7 @@ import {LookAt} from './components/look-at.js';
 import {PickTarget} from './components/pick-target.js';
 import {PlayerHeight2} from './components/player-height2.js';
 import {SorskootTeleport} from './components/teleport.js';
+import {TurnManager} from './components/turnManager.js';
 import {TileDescriptor} from './dungeongen/components/tileComponent.js';
 /* wle:auto-imports:end */
 
@@ -108,6 +109,7 @@ engine.registerComponent(LookAt);
 engine.registerComponent(PickTarget);
 engine.registerComponent(PlayerHeight2);
 engine.registerComponent(SorskootTeleport);
+engine.registerComponent(TurnManager);
 engine.registerComponent(TileDescriptor);
 /* wle:auto-register:end */
 

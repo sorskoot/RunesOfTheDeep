@@ -2342,6 +2342,121 @@
                 1.0,
                 1.0
             ]
+        },
+        "448": {
+            "name": "TurnManager",
+            "parent": "234",
+            "components": [
+                {
+                    "type": "turnManager"
+                }
+            ]
+        },
+        "449": {
+            "name": "Collision",
+            "parent": "420",
+            "components": [
+                {
+                    "type": "collision",
+                    "collision": {
+                        "collider": "box",
+                        "box": {
+                            "extents": [
+                                0.25,
+                                0.2199999,
+                                0.25
+                            ]
+                        },
+                        "groups": 136
+                    }
+                },
+                {
+                    "type": "cursor-target"
+                }
+            ],
+            "translation": [
+                0.0,
+                0.2199999,
+                0.0
+            ]
+        },
+        "450": {
+            "name": "Collision",
+            "parent": "446",
+            "components": [
+                {
+                    "type": "collision",
+                    "collision": {
+                        "collider": "box",
+                        "box": {
+                            "extents": [
+                                0.4499999,
+                                0.2199999,
+                                0.25
+                            ]
+                        },
+                        "groups": 136
+                    }
+                },
+                {
+                    "type": "cursor-target"
+                }
+            ],
+            "translation": [
+                0.0,
+                0.2199707,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scaling": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "451": {
+            "name": "Collision",
+            "parent": "447",
+            "components": [
+                {
+                    "type": "collision",
+                    "collision": {
+                        "collider": "box",
+                        "box": {
+                            "extents": [
+                                0.4499999,
+                                0.25,
+                                0.25
+                            ]
+                        },
+                        "groups": 136
+                    }
+                },
+                {
+                    "type": "cursor-target"
+                }
+            ],
+            "translation": [
+                0.0,
+                0.25,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scaling": [
+                1.0,
+                1.0,
+                1.0
+            ]
         }
     },
     "meshes": {
