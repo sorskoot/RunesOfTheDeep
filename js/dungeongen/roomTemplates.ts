@@ -226,45 +226,68 @@ export const roomTemplates: RoomTemplate[] = [
     ],
   },
 ];
+interface RoomTemplatePattern{
+  canTeleportToTile:boolean;
+  behavior?: "Door"|"Chest"|"Ore";
+}
 
-export const RoomTemplatePatternDefinitions = {
+export const RoomTemplatePatternDefinitions:Record<string, RoomTemplatePattern> = {
   N: {
+    canTeleportToTile:false,
+    behavior: "Door",
     // Door to the north
   },
   E: {
+    canTeleportToTile:false,
+    behavior: "Door",
     // Door to the east
   },
   S: {
+    canTeleportToTile:false,
+    behavior: "Door",
     // Door to the south
   },
   W: {
+    canTeleportToTile:false,
+    behavior: "Door",
     // Door to the west
   },
   C: {
+    canTeleportToTile:false,
     // Campfire( max 1 per room)
   },
   ".": {
     // Empty space
+    canTeleportToTile:true
   },
   "#": {
+    canTeleportToTile:false,
     // Wall
   },
   "%": {
+    canTeleportToTile:true,
     // Torch (light)
   },
   X: {
-    // Enemy
+    // Enemy spawn point
+    canTeleportToTile:true
   },
   "!": {
     // A chest, details defined in the room definition
+    canTeleportToTile:false,
+    behavior: "Chest"
   },
   P: {
     // Prop
+    canTeleportToTile:false,
   },
   O: {
     // Ore
+    canTeleportToTile:false,
+    behavior:"Ore"
   },
   G: {
+    canTeleportToTile:false
     // Gem
   },
 };

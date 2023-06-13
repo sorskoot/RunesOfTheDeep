@@ -13,8 +13,6 @@ export abstract class GenericItem extends BehaviorBase implements Item {
   description: string;
   rarity: Rarity;
 
-  behaviors: Array<BehaviorBase> = [];
-
   constructor(rarity:Rarity="common") {
     super();
     this.id = +new Date();
@@ -24,7 +22,6 @@ export abstract class GenericItem extends BehaviorBase implements Item {
     this.description = "it is nothing special";
     this.rarity = rarity;
   }
-    
 
   damage():number {
     return 0;

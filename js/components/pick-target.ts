@@ -74,10 +74,8 @@ export class PickTarget extends Component {
       return false;
     }
 
-    if (tags.hasTag("floor")) {
-      return GameGlobals.gameState.canTeleportToPosition(x, y, z);
-    }
-    return true;
+    return GameGlobals.gameState.canPick(x, y, z);
+
   }
 
   /**
@@ -88,21 +86,8 @@ export class PickTarget extends Component {
    * @param {Number} z 
    */
   #picked(obj: Object3D, x: number, y: number, z: number) {
-    let tags = obj.getComponent(Tags);
-    if (!tags) return;
-    let position = GameGlobals.gameState.playerPosition;
-    //this.player.getTranslationWorld(position);
-    switch (true) {
-      case tags.hasTag("floor"):
-        GameGlobals.soundFxPlayer.playSound(Sounds.teleport);
-        GameGlobals.gameState.playerPosition = [x, position[1], z];
-        break;
-      case tags.hasTag("button"):
-        break;
-      case tags.hasTag("door"):
-        console.log("picking door not implemented yet");
-        break;
-    }
+    return GameGlobals.gameState.pick(obj, x, y, z);
+    
   }
 
   start() {
@@ -122,7 +107,8 @@ export class PickTarget extends Component {
   update(dt:number) {
     
     let xrInputSource = this.input.xrInputSource;
-    if (!this.initialized || !xrInputSource) {
+    if (!this.initialized || !xrInputSource || !xrInputSource.gamepad || 
+      !xrInputSource.gamepad.buttons) {
       return;
     }
     const buttonPressed = xrInputSource.gamepad.buttons[0].pressed;

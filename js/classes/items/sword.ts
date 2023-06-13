@@ -1,5 +1,4 @@
-import { Item } from "../../dungeongen/objects/item.js";
-import { GenericItem } from "./GenaricItem.js";
+import { GenericItem } from "./GenericItem.js";
 
 export class Sword extends GenericItem{
 

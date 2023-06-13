@@ -3,8 +3,11 @@ import { LevelState } from "./levelState.js";
 import { DirectionSymbol } from "../types/index.js";
 import { Room } from "../dungeongen/room.js";
 import { findCharInStringArrayByPos } from "../forFramework/findCharInStringArray.js";
-import { Sword } from "./items/sword.js";
-import iron from "./behaviors/iron.js";
+import { RoomTemplatePatternDefinitions } from "../dungeongen/roomTemplates.js";
+import { Object3D } from "@wonderlandengine/api";
+import { Tags } from "@sorskoot/wonderland-components";
+import { Sounds } from "../utils/soundfx-player.js";
+import globals from "../globals.js";
 
 export const State = {
   Init: -1,
@@ -162,29 +165,92 @@ export class GameState {
    * @param z
    * @returns true if it is possible to teleport to the given position
    */
-  canTeleportToPosition(x: number, y: number, z: number) {
+  canPick(x: number, y: number, z: number) {
     if (!this.room) {
       return false;
     }
 
     const template = this.room.getRoomTemplate();
-
     if (!template) {
       console.error(`no template found for current room. Odd... We're in it.`);
       return false;
     }
 
     const char = findCharInStringArrayByPos(template.pattern, x, z);
+    if(!char){
+      // somehow there's NO char at this position
+      console.warn(`no char found at position ${x},${z} in template ${template.name}`);
+      return false;
+    }
+    const definition = RoomTemplatePatternDefinitions[char];
 
-    return (
-      char === "." ||
-      char === "%" ||
-      char === "X" ||
-      (char === "N" && this.room.doors.north) ||
+    if(definition.behavior === "Door"){
+      return (char === "N" && this.room.doors.north) ||
       (char === "E" && this.room.doors.east) ||
       (char === "S" && this.room.doors.south) ||
-      (char === "W" && this.room.doors.west)
-    );
+      (char === "W" && this.room.doors.west); 
+    }else{
+      return definition.canTeleportToTile;
+    }
+  }
+
+  pick(obj:Object3D, x: number, y: number, z: number) {
+    if (!this.room) {
+      return false;
+    }
+
+    const template = this.room.getRoomTemplate();
+    if (!template) {
+      console.error(`no template found for current room. Odd... We're in it.`);
+      return false;
+    }
+
+    const char = findCharInStringArrayByPos(template.pattern, x, z);
+    if(!char){
+      // somehow there's NO char at this position
+      console.warn(`no char found at position ${x},${z} in template ${template.name}`);
+      return ;
+    }
+    const definition = RoomTemplatePatternDefinitions[char];
+    
+    // execute behavior picked on tile
+    if(definition.behavior){
+      // for a door this should be navigating to the next room
+      // for a floor tile this should be teleporting to that location
+      // for a chest this should be opening the chest
+      // for a character this should be talking to the character
+      // etc
+      // but how? Somehow there should be a link to the room template, the tiles 
+      // and the objects in the room.
+      // maybe the room template should have a list of objects in the room?
+      // would it be possible to store them in a 2D array?
+      // so we can just request X,Y and get the object, and execute the behavior?
+      
+    }
+
+    //definition.behavior;
+
+
+    return;
+    let tags = obj.getComponent(Tags);
+    if (!tags) return;
+    let position = this.playerPosition;
+    //this.player.getTranslationWorld(position);
+   
+    switch (true) {
+      case tags.hasTag("floor"):
+        globals.soundFxPlayer.playSound(Sounds.teleport);
+        this.playerPosition = [x, position[1], z];
+        break;
+      case tags.hasTag("button"):
+        break;
+      case tags.hasTag("chest"):
+        console.log(`picking chest not implemented yet. ${x}, ${z}`);
+        break;
+      case tags.hasTag("door"):
+        console.log("picking door not implemented yet");
+        break;
+    }
   }
 
   setCurrentRoom(currentRoom: Room) {
