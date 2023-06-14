@@ -1,8 +1,9 @@
-import { Item } from "../../dungeongen/objects/item.js";
-import { BehaviorBase } from "../behaviorBase.js";
+import { Item } from "./item.js";
+import { BehaviorBase } from "./behaviorBase.js";
+import { Position2D } from "../../types/position.js";
 
 type Rarity = "common" | "rare" | "epic" | "legendary";
-type ItemType = "weapon" | "container" | "item" | "shield";
+type ItemType = "weapon" | "container" | "item" | "shield" | "door";
 
 export abstract class GenericItem extends BehaviorBase implements Item {
    
@@ -12,6 +13,7 @@ export abstract class GenericItem extends BehaviorBase implements Item {
   type: ItemType;  
   description: string;
   rarity: Rarity;
+  position:Position2D = {x:0, y:0};
 
   constructor(rarity:Rarity="common") {
     super();
@@ -23,29 +25,25 @@ export abstract class GenericItem extends BehaviorBase implements Item {
     this.rarity = rarity;
   }
 
-  damage():number {
-    return 0;
-  }
+  damage():number { return 0 }
 
-  protection():number {
-    return 0;
-  }
+  protection():number { return 0;}
 
-  range?() {
-    return 0;
-  }
+  range():number {return 0;}
 
-  attack?(){}
+  interact() {}
 
-  turn?() {}
+  attack(){}
 
-  equip?() {}
+  turn() {}
 
-  unequip?() {}
+  equip() {}
 
-  refresh?() {}
+  unequip() {}
 
-  over?() {
+  refresh() {}
+
+  over():boolean {
     return true;
   }
 

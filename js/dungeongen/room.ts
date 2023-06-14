@@ -10,10 +10,10 @@ type RoomDirections = {
 
 import { findCharInStringArray } from "../forFramework/findCharInStringArray.js";
 import { DirectionSymbol } from "../types/index.js";
+import { Item } from "./objects/item.js";
 import { RoomTemplate, RoomTypes, chestDefinition } from "./roomTemplates.js";
 
 export class Room {
-  
 
   /**
    * The rooms a door will take you to
@@ -52,12 +52,20 @@ export class Room {
   seed: number;
 
   /**
+   * When a room is visited for the first time, it is initialized
+   * This means that the room is populated with items, enemies, etc, based on the chosen template
+   * This is done to avoid having to generate the entire dungeon at once, while making
+   * sure the room stays the same when revisited
+   */
+  isInitialized: boolean = false;
+
+  /**
    * The distance from the entrance
    */
   distanceFromEntrance: number;
 
   chests?: chestDefinition[];
-
+  items?: Item[];
 
   constructor() {
     this.doors = { north: false, west: false, south: false, east: false };

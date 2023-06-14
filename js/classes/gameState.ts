@@ -232,25 +232,25 @@ export class GameState {
 
 
     return;
-    let tags = obj.getComponent(Tags);
-    if (!tags) return;
-    let position = this.playerPosition;
-    //this.player.getTranslationWorld(position);
+    // let tags = obj.getComponent(Tags);
+    // if (!tags) return;
+    // let position = this.playerPosition;
+    // //this.player.getTranslationWorld(position);
    
-    switch (true) {
-      case tags.hasTag("floor"):
-        globals.soundFxPlayer.playSound(Sounds.teleport);
-        this.playerPosition = [x, position[1], z];
-        break;
-      case tags.hasTag("button"):
-        break;
-      case tags.hasTag("chest"):
-        console.log(`picking chest not implemented yet. ${x}, ${z}`);
-        break;
-      case tags.hasTag("door"):
-        console.log("picking door not implemented yet");
-        break;
-    }
+    // switch (true) {
+    //   case tags.hasTag("floor"):
+    //     globals.soundFxPlayer.playSound(Sounds.teleport);
+    //     this.playerPosition = [x, position[1], z];
+    //     break;
+    //   case tags.hasTag("button"):
+    //     break;
+    //   case tags.hasTag("chest"):
+    //     console.log(`picking chest not implemented yet. ${x}, ${z}`);
+    //     break;
+    //   case tags.hasTag("door"):
+    //     console.log("picking door not implemented yet");
+    //     break;
+    // }
   }
 
   setCurrentRoom(currentRoom: Room) {
