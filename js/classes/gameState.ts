@@ -211,8 +211,14 @@ export class GameState {
       console.warn(`no char found at position ${x},${z} in template ${template.name}`);
       return ;
     }
-    const definition = RoomTemplatePatternDefinitions[char];
-    
+
+    // get the items in there for the given position
+    const items = this.room.getItemsAtPosition({x, y:z});
+   
+    if(!items || items.length === 0){
+      return;
+    }
+
     // execute behavior picked on tile
     if(definition.behavior){
       // for a door this should be navigating to the next room

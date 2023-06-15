@@ -4,8 +4,6 @@ import * as __wonderlandengine_components from '@wonderlandengine/components';
 _registerEditor(__wonderlandengine_components);
 import * as __zestymarket_wonderland_sdk from '@zestymarket/wonderland-sdk';
 _registerEditor(__zestymarket_wonderland_sdk);
-import * as _D__Dev_RunesOfTheDeep_js_classes_behaviors_teleport_ts from 'D:/Dev/RunesOfTheDeep/js/classes/behaviors/teleport.ts';
-_registerEditor(_D__Dev_RunesOfTheDeep_js_classes_behaviors_teleport_ts);
 import * as _D__Dev_RunesOfTheDeep_js_classes_gameState_ts from 'D:/Dev/RunesOfTheDeep/js/classes/gameState.ts';
 _registerEditor(_D__Dev_RunesOfTheDeep_js_classes_gameState_ts);
 import * as _D__Dev_RunesOfTheDeep_js_classes_items_sword_ts from 'D:/Dev/RunesOfTheDeep/js/classes/items/sword.ts';
@@ -42,6 +40,8 @@ import * as _D__Dev_RunesOfTheDeep_js_dungeongen_objects_GenericItem_ts from 'D:
 _registerEditor(_D__Dev_RunesOfTheDeep_js_dungeongen_objects_GenericItem_ts);
 import * as _D__Dev_RunesOfTheDeep_js_dungeongen_objects_behaviorBase_ts from 'D:/Dev/RunesOfTheDeep/js/dungeongen/objects/behaviorBase.ts';
 _registerEditor(_D__Dev_RunesOfTheDeep_js_dungeongen_objects_behaviorBase_ts);
+import * as _D__Dev_RunesOfTheDeep_js_dungeongen_objects_behaviors_teleport_ts from 'D:/Dev/RunesOfTheDeep/js/dungeongen/objects/behaviors/teleport.ts';
+_registerEditor(_D__Dev_RunesOfTheDeep_js_dungeongen_objects_behaviors_teleport_ts);
 import * as _D__Dev_RunesOfTheDeep_js_dungeongen_objects_door_ts from 'D:/Dev/RunesOfTheDeep/js/dungeongen/objects/door.ts';
 _registerEditor(_D__Dev_RunesOfTheDeep_js_dungeongen_objects_door_ts);
 import * as _D__Dev_RunesOfTheDeep_js_dungeongen_objects_item_ts from 'D:/Dev/RunesOfTheDeep/js/dungeongen/objects/item.ts';

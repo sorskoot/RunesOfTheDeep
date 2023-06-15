@@ -76,15 +76,20 @@ export class RoomRenderer {
    * @param {Room} room The room to render
    */
   render(room: Room) {
-    let template = room.getRoomTemplate();
-    if (!template) {
+    
+
+    if(!room.isInitialized){
+    
       const possitbleTemplate = roomTemplates.filter((t) => t.type == room.getRoomType());
-      template = rng.getItem(possitbleTemplate);
-      if (!template) {
+      let newTemplate = rng.getItem(possitbleTemplate);
+      if (!newTemplate) {
         throw new Error(`No template found for room type ${room.getRoomType()}`);
       }
-      room.setRoomTemplate(template);
+      
+      room.initialize(newTemplate);
     }
+    
+    let template = room.getRoomTemplate();
 
     let roomLights = [];
 
@@ -394,7 +399,6 @@ export class RoomRenderer {
 
             tile = this.#tileset.getTileByName(chestname!);
             rotation = chest.rotation;
-            room.addChest(chest);
             break;
           default:
             continue;

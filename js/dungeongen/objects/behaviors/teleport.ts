@@ -1,6 +1,6 @@
 import { Object3D } from "@wonderlandengine/api";
 
-const teleport = {
+export const teleport = {
     name: "Teleport",
 
     initialize: function () {

@@ -13,7 +13,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@wonderlandengine/api": "^1.0.0",
+    "@wonderlandengine/api": "^1.0.1",
     "@wonderlandengine/components": "^1.0.3",
     "@zestymarket/wonderland-sdk": "^2.0.4",
     "gl-matrix": "^3.4.3",

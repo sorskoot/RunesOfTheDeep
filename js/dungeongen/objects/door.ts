@@ -6,12 +6,16 @@ export class Door extends GenericItem{
     direction:DirectionSymbol;
     targetRoom:Position2D;
 
-    constructor(direction:DirectionSymbol, targetRoom:Position2D){
+    constructor(
+        direction:DirectionSymbol, 
+        targetRoom:Position2D,
+        currentPosition:Position2D){
         super();
-        super.name = "Sword";
+        super.name = "Door";
         super.type = "door";
         this.direction = direction;
         this.targetRoom = targetRoom;
+        this.position = currentPosition;
     }
 
     override interact() {

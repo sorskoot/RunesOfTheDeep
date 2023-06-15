@@ -1,20 +1,29 @@
 /**
  * This file contains the Room class.
-*/
+ */
 
-type RoomDirections = { 
-  north:{x:number, y:number}|null|undefined, 
-  west: {x:number, y:number}|null|undefined, 
-  south:{x:number, y:number}|null|undefined, 
-  east: {x:number, y:number}|null|undefined }
+type RoomDirections = {
+  north: { x: number; y: number } | null | undefined;
+  west: { x: number; y: number } | null | undefined;
+  south: { x: number; y: number } | null | undefined;
+  east: { x: number; y: number } | null | undefined;
+};
 
 import { findCharInStringArray } from "../forFramework/findCharInStringArray.js";
-import { DirectionSymbol } from "../types/index.js";
+import { DirectionSymbol, Position2D } from "../types/index.js";
+import { teleport } from "./objects/behaviors/teleport.js";
+import { Door } from "./objects/door.js";
 import { Item } from "./objects/item.js";
-import { RoomTemplate, RoomTypes, chestDefinition } from "./roomTemplates.js";
+import {
+  RoomTemplate,
+  RoomTemplatePatternDefinitions,
+  RoomTypes,
+  chestDefinition,
+} from "./roomTemplates.js";
+import { getInvertedDirection } from "./utils/directionHelpers.js";
 
 export class Room {
-
+  
   /**
    * The rooms a door will take you to
    * @type {RoomDirections}
@@ -22,14 +31,14 @@ export class Room {
   targetRooms: RoomDirections;
 
   /**
-   * The template used to generate this room  
+   * The template used to generate this room
    */
   #roomTemplate: RoomTemplate | null = null;
 
   /**
    * Does this room have a door in each direction?
    */
-  doors: { north: boolean; west: boolean; south: boolean; east: boolean; };
+  doors: { north: boolean; west: boolean; south: boolean; east: boolean };
 
   /**
    * Is this room the exit, the final room of the game?
@@ -37,7 +46,7 @@ export class Room {
   isExit: boolean;
 
   /**
-   * Is this room the entrance, the first room of the game? 
+   * Is this room the entrance, the first room of the game?
    */
   isEntrance: boolean;
 
@@ -88,10 +97,10 @@ export class Room {
 
   /**
    * Gets the room in a specific direction
-   * @param {DirectionSymbol|string} direction 
+   * @param {DirectionSymbol|string} direction
    * @returns {{x:number, y:number}|null|undefined} the room in that direction; null if there is no room in that direction
    */
-  getTargetRoom(direction: DirectionSymbol|string):{x:number, y:number}|null|undefined {
+  getTargetRoom(direction: DirectionSymbol | string): Position2D | null | undefined {
     switch (direction) {
       case "N":
         return this.targetRooms.north;
@@ -105,56 +114,93 @@ export class Room {
   }
 
   /**
-   * 
+   *
    * @returns {RoomType} the type of the room
    */
-  getRoomType(){
-    if(this.isEntrance){
+  getRoomType() {
+    if (this.isEntrance) {
       return RoomTypes.Entrance;
     }
-    if(this.isExit){
+    if (this.isExit) {
       return RoomTypes.Exit;
     }
-    if(this.isTreasure){
+    if (this.isTreasure) {
       return RoomTypes.Treasure;
     }
     return RoomTypes.Normal;
   }
 
   /**
-   * 
-   * @param {RoomTemplate} roomTemplate 
+   *
+   * @param {RoomTemplate} roomTemplate
    */
   setRoomTemplate(roomTemplate: RoomTemplate) {
-    if(this.#roomTemplate === null){
+    if (this.#roomTemplate === null) {
       this.#roomTemplate = roomTemplate;
-    }else{
+    } else {
       console.warn("RoomTemplate already set");
     }
   }
 
-  getRoomTemplate(){
+  getRoomTemplate() {
     return this.#roomTemplate;
   }
 
   /**
    * Gets the door in a specific direction from the template
-   * @param {DirectionSymbol} direction 
+   * @param {DirectionSymbol} direction
    * @returns {{x:number, y:number}}|null} the X/Y coordinates of the door; or null if there is no door in that direction
    */
-  getDoor(direction: DirectionSymbol|string): { x: number; y: number; }|null
-  {
+  getDoor(direction: DirectionSymbol | string): { x: number; y: number } | null {
     // get the door from the template
-    if(this.#roomTemplate !== null){
-      let result = findCharInStringArray(this.#roomTemplate.pattern, direction);    
+    if (this.#roomTemplate !== null) {
+      let result = findCharInStringArray(this.#roomTemplate.pattern, direction);
       return result;
     }
     return null;
   }
 
-  addChest(chest: chestDefinition) {
-      // create a chest base on definition, if it's not there already and add it to the list
+  initialize(template: RoomTemplate) {
+    if (this.isInitialized) {
+      // room is already initialized, probably because it was visited before
+      return;
+    }
+    this.setRoomTemplate(template);
+    this.items = [];
+    for (let y = 0; y < template.pattern.length; y++) {
+      for (let x = 0; x < template.pattern[y].length; x++) {
+        if (RoomTemplatePatternDefinitions[template.pattern[y][x]]?.behavior) {
+          switch (template.pattern[y][x]) {
+            case "N":
+            case "S":
+            case "E":
+            case "W":
+              let direction = template.pattern[y][x] as DirectionSymbol;
+              let target = this.getTargetRoom(direction);
+              if (target){
+                const newLocal = new Door(direction, target, { x: x, y: y });
+                newLocal.addBehavior(teleport);
+                this.items.push(newLocal);
+              }
 
-      
+              break;
+          }
+        }
+      }
+    }
+    this.isInitialized = true;
+  }
+
+  getItemsAtPosition(position: Position2D): Item[] | undefined {
+    if(!this.isInitialized){
+      console.warn("Room is not initialized, but should since we are trying to get items from it");
+      return; 
+    }
+
+    let items = this.items?.filter((item) => {
+      return item.position.x === position.x && item.position.y === position.y;
+    });
+
+    return items;
   }
 }
