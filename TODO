@@ -1,4 +1,7 @@
 # Things to do before the first playable version
+Keep in mind:
+    ☐ put the lore and story EVERYWHERE. 
+
 
 Must Have:
     ☐ @critical Implement first enemies
@@ -41,10 +44,14 @@ Must Have:
                 # the final rooms of the game, it should be clear the Shattering took it tool
             ☐ 'The Shattering'-room
                 # this room is the last room of the game
+
 Should Have:
     Design:
         ☐ Add special rooms at the end of each wrong path
             # the can have some special treasure or tell a part of the lore
+    Code:
+        ☐ Fully implement DI
+        ☐ Do TDD where ever possible
 
 Could Have:
     ☐ Particles

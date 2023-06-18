@@ -11,6 +11,9 @@
  *     - `wle:auto-benchmark:start` and `wle:auto-benchmark:end`: Append the benchmarking code
  */
 
+import "reflect-metadata";
+import {container} from 'tsyringe';
+
 /* wle:auto-imports:start */
 import {Flipbook} from '@sorskoot/wonderland-components';
 import {SnapRotate} from '@sorskoot/wonderland-components';
@@ -52,6 +55,8 @@ const Constants = {
 };
 /* wle:auto-constants:end */
 
+
+
 const engine = await loadRuntime(Constants.RuntimeBaseName, RuntimeOptions);
 Object.assign(engine, API); // Deprecated: Backward compatibility.
 window.WL = engine; // Deprecated: Backward compatibility.
@@ -61,6 +66,9 @@ engine.onSceneLoaded.once(() => {
     if (el) setTimeout(() => el.remove(), 2000);
 
 });
+
+container.registerInstance('engine', engine); // register the engine as a singleton to can access from everywhere
+
 
 /* WebXR setup. */
 

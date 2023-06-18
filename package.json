@@ -13,11 +13,13 @@
   ],
   "license": "MIT",
   "dependencies": {
+    "@sorskoot/wonderland-components": "1.1.6",
     "@wonderlandengine/api": "^1.0.1",
     "@wonderlandengine/components": "^1.0.3",
     "@zestymarket/wonderland-sdk": "^2.0.4",
     "gl-matrix": "^3.4.3",
+    "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1",
-    "@sorskoot/wonderland-components": "1.1.6"
+    "tsyringe": "^4.7.0"
   }
 }

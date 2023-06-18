@@ -912,12 +912,6 @@
             "components": [
                 null,
                 {
-                    "type": "tags",
-                    "tags": {
-                        "tags": "Door"
-                    }
-                },
-                {
                     "type": "mesh",
                     "mesh": {
                         "mesh": "405",
@@ -1457,7 +1451,7 @@
                 0.8
             ],
             "translation": [
-                -1.0764711788624481e-8,
+                -1.076471178862448e-8,
                 0.0,
                 3.42726764301915e-7
             ],
@@ -1734,7 +1728,7 @@
                                 0.2
                             ]
                         },
-                        "groups": 128,
+                        "groups": 130,
                         "box": {
                             "extents": [
                                 0.5,
@@ -1746,6 +1740,12 @@
                 },
                 {
                     "type": "cursor-target"
+                },
+                {
+                    "type": "tags",
+                    "tags": {
+                        "tags": "Door"
+                    }
                 }
             ],
             "translation": [
@@ -2367,7 +2367,7 @@
                                 0.25
                             ]
                         },
-                        "groups": 136
+                        "groups": 138
                     }
                 },
                 {

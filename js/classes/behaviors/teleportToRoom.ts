@@ -1,4 +1,5 @@
 import { Object3D } from "@wonderlandengine/api";
+import globals from "../../globals.js";
 
 export const teleport = {
     name: "Teleport",
@@ -7,7 +8,5 @@ export const teleport = {
         this.name = `Teleport`;
     },
 
-    interact:function(obj:Object3D, x:number, y:number, z:number){
-
-    }
+  
 };

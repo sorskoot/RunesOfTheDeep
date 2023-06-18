@@ -11,16 +11,17 @@ type RoomDirections = {
 
 import { findCharInStringArray } from "../forFramework/findCharInStringArray.js";
 import { DirectionSymbol, Position2D } from "../types/index.js";
-import { teleport } from "./objects/behaviors/teleport.js";
-import { Door } from "./objects/door.js";
-import { Item } from "./objects/item.js";
+import { GenericItem } from "./objects/GenericItem.js";
+import "reflect-metadata";
+import {container} from "tsyringe";
+
 import {
   RoomTemplate,
-  RoomTemplatePatternDefinitions,
   RoomTypes,
   chestDefinition,
 } from "./roomTemplates.js";
-import { getInvertedDirection } from "./utils/directionHelpers.js";
+import { RoomItemCreator } from "./roomItemCreator.js";
+
 
 export class Room {
   
@@ -74,9 +75,12 @@ export class Room {
   distanceFromEntrance: number;
 
   chests?: chestDefinition[];
-  items?: Item[];
+  items?: GenericItem[];
+
+  roomItemCreator: RoomItemCreator;
 
   constructor() {
+    this.roomItemCreator = container.resolve(RoomItemCreator);
     this.doors = { north: false, west: false, south: false, east: false };
     this.targetRooms = { north: null, west: null, south: null, east: null };
     this.isExit = false;
@@ -166,32 +170,11 @@ export class Room {
       return;
     }
     this.setRoomTemplate(template);
-    this.items = [];
-    for (let y = 0; y < template.pattern.length; y++) {
-      for (let x = 0; x < template.pattern[y].length; x++) {
-        if (RoomTemplatePatternDefinitions[template.pattern[y][x]]?.behavior) {
-          switch (template.pattern[y][x]) {
-            case "N":
-            case "S":
-            case "E":
-            case "W":
-              let direction = template.pattern[y][x] as DirectionSymbol;
-              let target = this.getTargetRoom(direction);
-              if (target){
-                const newLocal = new Door(direction, target, { x: x, y: y });
-                newLocal.addBehavior(teleport);
-                this.items.push(newLocal);
-              }
-
-              break;
-          }
-        }
-      }
-    }
+    this.items = this.roomItemCreator.createItems(template,this);
     this.isInitialized = true;
   }
 
-  getItemsAtPosition(position: Position2D): Item[] | undefined {
+  getItemsAtPosition(position: Position2D): GenericItem[] | undefined {
     if(!this.isInitialized){
       console.warn("Room is not initialized, but should since we are trying to get items from it");
       return; 

@@ -5,9 +5,7 @@ import { Room } from "../dungeongen/room.js";
 import { findCharInStringArrayByPos } from "../forFramework/findCharInStringArray.js";
 import { RoomTemplatePatternDefinitions } from "../dungeongen/roomTemplates.js";
 import { Object3D } from "@wonderlandengine/api";
-import { Tags } from "@sorskoot/wonderland-components";
-import { Sounds } from "../utils/soundfx-player.js";
-import globals from "../globals.js";
+import { singleton } from "tsyringe";
 
 export const State = {
   Init: -1,
@@ -18,7 +16,9 @@ export const State = {
   Complete: 4,
 };
 
+@singleton()
 export class GameState {
+  
   room: Room | null = null;
 
   constructor() {
@@ -176,7 +176,7 @@ export class GameState {
       return false;
     }
 
-    const char = findCharInStringArrayByPos(template.pattern, x, z);
+    const char = findCharInStringArrayByPos(template.pattern, Math.floor(x), Math.floor(z));
     if(!char){
       // somehow there's NO char at this position
       console.warn(`no char found at position ${x},${z} in template ${template.name}`);
@@ -205,7 +205,7 @@ export class GameState {
       return false;
     }
 
-    const char = findCharInStringArrayByPos(template.pattern, x, z);
+    const char = findCharInStringArrayByPos(template.pattern, Math.floor(x), Math.floor(z));
     if(!char){
       // somehow there's NO char at this position
       console.warn(`no char found at position ${x},${z} in template ${template.name}`);
@@ -213,14 +213,24 @@ export class GameState {
     }
 
     // get the items in there for the given position
-    const items = this.room.getItemsAtPosition({x, y:z});
+    const items = this.room.getItemsAtPosition({x:Math.floor(x), y:Math.floor(z)});
    
     if(!items || items.length === 0){
+      if(RoomTemplatePatternDefinitions[char].canTeleportToTile){
+        this.setPlayerPosition(x,z);
+      };
       return;
     }
 
+    for(let i = 0; i < items.length; i++){
+      const item = items[i];
+      item.interact(obj, x, y, z);
+    }
+
+    
+
     // execute behavior picked on tile
-    if(definition.behavior){
+      
       // for a door this should be navigating to the next room
       // for a floor tile this should be teleporting to that location
       // for a chest this should be opening the chest
@@ -232,7 +242,7 @@ export class GameState {
       // would it be possible to store them in a 2D array?
       // so we can just request X,Y and get the object, and execute the behavior?
       
-    }
+    
 
     //definition.behavior;
 
@@ -262,4 +272,8 @@ export class GameState {
   setCurrentRoom(currentRoom: Room) {
     this.room = currentRoom;
   }
+
+  setPlayerPosition(x: number, y: number) {
+    this.playerPosition = [x, this.playerPosition[1], y];
+}
 }

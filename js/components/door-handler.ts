@@ -45,6 +45,7 @@ export class DoorHandler extends Component {
     }
 
     target.onClick.add(() => {
+      return;
       GameGlobals.gameState.navigateToRoom(this.targetRoomX, this.targetRoomY, this.direction);
     });
   }
