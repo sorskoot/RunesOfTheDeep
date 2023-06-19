@@ -2,8 +2,9 @@ import { SoundfxPlayer } from "./utils/soundfx-player.js";
 import { MusicPlayer } from "./utils/music-player.js";
 import { GameState } from "./classes/gameState.js";
 import { ObjectCache } from "@sorskoot/wonderland-components";
-import { container } from "tsyringe";
+import { container , singleton } from "tsyringe";
 
+@singleton()
 class GameGlobals {
   private static _instance: GameGlobals | null = null;
 
@@ -14,7 +15,7 @@ class GameGlobals {
   globalObjectCache: ObjectCache | null;
 
   constructor() {
-    this.gameState = container.resolve(GameState);
+    this.gameState = container.resolve<GameState>(GameState);
     this.soundFxPlayer = new SoundfxPlayer();
     this.musicPlayer = new MusicPlayer();
     //  this.particlePool= null;

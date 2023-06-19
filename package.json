@@ -12,6 +12,9 @@
     "wonderland-engine"
   ],
   "license": "MIT",
+  "backup":{
+    "tsyringe": "^4.7.0"
+  },
   "dependencies": {
     "@sorskoot/wonderland-components": "1.1.6",
     "@wonderlandengine/api": "^1.0.1",
@@ -20,6 +23,7 @@
     "gl-matrix": "^3.4.3",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1",
-    "tsyringe": "^4.7.0"
+    
+    "tsyringe": "tec27/tsyringe#43d00160db294312db4c7deb38046f71dcd74348"
   }
 }

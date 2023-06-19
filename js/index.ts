@@ -39,6 +39,7 @@ import {TileDescriptor} from './dungeongen/components/tileComponent.js';
 
 import {loadRuntime} from '@wonderlandengine/api';
 import * as API from '@wonderlandengine/api'; // Deprecated: Backward compatibility.
+import { ChestCreator } from "./dungeongen/objects/chest.js";
 
 /* wle:auto-constants:start */
 const RuntimeOptions = {
@@ -68,7 +69,8 @@ engine.onSceneLoaded.once(() => {
 });
 
 container.registerInstance('engine', engine); // register the engine as a singleton to can access from everywhere
-
+container.register("ChestCreator", ChestCreator);
+container.register
 
 /* WebXR setup. */
 

@@ -12,7 +12,6 @@ type RoomDirections = {
 import { findCharInStringArray } from "../forFramework/findCharInStringArray.js";
 import { DirectionSymbol, Position2D } from "../types/index.js";
 import { GenericItem } from "./objects/GenericItem.js";
-import "reflect-metadata";
 import {container} from "tsyringe";
 
 import {
