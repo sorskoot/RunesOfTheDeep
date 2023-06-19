@@ -79,7 +79,7 @@ export class Room {
   roomItemCreator: RoomItemCreator;
 
   constructor() {
-    this.roomItemCreator = container.resolve(RoomItemCreator);
+    this.roomItemCreator = container.resolve<RoomItemCreator>("RoomItemCreator");
     this.doors = { north: false, west: false, south: false, east: false };
     this.targetRooms = { north: null, west: null, south: null, east: null };
     this.isExit = false;

@@ -82,6 +82,10 @@ export class Game extends Component {
         GameGlobals.gameState.roomPreviousExitDirection = "W";
         GameGlobals.gameState.currentRoom = p;
       }
+
+      if (e.code == "Digit5") { // open first chest
+        GameGlobals.gameState.room?.items?.find((i) => i.name == "Chest")?.interact(this.playerObject,0,0,0);
+      };
     });
   }
 

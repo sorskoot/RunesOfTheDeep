@@ -11,7 +11,7 @@ import { rng }  from "@sorskoot/wonderland-components";
 @injectable()
 export class RoomItemCreator {
 
-    chestCreator: chestCreator;
+    chestCreator!: chestCreator;
 
     constructor(@inject('ChestCreator') chestCreator: chestCreator){
         this.chestCreator = chestCreator;
