@@ -1,12 +1,9 @@
 import { Component, Object3D } from "@wonderlandengine/api";
 import { ObjectCache, cloneObject } from "@sorskoot/wonderland-components";
-
-import { LevelData } from "../data/level-data.js";
 import GameGlobals from "../globals.js";
 import { MazeGenerator } from "../dungeongen/MazeGenerator.js";
 import { TileSet } from "../dungeongen/tileset.js";
 import { PatternSet } from "../dungeongen/PatternSet.js";
-import { Room } from "../dungeongen/room.js";
 import { RoomRenderer } from "../dungeongen/RoomRenderer.js";
 import { FadeScreen } from "./fadeScreen.js";
 import { property } from "@wonderlandengine/api/decorators.js";
@@ -54,13 +51,6 @@ export class LevelGenerator extends Component {
   
   levelParent!: Object3D;
   
-  currentLd!: {
-    width: number;
-    height: number;
-    depth: number;
-    data: ({ data: string; door: null } | { data: string; door: number } | null)[][][];
-    start: { X: number; Y: number; Z: number; Rx: number; Ry: number; Rz: number };
-  };
   tileset!: TileSet;
   patternSet!: PatternSet;
   roomRenderer!: RoomRenderer;
@@ -90,7 +80,6 @@ export class LevelGenerator extends Component {
    * @returns {any}
    */
   generate(level: number = 0, parent: Object3D | null = null): any {
-    this.currentLd = LevelData[level];
     this.levelParent = parent || this.levelRoot;
 
     this.tileset = new TileSet(
@@ -166,28 +155,6 @@ export class LevelGenerator extends Component {
     this.renderDebug(this.generator);
   }
 
-  /**
-   * Creates a room in the scene that is rendered and where the player can do stuff
-   * @param {Room} room The room to render
-   */
-  render(room: Room) {
-    const roomdesign = this.currentLd;
-    for (let i = 0; i < roomdesign.width; i++) {
-      for (let j = 0; j < roomdesign.height; j++) {
-        for (let h = 0; h < roomdesign.depth; h++) {
-          const tileIndex = roomdesign.data[i][j][h];
-          if (tileIndex != null && tileIndex != undefined) {
-            let tile = this.tileset.getTileByName(tileIndex.data);
-            if(tile){
-              this.createTile(i, j, h, tile.object);
-            }else{
-              console.warn("Tile not found: " + tileIndex.data);
-            }
-          }
-        }
-      }
-    }
-  }
   /**
    * Renders a debug view of the map
    * @param {MazeGenerator} generator
