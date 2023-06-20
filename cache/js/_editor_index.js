@@ -28,6 +28,8 @@ import * as _D__Dev_RunesOfTheDeep_js_components_teleport_ts from 'D:/Dev/RunesO
 _registerEditor(_D__Dev_RunesOfTheDeep_js_components_teleport_ts);
 import * as _D__Dev_RunesOfTheDeep_js_components_turnManager_ts from 'D:/Dev/RunesOfTheDeep/js/components/turnManager.ts';
 _registerEditor(_D__Dev_RunesOfTheDeep_js_components_turnManager_ts);
+import * as _D__Dev_RunesOfTheDeep_js_compositionRoot_dependencyRegistrar_ts from 'D:/Dev/RunesOfTheDeep/js/compositionRoot/dependencyRegistrar.ts';
+_registerEditor(_D__Dev_RunesOfTheDeep_js_compositionRoot_dependencyRegistrar_ts);
 import * as _D__Dev_RunesOfTheDeep_js_dungeongen_MazeGenerator_ts from 'D:/Dev/RunesOfTheDeep/js/dungeongen/MazeGenerator.ts';
 _registerEditor(_D__Dev_RunesOfTheDeep_js_dungeongen_MazeGenerator_ts);
 import * as _D__Dev_RunesOfTheDeep_js_dungeongen_PatternSet_ts from 'D:/Dev/RunesOfTheDeep/js/dungeongen/PatternSet.ts';

@@ -13,6 +13,7 @@
 
 import "reflect-metadata";
 import {container} from 'tsyringe';
+import { DependencyRegistrar } from './compositionRoot/dependencyRegistrar.js';
 
 /* wle:auto-imports:start */
 import {Flipbook} from '@sorskoot/wonderland-components';
@@ -39,9 +40,7 @@ import {TileDescriptor} from './dungeongen/components/tileComponent.js';
 
 import {loadRuntime} from '@wonderlandengine/api';
 import * as API from '@wonderlandengine/api'; // Deprecated: Backward compatibility.
-import { ChestCreator } from "./dungeongen/objects/chest.js";
-import { ItemCreator, LootTable } from "./dungeongen/loot/lootTableBase.js";
-import { RoomItemCreator } from "./dungeongen/roomItemCreator.js";
+
 
 /* wle:auto-constants:start */
 const RuntimeOptions = {
@@ -70,12 +69,8 @@ engine.onSceneLoaded.once(() => {
 
 });
 
+DependencyRegistrar.registerDependencies();
 container.registerInstance('engine', engine); // register the engine as a singleton to can access from everywhere
-container.register("ChestCreator", ChestCreator);
-container.register("LootTable",  LootTable);
-container.register("RoomItemCreator", RoomItemCreator);
-container.register("ItemCreator", ItemCreator);
-container.register("ChestCreator", ChestCreator);
 
 /* WebXR setup. */
 
