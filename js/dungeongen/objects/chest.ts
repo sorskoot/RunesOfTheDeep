@@ -4,7 +4,7 @@ import { LootTable } from "../loot/lootTableBase.js";
 import { chestDefinition } from "../roomTemplates.js";
 import { GenericItem } from "./GenericItem.js";
 import { Item } from "./item.js";
-import { singleton, container, inject, injectable } from "tsyringe";
+import { container, inject, injectable } from "tsyringe";
 
 /*
 * a container is an object that can hold items
