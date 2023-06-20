@@ -1,6 +1,6 @@
 import { Object3D } from "@wonderlandengine/api";
 import { Position2D } from "../../types/position.js";
-import { LootTable } from "../loot/lootTableBase.js";
+import { LootTable, LootTableBase } from "../loot/lootTableBase.js";
 import { chestDefinition } from "../roomTemplates.js";
 import { GenericItem } from "./GenericItem.js";
 import { Item } from "./item.js";
@@ -28,7 +28,7 @@ export class Chest extends GenericItem implements chest{
     items: Array<Item>|null;
     hasBeenOpened: boolean;
 
-    constructor(chestType: string, chestValue: string, maxItems: number, lootTable:LootTable){
+    constructor(chestType: string, chestValue: string, maxItems: number, lootTable:LootTableBase){
         super();
         this.chestType = chestType;
         this.chestValue = chestValue;
@@ -59,9 +59,9 @@ export interface chestCreator{
 
 @injectable()
 export class ChestCreator implements chestCreator{
-    lootTable: LootTable;
+    lootTable: LootTableBase;
 
-    constructor(@inject("LootTable") lootTable: LootTable){
+    constructor(@inject("LootTable") lootTable: LootTableBase){
         this.lootTable = lootTable;
     }
 
