@@ -1,4 +1,4 @@
-import { BehaviorBase } from "../dungeongen/objects/behaviorBase.js";
+import { BehaviorBase } from "../../dungeongen/objects/behaviorBase.js";
 
 export abstract class TurnBasedEntity {
     public movePoints: number;

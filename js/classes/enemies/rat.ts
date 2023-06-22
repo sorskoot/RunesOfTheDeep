@@ -1,5 +1,5 @@
 import globals from "../../globals.js";
-import { Enemy } from "../enemy.js";
+import { Enemy } from "./enemy.js";
 
 class Rat extends Enemy {
     private position: { x: number; y: number };

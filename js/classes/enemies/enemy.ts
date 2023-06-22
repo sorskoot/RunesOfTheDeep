@@ -1,4 +1,4 @@
-import { TurnBasedEntity } from "./turnbased.js";
+import { TurnBasedEntity } from "../base/turnbased.js";
 
 export class Enemy extends TurnBasedEntity {
   

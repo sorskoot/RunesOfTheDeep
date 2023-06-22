@@ -1,4 +1,4 @@
-import { TurnBasedEntity } from "../../classes/turnbased.js";
+import { TurnBasedEntity } from "../../classes/base/turnbased.js";
 
 interface Behavior {
   name?: string;
