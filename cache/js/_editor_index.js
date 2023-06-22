@@ -36,10 +36,14 @@ import * as _D__Dev_RunesOfTheDeep_js_components_turnManager_ts from 'D:/Dev/Run
 _registerEditor(_D__Dev_RunesOfTheDeep_js_components_turnManager_ts);
 import * as _D__Dev_RunesOfTheDeep_js_compositionRoot_dependencyRegistrar_ts from 'D:/Dev/RunesOfTheDeep/js/compositionRoot/dependencyRegistrar.ts';
 _registerEditor(_D__Dev_RunesOfTheDeep_js_compositionRoot_dependencyRegistrar_ts);
+import * as _D__Dev_RunesOfTheDeep_js_dungeongen_ChestCreator_ts from 'D:/Dev/RunesOfTheDeep/js/dungeongen/ChestCreator.ts';
+_registerEditor(_D__Dev_RunesOfTheDeep_js_dungeongen_ChestCreator_ts);
 import * as _D__Dev_RunesOfTheDeep_js_dungeongen_MazeGenerator_ts from 'D:/Dev/RunesOfTheDeep/js/dungeongen/MazeGenerator.ts';
 _registerEditor(_D__Dev_RunesOfTheDeep_js_dungeongen_MazeGenerator_ts);
 import * as _D__Dev_RunesOfTheDeep_js_dungeongen_PatternSet_ts from 'D:/Dev/RunesOfTheDeep/js/dungeongen/PatternSet.ts';
 _registerEditor(_D__Dev_RunesOfTheDeep_js_dungeongen_PatternSet_ts);
+import * as _D__Dev_RunesOfTheDeep_js_dungeongen_RoomCreator_ts from 'D:/Dev/RunesOfTheDeep/js/dungeongen/RoomCreator.ts';
+_registerEditor(_D__Dev_RunesOfTheDeep_js_dungeongen_RoomCreator_ts);
 import * as _D__Dev_RunesOfTheDeep_js_dungeongen_RoomRenderer_ts from 'D:/Dev/RunesOfTheDeep/js/dungeongen/RoomRenderer.ts';
 _registerEditor(_D__Dev_RunesOfTheDeep_js_dungeongen_RoomRenderer_ts);
 import * as _D__Dev_RunesOfTheDeep_js_dungeongen_components_tileComponent_ts from 'D:/Dev/RunesOfTheDeep/js/dungeongen/components/tileComponent.ts';
@@ -50,6 +54,8 @@ import * as _D__Dev_RunesOfTheDeep_js_dungeongen_objects_behaviorBase_ts from 'D
 _registerEditor(_D__Dev_RunesOfTheDeep_js_dungeongen_objects_behaviorBase_ts);
 import * as _D__Dev_RunesOfTheDeep_js_dungeongen_objects_chest_ts from 'D:/Dev/RunesOfTheDeep/js/dungeongen/objects/chest.ts';
 _registerEditor(_D__Dev_RunesOfTheDeep_js_dungeongen_objects_chest_ts);
+import * as _D__Dev_RunesOfTheDeep_js_dungeongen_objects_door_ts from 'D:/Dev/RunesOfTheDeep/js/dungeongen/objects/door.ts';
+_registerEditor(_D__Dev_RunesOfTheDeep_js_dungeongen_objects_door_ts);
 import * as _D__Dev_RunesOfTheDeep_js_dungeongen_room_ts from 'D:/Dev/RunesOfTheDeep/js/dungeongen/room.ts';
 _registerEditor(_D__Dev_RunesOfTheDeep_js_dungeongen_room_ts);
 import * as _D__Dev_RunesOfTheDeep_js_dungeongen_roomItemCreator_ts from 'D:/Dev/RunesOfTheDeep/js/dungeongen/roomItemCreator.ts';
@@ -66,3 +72,5 @@ import * as _D__Dev_RunesOfTheDeep_js_dungeongen_utils_extractor_ts from 'D:/Dev
 _registerEditor(_D__Dev_RunesOfTheDeep_js_dungeongen_utils_extractor_ts);
 import * as _D__Dev_RunesOfTheDeep_js_globals_ts from 'D:/Dev/RunesOfTheDeep/js/globals.ts';
 _registerEditor(_D__Dev_RunesOfTheDeep_js_globals_ts);
+import * as _D__Dev_RunesOfTheDeep_js_utils_music_player_ts from 'D:/Dev/RunesOfTheDeep/js/utils/music-player.ts';
+_registerEditor(_D__Dev_RunesOfTheDeep_js_utils_music_player_ts);

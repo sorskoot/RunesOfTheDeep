@@ -2,10 +2,11 @@ import { Component, Object3D, math } from "@wonderlandengine/api";
 
 import { vec2, vec3} from "gl-matrix";
 import GameGlobals from "../globals.js";
-import { State } from "../classes/gameState.js";
+import { GameState, State } from "../classes/gameState.js";
 import { Sounds } from "../utils/soundfx-player.js";
 import { Tags } from "@sorskoot/wonderland-components";
 import { property } from "@wonderlandengine/api/decorators.js";
+import { container } from "tsyringe";
 
 export class PickTarget extends Component {
   static TypeName = "pick-target";
@@ -45,6 +46,11 @@ export class PickTarget extends Component {
   hitSpot: any;
   hitObject: any;
   indicatorHidden: any;
+  gameState: GameState;
+
+  init(): void {
+    this.gameState = container.resolve(GameState);
+  }
 
   /**
    * Whether the picking is active or not
@@ -67,14 +73,14 @@ export class PickTarget extends Component {
     if (!tags) {
       return false;
     }
-    if (GameGlobals.gameState.state !== State.Playing) {
+    if (this.gameState.state !== State.Playing) {
       if (tags.hasTag("button")) {
         return true;
       }
       return false;
     }
 
-    return GameGlobals.gameState.canPick(x, y, z);
+    return this.gameState.canPick(x, y, z);
 
   }
 
@@ -86,7 +92,7 @@ export class PickTarget extends Component {
    * @param {Number} z 
    */
   #picked(obj: Object3D, x: number, y: number, z: number) {
-    return GameGlobals.gameState.pick(obj, x, y, z);
+    return this.gameState.pick(obj, x, y, z);
     
   }
 

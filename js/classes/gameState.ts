@@ -16,8 +16,12 @@ export const State = {
   Complete: 4,
 };
 
+export interface GameStateBase{
+
+}
+
 @singleton()
-export class GameState {
+export class GameState implements GameStateBase {
   
   room: Room | null = null;
 
@@ -32,9 +36,12 @@ export class GameState {
 
     this.currentRoomSubject = new Subject();
 
-    this.levelSubject.subscribe((level) => {});
+    this.currentRoomSubject.subscribe((room) => {
+      console.log("currentRoomSubject", room);
+    });
 
     this.stateSubject = new Subject();
+    console.log("new Game State created");
   }
 
   levelState: LevelState;
@@ -111,7 +118,7 @@ export class GameState {
   }
 
   currentRoomSubject: Subject<number[]>;
-  _currentRoom = [0, 0];
+  _currentRoom = [0,0];
   set currentRoom(value) {
     this._currentRoom = value;
     this.currentRoomSubject.next(value);

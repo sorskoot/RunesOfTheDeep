@@ -4,7 +4,7 @@ import { Sword } from "../../classes/items/sword.js";
 import { GenericItem } from "../objects/GenericItem.js";
 import { BehaviorBase } from "../objects/behaviorBase.js";
 import { Item } from "../objects/item.js";
-import { injectable, inject } from "tsyringe";
+import { injectable, inject, singleton } from "tsyringe";
 
 export interface LootTableEntry {
   item: Item;
@@ -19,14 +19,13 @@ type lootTypes = "common" | "rare" | "epic" | "legendary" |"entry";
 @injectable()
 export class LootTable implements LootTableBase {
 
-  itemCreator!: ItemCreatorBase;
   lootEntries: Map<lootTypes, LootTableEntry[]>;
 
-  constructor(@inject("ItemCreator") itemCreator: ItemCreatorBase) {
-    this.itemCreator = itemCreator;
+  constructor(){
+  //@inject(ItemCreator) private itemCreator: ItemCreator) {
     this.lootEntries = new Map([
       ["entry", [
-        { item: this.itemCreator.createItem(new Sword()) , weight: 1 },
+      //  { item: this.itemCreator.createItem(new Sword()) , weight: 1 },
         { item: new Shield(), weight: 1 },
       ]],
       ["rare", [
@@ -46,8 +45,13 @@ interface ItemCreatorBase{
   createItem(baseItem:GenericItem): Item;
 }
 
-@injectable()
+@singleton()
 export class ItemCreator implements ItemCreatorBase{
+  
+  constructor(){
+
+  }
+
   createItem(baseItem:GenericItem, behaviors: BehaviorBase[] | null = null): Item {
     const item = baseItem;
     if(behaviors != null && behaviors.length > 0){

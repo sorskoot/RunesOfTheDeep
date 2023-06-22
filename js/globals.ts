@@ -8,16 +8,16 @@ import { container , singleton } from "tsyringe";
 class GameGlobals {
   private static _instance: GameGlobals | null = null;
 
-  gameState: GameState;
+  //gameState: GameState;
   soundFxPlayer: SoundfxPlayer;
-  musicPlayer: MusicPlayer;
+  //musicPlayer: MusicPlayer;
   // particlePool: null;
   globalObjectCache: ObjectCache | null;
 
   constructor() {
-    this.gameState = container.resolve<GameState>(GameState);
+    //this.gameState = container.resolve<GameState>(GameState);
     this.soundFxPlayer = new SoundfxPlayer();
-    this.musicPlayer = new MusicPlayer();
+    //this.musicPlayer = new MusicPlayer();
     //  this.particlePool= null;
     this.globalObjectCache = null;
   }

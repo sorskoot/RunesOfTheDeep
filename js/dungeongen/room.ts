@@ -12,15 +12,12 @@ type RoomDirections = {
 import { findCharInStringArray } from "../forFramework/findCharInStringArray.js";
 import { DirectionSymbol, Position2D } from "../types/index.js";
 import { GenericItem } from "./objects/GenericItem.js";
-import {container} from "tsyringe";
 
 import {
   RoomTemplate,
   RoomTypes,
   chestDefinition,
 } from "./roomTemplates.js";
-import { RoomItemCreator } from "./roomItemCreator.js";
-
 
 export class Room {
   
@@ -76,10 +73,7 @@ export class Room {
   chests?: chestDefinition[];
   items?: GenericItem[];
 
-  roomItemCreator: RoomItemCreator;
-
   constructor() {
-    this.roomItemCreator = container.resolve<RoomItemCreator>("RoomItemCreator");
     this.doors = { north: false, west: false, south: false, east: false };
     this.targetRooms = { north: null, west: null, south: null, east: null };
     this.isExit = false;
@@ -169,7 +163,6 @@ export class Room {
       return;
     }
     this.setRoomTemplate(template);
-    this.items = this.roomItemCreator.createItems(template,this);
     this.isInitialized = true;
   }
 

@@ -4,17 +4,14 @@ import { DirectionSymbol } from "../types/simpleTypes.js";
 import { Door } from "./objects/door.js";
 import { GenericItem } from "./objects/GenericItem.js";
 
-import { injectable, inject } from "tsyringe";
-import { chestCreator } from "./objects/chest.js";
+import { inject, singleton } from "tsyringe";
+import { ChestCreator } from "./ChestCreator.js";
 import { rng }  from "@sorskoot/wonderland-components";
 
-@injectable()
+@singleton()
 export class RoomItemCreator {
 
-    chestCreator!: chestCreator;
-
-    constructor(@inject('ChestCreator') chestCreator: chestCreator){
-        this.chestCreator = chestCreator;
+    constructor(@inject(ChestCreator) private chestCreator: ChestCreator){
     }
 
     createItems(template:RoomTemplate, room:Room):GenericItem[]{
@@ -41,7 +38,7 @@ export class RoomItemCreator {
                         break;
                     }
                     let chest = currentRng.getItem(template.chests) as chestDefinition;
-                    let chestItem = this.chestCreator?.createChest({ x: x, y: y }, chest);
+                    let chestItem = this.chestCreator.createChest({ x: x, y: y }, chest);
                     items.push(chestItem);
                     break;
                 }

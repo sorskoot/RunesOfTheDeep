@@ -1,10 +1,10 @@
 import { Component, Object3D, Property } from "@wonderlandengine/api";
-import GameGlobals from "../globals.js";
 import { LevelGenerator } from "./level-generator.js";
-import { State } from "../classes/gameState.js";
+import { GameState, State } from "../classes/gameState.js";
 import { property } from "@wonderlandengine/api/decorators.js";
 import { Sword } from "../classes/items/sword.js";
 import iron from "../classes/behaviors/iron.js";
+import { container } from "tsyringe";
 
 export class Game extends Component {
   static TypeName = "game";
@@ -20,36 +20,30 @@ export class Game extends Component {
   playerObject!: Object3D;
 
   #levelGen!: LevelGenerator;
+  gameState: GameState;
 
   init() {
+    this.gameState = container.resolve(GameState);
+    
     const lg = this.levelGenObject.getComponent(LevelGenerator)
     if(!lg){
       throw new Error("LevelGenerator not found on levelGenObject")
     }
     this.#levelGen = lg;
 
-    this.engine.onXRSessionStart.add(() => (GameGlobals.gameState.isInVR = true));
-    this.engine.onXRSessionEnd.add(() => (GameGlobals.gameState.isInVR = false));
+    this.engine.onXRSessionStart.add(() => (this.gameState.isInVR = true));
+    this.engine.onXRSessionEnd.add(() => (this.gameState.isInVR = false));
 
     this.engine.onXRSessionStart.add(() => {});
 
-    GameGlobals.gameState.state = State.Playing;
+    this.gameState.state = State.Playing;
   }
 
   start() {
-    GameGlobals.gameState.levelSubject.subscribe((level) => {
-      //GameGlobals.levelState.initLevelState(level);
-
+    this.gameState.levelSubject.subscribe((level) => {
       let result = this.#levelGen.generate(level);
-
-      //  GameGlobals.gameState.playerRotation = result.cameraRotation;
-  //    GameGlobals.gameState.playerPosition = result.cameraPosition;
-
-      GameGlobals.gameState.navigateToRoom(0, 0);
-
-      // GameGlobals.gameState.availableTargets = result.targetsToComplete;
-      // GameGlobals.levelState.availableTargets = result.targetsToComplete;
-   
+      this.gameState.navigateToRoom(0, 0);
+ 
     }
     );
     const testSword = new Sword();
@@ -57,34 +51,34 @@ export class Game extends Component {
     console.log(`${testSword.name}:${testSword.attack()}`);
 
     setTimeout(() => {
-      GameGlobals.gameState.level = 0;
+      this.gameState.level = 0;
     }, 1000); // just delay the start. This will change once we have a menu.
 
     window.addEventListener("keyup", (e) => {
-      let p = GameGlobals.gameState.currentRoom;
+      let p = this.gameState.currentRoom;
       if (e.code == "Digit1") { // SOUTH
         p[0] += 1;
-        GameGlobals.gameState.roomPreviousExitDirection = "S";
-        GameGlobals.gameState.currentRoom = p;
+        this.gameState.roomPreviousExitDirection = "S";
+        this.gameState.currentRoom = p;
       }
       if (e.code == "Digit2") { // NORTH
         p[0] -= 1;
-        GameGlobals.gameState.roomPreviousExitDirection = "N";
-        GameGlobals.gameState.currentRoom = p;
+        this.gameState.roomPreviousExitDirection = "N";
+        this.gameState.currentRoom = p;
       }
       if (e.code == "Digit3") { // EAST
         p[1] += 1;
-        GameGlobals.gameState.roomPreviousExitDirection = "E";
-        GameGlobals.gameState.currentRoom = p;
+        this.gameState.roomPreviousExitDirection = "E";
+        this.gameState.currentRoom = p;
       }
       if (e.code == "Digit4") { // WEST
         p[1] -= 1;
-        GameGlobals.gameState.roomPreviousExitDirection = "W";
-        GameGlobals.gameState.currentRoom = p;
+        this.gameState.roomPreviousExitDirection = "W";
+        this.gameState.currentRoom = p;
       }
 
       if (e.code == "Digit5") { // open first chest
-        GameGlobals.gameState.room?.items?.find((i) => i.name == "Chest")?.interact(this.playerObject,0,0,0);
+        this.gameState.room?.items?.find((i) => i.name == "Chest")?.interact(this.playerObject,0,0,0);
       };
     });
   }

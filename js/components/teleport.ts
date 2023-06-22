@@ -3,6 +3,8 @@ import { Component, Object3D, Property } from "@wonderlandengine/api";
 import { vec3 } from "gl-matrix";
 import GameGlobals from "../globals.js";
 import { property } from "@wonderlandengine/api/decorators.js";
+import { container } from "tsyringe";
+import { GameState } from "../classes/gameState.js";
 
 export class SorskootTeleport extends Component {
   static TypeName = "sorskoot-teleport";
@@ -44,12 +46,14 @@ export class SorskootTeleport extends Component {
   
   private _tempVec: Float32Array= new Float32Array(3);
   private _tempVec0: Float32Array= new Float32Array(3);
+  gameState: GameState;
 
   init() {
-    GameGlobals.gameState.playerPositionSubject.subscribe((pos) => {
+    this.gameState = container.resolve(GameState);
+    this.gameState.playerPositionSubject.subscribe((pos) => {
       this.#teleportPlayer(pos);
     });
-    GameGlobals.gameState.playerRotationSubject.subscribe((rotation) => {
+    this.gameState.playerRotationSubject.subscribe((rotation) => {
       this.#rotatePlayer(rotation);
     });
   }
@@ -58,7 +62,7 @@ export class SorskootTeleport extends Component {
     const p = this._tempVec;
     const p1 = this._tempVec0;
 
-    if (GameGlobals.gameState.isInVR) {
+    if (this.gameState.isInVR) {
       this.eyeLeft.getPositionWorld(p);
       this.eyeRight.getPositionWorld(p1);
 

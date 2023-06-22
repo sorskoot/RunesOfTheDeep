@@ -1,5 +1,7 @@
+import { container } from "tsyringe";
 import globals from "../../globals.js";
 import { Enemy } from "./enemy.js";
+import { GameState } from "../gameState.js";
 
 class Rat extends Enemy {
     private position: { x: number; y: number };
@@ -43,8 +45,8 @@ class Rat extends Enemy {
    private isPlayerInRange(): boolean {
      // Implement logic to check if player is within attack range of the rat
      // Return true if player is in range, false otherwise
-     
-     const playerPosition = { x: globals.gameState.playerPosition[0], y: globals.gameState.playerPosition[2]}; 
+     const gameState = container.resolve(GameState);
+     const playerPosition = { x: gameState.playerPosition[0], y: gameState.playerPosition[2]}; 
      
      const distanceToPlayer = Math.sqrt(
        Math.pow(this.position.x - playerPosition.x,2) +

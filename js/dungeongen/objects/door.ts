@@ -2,6 +2,8 @@ import { Object3D } from "@wonderlandengine/api";
 import globals from "../../globals.js";
 import { DirectionSymbol, Position2D } from "../../types/index.js";
 import { GenericItem } from "./GenericItem.js";
+import { GameState } from "../../classes/gameState.js";
+import { container } from "tsyringe";
 
 export class Door extends GenericItem{
     
@@ -21,7 +23,8 @@ export class Door extends GenericItem{
     }
 
     override interact(obj:Object3D, x:number, y:number, z:number){
-        globals.gameState.navigateToRoom(this.targetRoom.x, this.targetRoom.y, this.direction);
+        const gameState = container.resolve(GameState);
+        gameState.navigateToRoom(this.targetRoom.x, this.targetRoom.y, this.direction);
     }
 
 }

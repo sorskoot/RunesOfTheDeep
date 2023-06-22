@@ -1,6 +1,8 @@
 import { Tile } from "./tile.js";
 import { Room } from "./room.js";
 import { shuffleArray } from "@sorskoot/wonderland-components";
+import { RoomCreator } from "./RoomCreator.js";
+import { inject } from "tsyringe";
 
 const DIRECTION_OFFSETS = {
   north: { x: 0, y: 1 },

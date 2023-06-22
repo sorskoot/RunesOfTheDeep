@@ -1,6 +1,5 @@
 import { Component, Object3D } from "@wonderlandengine/api";
 import { ObjectCache, cloneObject } from "@sorskoot/wonderland-components";
-import GameGlobals from "../globals.js";
 import { MazeGenerator } from "../dungeongen/MazeGenerator.js";
 import { TileSet } from "../dungeongen/tileset.js";
 import { PatternSet } from "../dungeongen/PatternSet.js";
@@ -8,6 +7,8 @@ import { RoomRenderer } from "../dungeongen/RoomRenderer.js";
 import { FadeScreen } from "./fadeScreen.js";
 import { property } from "@wonderlandengine/api/decorators.js";
 import { getInvertedDirection } from "../dungeongen/utils/directionHelpers.js";
+import { container } from "tsyringe";
+import { GameState } from "../classes/gameState.js";
 
 const size = 9;
 const patternSize = 3;
@@ -55,11 +56,15 @@ export class LevelGenerator extends Component {
   patternSet!: PatternSet;
   roomRenderer!: RoomRenderer;
   blockCache!: ObjectCache;
+  gameState: GameState;
+  globalObjectCache!: ObjectCache;
   
   /**
    * overrides the init method of the component
    */
   init() {
+    this.gameState = container.resolve(GameState);
+  
     this.generator = new MazeGenerator(size, size);
   }
 
@@ -91,8 +96,8 @@ export class LevelGenerator extends Component {
     this.generator.generate();
 
     this.levelParent.children.length = 0;
-    if (!GameGlobals.globalObjectCache) {
-      GameGlobals.globalObjectCache = new ObjectCache(
+    if (!this.globalObjectCache) {
+      this.globalObjectCache =  new ObjectCache(
         this.engine,
         "blocks",
         2400,
@@ -100,7 +105,7 @@ export class LevelGenerator extends Component {
         24000
       );
     } else {
-      GameGlobals.globalObjectCache.reset();
+      this.globalObjectCache.reset();
     }
 
     this.roomRenderer = new RoomRenderer(
@@ -108,18 +113,18 @@ export class LevelGenerator extends Component {
       this.levelParent,
       this.tileset,
       this.lights.children,
-      GameGlobals.globalObjectCache
+      this.globalObjectCache
     );
-    this.blockCache = GameGlobals.globalObjectCache;
+    this.blockCache = this.globalObjectCache;
 
-    GameGlobals.gameState.currentRoomSubject.subscribe((r) => {
+    this.gameState.currentRoomSubject.subscribe((r) => {
       const currentRoom = this.generator.getRoom(r[0], r[1]);
       this.fadeScreenComponent.FadeOutCompleted.once(() => {
         this.blockCache.reset();
         this.roomRenderer.render(currentRoom);
-        if (GameGlobals.gameState.roomPreviousExitDirection) {
+        if (this.gameState.roomPreviousExitDirection) {
           let enterDirection = getInvertedDirection(
-            GameGlobals.gameState.roomPreviousExitDirection
+            this.gameState.roomPreviousExitDirection
           );
           let exit = currentRoom.getDoor(enterDirection);
           if (exit) {
@@ -142,14 +147,14 @@ export class LevelGenerator extends Component {
                 rotation = 270;
                 break;
             }
-            GameGlobals.gameState.playerPosition = [exit.x, 0, exit.y];
-            GameGlobals.gameState.playerRotation = rotation;
+            this.gameState.playerPosition = [exit.x, 0, exit.y];
+            this.gameState.playerRotation = rotation;
           }
         }
       });
 
       this.fadeScreenComponent.fadeOut();
-      GameGlobals.gameState.setCurrentRoom(currentRoom);
+      this.gameState.setCurrentRoom(currentRoom);
     });
 
     this.renderDebug(this.generator);

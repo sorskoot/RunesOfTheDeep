@@ -1,5 +1,5 @@
-import { State } from "../classes/gameState.js";
-import StorageSpace13 from "../globals.js";
+import { inject, injectable } from "tsyringe";
+import { GameState, State } from "../classes/gameState.js";
 
 export const Songs = {
     complete:0,
@@ -7,6 +7,7 @@ export const Songs = {
     title:2
 }
 
+@injectable()
 export class MusicPlayer{
     initialized: boolean;
     songs!: HTMLAudioElement[];
@@ -14,7 +15,7 @@ export class MusicPlayer{
     isPlaying!: boolean;
     firstTime!: boolean;
 
-    constructor() {
+    constructor(@inject(GameState) private gameState: GameState) {
         this.initialized = false;                  
     }
 
@@ -30,7 +31,7 @@ export class MusicPlayer{
         this.currentSong = new Audio();        
         this.isPlaying = false;
         this.firstTime = true;
-        StorageSpace13.gameState.isInVRSubject.subscribe(isInVR => {
+        this.gameState.isInVRSubject.subscribe(isInVR => {
 
             if(this.firstTime){
                 this.checkState();
@@ -45,13 +46,13 @@ export class MusicPlayer{
             }
         });
 
-        StorageSpace13.gameState.stateSubject.subscribe(() => {
+        this.gameState.stateSubject.subscribe(() => {
            this.checkState();
         });
     }
 
     checkState(){
-        switch(StorageSpace13.gameState.state) {
+        switch(this.gameState.state) {
             case State.Title:
                 this.playMusic(Songs.title);
                 break;

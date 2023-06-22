@@ -1,10 +1,8 @@
 import { Object3D } from "@wonderlandengine/api";
-import { Position2D } from "../../types/position.js";
-import { LootTable, LootTableBase } from "../loot/lootTableBase.js";
-import { chestDefinition } from "../roomTemplates.js";
+import { LootTableBase } from "../loot/lootTableBase.js";
 import { GenericItem } from "./GenericItem.js";
 import { Item } from "./item.js";
-import { container, inject, injectable } from "tsyringe";
+import { container, injectable } from "tsyringe";
 
 /*
 * a container is an object that can hold items
@@ -52,25 +50,3 @@ export class Chest extends GenericItem implements chest{
     }
 }
 
-
-export interface chestCreator{
-    createChest(position:Position2D, chestDefinition:chestDefinition):GenericItem;
-}
-
-@injectable()
-export class ChestCreator implements chestCreator{
-    lootTable: LootTableBase;
-
-    constructor(@inject("LootTable") lootTable: LootTableBase){
-        this.lootTable = lootTable;
-    }
-
-    createChest(position:Position2D, chestDefinition:chestDefinition):GenericItem
-    {
-        const chestItem =  new Chest("small", "common", 3, this.lootTable);
-        chestItem.position = position;
-        chestItem.name = "Chest";
-
-        return chestItem;
-    }
-}

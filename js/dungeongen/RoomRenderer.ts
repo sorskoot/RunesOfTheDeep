@@ -13,6 +13,8 @@ import { Room } from "./room.js";
 import { DirectionSymbol } from "../types/index.js";
 import { Tile } from "./tile.js";
 import { findCharInStringArray } from "../forFramework/findCharInStringArray.js";
+import { container } from "tsyringe";
+import { RoomCreator } from "./RoomCreator.js";
 
 /**
  * The Room Renderer is responsible for rendering a room.
@@ -48,6 +50,7 @@ export class RoomRenderer {
    * @type {ObjectCache}
    */
   #blockCache!: ObjectCache;
+  roomCreator: RoomCreator;
 
   /**
    * Instantiates a new RoomRenderer
@@ -64,6 +67,7 @@ export class RoomRenderer {
     lights: Object3D[],
     blockCache: ObjectCache
   ) {
+    this.roomCreator = container.resolve(RoomCreator),
     this.#engine = engine;
     this.#parent = parent;
     this.#tileset = tileset;
@@ -86,6 +90,8 @@ export class RoomRenderer {
         throw new Error(`No template found for room type ${room.getRoomType()}`);
       }
       
+      this.roomCreator.setUpRoom(room, newTemplate);
+
       room.initialize(newTemplate);
     }
     
