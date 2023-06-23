@@ -197,7 +197,7 @@ export class GameState implements GameStateBase {
       (char === "S" && this.room.doors.south) ||
       (char === "W" && this.room.doors.west); 
     }else{
-      return definition.canTeleportToTile;
+      return definition.canTeleportToTile || definition.canInteractWithTile;
     }
   }
 

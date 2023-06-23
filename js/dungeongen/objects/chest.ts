@@ -41,6 +41,7 @@ export class Chest extends GenericItem implements chest{
             this.initializeChest();
         }
         this.items = this.lootTable.getItems("entry");
+        console.log(this.items);
         // do something to visualize the items in the chest;
         //return this.items!;
     }

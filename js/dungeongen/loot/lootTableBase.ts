@@ -1,10 +1,7 @@
-import iron from "../../classes/behaviors/iron.js";
 import { Shield } from "../../classes/items/shield.js";
 import { Sword } from "../../classes/items/sword.js";
-import { GenericItem } from "../objects/GenericItem.js";
-import { BehaviorBase } from "../objects/behaviorBase.js";
 import { Item } from "../objects/item.js";
-import { injectable, inject, singleton } from "tsyringe";
+import { injectable } from "tsyringe";
 
 export interface LootTableEntry {
   item: Item;
@@ -37,28 +34,5 @@ export class LootTable implements LootTableBase {
   
   getItems(type:lootTypes): Item[] {
     return this.lootEntries.get(type)!.map(e=>e.item);
-  }
-}
-
-interface ItemCreatorBase{
-  createItem(baseItem:GenericItem, behaviors:BehaviorBase[]|null): Item;
-  createItem(baseItem:GenericItem): Item;
-}
-
-@singleton()
-export class ItemCreator implements ItemCreatorBase{
-  
-  constructor(){
-
-  }
-
-  createItem(baseItem:GenericItem, behaviors: BehaviorBase[] | null = null): Item {
-    const item = baseItem;
-    if(behaviors != null && behaviors.length > 0){
-      for(const behavior of behaviors){
-        item.addBehavior(behavior);
-      }
-    }
-    return item;
   }
 }

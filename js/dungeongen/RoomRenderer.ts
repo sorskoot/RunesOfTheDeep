@@ -380,7 +380,6 @@ export class RoomRenderer {
             break;
           case "C": // Campfire /Firepit
             if (!hasFirepit) {
-              console.log("campfire");
               tile = this.#tileset.getTileByName("Firepit");
               hasFirepit = true;
             }

@@ -1,6 +1,7 @@
 import { container } from "tsyringe";
 import { ChestCreator } from "../dungeongen/ChestCreator.js";
-import { ItemCreator, LootTable } from "../dungeongen/loot/lootTableBase.js";
+import { LootTable } from "../dungeongen/loot/lootTableBase.js";
+import { ItemCreator } from "../dungeongen/loot/ItemCreator.js";
 import { RoomItemCreator } from "../dungeongen/roomItemCreator.js";
 import { GameState } from "../classes/gameState.js";
 import { RoomCreator } from "../dungeongen/RoomCreator.js";

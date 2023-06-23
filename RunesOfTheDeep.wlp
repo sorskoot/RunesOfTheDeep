@@ -1451,7 +1451,7 @@
                 0.8
             ],
             "translation": [
-                -1.076471178862448e-8,
+                -1.0764711788624481e-8,
                 0.0,
                 3.42726764301915e-7
             ],
@@ -2122,12 +2122,6 @@
                         "mesh": "441",
                         "material": "438"
                     }
-                },
-                {
-                    "type": "tags",
-                    "tags": {
-                        "tags": "Chest"
-                    }
                 }
             ],
             "translation": [
@@ -2283,12 +2277,6 @@
                         "mesh": "440",
                         "material": "438"
                     }
-                },
-                {
-                    "type": "tags",
-                    "tags": {
-                        "tags": "Chest"
-                    }
                 }
             ],
             "translation": [
@@ -2317,12 +2305,6 @@
                     "mesh": {
                         "mesh": "439",
                         "material": "438"
-                    }
-                },
-                {
-                    "type": "tags",
-                    "tags": {
-                        "tags": "Chest"
                     }
                 }
             ],
@@ -2372,6 +2354,12 @@
                 },
                 {
                     "type": "cursor-target"
+                },
+                {
+                    "type": "tags",
+                    "tags": {
+                        "tags": "Chest"
+                    }
                 }
             ],
             "translation": [
@@ -2400,6 +2388,12 @@
                 },
                 {
                     "type": "cursor-target"
+                },
+                {
+                    "type": "tags",
+                    "tags": {
+                        "tags": "Chest"
+                    }
                 }
             ],
             "translation": [
@@ -2434,11 +2428,17 @@
                                 0.25
                             ]
                         },
-                        "groups": 132
+                        "groups": 134
                     }
                 },
                 {
                     "type": "cursor-target"
+                },
+                {
+                    "type": "tags",
+                    "tags": {
+                        "tags": "Chest"
+                    }
                 }
             ],
             "translation": [
@@ -4062,38 +4062,134 @@
         }
     },
     "files": [
-        "models/oculus-touch-v2-left.glb",
-        "models/oculus-touch-v2-right.glb",
-        "models/hand-left.glb",
-        "models/hand-right.glb",
-        "models/button.glb",
-        "models/teleport-indicator.glb",
-        "models/Tiles.fbx",
-        "assets/tiles/tiles_00.png",
-        "assets/tiles/tiles_01.png",
-        "assets/tiles/tiles_02.png",
-        "assets/tiles/tiles_03.png",
-        "assets/tiles/tiles_04.png",
-        "assets/tiles/tiles_05.png",
-        "assets/tiles/tiles_07.png",
-        "assets/tiles/tiles_09.png",
-        "assets/tiles/tiles_10.png",
-        "models/InvertedSphere.fbx",
-        "models/Sword.fbx",
-        "models/Shield.fbx",
-        "assets/tiles/tiles_11.png",
-        "assets/tiles/tiles_12.png",
-        "assets/tiles/tiles_13.png",
-        "static/Weapons/Iron/iron-weapons_00.png",
-        "static/Weapons/Iron/iron-weapons_08.png",
-        "static/Weapons/Iron/iron-weapons_11.png",
-        "static/Weapons/Iron/iron-weapons_17.png",
-        "assets/tiles/tiles_14.png",
-        "assets/tiles/tiles_15.png",
-        "assets/tiles/tiles_16.png",
-        "assets/tiles/tiles_17.png",
-        "assets/tiles/tiles_18.png",
-        "assets/tiles/tiles_19.png"
+        {
+            "fileName": "models/oculus-touch-v2-left.glb",
+            "importerName": ""
+        },
+        {
+            "fileName": "models/oculus-touch-v2-right.glb",
+            "importerName": ""
+        },
+        {
+            "fileName": "models/hand-left.glb",
+            "importerName": ""
+        },
+        {
+            "fileName": "models/hand-right.glb",
+            "importerName": ""
+        },
+        {
+            "fileName": "models/button.glb",
+            "importerName": ""
+        },
+        {
+            "fileName": "models/teleport-indicator.glb",
+            "importerName": ""
+        },
+        {
+            "fileName": "models/Tiles.fbx",
+            "importerName": "AssimpImporter"
+        },
+        {
+            "fileName": "assets/tiles/tiles_00.png",
+            "importerName": ""
+        },
+        {
+            "fileName": "assets/tiles/tiles_01.png",
+            "importerName": ""
+        },
+        {
+            "fileName": "assets/tiles/tiles_02.png",
+            "importerName": ""
+        },
+        {
+            "fileName": "assets/tiles/tiles_03.png",
+            "importerName": ""
+        },
+        {
+            "fileName": "assets/tiles/tiles_04.png",
+            "importerName": ""
+        },
+        {
+            "fileName": "assets/tiles/tiles_05.png",
+            "importerName": ""
+        },
+        {
+            "fileName": "assets/tiles/tiles_07.png",
+            "importerName": ""
+        },
+        {
+            "fileName": "assets/tiles/tiles_09.png",
+            "importerName": ""
+        },
+        {
+            "fileName": "assets/tiles/tiles_10.png",
+            "importerName": ""
+        },
+        {
+            "fileName": "models/InvertedSphere.fbx",
+            "importerName": "AssimpImporter"
+        },
+        {
+            "fileName": "models/Sword.fbx",
+            "importerName": "AssimpImporter"
+        },
+        {
+            "fileName": "models/Shield.fbx",
+            "importerName": "AssimpImporter"
+        },
+        {
+            "fileName": "assets/tiles/tiles_11.png",
+            "importerName": ""
+        },
+        {
+            "fileName": "assets/tiles/tiles_12.png",
+            "importerName": ""
+        },
+        {
+            "fileName": "assets/tiles/tiles_13.png",
+            "importerName": ""
+        },
+        {
+            "fileName": "static/Weapons/Iron/iron-weapons_00.png",
+            "importerName": ""
+        },
+        {
+            "fileName": "static/Weapons/Iron/iron-weapons_08.png",
+            "importerName": ""
+        },
+        {
+            "fileName": "static/Weapons/Iron/iron-weapons_11.png",
+            "importerName": ""
+        },
+        {
+            "fileName": "static/Weapons/Iron/iron-weapons_17.png",
+            "importerName": ""
+        },
+        {
+            "fileName": "assets/tiles/tiles_14.png",
+            "importerName": ""
+        },
+        {
+            "fileName": "assets/tiles/tiles_15.png",
+            "importerName": ""
+        },
+        {
+            "fileName": "assets/tiles/tiles_16.png",
+            "importerName": ""
+        },
+        {
+            "fileName": "assets/tiles/tiles_17.png",
+            "importerName": ""
+        },
+        {
+            "fileName": "assets/tiles/tiles_18.png",
+            "importerName": ""
+        },
+        {
+            "fileName": "assets/tiles/tiles_19.png",
+            "importerName": ""
+        }
     ],
     "fonts": {
         "230": {
