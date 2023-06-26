@@ -1,3 +1,6 @@
+import "reflect-metadata";
+import { container } from "tsyringe";
+
 import { Component, Object3D } from "@wonderlandengine/api";
 import { ObjectCache, cloneObject } from "@sorskoot/wonderland-components";
 import { MazeGenerator } from "../dungeongen/MazeGenerator.js";
@@ -7,7 +10,7 @@ import { RoomRenderer } from "../dungeongen/RoomRenderer.js";
 import { FadeScreen } from "./fadeScreen.js";
 import { property } from "@wonderlandengine/api/decorators.js";
 import { getInvertedDirection } from "../dungeongen/utils/directionHelpers.js";
-import { container } from "tsyringe";
+
 import { GameState } from "../classes/gameState.js";
 
 const size = 9;

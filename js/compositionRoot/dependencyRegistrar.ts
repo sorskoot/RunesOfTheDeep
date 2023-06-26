@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import { container } from "tsyringe";
 import { ChestCreator } from "../dungeongen/ChestCreator.js";
 import { LootTable } from "../dungeongen/loot/lootTableBase.js";

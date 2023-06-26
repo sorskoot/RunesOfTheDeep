@@ -1,9 +1,10 @@
+import "reflect-metadata";
+import { container } from "tsyringe";
+
 import { Component, Object3D, Property } from "@wonderlandengine/api";
 
 import { vec3 } from "gl-matrix";
-import GameGlobals from "../globals.js";
 import { property } from "@wonderlandengine/api/decorators.js";
-import { container } from "tsyringe";
 import { GameState } from "../classes/gameState.js";
 
 export class SorskootTeleport extends Component {

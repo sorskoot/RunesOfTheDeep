@@ -2,7 +2,7 @@ import { SoundfxPlayer } from "./utils/soundfx-player.js";
 import { MusicPlayer } from "./utils/music-player.js";
 import { GameState } from "./classes/gameState.js";
 import { ObjectCache } from "@sorskoot/wonderland-components";
-import { container , singleton } from "tsyringe";
+import { singleton } from "tsyringe";
 
 @singleton()
 class GameGlobals {

@@ -1,11 +1,15 @@
+import "reflect-metadata";
+import { singleton } from "tsyringe";
 import { Subject } from "rxjs";
+
 import { LevelState } from "./levelState.js";
 import { DirectionSymbol } from "../types/index.js";
 import { Room } from "../dungeongen/room.js";
 import { findCharInStringArrayByPos } from "../forFramework/findCharInStringArray.js";
 import { RoomTemplatePatternDefinitions } from "../dungeongen/roomTemplates.js";
 import { Object3D } from "@wonderlandengine/api";
-import { singleton } from "tsyringe";
+
+
 
 export const State = {
   Init: -1,

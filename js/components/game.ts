@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import { Component, Object3D, Property } from "@wonderlandengine/api";
 import { LevelGenerator } from "./level-generator.js";
 import { GameState, State } from "../classes/gameState.js";

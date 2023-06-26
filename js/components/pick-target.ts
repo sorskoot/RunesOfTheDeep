@@ -1,12 +1,12 @@
-import { Component, Object3D, math } from "@wonderlandengine/api";
+import "reflect-metadata";
+import { container } from "tsyringe";
 
+import { Component, Object3D, math } from "@wonderlandengine/api";
 import { vec2, vec3} from "gl-matrix";
-import GameGlobals from "../globals.js";
 import { GameState, State } from "../classes/gameState.js";
-import { Sounds } from "../utils/soundfx-player.js";
 import { Tags } from "@sorskoot/wonderland-components";
 import { property } from "@wonderlandengine/api/decorators.js";
-import { container } from "tsyringe";
+
 
 export class PickTarget extends Component {
   static TypeName = "pick-target";
