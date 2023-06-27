@@ -48,7 +48,11 @@ import * as _E__Dev_RunesOfTheDeep_js_dungeongen_utils_directionHelpers_ts from 
 _registerEditor(_E__Dev_RunesOfTheDeep_js_dungeongen_utils_directionHelpers_ts);
 import * as _E__Dev_RunesOfTheDeep_js_dungeongen_utils_extractor_ts from 'E:/Dev/RunesOfTheDeep/js/dungeongen/utils/extractor.ts';
 _registerEditor(_E__Dev_RunesOfTheDeep_js_dungeongen_utils_extractor_ts);
-import * as _E__Dev_RunesOfTheDeep_js_forFramework_hapticFeedback_ts from 'E:/Dev/RunesOfTheDeep/js/forFramework/hapticFeedback.ts';
-_registerEditor(_E__Dev_RunesOfTheDeep_js_forFramework_hapticFeedback_ts);
 import * as _E__Dev_RunesOfTheDeep_js_globals_ts from 'E:/Dev/RunesOfTheDeep/js/globals.ts';
 _registerEditor(_E__Dev_RunesOfTheDeep_js_globals_ts);
+import * as _E__Dev_RunesOfTheDeep_js_ui_components_ui_button_ts from 'E:/Dev/RunesOfTheDeep/js/ui/components/ui-button.ts';
+_registerEditor(_E__Dev_RunesOfTheDeep_js_ui_components_ui_button_ts);
+import * as _E__Dev_RunesOfTheDeep_js_ui_components_ui_manager_ts from 'E:/Dev/RunesOfTheDeep/js/ui/components/ui-manager.ts';
+_registerEditor(_E__Dev_RunesOfTheDeep_js_ui_components_ui_manager_ts);
+import * as _E__Dev_RunesOfTheDeep_js_ui_components_ui_panel_ts from 'E:/Dev/RunesOfTheDeep/js/ui/components/ui-panel.ts';
+_registerEditor(_E__Dev_RunesOfTheDeep_js_ui_components_ui_panel_ts);

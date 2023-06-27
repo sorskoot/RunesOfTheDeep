@@ -2512,10 +2512,10 @@
                     "type": "cursor-target"
                 },
                 {
-                    "type": "button",
-                    "button": {
-                        "buttonMeshObject": "196",
-                        "hoverMaterial": "203"
+                    "type": "ui-button",
+                    "ui-button": {
+                        "buttonMeshObject": "455",
+                        "hoverMaterial": "22"
                     }
                 }
             ],
@@ -4043,7 +4043,8 @@
                 "js/dungeongen/components",
                 "js/components",
                 "js/dungeongen",
-                "js/dungeongen/utils"
+                "js/dungeongen/utils",
+                "js/ui/components"
             ],
             "bundlingType": "esbuild",
             "libraryPaths": [
