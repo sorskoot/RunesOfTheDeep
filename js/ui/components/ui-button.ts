@@ -14,7 +14,8 @@ export class UiButton extends Component {
     @property.object()
     buttonMeshObject: Object3D;
 
-    FadeInCompleted!: Emitter;
+    pressed!: Emitter;
+
     returnPos: NumberArray;
     mesh: MeshComponent;
     defaultMaterial: Material;

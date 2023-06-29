@@ -32,8 +32,6 @@ export class FadeScreen extends Component {
      */
     FadeOutCompleted!: Emitter;
 
-;
-
     init() {
         this.FadeInCompleted = new Emitter();
         this.FadeOutCompleted = new Emitter();

@@ -85,15 +85,13 @@ void main() {
 
     vec4 pixelated = textureAtlas(mat.flatTexture, centerUV);
     vec4 original = textureAtlas(mat.flatTexture, clamp(fragTextureCoords, 1.0/(pixelSize*2.0), 1.0-1.0/(pixelSize*2.0)));
-    
-   
 
     vec4 finalColor = mix(pixelated,original,gaussianValue(fragTextureCoords, pixelSize*4.0));
 
     float dist = gl_FragCoord.z/gl_FragCoord.w;
     float fogFactor = fogFactorExp2(dist, 0.1);
     vec4 theColor = mix(finalColor, vec4(0.,0.,0.,1.), fogFactor);
-    
+
     SurfaceData surface = computeSurfaceData(fragNormal);
     mediump vec3 normal = surface.normal;
     outColor = vec4(0.0,0.0,0.0,1.0);
