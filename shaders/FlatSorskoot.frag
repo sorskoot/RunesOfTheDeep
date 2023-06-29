@@ -43,6 +43,8 @@ struct Material {
     mediump uint emissiveTexture;
     #endif
     lowp int size;
+    lowp int sizeX;
+    lowp int sizeY;
 };
 
 Material decodeMaterial(uint matIndex) {
@@ -70,9 +72,14 @@ mediump float phongDiffuseBrdf(mediump vec3 lightDir, mediump vec3 normal) {
 void main() {    
     Material mat = decodeMaterial(fragMaterialId);
 
-    float pixelSize = 16.0;
+    vec2 pixelSize = vec2(16.0,16.0);
+
     if(mat.size != 0){
-        pixelSize = float(mat.size);
+        pixelSize = vec2(float(mat.size),float(mat.size));
+    }else{
+        if(mat.sizeX != 0 && mat.sizeY != 0){
+            pixelSize = vec2(float(mat.sizeX), float(mat.sizeY));
+        }
     }
 
     vec2 uv = fragTextureCoords * pixelSize;
@@ -84,9 +91,12 @@ void main() {
     #endif
 
     vec4 pixelated = textureAtlas(mat.flatTexture, centerUV);
-    vec4 original = textureAtlas(mat.flatTexture, clamp(fragTextureCoords, 1.0/(pixelSize*2.0), 1.0-1.0/(pixelSize*2.0)));
+    vec4 original = textureAtlas(mat.flatTexture, 
+    vec2(
+        clamp(fragTextureCoords.x, 1.0/(pixelSize.x*2.0), 1.0-1.0/(pixelSize.x*2.0)),
+        clamp(fragTextureCoords.y, 1.0/(pixelSize.y*2.0), 1.0-1.0/(pixelSize.y*2.0))));
 
-    vec4 finalColor = mix(pixelated,original,gaussianValue(fragTextureCoords, pixelSize*4.0));
+    vec4 finalColor = mix(pixelated,original,gaussianValue(fragTextureCoords, pixelSize.x*4.0));
 
     float dist = gl_FragCoord.z/gl_FragCoord.w;
     float fogFactor = fogFactorExp2(dist, 0.1);

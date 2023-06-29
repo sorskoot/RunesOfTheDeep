@@ -5,6 +5,8 @@
     },
     "activeFile": "",
     "expandedProjectPaths": [
+        "UI",
+        "."
     ],
     "fileStates": {
         "UI/button.tmx": {
@@ -22,6 +24,10 @@
                 "x": 93.72700042789901,
                 "y": 23.55156183140779
             }
+        },
+        "ui.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 0.5
         }
     },
     "last.imagePath": "E:/Dev/RunesOfTheDeep/art",
@@ -31,9 +37,11 @@
     "map.tileWidth": 256,
     "map.width": 3,
     "openFiles": [
+        "ui.tsx"
     ],
     "project": "UI.tiled-project",
     "recentFiles": [
+        "ui.tsx",
         "UI/messagebox.tmx",
         "UI/button.tmx"
     ],

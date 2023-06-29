@@ -2465,8 +2465,8 @@
             "name": "Panel",
             "translation": [
                 0.0,
-                1.2000001,
-                -5.960464477539065e-8
+                1.5,
+                -5.960464477539063e-8
             ],
             "rotation": [
                 0.7071068,
@@ -2475,9 +2475,9 @@
                 0.7071067
             ],
             "scaling": [
-                1.0,
-                1.0,
-                1.0
+                0.5,
+                0.5,
+                0.5
             ],
             "parent": "458"
         },
@@ -2497,9 +2497,9 @@
                 }
             ],
             "translation": [
-                0.0000762,
-                0.179387,
-                0.1754149
+                0.0001186,
+                0.1794082,
+                0.2872492
             ],
             "rotation": [
                 0.0,
@@ -2525,7 +2525,7 @@
                         "material": "26",
                         "mesh": "8"
                     },
-                    "active": false
+                    "active": true
                 }
             ],
             "name": "ButtonMesh",
@@ -2541,9 +2541,9 @@
                 1.0
             ],
             "scaling": [
-                0.6,
+                1.25,
                 0.05,
-                0.2
+                0.3125
             ]
         },
         "456": {
@@ -2581,7 +2581,7 @@
                 {
                     "type": "text",
                     "text": {
-                        "text": "Runes of the Deep",
+                        "text": "Runes of the Deep: \nDwarven Cave Chronicles",
                         "material": "201",
                         "effect": "outline",
                         "lineSpacing": 1.0
@@ -2589,15 +2589,15 @@
                 }
             ],
             "translation": [
-                0.0000139,
-                0.1555069,
-                -0.444649
+                0.0000901,
+                0.1555432,
+                -0.3914674
             ],
             "rotation": [
                 -0.7068591,
                 0.0,
                 0.0,
-                0.7073543
+                0.7073544
             ],
             "scaling": [
                 3.0,
@@ -2649,8 +2649,8 @@
                 1.0
             ],
             "scaling": [
-                1.0,
-                0.0199999,
+                2.5,
+                0.001,
                 1.0
             ],
             "components": [
@@ -2792,58 +2792,6 @@
                     }
                 }
             ]
-        },
-        "499": {
-            "link": {
-                "name": "3slice",
-                "file": "models\\ui.fbx"
-            },
-            "parent": "454",
-            "components": [
-                {
-                    "mesh": {
-                        "mesh": "489",
-                        "material": "477"
-                    }
-                },
-                {
-                    "type": "mesh",
-                    "mesh": {
-                        "mesh": "490",
-                        "material": "478"
-                    }
-                },
-                {
-                    "type": "mesh",
-                    "mesh": {
-                        "mesh": "491",
-                        "material": "479"
-                    }
-                }
-            ],
-            "scaling": [
-                0.5,
-                0.5000001,
-                0.5
-            ],
-            "translation": [
-                0.0,
-                0.0,
-                0.0
-            ],
-            "rotation": [
-                0.4999999,
-                0.5,
-                -0.5,
-                -0.4999999
-            ]
-        },
-        "500": {
-            "link": {
-                "name": "9slice",
-                "file": "models\\ui.fbx"
-            },
-            "parent": "452"
         }
     },
     "meshes": {
@@ -3517,6 +3465,18 @@
                 "name": "ui_02.png",
                 "file": "assets\\ui\\ui_02.png"
             }
+        },
+        "510": {
+            "link": {
+                "name": "RegularButton.png",
+                "file": "assets\\ui\\RegularButton.png"
+            }
+        },
+        "512": {
+            "link": {
+                "name": "Background-Message.png",
+                "file": "assets\\ui\\Background-Message.png"
+            }
         }
     },
     "images": {
@@ -3709,6 +3669,18 @@
                 "name": "ui_02.png",
                 "file": "assets\\ui\\ui_02.png"
             }
+        },
+        "509": {
+            "link": {
+                "name": "RegularButton.png",
+                "file": "assets\\ui\\RegularButton.png"
+            }
+        },
+        "511": {
+            "link": {
+                "name": "Background-Message.png",
+                "file": "assets\\ui\\Background-Message.png"
+            }
         }
     },
     "materials": {
@@ -3808,6 +3780,13 @@
                     0.1437908,
                     1.0
                 ]
+            },
+            "pipeline": "240",
+            "FlatSorskoot": {
+                "flatTexture": "510",
+                "size": 0,
+                "sizeX": 30,
+                "sizeY": 10
             }
         },
         "46": {
@@ -3860,12 +3839,18 @@
             "name": "TextAccent",
             "Text": {
                 "color": [
-                    0.9098039,
-                    0.0,
-                    0.5411764,
+                    1.0,
+                    1.0,
+                    1.0,
                     1.0
                 ],
-                "font": "461"
+                "font": "461",
+                "effectColor": [
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.470852
+                ]
             }
         },
         "202": {
@@ -3891,6 +3876,13 @@
                     0.0274507,
                     1.0
                 ]
+            },
+            "pipeline": "240",
+            "FlatSorskoot": {
+                "flatTexture": "512",
+                "size": 0,
+                "sizeX": 80,
+                "sizeY": 32
             }
         },
         "203": {
@@ -4848,6 +4840,14 @@
         },
         {
             "fileName": "assets/ui/ui_02.png",
+            "importerName": ""
+        },
+        {
+            "fileName": "assets/ui/RegularButton.png",
+            "importerName": ""
+        },
+        {
+            "fileName": "assets/ui/Background-Message.png",
             "importerName": ""
         }
     ],
