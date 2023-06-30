@@ -2497,9 +2497,9 @@
                 }
             ],
             "translation": [
-                0.0001186,
-                0.1794082,
-                0.2872492
+                0.0002292,
+                0.1794635,
+                0.4035993
             ],
             "rotation": [
                 0.0,
@@ -2522,8 +2522,8 @@
             "components": [
                 {
                     "mesh": {
-                        "material": "26",
-                        "mesh": "8"
+                        "material": "514",
+                        "mesh": "7"
                     },
                     "active": true
                 }
@@ -2535,15 +2535,15 @@
                 0.0
             ],
             "rotation": [
-                6.000006465001206e-7,
+                -0.7071068,
                 0.0,
                 0.0,
-                1.0
+                0.7071068
             ],
             "scaling": [
-                1.25,
-                0.05,
-                0.3125
+                0.5,
+                0.1875,
+                0.1875
             ]
         },
         "456": {
@@ -2553,25 +2553,26 @@
                 {
                     "type": "text",
                     "text": {
-                        "text": "Thanks!"
+                        "text": "Play!",
+                        "effect": "outline"
                     }
                 }
             ],
             "translation": [
-                0.0000475,
-                0.1,
-                -0.0000118
+                0.0001438,
+                0.1000479,
+                -0.0252786
             ],
             "rotation": [
-                -0.7068091,
+                -0.7068095,
                 0.0,
                 0.0,
-                0.7074043
+                0.7074039
             ],
             "scaling": [
-                3.0,
-                3.0000002,
-                3.0000002
+                2.5,
+                2.5000019,
+                2.5000019
             ]
         },
         "457": {
@@ -2589,9 +2590,9 @@
                 }
             ],
             "translation": [
-                0.0000901,
-                0.1555432,
-                -0.3914674
+                0.000256,
+                0.155624,
+                -0.2098747
             ],
             "rotation": [
                 -0.7068591,
@@ -2606,7 +2607,7 @@
             ]
         },
         "458": {
-            "name": "Panel Root",
+            "name": "Messagebox",
             "parent": "452",
             "translation": [
                 5.5027751,
@@ -2643,14 +2644,14 @@
                 -1.1920928955078125e-7
             ],
             "rotation": [
+                -0.7071068,
                 0.0,
                 0.0,
-                0.0,
-                1.0
+                0.7071068
             ],
             "scaling": [
                 2.5,
-                0.001,
+                1.0,
                 1.0
             ],
             "components": [
@@ -2712,7 +2713,7 @@
                 {
                     "type": "mesh",
                     "mesh": {
-                        "mesh": "8",
+                        "mesh": "7",
                         "material": "202"
                     }
                 }
@@ -2789,6 +2790,161 @@
                             ]
                         },
                         "groups": 251
+                    }
+                }
+            ]
+        },
+        "518": {
+            "name": "Inventory",
+            "parent": "452",
+            "translation": [
+                8.002779,
+                0.0,
+                7.5366768
+            ],
+            "rotation": [
+                0.0,
+                -0.7069342,
+                0.0,
+                0.7072793
+            ],
+            "scaling": [
+                0.9999999,
+                1.0,
+                0.9999999
+            ]
+        },
+        "519": {
+            "name": "Panel",
+            "translation": [
+                0.0,
+                2.0,
+                0.0
+            ],
+            "rotation": [
+                0.7071068,
+                0.0,
+                0.0,
+                0.7071067
+            ],
+            "scaling": [
+                0.5,
+                0.4999999,
+                0.4999999
+            ],
+            "parent": "518"
+        },
+        "524": {
+            "name": "Title",
+            "parent": "519",
+            "components": [
+                {
+                    "type": "text",
+                    "text": {
+                        "text": "Golden Chest",
+                        "material": "201",
+                        "effect": "outline",
+                        "lineSpacing": 1.0
+                    }
+                }
+            ],
+            "translation": [
+                0.000256,
+                0.1555765,
+                -1.362209
+            ],
+            "rotation": [
+                -0.7068591,
+                0.0,
+                0.0,
+                0.7073544
+            ],
+            "scaling": [
+                3.0,
+                3.0000002,
+                3.0000002
+            ]
+        },
+        "525": {
+            "name": "PanelMesh",
+            "parent": "519",
+            "translation": [
+                4.76837158203125e-7,
+                2.384185791015625e-7,
+                -1.1920928955078125e-7
+            ],
+            "rotation": [
+                -0.7071068,
+                0.0,
+                0.0,
+                0.7071068
+            ],
+            "scaling": [
+                3.0,
+                2.0,
+                2.0
+            ],
+            "components": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                {
+                    "type": "mesh",
+                    "mesh": {
+                        "mesh": "7",
+                        "material": "526"
                     }
                 }
             ]
@@ -3477,6 +3633,18 @@
                 "name": "Background-Message.png",
                 "file": "assets\\ui\\Background-Message.png"
             }
+        },
+        "517": {
+            "link": {
+                "name": "SmallButton.png",
+                "file": "assets\\ui\\SmallButton.png"
+            }
+        },
+        "528": {
+            "link": {
+                "name": "InventoryBackground.png",
+                "file": "assets\\ui\\InventoryBackground.png"
+            }
         }
     },
     "images": {
@@ -3681,6 +3849,19 @@
                 "name": "Background-Message.png",
                 "file": "assets\\ui\\Background-Message.png"
             }
+        },
+        "516": {
+            "link": {
+                "name": "SmallButton.png",
+                "file": "assets\\ui\\SmallButton.png"
+            }
+        },
+        "527": {
+            "link": {
+                "name": "InventoryBackground.png",
+                "file": "assets\\ui\\InventoryBackground.png"
+            },
+            "compression": "etc1s"
         }
     },
     "materials": {
@@ -3691,10 +3872,10 @@
             },
             "Text": {
                 "effectColor": [
-                    1.0,
-                    1.0,
-                    1.0,
-                    1.0
+                    0.0,
+                    0.0,
+                    0.0,
+                    0.4798206
                 ],
                 "font": "461"
             }
@@ -4324,6 +4505,37 @@
                 "name": "9slice-br",
                 "file": "models\\ui.fbx"
             }
+        },
+        "513": {
+            "name": "UI-Button-Large",
+            "pipeline": "240",
+            "FlatSorskoot": {
+                "flatTexture": "510",
+                "sizeX": 30,
+                "sizeY": 10
+            }
+        },
+        "514": {
+            "name": "UI-Button-Small",
+            "pipeline": "240",
+            "FlatSorskoot": {
+                "flatTexture": "517",
+                "sizeX": 16,
+                "sizeY": 6
+            }
+        },
+        "515": {
+            "name": "UI-Background-Message",
+            "pipeline": "240"
+        },
+        "526": {
+            "name": "UI-Background-Inventory",
+            "pipeline": "240",
+            "FlatSorskoot": {
+                "flatTexture": "528",
+                "sizeX": 96,
+                "sizeY": 64
+            }
         }
     },
     "shaders": {
@@ -4848,6 +5060,14 @@
         },
         {
             "fileName": "assets/ui/Background-Message.png",
+            "importerName": ""
+        },
+        {
+            "fileName": "assets/ui/SmallButton.png",
+            "importerName": ""
+        },
+        {
+            "fileName": "assets/ui/InventoryBackground.png",
             "importerName": ""
         }
     ],
