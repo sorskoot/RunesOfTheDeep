@@ -7,23 +7,27 @@ import {property} from '@wonderlandengine/api/decorators.js';
 export class UiManager extends Component {
     static TypeName = 'ui-manager';
 
-    
+    @property.object()
+    uiCollection: Object3D;
 
-    static onRegister(engine: WonderlandEngine) {
-        /* Triggered when this component class is registered.
-         * You can for instance register extra component types here
-         * that your component may create. */
+    private uiElements: Object3D[] = [];
+
+    start(): void {
+        if(!this.uiCollection) {
+            throw new Error('No ui collection set');
+        }
+
+        for (const child of this.uiCollection.children) {
+            this.uiElements.push(child);
+        }
     }
 
-    init() {
-        
-    }
-
-    start() {
-        
-    }
-
-    update(dt: number) {
-        /* Called every frame. */
+    /**
+     * Closes all UI elements, by moving them far away.
+     */
+    closeAll() {
+        for (const uiRootObject of this.uiElements) {
+              uiRootObject.setPositionWorld([0, -10000, 0]);
+        }
     }
 }

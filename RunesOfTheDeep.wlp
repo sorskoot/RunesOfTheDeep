@@ -1451,7 +1451,7 @@
                 0.8
             ],
             "translation": [
-                -1.0764711788624481e-8,
+                -1.076471178862448e-8,
                 0.0,
                 3.42726764301915e-7
             ],
@@ -2479,20 +2479,23 @@
                 1.0,
                 1.0
             ],
-            "parent": "458"
+            "parent": "458",
+            "components": [
+                {
+                    "type": "ui-panel"
+                }
+            ]
         },
         "454": {
             "name": "Button",
             "parent": "453",
             "components": [
                 {
-                    "type": "cursor-target"
-                },
-                {
                     "type": "ui-button",
                     "ui-button": {
                         "buttonMeshObject": "455",
-                        "hoverMaterial": "22"
+                        "hoverMaterial": "22",
+                        "buttonTargetObject": "464"
                     }
                 }
             ],
@@ -2530,20 +2533,20 @@
             ],
             "name": "ButtonMesh",
             "translation": [
-                0.0,
-                0.0,
-                0.0
+                0.0000376,
+                0.0149202,
+                -0.0000094
             ],
             "rotation": [
-                -0.7071068,
+                -0.7071065,
                 0.0,
                 0.0,
-                0.7071068
+                0.707107
             ],
             "scaling": [
                 0.125,
-                0.046875,
-                0.046875
+                0.0468747,
+                0.0468747
             ]
         },
         "456": {
@@ -2610,20 +2613,30 @@
             "name": "Messagebox",
             "parent": "452",
             "translation": [
-                5.5027751,
-                0.0,
-                2.5366764
+                7.5027713,
+                0.5,
+                5.9252872
             ],
             "rotation": [
                 0.0,
+                -0.7071066,
                 0.0,
-                0.0,
-                1.0
+                0.7071068
             ],
             "scaling": [
+                0.999985,
                 1.0,
-                1.0,
-                1.0
+                0.999985
+            ],
+            "components": [
+                {
+                    "type": "ui-action-close",
+                    "ui-action-close": {
+                        "uiManagerObject": "459",
+                        "uiRootObject": "458",
+                        "uiButtonObject": "454"
+                    }
+                }
             ]
         },
         "459": {
@@ -2631,7 +2644,10 @@
             "parent": "234",
             "components": [
                 {
-                    "type": "ui-manager"
+                    "type": "ui-manager",
+                    "ui-manager": {
+                        "uiCollection": "452"
+                    }
                 }
             ]
         },
@@ -2784,14 +2800,22 @@
                         "collider": "box",
                         "box": {
                             "extents": [
-                                0.6,
-                                0.05,
-                                0.2
+                                0.125,
+                                0.0468747,
+                                0.0468747
                             ]
                         },
-                        "groups": 251
+                        "groups": 255
                     }
+                },
+                {
+                    "type": "cursor-target"
                 }
+            ],
+            "scaling": [
+                1.0,
+                1.0,
+                1.0
             ]
         },
         "518": {
@@ -2850,7 +2874,7 @@
             ],
             "translation": [
                 0.0001682,
-                5.960464477539063e-8,
+                5.960464477539064e-8,
                 -0.3499999
             ],
             "rotation": [

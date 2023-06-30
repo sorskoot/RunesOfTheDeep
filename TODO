@@ -29,6 +29,11 @@ Must Have:
         ☐ better looking indicators
         ✔ Lighting should be placed based on the map @done(23-06-01 12:51)
             # This might mean there has to be a lighting pool
+        GUI Manager:
+            ☐ Hide messagebox when Close is pressed
+            ☐ Show inventory when interacting with chest
+            ☐ Hide inventory when interacting again, or move away
+
     Roomtypes:
         ✔ Make sure we can select a random room with as specific type @done(23-06-02 22:08)
         Rooms:

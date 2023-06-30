@@ -36,8 +36,10 @@ import {PlayerHeight2} from './components/player-height2.js';
 import {SorskootTeleport} from './components/teleport.js';
 import {TurnManager} from './components/turnManager.js';
 import {TileDescriptor} from './dungeongen/components/tileComponent.js';
+import {UiActionClose} from './ui/components/ui-action-close.js';
 import {UiButton} from './ui/components/ui-button.js';
 import {UiManager} from './ui/components/ui-manager.js';
+import {UiPanel} from './ui/components/ui-panel.js';
 /* wle:auto-imports:end */
 
 import {loadRuntime} from '@wonderlandengine/api';
@@ -123,8 +125,10 @@ engine.registerComponent(PlayerHeight2);
 engine.registerComponent(SorskootTeleport);
 engine.registerComponent(TurnManager);
 engine.registerComponent(TileDescriptor);
+engine.registerComponent(UiActionClose);
 engine.registerComponent(UiButton);
 engine.registerComponent(UiManager);
+engine.registerComponent(UiPanel);
 /* wle:auto-register:end */
 
 engine.scene.load(`${Constants.ProjectName}.bin`);
