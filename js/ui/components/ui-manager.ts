@@ -18,6 +18,7 @@ export class UiManager extends Component {
         }
 
         for (const child of this.uiCollection.children) {
+            child.setPositionWorld([0, -10000, 0]);
             this.uiElements.push(child);
         }
     }
