@@ -34,6 +34,11 @@ Must Have:
             ✔ Hide messagebox when Close is pressed @done(23-07-01 09:52)
             ☐ Show inventory when interacting with chest
             ☐ Hide GUI when interacting again, or move away
+            GUI Types:
+                ☐ Message box
+                ☐ Inventory
+                ☐ Text box to show story / lore
+                ☐ Conversation when talking to NPCs
 
     Roomtypes:
         ✔ Make sure we can select a random room with as specific type @done(23-06-02 22:08)
@@ -57,7 +62,7 @@ Should Have:
             # the can have some special treasure or tell a part of the lore
     Code:
         ☐ Fully implement DI
-        ☐ Do TDD where ever possible
+
 
 Could Have:
     ☐ Particles
@@ -68,10 +73,12 @@ Would Like:
     ☐ The 'pick-target' component should be more versatile.
         # the picking and checking if something can be picked should
         # be separated. This way the component should be more reusable.
+    ☐ Do TDD where ever possible
 
-Bugs:
+    Bugs:
     ☐ There might be an issue if the player goes to the next room while the fade in/out is still going
     ☐ Snap-Rotation goes around the wrong pivot
+
 ---
 
 
