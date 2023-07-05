@@ -7,6 +7,7 @@ import { GenericItem } from "./objects/GenericItem.js";
 import { inject, singleton } from "tsyringe";
 import { ChestCreator } from "./ChestCreator.js";
 import { rng }  from "@sorskoot/wonderland-components";
+import { showInventory } from "./objects/behaviors/showInventory.js";
 
 @singleton()
 export class RoomItemCreator {
@@ -39,6 +40,8 @@ export class RoomItemCreator {
                     }
                     let chest = currentRng.getItem(template.chests) as chestDefinition;
                     let chestItem = this.chestCreator.createChest({ x: x, y: y }, chest);
+                    
+                    chestItem.addBehavior(showInventory);
                     items.push(chestItem);
                     break;
                 }

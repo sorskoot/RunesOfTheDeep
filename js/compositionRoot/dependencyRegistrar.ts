@@ -6,6 +6,7 @@ import { ItemCreator } from "../dungeongen/loot/ItemCreator.js";
 import { RoomItemCreator } from "../dungeongen/roomItemCreator.js";
 import { GameState } from "../classes/gameState.js";
 import { RoomCreator } from "../dungeongen/RoomCreator.js";
+import { InternalUIManager } from "../ui/classes/InternalUIManager.js";
 
 export class DependencyRegistrar {
   public static registerDependencies(): void {
@@ -15,5 +16,7 @@ export class DependencyRegistrar {
     container.registerSingleton(RoomItemCreator, RoomItemCreator);
     container.registerSingleton(ItemCreator, ItemCreator);
     container.registerSingleton(RoomCreator, RoomCreator);
+    
+    container.registerSingleton(InternalUIManager, InternalUIManager);
   }
 }

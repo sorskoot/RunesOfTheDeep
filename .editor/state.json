@@ -1,7 +1,7 @@
 {
     "views": {
         "console": {
-            "showInfo": false,
+            "showInfo": true,
             "showWarnings": false,
             "showErrors": true
         },
@@ -19,7 +19,7 @@
         "Console": true,
         "Scene Outline": true,
         "Properties": true,
-        "Project Settings": true,
+        "Project Settings": false,
         "Resources": false,
         "Project Data": false,
         "Benchmark": false,

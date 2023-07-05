@@ -1,5 +1,7 @@
-import {Component, Object3D, WonderlandEngine} from '@wonderlandengine/api';
+import {Component, NumberArray, Object3D, WonderlandEngine} from '@wonderlandengine/api';
 import {property} from '@wonderlandengine/api/decorators.js';
+import { container } from 'tsyringe';
+import { InternalUIManager } from '../classes/InternalUIManager.js';
 
 /**
  * uiManager
@@ -11,7 +13,7 @@ export class UiManager extends Component {
     uiCollection: Object3D;
 
     private uiElements: Object3D[] = [];
-
+    
     start(): void {
         if(!this.uiCollection) {
             throw new Error('No ui collection set');
@@ -21,6 +23,18 @@ export class UiManager extends Component {
             child.setPositionWorld([0, -10000, 0]);
             this.uiElements.push(child);
         }
+
+        const internalUIManager = container.resolve(InternalUIManager);
+        internalUIManager.registerComponent(this);
+    }
+
+    open(name:string, position:Readonly<NumberArray>):void
+    {
+        const element = this.uiElements.find((element) => element.name === name);
+        if(!element) {
+            throw new Error(`No ui element found with name ${name}`);
+        }
+        element.setPositionWorld(position);
     }
 
     /**
