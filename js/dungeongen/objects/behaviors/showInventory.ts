@@ -10,7 +10,6 @@ export const showInventory = {
     },
 
     interact:function(ret:any, obj:Object3D, x:number, y:number, z:number){
-        console.log("show Inventory");
         const internalUIManager = container.resolve(InternalUIManager);
         internalUIManager.open("Inventory", [x, y, z]);
     }

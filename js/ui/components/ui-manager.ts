@@ -1,4 +1,4 @@
-import {Component, NumberArray, Object3D, WonderlandEngine} from '@wonderlandengine/api';
+import {Component, NumberArray, Object3D} from '@wonderlandengine/api';
 import {property} from '@wonderlandengine/api/decorators.js';
 import { container } from 'tsyringe';
 import { InternalUIManager } from '../classes/InternalUIManager.js';
@@ -13,6 +13,7 @@ export class UiManager extends Component {
     uiCollection: Object3D;
 
     private uiElements: Object3D[] = [];
+    currentVisibleUI: string | null;
     
     start(): void {
         if(!this.uiCollection) {
@@ -34,7 +35,13 @@ export class UiManager extends Component {
         if(!element) {
             throw new Error(`No ui element found with name ${name}`);
         }
-        element.setPositionWorld(position);
+        if(this.currentVisibleUI === name) {
+            this.closeAll();
+        }
+        else{
+            this.currentVisibleUI = name;
+            element.setPositionWorld(position);
+        }
     }
 
     /**
@@ -44,5 +51,6 @@ export class UiManager extends Component {
         for (const uiRootObject of this.uiElements) {
               uiRootObject.setPositionWorld([0, -10000, 0]);
         }
+        this.currentVisibleUI = null;
     }
 }

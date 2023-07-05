@@ -32,8 +32,10 @@ Must Have:
         GUI Manager:
             ✔ Have GUI start hidden @done(23-07-01 09:58)
             ✔ Hide messagebox when Close is pressed @done(23-07-01 09:52)
-            ☐ Show inventory when interacting with chest
-            ☐ Hide GUI when interacting again, or move away
+            ✔ Show inventory when interacting with chest @done(23-07-05 22:40)
+            ✔ Hide GUI when interacting again @done(23-07-05 22:56)
+            ☐ Hide GUI when move away
+            ☐ implement the actual inventory of the chest.
             GUI Types:
                 ☐ Message box
                 ☐ Inventory
