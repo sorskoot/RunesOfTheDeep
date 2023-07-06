@@ -34,8 +34,8 @@ Must Have:
             ✔ Hide messagebox when Close is pressed @done(23-07-01 09:52)
             ✔ Show inventory when interacting with chest @done(23-07-05 22:40)
             ✔ Hide GUI when interacting again @done(23-07-05 22:56)
-            ☐ Hide GUI when move away
-            ☐ Hide GUI when moving to another room
+            ✔ Hide GUI when move away @done(23-07-06 10:51)
+            ✔ Hide GUI when moving to another room @done(23-07-06 10:51)
             ☐ implement the actual inventory of the chest.
             GUI Types:
                 ☐ Message box
