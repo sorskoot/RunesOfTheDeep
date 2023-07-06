@@ -2983,7 +2983,275 @@
         },
         "545": {
             "name": "InventoryContents",
-            "parent": "519"
+            "parent": "519",
+            "scaling": [
+                0.25,
+                0.2499966,
+                0.2499966
+            ],
+            "translation": [
+                -0.25,
+                0.0249999,
+                0.0
+            ],
+            "rotation": [
+                -0.7071068,
+                0.0,
+                0.0,
+                0.7071067
+            ]
+        },
+        "546": {
+            "name": "Slot1",
+            "parent": "545",
+            "translation": [
+                -0.5,
+                0.5,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                -0.0,
+                1.0
+            ],
+            "scaling": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "547": {
+            "name": "Slot1 Mesh",
+            "parent": "546",
+            "components": [
+                {
+                    "type": "mesh",
+                    "mesh": {
+                        "mesh": "7",
+                        "material": "549"
+                    }
+                }
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scaling": [
+                0.5,
+                0.5,
+                1.0
+            ]
+        },
+        "548": {
+            "name": "Slot1 Collision",
+            "parent": "546",
+            "components": [
+                {
+                    "type": "collision",
+                    "collision": {
+                        "collider": "aabb",
+                        "aabb": {
+                            "extents": [
+                                0.0099999,
+                                0.125,
+                                0.125
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "552": {
+            "name": "Slot2",
+            "parent": "545",
+            "translation": [
+                0.5,
+                0.5,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                -0.0,
+                1.0
+            ],
+            "scaling": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "553": {
+            "name": "Slot2 Mesh",
+            "parent": "552",
+            "components": [
+                {
+                    "type": "mesh",
+                    "mesh": {
+                        "mesh": "7",
+                        "material": "549"
+                    }
+                }
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scaling": [
+                0.5,
+                0.5,
+                1.0
+            ]
+        },
+        "554": {
+            "name": "Slot2 Collision",
+            "parent": "552",
+            "components": [
+                {
+                    "type": "collision",
+                    "collision": {
+                        "collider": "aabb",
+                        "aabb": {
+                            "extents": [
+                                0.0099999,
+                                0.125,
+                                0.125
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "555": {
+            "name": "Slot3",
+            "parent": "545",
+            "translation": [
+                -0.5,
+                -0.5,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                -0.0,
+                1.0
+            ],
+            "scaling": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "556": {
+            "name": "Slot1 Mesh",
+            "parent": "555",
+            "components": [
+                {
+                    "type": "mesh",
+                    "mesh": {
+                        "mesh": "7",
+                        "material": "549"
+                    }
+                }
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scaling": [
+                0.5,
+                0.5,
+                1.0
+            ]
+        },
+        "557": {
+            "name": "Slot1 Collision",
+            "parent": "555",
+            "components": [
+                {
+                    "type": "collision",
+                    "collision": {
+                        "collider": "aabb",
+                        "aabb": {
+                            "extents": [
+                                0.0099999,
+                                0.125,
+                                0.125
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "558": {
+            "name": "Slot4",
+            "parent": "545",
+            "translation": [
+                0.5,
+                -0.5,
+                0.0
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                -0.0,
+                1.0
+            ],
+            "scaling": [
+                1.0,
+                1.0,
+                1.0
+            ]
+        },
+        "559": {
+            "name": "Slot2 Mesh",
+            "parent": "558",
+            "components": [
+                {
+                    "type": "mesh",
+                    "mesh": {
+                        "mesh": "7",
+                        "material": "549"
+                    }
+                }
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scaling": [
+                0.5,
+                0.5,
+                1.0
+            ]
+        },
+        "560": {
+            "name": "Slot2 Collision",
+            "parent": "558",
+            "components": [
+                {
+                    "type": "collision",
+                    "collision": {
+                        "collider": "aabb",
+                        "aabb": {
+                            "extents": [
+                                0.0099999,
+                                0.125,
+                                0.125
+                            ]
+                        }
+                    }
+                }
+            ]
         }
     },
     "meshes": {
@@ -3681,6 +3949,12 @@
                 "name": "InventoryBackground.png",
                 "file": "assets\\ui\\InventoryBackground.png"
             }
+        },
+        "551": {
+            "link": {
+                "name": "iron-weapons_36.png",
+                "file": "assets\\ui\\iron-weapons_36.png"
+            }
         }
     },
     "images": {
@@ -3898,6 +4172,12 @@
                 "file": "assets\\ui\\InventoryBackground.png"
             },
             "compression": "etc1s"
+        },
+        "550": {
+            "link": {
+                "name": "iron-weapons_36.png",
+                "file": "assets\\ui\\iron-weapons_36.png"
+            }
         }
     },
     "materials": {
@@ -4572,6 +4852,15 @@
                 "sizeX": 96,
                 "sizeY": 64
             }
+        },
+        "549": {
+            "name": "UI-Inventory-Slot1",
+            "pipeline": "240",
+            "FlatSorskoot": {
+                "flatTexture": "551",
+                "sizeX": 16,
+                "sizeY": 16
+            }
         }
     },
     "shaders": {
@@ -5200,6 +5489,10 @@
         },
         {
             "fileName": "assets/ui/InventoryBackground.png",
+            "importerName": ""
+        },
+        {
+            "fileName": "assets/ui/iron-weapons_36.png",
             "importerName": ""
         }
     ],

@@ -79,7 +79,7 @@ export class Game extends Component {
       }
 
       if (e.code == "Digit5") { // open first chest
-        this.gameState.room?.items?.find((i) => i.name == "Chest")?.interact(this.playerObject,0,0,0);
+        this.gameState.room?.items?.find((i) => i.name == "Chest")?.interact(this.playerObject,8,0,8);
       };
     });
   }
