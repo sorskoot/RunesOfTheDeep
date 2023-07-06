@@ -4,8 +4,6 @@ import * as __wonderlandengine_components from '@wonderlandengine/components';
 _registerEditor(__wonderlandengine_components);
 import * as __zestymarket_wonderland_sdk from '@zestymarket/wonderland-sdk';
 _registerEditor(__zestymarket_wonderland_sdk);
-import * as _E__Dev_RunesOfTheDeep_js_classes_gameState_ts from 'E:/Dev/RunesOfTheDeep/js/classes/gameState.ts';
-_registerEditor(_E__Dev_RunesOfTheDeep_js_classes_gameState_ts);
 import * as _E__Dev_RunesOfTheDeep_js_components_door_handler_ts from 'E:/Dev/RunesOfTheDeep/js/components/door-handler.ts';
 _registerEditor(_E__Dev_RunesOfTheDeep_js_components_door_handler_ts);
 import * as _E__Dev_RunesOfTheDeep_js_components_fadeScreen_ts from 'E:/Dev/RunesOfTheDeep/js/components/fadeScreen.ts';
@@ -24,8 +22,6 @@ import * as _E__Dev_RunesOfTheDeep_js_components_teleport_ts from 'E:/Dev/RunesO
 _registerEditor(_E__Dev_RunesOfTheDeep_js_components_teleport_ts);
 import * as _E__Dev_RunesOfTheDeep_js_components_turnManager_ts from 'E:/Dev/RunesOfTheDeep/js/components/turnManager.ts';
 _registerEditor(_E__Dev_RunesOfTheDeep_js_components_turnManager_ts);
-import * as _E__Dev_RunesOfTheDeep_js_compositionRoot_dependencyRegistrar_ts from 'E:/Dev/RunesOfTheDeep/js/compositionRoot/dependencyRegistrar.ts';
-_registerEditor(_E__Dev_RunesOfTheDeep_js_compositionRoot_dependencyRegistrar_ts);
 import * as _E__Dev_RunesOfTheDeep_js_dungeongen_ChestCreator_ts from 'E:/Dev/RunesOfTheDeep/js/dungeongen/ChestCreator.ts';
 _registerEditor(_E__Dev_RunesOfTheDeep_js_dungeongen_ChestCreator_ts);
 import * as _E__Dev_RunesOfTheDeep_js_dungeongen_MazeGenerator_ts from 'E:/Dev/RunesOfTheDeep/js/dungeongen/MazeGenerator.ts';
@@ -54,6 +50,8 @@ import * as _E__Dev_RunesOfTheDeep_js_dungeongen_utils_directionHelpers_ts from 
 _registerEditor(_E__Dev_RunesOfTheDeep_js_dungeongen_utils_directionHelpers_ts);
 import * as _E__Dev_RunesOfTheDeep_js_dungeongen_utils_extractor_ts from 'E:/Dev/RunesOfTheDeep/js/dungeongen/utils/extractor.ts';
 _registerEditor(_E__Dev_RunesOfTheDeep_js_dungeongen_utils_extractor_ts);
+import * as _E__Dev_RunesOfTheDeep_js_forFramework_throwError_ts from 'E:/Dev/RunesOfTheDeep/js/forFramework/throwError.ts';
+_registerEditor(_E__Dev_RunesOfTheDeep_js_forFramework_throwError_ts);
 import * as _E__Dev_RunesOfTheDeep_js_globals_ts from 'E:/Dev/RunesOfTheDeep/js/globals.ts';
 _registerEditor(_E__Dev_RunesOfTheDeep_js_globals_ts);
 import * as _E__Dev_RunesOfTheDeep_js_ui_classes_InternalUIManager_ts from 'E:/Dev/RunesOfTheDeep/js/ui/classes/InternalUIManager.ts';
@@ -64,6 +62,8 @@ import * as _E__Dev_RunesOfTheDeep_js_ui_components_ui_button_ts from 'E:/Dev/Ru
 _registerEditor(_E__Dev_RunesOfTheDeep_js_ui_components_ui_button_ts);
 import * as _E__Dev_RunesOfTheDeep_js_ui_components_ui_component_ts from 'E:/Dev/RunesOfTheDeep/js/ui/components/ui-component.ts';
 _registerEditor(_E__Dev_RunesOfTheDeep_js_ui_components_ui_component_ts);
+import * as _E__Dev_RunesOfTheDeep_js_ui_components_ui_inventory_ts from 'E:/Dev/RunesOfTheDeep/js/ui/components/ui-inventory.ts';
+_registerEditor(_E__Dev_RunesOfTheDeep_js_ui_components_ui_inventory_ts);
 import * as _E__Dev_RunesOfTheDeep_js_ui_components_ui_manager_ts from 'E:/Dev/RunesOfTheDeep/js/ui/components/ui-manager.ts';
 _registerEditor(_E__Dev_RunesOfTheDeep_js_ui_components_ui_manager_ts);
 import * as _E__Dev_RunesOfTheDeep_js_ui_components_ui_panel_ts from 'E:/Dev/RunesOfTheDeep/js/ui/components/ui-panel.ts';

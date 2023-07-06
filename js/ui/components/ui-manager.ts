@@ -29,7 +29,7 @@ export class UiManager extends Component {
     internalUIManager.registerComponent(this);
   }
 
-  open(name: string, position: Readonly<NumberArray>): void {
+  open(name: string, position: Readonly<NumberArray>): Object3D {
     const element = this.uiElements.find((element) => element.name === name);
     if (!element) {
       throw new Error(`No ui element found with name ${name}`);
@@ -38,6 +38,7 @@ export class UiManager extends Component {
     this.closeAll();
     this.currentVisibleUI = name;
     element.setPositionWorld(position);
+    return element;
   }
 
   /**

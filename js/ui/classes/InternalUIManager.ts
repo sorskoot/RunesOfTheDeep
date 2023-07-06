@@ -1,6 +1,6 @@
 import { singleton } from "tsyringe";
 import { UiManager } from "../components/ui-manager.js";
-import { NumberArray } from "@wonderlandengine/api";
+import { NumberArray, Object3D } from "@wonderlandengine/api";
 
 /**
  * This class is used as an intermediary between the UI components and the rest of the game.
@@ -23,10 +23,12 @@ export class InternalUIManager {
     }
   }
 
-  open(name: string, position: Readonly<NumberArray>): void {
-    if (this.uiManager) {
-      this.uiManager.open(name, position);
+  open(name: string, position: Readonly<NumberArray>): Object3D {
+    if (!this.uiManager) {
+        throw new Error("No ui manager registered");
     }
+    
+    return this.uiManager.open(name, position);
   }
 
   closeAll() {
