@@ -16,7 +16,6 @@ export class DependencyRegistrar {
     container.registerSingleton(RoomItemCreator, RoomItemCreator);
     container.registerSingleton(ItemCreator, ItemCreator);
     container.registerSingleton(RoomCreator, RoomCreator);
-    
     container.registerSingleton(InternalUIManager, InternalUIManager);
   }
 }

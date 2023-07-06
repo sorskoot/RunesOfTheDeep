@@ -4,6 +4,8 @@ import * as __wonderlandengine_components from '@wonderlandengine/components';
 _registerEditor(__wonderlandengine_components);
 import * as __zestymarket_wonderland_sdk from '@zestymarket/wonderland-sdk';
 _registerEditor(__zestymarket_wonderland_sdk);
+import * as _E__Dev_RunesOfTheDeep_js_classes_gameState_ts from 'E:/Dev/RunesOfTheDeep/js/classes/gameState.ts';
+_registerEditor(_E__Dev_RunesOfTheDeep_js_classes_gameState_ts);
 import * as _E__Dev_RunesOfTheDeep_js_components_door_handler_ts from 'E:/Dev/RunesOfTheDeep/js/components/door-handler.ts';
 _registerEditor(_E__Dev_RunesOfTheDeep_js_components_door_handler_ts);
 import * as _E__Dev_RunesOfTheDeep_js_components_fadeScreen_ts from 'E:/Dev/RunesOfTheDeep/js/components/fadeScreen.ts';

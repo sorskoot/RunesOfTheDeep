@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { singleton } from "tsyringe";
+import { inject, singleton } from "tsyringe";
 import { Subject } from "rxjs";
 
 import { LevelState } from "./levelState.js";
@@ -8,6 +8,7 @@ import { Room } from "../dungeongen/room.js";
 import { findCharInStringArrayByPos } from "../forFramework/findCharInStringArray.js";
 import { RoomTemplatePatternDefinitions } from "../dungeongen/roomTemplates.js";
 import { Object3D } from "@wonderlandengine/api";
+import { InternalUIManager } from "../ui/classes/InternalUIManager.js";
 
 
 
@@ -29,7 +30,7 @@ export class GameState implements GameStateBase {
   
   room: Room | null = null;
 
-  constructor() {
+  constructor(@inject(InternalUIManager) private uiManager: InternalUIManager) {
     this.playerPositionSubject = new Subject();
     this.playerRotationSubject = new Subject();
     this.isInVRSubject = new Subject();
@@ -155,6 +156,9 @@ export class GameState implements GameStateBase {
     }
     this.navigating = true;
 
+    // close any UI if it's open
+    this.uiManager.closeAll();
+
     if (direction) {
       this.roomPreviousExitDirection = direction;
     } else {
@@ -228,6 +232,10 @@ export class GameState implements GameStateBase {
    
     if(!items || items.length === 0){
       if(RoomTemplatePatternDefinitions[char].canTeleportToTile){
+        // close any UI if it's open
+        this.uiManager.closeAll();
+
+        // teleport to the tile
         this.setPlayerPosition(x,z);
       };
       return;
