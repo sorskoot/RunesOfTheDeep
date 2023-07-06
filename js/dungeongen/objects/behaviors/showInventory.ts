@@ -18,6 +18,6 @@ export const showInventory = {
     if (!uiInventory) {
       throw new Error("No UiInventory component found on Inventory UI object");
     }
-    uiInventory.setInventory(this.chestType);
+    uiInventory.setInventory(`${this.chestType} ${this.chestValue} Chest`);
   },
 };

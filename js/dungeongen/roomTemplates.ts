@@ -3,7 +3,7 @@
  * @requires typedefs.js
  */
 
-import { RoomType } from "../types/index.js";
+import { MaterialValue, RoomType, Size } from "../types/index.js";
 
 export const RoomTypes: Record<string, RoomType> = {
   Entrance: "entrance",
@@ -62,10 +62,11 @@ export interface propDefinition {
   mustBeAgainstWall?: boolean;
 }
 
+
 export interface chestDefinition {
   chance?: number;
-  material: "Iron"|"Gold",
-  size: "None"|"Small"|"Medium"|"Large"
+  material: MaterialValue;
+  size: Size;
   rotation: 0|90|180|270;
   loottable?: string;
 }

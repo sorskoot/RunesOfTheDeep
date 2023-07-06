@@ -13,7 +13,7 @@ export class ChestCreator {
     }
 
     createChest(position: Position2D, chestDefinition: chestDefinition): GenericItem {
-        const chestItem = new Chest("small", "common", 3, this.lootTable);
+        const chestItem = new Chest("Small", "Iron", 3, this.lootTable);
         chestItem.position = position;
         chestItem.name = "Chest";
 

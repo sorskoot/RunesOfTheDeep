@@ -3,6 +3,7 @@ import { LootTableBase } from "../loot/lootTableBase.js";
 import { GenericItem } from "./GenericItem.js";
 import { Item } from "./item.js";
 import { container, injectable } from "tsyringe";
+import { MaterialValue, Size } from "../../types/simpleTypes.js";
 
 /*
 * a container is an object that can hold items
@@ -14,19 +15,19 @@ export interface container{
 }
 
 export interface chest extends container{ 
-    chestType: string; // small, medium, large
-    chestValue: string; // common, rare, epic, legendary
+    chestType: Size; // small, medium, large
+    chestValue: MaterialValue; // wood, iron, gold
     hasBeenOpened: boolean;
 }
 
 export class Chest extends GenericItem implements chest{
-    chestType: string;
-    chestValue: string;
+    chestType: Size;
+    chestValue: MaterialValue;
     maxItems: number;
     items: Array<Item>|null;
     hasBeenOpened: boolean;
 
-    constructor(chestType: string, chestValue: string, maxItems: number, lootTable:LootTableBase){
+    constructor(chestType: Size, chestValue: MaterialValue, maxItems: number, lootTable:LootTableBase){
         super();
         this.chestType = chestType;
         this.chestValue = chestValue;

@@ -36,6 +36,8 @@ import * as _E__Dev_RunesOfTheDeep_js_dungeongen_components_tileComponent_ts fro
 _registerEditor(_E__Dev_RunesOfTheDeep_js_dungeongen_components_tileComponent_ts);
 import * as _E__Dev_RunesOfTheDeep_js_dungeongen_objects_behaviors_showInventory_ts from 'E:/Dev/RunesOfTheDeep/js/dungeongen/objects/behaviors/showInventory.ts';
 _registerEditor(_E__Dev_RunesOfTheDeep_js_dungeongen_objects_behaviors_showInventory_ts);
+import * as _E__Dev_RunesOfTheDeep_js_dungeongen_objects_chest_ts from 'E:/Dev/RunesOfTheDeep/js/dungeongen/objects/chest.ts';
+_registerEditor(_E__Dev_RunesOfTheDeep_js_dungeongen_objects_chest_ts);
 import * as _E__Dev_RunesOfTheDeep_js_dungeongen_room_ts from 'E:/Dev/RunesOfTheDeep/js/dungeongen/room.ts';
 _registerEditor(_E__Dev_RunesOfTheDeep_js_dungeongen_room_ts);
 import * as _E__Dev_RunesOfTheDeep_js_dungeongen_roomItemCreator_ts from 'E:/Dev/RunesOfTheDeep/js/dungeongen/roomItemCreator.ts';
@@ -54,6 +56,8 @@ import * as _E__Dev_RunesOfTheDeep_js_forFramework_throwError_ts from 'E:/Dev/Ru
 _registerEditor(_E__Dev_RunesOfTheDeep_js_forFramework_throwError_ts);
 import * as _E__Dev_RunesOfTheDeep_js_globals_ts from 'E:/Dev/RunesOfTheDeep/js/globals.ts';
 _registerEditor(_E__Dev_RunesOfTheDeep_js_globals_ts);
+import * as _E__Dev_RunesOfTheDeep_js_types_simpleTypes_ts from 'E:/Dev/RunesOfTheDeep/js/types/simpleTypes.ts';
+_registerEditor(_E__Dev_RunesOfTheDeep_js_types_simpleTypes_ts);
 import * as _E__Dev_RunesOfTheDeep_js_ui_classes_InternalUIManager_ts from 'E:/Dev/RunesOfTheDeep/js/ui/classes/InternalUIManager.ts';
 _registerEditor(_E__Dev_RunesOfTheDeep_js_ui_classes_InternalUIManager_ts);
 import * as _E__Dev_RunesOfTheDeep_js_ui_components_ui_action_close_ts from 'E:/Dev/RunesOfTheDeep/js/ui/components/ui-action-close.ts';
