@@ -11,7 +11,7 @@ export interface LootTableEntry {
 export interface LootTableBase {
   lootEntries: Map<string, LootTableEntry[]>;
 }
-type lootTypes = "common" | "rare" | "epic" | "legendary" |"entry";
+export type lootTypes = "common" | "rare" | "epic" | "legendary" |"entry";
 
 @injectable()
 export class LootTable implements LootTableBase {
@@ -22,7 +22,7 @@ export class LootTable implements LootTableBase {
   //@inject(ItemCreator) private itemCreator: ItemCreator) {
     this.lootEntries = new Map([
       ["entry", [
-      //  { item: this.itemCreator.createItem(new Sword()) , weight: 1 },
+        { item: new Sword() , weight: 1 },
         { item: new Shield(), weight: 1 },
       ]],
       ["rare", [

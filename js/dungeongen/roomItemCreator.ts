@@ -39,6 +39,10 @@ export class RoomItemCreator {
                         break;
                     }
                     let chest = currentRng.getItem(template.chests) as chestDefinition;
+                    
+                    // We need to do something here with the loot tables. 
+                    // Loot tables are specific to the room, so we need to pass information to the chest creator.
+                    
                     let chestItem = this.chestCreator.createChest({ x: x, y: y }, chest);
                     
                     chestItem.addBehavior(showInventory);

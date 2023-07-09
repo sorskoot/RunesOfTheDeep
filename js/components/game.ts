@@ -83,8 +83,4 @@ export class Game extends Component {
       };
     });
   }
-
-  override update(delta: number): void {
-    
-  }
 }

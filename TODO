@@ -37,6 +37,13 @@ Must Have:
             ✔ Hide GUI when move away @done(23-07-06 10:51)
             ✔ Hide GUI when moving to another room @done(23-07-06 10:51)
             ☐ implement the actual inventory of the chest.
+                ☐ make objects in UI selectable
+                ☐ Show stats of the items
+                ☐ Actually add stats to the items
+                ☐ switch selected sword to right hand
+                ☐ Switch selected shield to left hand
+            ☐ Create inventory of player
+                ☐ Left hand and right hand slots at left controller
             GUI Types:
                 ☐ Message box
                 ☐ Inventory

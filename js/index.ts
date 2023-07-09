@@ -75,7 +75,7 @@ engine.onSceneLoaded.once(() => {
 });
 
 DependencyRegistrar.registerDependencies();
-container.registerInstance('engine', engine); // register the engine as a singleton to can access from everywhere
+container.registerInstance(API.WonderlandEngine, engine); // register the engine as a singleton to can access from everywhere
 
 /* WebXR setup. */
 

@@ -1,4 +1,4 @@
-import {Component, WonderlandEngine} from '@wonderlandengine/api';
+import {Component, Object3D, WonderlandEngine} from '@wonderlandengine/api';
 import {property} from '@wonderlandengine/api/decorators.js';
 import { UiComponent } from './ui-component.js';
 
@@ -8,6 +8,9 @@ import { UiComponent } from './ui-component.js';
  */
 export class UiInventory extends UiComponent {
     static TypeName = 'ui-inventory';
+
+    @property.object()
+    slot1Object: Object3D;
 
     setInventory(chestType: string) {
         this.titleText.text = chestType;

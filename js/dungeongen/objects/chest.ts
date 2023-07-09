@@ -1,4 +1,4 @@
-import { Object3D } from "@wonderlandengine/api";
+import { Object3D, Texture } from "@wonderlandengine/api";
 import { LootTableBase } from "../loot/lootTableBase.js";
 import { GenericItem } from "./GenericItem.js";
 import { Item } from "./item.js";
@@ -34,6 +34,7 @@ export class Chest extends GenericItem implements chest{
         this.maxItems = maxItems;
         this.lootTable = lootTable;
         this.hasBeenOpened = false;
+        
     }
 
     override interact(obj: Object3D, x: number, y: number, z: number) {

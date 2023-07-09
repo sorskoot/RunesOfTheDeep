@@ -3,7 +3,7 @@ import { property } from "@wonderlandengine/api/decorators.js";
 import { throwError } from "../../forFramework/throwError.js";
 
 export class UiComponent extends Component {
-    static TypeName = 'ui-component';
+  
 
     @property.object()
     titleObject: Object3D;

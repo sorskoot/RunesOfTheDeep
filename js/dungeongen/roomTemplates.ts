@@ -4,6 +4,7 @@
  */
 
 import { MaterialValue, RoomType, Size } from "../types/index.js";
+import { lootTypes } from "./loot/lootTableBase.js";
 
 export const RoomTypes: Record<string, RoomType> = {
   Entrance: "entrance",
@@ -68,7 +69,7 @@ export interface chestDefinition {
   material: MaterialValue;
   size: Size;
   rotation: 0|90|180|270;
-  loottable?: string;
+  loottable?: lootTypes;
 }
 
 /**
@@ -106,7 +107,7 @@ export const roomTemplates: RoomTemplate[] = [
       {name:"Banner",faceWall:true, chance:0.3, mustBeAgainstWall:true},
     ],
     chests:[
-      {material:"Iron", size:"Large", rotation:270},
+      {loottable:'entry', material:"Iron", size:"Large", rotation:270},
     ]
   },
   {
@@ -227,6 +228,7 @@ export const roomTemplates: RoomTemplate[] = [
     ],
   },
 ];
+
 interface RoomTemplatePattern{
   canTeleportToTile:boolean;
   canInteractWithTile:boolean;
