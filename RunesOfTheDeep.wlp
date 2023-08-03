@@ -1423,10 +1423,10 @@
             "name": "Shield",
             "parent": "130",
             "rotation": [
-                0.3875147,
-                -0.591468,
-                -0.3875155,
-                0.5914639
+                -0.2705946,
+                -0.6532805,
+                0.2706014,
+                0.6532824
             ],
             "translation": [
                 -0.100226,
@@ -1437,29 +1437,6 @@
                 0.9999756,
                 1.0,
                 0.9999758
-            ]
-        },
-        "359": {
-            "link": {
-                "name": "Shield1H",
-                "file": "models\\Shield.fbx"
-            },
-            "parent": "356",
-            "scaling": [
-                0.8000001,
-                0.8000001,
-                0.8
-            ],
-            "translation": [
-                -1.076471178862448e-8,
-                0.0,
-                3.42726764301915e-7
-            ],
-            "rotation": [
-                -2.8936327112205618e-8,
-                -0.0,
-                -0.2427287,
-                0.9700942
             ]
         },
         "365": {
@@ -3252,6 +3229,59 @@
                     }
                 }
             ]
+        },
+        "561": {
+            "name": "Shield.Outside",
+            "parent": "356",
+            "components": [
+                {
+                    "type": "mesh",
+                    "mesh": {
+                        "mesh": "7",
+                        "material": "562"
+                    }
+                }
+            ],
+            "rotation": [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ],
+            "scaling": [
+                0.25,
+                0.25,
+                0.25
+            ]
+        },
+        "565": {
+            "name": "Shield.Inside",
+            "parent": "356",
+            "components": [
+                {
+                    "type": "mesh",
+                    "mesh": {
+                        "mesh": "7",
+                        "material": "566"
+                    }
+                }
+            ],
+            "translation": [
+                -1.293511786570889e-7,
+                0.0,
+                9.599303041341045e-8
+            ],
+            "rotation": [
+                4.371138828673793e-8,
+                1.0,
+                4.371138828673793e-8,
+                0.0
+            ],
+            "scaling": [
+                0.25,
+                0.25,
+                0.25
+            ]
         }
     },
     "meshes": {
@@ -3955,6 +3985,18 @@
                 "name": "iron-weapons_36.png",
                 "file": "assets\\ui\\iron-weapons_36.png"
             }
+        },
+        "564": {
+            "link": {
+                "name": "tiles_20.png",
+                "file": "assets\\tiles\\tiles_20.png"
+            }
+        },
+        "568": {
+            "link": {
+                "name": "tiles_21.png",
+                "file": "assets\\tiles\\tiles_21.png"
+            }
         }
     },
     "images": {
@@ -4177,6 +4219,18 @@
             "link": {
                 "name": "iron-weapons_36.png",
                 "file": "assets\\ui\\iron-weapons_36.png"
+            }
+        },
+        "563": {
+            "link": {
+                "name": "tiles_20.png",
+                "file": "assets\\tiles\\tiles_20.png"
+            }
+        },
+        "567": {
+            "link": {
+                "name": "tiles_21.png",
+                "file": "assets\\tiles\\tiles_21.png"
             }
         }
     },
@@ -4861,6 +4915,26 @@
                 "sizeX": 16,
                 "sizeY": 16
             }
+        },
+        "562": {
+            "name": "ShieldOutside",
+            "pipeline": "240",
+            "FlatSorskoot": {
+                "flatTexture": "564",
+                "sizeX": 1,
+                "sizeY": 1,
+                "size": 16
+            }
+        },
+        "566": {
+            "name": "ShieldInside",
+            "pipeline": "240",
+            "FlatSorskoot": {
+                "flatTexture": "568",
+                "sizeX": 1,
+                "sizeY": 1,
+                "size": 16
+            }
         }
     },
     "shaders": {
@@ -5493,6 +5567,14 @@
         },
         {
             "fileName": "assets/ui/iron-weapons_36.png",
+            "importerName": ""
+        },
+        {
+            "fileName": "assets/tiles/tiles_20.png",
+            "importerName": ""
+        },
+        {
+            "fileName": "assets/tiles/tiles_21.png",
             "importerName": ""
         }
     ],

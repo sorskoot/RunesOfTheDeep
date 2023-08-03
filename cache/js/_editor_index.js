@@ -34,8 +34,6 @@ import * as _E__Dev_RunesOfTheDeep_js_dungeongen_RoomRenderer_ts from 'E:/Dev/Ru
 _registerEditor(_E__Dev_RunesOfTheDeep_js_dungeongen_RoomRenderer_ts);
 import * as _E__Dev_RunesOfTheDeep_js_dungeongen_components_tileComponent_ts from 'E:/Dev/RunesOfTheDeep/js/dungeongen/components/tileComponent.ts';
 _registerEditor(_E__Dev_RunesOfTheDeep_js_dungeongen_components_tileComponent_ts);
-import * as _E__Dev_RunesOfTheDeep_js_dungeongen_loot_lootTableBase_ts from 'E:/Dev/RunesOfTheDeep/js/dungeongen/loot/lootTableBase.ts';
-_registerEditor(_E__Dev_RunesOfTheDeep_js_dungeongen_loot_lootTableBase_ts);
 import * as _E__Dev_RunesOfTheDeep_js_dungeongen_room_ts from 'E:/Dev/RunesOfTheDeep/js/dungeongen/room.ts';
 _registerEditor(_E__Dev_RunesOfTheDeep_js_dungeongen_room_ts);
 import * as _E__Dev_RunesOfTheDeep_js_dungeongen_roomItemCreator_ts from 'E:/Dev/RunesOfTheDeep/js/dungeongen/roomItemCreator.ts';

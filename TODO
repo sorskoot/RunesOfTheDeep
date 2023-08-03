@@ -4,6 +4,7 @@ Keep in mind:
 
 
 Must Have:
+    ☐ @critical GUI
     ☐ @critical Implement first enemies
     ☐ @critical Implement first fighting mechanics
     ☐ Add treasure chests to the treasure rooms
@@ -27,6 +28,7 @@ Must Have:
         ✔ Give the player a sword and a shield @done(23-06-01 13:21)
         ☐ place props in the rooms to make every room unique
         ☐ better looking indicators
+        ✔ Different Shield @done(23-08-03 22:47)
         ✔ Lighting should be placed based on the map @done(23-06-01 12:51)
             # This might mean there has to be a lighting pool
         GUI Manager:
