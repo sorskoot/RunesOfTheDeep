@@ -10,6 +10,9 @@ export class UiInventory extends UiComponent {
     static TypeName = 'ui-inventory';
 
     @property.object()
+    titleObject: Object3D;
+
+    @property.object()
     slot1Object: Object3D;
 
     setInventory(chestType: string) {
