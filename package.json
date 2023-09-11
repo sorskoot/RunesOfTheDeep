@@ -4,7 +4,7 @@
   "description": "Runes of the Deep: Dwarven Cave Chronicles",
   "main": "js/index.js",
   "type": "module",
-  "module": "js/index.js",  
+  "module": "js/index.js",
   "moduleDirectories": [
     "node_modules",
     "js"
@@ -21,9 +21,9 @@
     "tsyringe": "^4.7.0"
   },
   "dependencies": {
-    "@sorskoot/wonderland-components": "1.1.6",
-    "@wonderlandengine/api": "^1.0.1",
-    "@wonderlandengine/components": "^1.0.3",
+    "@sorskoot/wonderland-components": "github:sorskoot/SorskootWonderlandComponents",
+    "@wonderlandengine/api": "^1.1.0",
+    "@wonderlandengine/components": "^1.0.6",
     "@zestymarket/wonderland-sdk": "^2.0.4",
     "gl-matrix": "^3.4.3",
     "reflect-metadata": "^0.1.13",

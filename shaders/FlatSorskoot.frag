@@ -25,6 +25,7 @@
 #define USE_POSITION_VIEW
 #endif
 
+#include "lib/Uniforms.glsl"
 #include "lib/Inputs.frag"
 
 #if NUM_LIGHTS > 0
